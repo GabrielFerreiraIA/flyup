@@ -27,7 +27,7 @@ export default function Footer() {
                     <div className="space-y-6">
                         <h4 className="text-white font-bold uppercase tracking-wider text-sm">Navegação</h4>
                         <ul className="space-y-3">
-                            <FooterLink href="#">Saltos Duplos</FooterLink>
+                            <FooterLink href="/salto-duplo">Saltos Duplo</FooterLink>
                             <FooterLink href="#">Curso AFF</FooterLink>
                             <FooterLink href="#">Atletas</FooterLink>
                             <FooterLink href="/blog">Blog</FooterLink>

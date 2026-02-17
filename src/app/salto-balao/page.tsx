@@ -11,28 +11,35 @@ export default function SaltoBalaoPage() {
                 {
                     title: "Decolagem ao Amanhecer",
                     description: "Os voos de balão ocorrem na primeira hora do sol. Você verá o espetáculo do amanhecer enquanto sobe lentamente.",
-                    icon: "Sunrise"
+                    icon: "Sunrise",
+                    image: "https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?q=80&w=800&auto=format&fit=crop"
                 },
                 {
                     title: "Ascensão Silenciosa",
                     description: "A subida dura cerca de 45 minutos até atingir a altitude de lançamento (entre 6.000 e 10.000 pés).",
-                    icon: "Cloud"
+                    icon: "Cloud",
+                    image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=800&auto=format&fit=crop"
                 },
                 {
                     title: "A Saída (Dead Air)",
                     description: "Sem o vento relativo do avião, você simplesmente 'cai' no vazio. A sensação de aceleração é muito mais nítida e emocionante.",
-                    icon: "Zap"
+                    icon: "Zap",
+                    image: "https://images.unsplash.com/photo-1542408892-d965d1d61993?q=80&w=800&auto=format&fit=crop"
                 },
                 {
                     title: "Pouso e Brinde",
                     description: "Após o salto, nos reunimos para o tradicional brinde com espumante, celebrando a coragem e a beleza do voo.",
-                    icon: "Trophy"
+                    icon: "Trophy",
+                    image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=800&auto=format&fit=crop"
                 }
             ]}
             galleryImages={[
                 "https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?q=80&w=2670&auto=format&fit=crop",
                 "https://images.unsplash.com/photo-1540206351-d6465b3ac5c1?q=80&w=2672&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?q=80&w=2670&auto=format&fit=crop"
+                "https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?q=80&w=2670&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1549482199-bc1ca6f58502?q=80&w=3276&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1582218412852-c0733d70669c?q=80&w=2670&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1531306728370-e2ebd9d7bb99?q=80&w=2670&auto=format&fit=crop"
             ]}
             pricingOptions={[
                 {
@@ -47,18 +54,39 @@ export default function SaltoBalaoPage() {
                     highlight: true
                 }
             ]}
+            specialConditions={[
+                {
+                    title: "Voo Exclusivo",
+                    description: "Feche o balão apenas para você e seus convidados. Ideal para pedidos de casamento e ocasiões intimistas.",
+                    icon: "Star"
+                },
+                {
+                    title: "Para Atletas",
+                    description: "Pacotes de jumps tickets para grupos de atletas licenciados com condições especiais para organizer.",
+                    icon: "Users"
+                },
+                {
+                    title: "Produção de Conteúdo",
+                    description: "Suporte logístico total para marcas e produtores que desejam filmar no ambiente único do balão.",
+                    icon: "Camera"
+                }
+            ]}
             faqs={[
                 {
-                    question: "Por que de madrugada?",
-                    answer: "O balão precisa de ventos calmos e ar frio para voar com segurança, condições que só ocorrem logo ao amanhecer."
+                    question: "Por que os saltos são de madrugada?",
+                    answer: "Para a segurança do voo de balão. Precisamos das condições atmosféricas estáveis (ventos calmos e temperatura amena) que só ocorrem nas primeiras horas do dia."
                 },
                 {
-                    question: "É mais perigoso?",
-                    answer: "Não. Seguimos protocolos rigorosos. O piloto do balão e os instrutores são profissionais altamente credenciados."
+                    question: "É mais perigoso que o avião?",
+                    answer: "Não. A operação segue rigorosos padrões da ANAC. A diferença é a saída 'morta' (sem vento relativo inicial), que requer técnica específica dos instrutores, mas é extremamente controlada."
                 },
                 {
-                    question: "A qualquer dia?",
-                    answer: "Os saltos de balão são sazonais e dependem de formação de grupo e condições perfeitas de vento. Consulte nossa agenda."
+                    question: "E se o tempo virar?",
+                    answer: "O piloto do balão tem autoridade final. Se as condições não forem 100% seguras, o voo é cancelado e reagendado sem custo. Segurança é inegociável."
+                },
+                {
+                    question: "Preciso ter experiência para salto duplo de balão?",
+                    answer: "Não! Qualquer pessoa apta fisicamente pode fazer. É uma experiência ainda mais exclusiva e suave que o salto de avião."
                 }
             ]}
         />

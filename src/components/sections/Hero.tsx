@@ -94,14 +94,7 @@ export default function Hero() {
                 </p>
 
                 {/* Buttons */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                    <Button className="hero-btn h-14 px-10 text-lg uppercase tracking-wide rounded-none font-bold italic" variant="default">
-                        AGENDAR AGORA
-                    </Button>
-                    <Button className="hero-btn h-14 px-10 text-lg uppercase tracking-wide rounded-none font-bold italic" variant="neon">
-                        NOSSAS EXPERIÊNCIAS
-                    </Button>
-                </div>
+
             </div>
         </section>
     );

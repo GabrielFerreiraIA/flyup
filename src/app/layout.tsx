@@ -31,6 +31,7 @@ export default function RootLayout({
     <html lang="pt-BR" className="dark scroll-smooth">
       <body
         className={`${inter.variable} ${outfit.variable} antialiased bg-black text-white min-h-screen flex flex-col selection:bg-neon selection:text-black`}
+        suppressHydrationWarning
       >
         <Navbar />
         <main className="flex-1 overflow-x-hidden">{children}</main>

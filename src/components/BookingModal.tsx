@@ -218,9 +218,13 @@ export default function BookingModal({ isOpen, onClose, experienceTitle }: Booki
     const [isCountrySelectorOpen, setIsCountrySelectorOpen] = useState(false);
     const countrySelectorRef = useRef<HTMLDivElement>(null);
 
-    // Reset form when modal opens and lock body scroll
+    // Mount check for client-side portal
     useEffect(() => {
         setMounted(true);
+    }, []);
+
+    // Reset form when modal opens and lock body scroll
+    useEffect(() => {
         if (isOpen) {
             setFormData({ name: "", fullPhone: "" });
             setIsSubmitted(false);
@@ -242,7 +246,6 @@ export default function BookingModal({ isOpen, onClose, experienceTitle }: Booki
         return () => {
             document.body.style.overflow = 'unset';
             document.removeEventListener("mousedown", handleClickOutside);
-            setMounted(false);
         };
     }, [isOpen]);
 

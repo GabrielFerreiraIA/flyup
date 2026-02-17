@@ -8,8 +8,10 @@ import {
     GraduationCap, Star, Plane, Activity, Gauge, type LucideIcon
 } from "lucide-react";
 import { useState } from "react";
-import BookingModal from "@/components/BookingModal";
+import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
+
+const BookingModal = dynamic(() => import("@/components/BookingModal"), { ssr: false });
 
 const iconMap: Record<string, LucideIcon> = {
     CheckCircle2, Clock, MapPin, Shield, Zap, Cloud, Sunrise, Bird, Camera,
@@ -29,10 +31,17 @@ interface PricingItem {
     highlight?: boolean;
 }
 
+interface SpecialConditionItem {
+    title: string;
+    description: string;
+    icon?: string;
+}
+
 interface StepItem {
     title: string;
     description: string;
     icon?: string;
+    image?: string;
 }
 
 interface ServicePageLayoutProps {
@@ -44,6 +53,7 @@ interface ServicePageLayoutProps {
     galleryImages: string[];
     pricingOptions: PricingItem[];
     faqs: FAQItem[];
+    specialConditions?: SpecialConditionItem[];
     ctaText?: string;
 }
 
@@ -56,14 +66,15 @@ export default function ServicePageLayout({
     galleryImages,
     pricingOptions,
     faqs,
+    specialConditions,
     ctaText = "Agendar Agora"
 }: ServicePageLayoutProps) {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
     return (
-        <main className="bg-black text-white min-h-screen font-sans selection:bg-neon selection:text-black">
-            {/* HERO SECTION */}
+        <div className="bg-black min-h-screen font-sans selection:bg-neon selection:text-black" suppressHydrationWarning>
+            {/* HERO SECTION (DARK) */}
             <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
@@ -96,19 +107,27 @@ export default function ServicePageLayout({
                 </div>
             </section>
 
-            {/* OVERVIEW & STEPS SECTION */}
-            <section className="py-24 bg-zinc-950 relative overflow-hidden">
+            {/* OVERVIEW & STEPS SECTION (LIGHT branded) */}
+            <section className="py-24 bg-zinc-50 relative overflow-hidden">
+                {/* Dynamic Background */}
+                <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute inset-0 opacity-[0.05] bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+                    <div className="absolute -top-[20%] -right-[10%] w-[800px] h-[800px] bg-[#39FF14]/10 rounded-full blur-[120px] mix-blend-multiply" />
+                    <div className="absolute -bottom-[20%] -left-[10%] w-[600px] h-[600px] bg-[#39FF14]/5 rounded-full blur-[100px] mix-blend-multiply" />
+                </div>
+
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="max-w-4xl mx-auto mb-20 text-center">
-                        <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter mb-6">
+                        <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter mb-6 text-black relative inline-block">
                             A Experiência
+                            <span className="absolute -bottom-2 left-0 w-full h-2 bg-[#00cc00]/40 -skew-x-12" />
                         </h2>
-                        <p className="text-lg text-zinc-400 leading-relaxed font-medium">
+                        <p className="text-lg text-zinc-700 leading-relaxed font-medium">
                             {overview}
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {steps.map((step, idx) => (
                             <motion.div
                                 key={idx}
@@ -116,23 +135,51 @@ export default function ServicePageLayout({
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1 }}
-                                className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-colors group"
+                                className="bg-white border border-zinc-300 rounded-3xl overflow-hidden hover:border-[#00cc00] hover:shadow-[0_10px_40px_-10px_rgba(0,180,0,0.2)] transition-all duration-300 group flex flex-col h-full relative"
                             >
-                                <div className="w-14 h-14 bg-neon/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-neon transition-colors duration-300">
-                                    {step.icon && iconMap[step.icon] ? (() => { const Icon = iconMap[step.icon]; return <Icon className="text-neon group-hover:text-black w-7 h-7 transition-colors" />; })() : <div className="w-3 h-3 bg-neon rounded-full" />}
+                                {step.image && (
+                                    <div className="h-48 w-full overflow-hidden relative">
+                                        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors z-10" />
+                                        <img
+                                            src={step.image}
+                                            alt={step.title}
+                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        />
+                                        <div className="absolute bottom-4 left-4 z-20 w-12 h-12 bg-black/90 backdrop-blur-md rounded-xl flex items-center justify-center shadow-lg border border-[#39FF14]/50 group-hover:scale-110 transition-transform">
+                                            {(() => {
+                                                const IconComponent = step.icon ? iconMap[step.icon] : null;
+                                                return IconComponent
+                                                    ? <IconComponent className="text-[#39FF14] w-6 h-6" />
+                                                    : <div className="w-2 h-2 bg-[#39FF14] rounded-full" />;
+                                            })()}
+                                        </div>
+                                    </div>
+                                )}
+                                <div className="p-8 flex flex-col flex-grow relative">
+                                    {!step.image && (
+                                        <div className="w-16 h-16 bg-zinc-950 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-black transition-all duration-300 shadow-md shadow-zinc-300 border border-zinc-800">
+                                            {(() => {
+                                                const IconComponent = step.icon ? iconMap[step.icon] : null;
+                                                return IconComponent
+                                                    ? <IconComponent className="text-[#39FF14] w-8 h-8 transition-colors" />
+                                                    : <div className="w-2 h-2 bg-[#39FF14] rounded-full" />;
+                                            })()}
+                                        </div>
+                                    )}
+                                    <h3 className="text-xl font-black italic uppercase mb-3 text-black group-hover:text-[#008800] transition-colors">{step.title}</h3>
+                                    <p className="text-zinc-700 font-medium text-sm leading-relaxed flex-grow">{step.description}</p>
                                 </div>
-                                <h3 className="text-xl font-black italic uppercase mb-3 text-white">{step.title}</h3>
-                                <p className="text-zinc-500 font-medium text-sm leading-relaxed">{step.description}</p>
                             </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* GALLERY SECTION */}
-            <section className="py-24 bg-black">
-                <div className="container mx-auto px-6">
-                    <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter mb-12 text-center">
+            {/* GALLERY SECTION (DARK) */}
+            <section className="py-24 bg-black text-white relative">
+                <div className="absolute inset-0 bg-black/50" />
+                <div className="container mx-auto px-6 relative z-10">
+                    <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter mb-12 text-center text-white">
                         Galeria <span className="text-transparent" style={{ WebkitTextStroke: '1px #39FF14' }}>Exclusiva</span>
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[300px]">
@@ -143,7 +190,7 @@ export default function ServicePageLayout({
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5 }}
-                                className={`rounded-2xl overflow-hidden relative group cursor-pointer ${idx === 0 || idx === 6 ? 'md:col-span-2' : ''}`}
+                                className={`rounded-2xl overflow-hidden relative group cursor-pointer border-2 border-transparent hover:border-[#39FF14] transition-colors ${idx === 0 || idx === 6 ? 'md:col-span-2' : ''}`}
                             >
                                 <img
                                     src={img}
@@ -157,8 +204,56 @@ export default function ServicePageLayout({
                 </div>
             </section>
 
-            {/* PRICING SECTION */}
-            <section className="py-24 bg-zinc-950 border-t border-white/5">
+            {/* SPECIAL CONDITIONS SECTION (LIGHT branded) */}
+            {specialConditions && specialConditions.length > 0 && (
+                <section className="py-24 bg-white border-y border-zinc-300 relative overflow-hidden">
+                    {/* Decorative pattern */}
+                    <div className="absolute top-0 right-0 w-full h-full opacity-[0.03]"
+                        style={{ backgroundImage: 'repeating-linear-gradient(45deg, #000 0, #000 1px, transparent 0, transparent 50%)', backgroundSize: '12px 12px' }}
+                    />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-[#00cc00]/5 blur-[100px] rounded-full pointer-events-none" />
+
+                    <div className="container mx-auto px-6 relative z-10">
+                        <div className="text-center mb-16">
+                            <span className="text-[#008800] font-black tracking-widest uppercase text-sm mb-2 block bg-[#39FF14]/20 inline-block px-3 py-1 rounded-full">Exclusividade Flyup</span>
+                            <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter text-black">
+                                Condições Especiais
+                            </h2>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {specialConditions.map((condition, idx) => (
+                                <motion.div
+                                    key={idx}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: idx * 0.1 }}
+                                    className="bg-zinc-50 border border-zinc-300 p-8 rounded-3xl hover:bg-white hover:border-[#00cc00]/50 hover:shadow-xl transition-all duration-300 group relative overflow-hidden"
+                                >
+                                    <div className="absolute top-0 right-0 w-24 h-24 bg-[#00cc00]/10 rounded-bl-full -mr-4 -mt-4 transition-all group-hover:scale-150 group-hover:bg-[#00cc00]/20" />
+
+                                    <div className="w-14 h-14 bg-zinc-950 border border-zinc-800 rounded-xl flex items-center justify-center mb-6 px-3 shadow-md group-hover:scale-110 transition-transform relative z-10">
+                                        {(() => {
+                                            const IconComponent = condition.icon ? iconMap[condition.icon] : null;
+                                            return IconComponent
+                                                ? <IconComponent className="w-7 h-7 text-[#39FF14] transition-colors" />
+                                                : <div className="w-2 h-2 bg-neon rounded-full" />;
+                                        })()}
+                                    </div>
+                                    <h3 className="text-xl font-black italic uppercase mb-3 text-black relative z-10 group-hover:text-[#008800] transition-colors">{condition.title}</h3>
+                                    <p className="text-zinc-700 text-sm leading-relaxed relative z-10">
+                                        {condition.description}
+                                    </p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {/* PRICING SECTION (DARK) */}
+            <section className="py-24 bg-black text-white">
                 <div className="container mx-auto px-6">
                     <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter mb-16 text-center">
                         Investimento
@@ -168,10 +263,10 @@ export default function ServicePageLayout({
                             <motion.div
                                 key={idx}
                                 whileHover={{ y: -10 }}
-                                className={`w-full max-w-md rounded-3xl p-8 flex flex-col relative ${option.highlight ? 'bg-zinc-900 border-2 border-neon shadow-[0_0_40px_rgba(57,255,20,0.15)]' : 'bg-zinc-900/50 border border-white/10'}`}
+                                className={`w-full max-w-md rounded-3xl p-8 flex flex-col relative ${option.highlight ? 'bg-zinc-900 border-2 border-[#39FF14] shadow-[0_0_40px_rgba(57,255,20,0.15)]' : 'bg-zinc-900/30 border border-white/10'}`}
                             >
                                 {option.highlight && (
-                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-neon text-black text-xs font-black uppercase px-4 py-1 rounded-full tracking-widest">
+                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#39FF14] text-black text-xs font-black uppercase px-4 py-1 rounded-full tracking-widest shadow-lg shadow-[#39FF14]/20">
                                         Mais Popular
                                     </div>
                                 )}
@@ -183,14 +278,14 @@ export default function ServicePageLayout({
                                 <ul className="flex-1 space-y-4 mb-8">
                                     {option.features.map((feature, fIdx) => (
                                         <li key={fIdx} className="flex items-start gap-3">
-                                            <CheckCircle2 className="w-5 h-5 text-neon shrink-0" />
+                                            <CheckCircle2 className="w-5 h-5 text-[#39FF14] shrink-0" />
                                             <span className="text-zinc-300 text-sm font-medium">{feature}</span>
                                         </li>
                                     ))}
                                 </ul>
                                 <Button
                                     onClick={() => setIsBookingOpen(true)}
-                                    className={`w-full py-6 font-black italic uppercase rounded-xl ${option.highlight ? 'bg-neon text-black hover:bg-neon-hover' : 'bg-white/10 text-white hover:bg-white/20'}`}
+                                    className={`w-full py-6 font-black italic uppercase rounded-xl ${option.highlight ? 'bg-[#39FF14] text-black hover:bg-[#32e010] shadow-lg shadow-[#39FF14]/20' : 'bg-white/10 text-white hover:bg-white/20'}`}
                                 >
                                     Reservar Vaga
                                 </Button>
@@ -200,32 +295,39 @@ export default function ServicePageLayout({
                 </div>
             </section>
 
-            {/* FAQ SECTION */}
-            <section className="py-24 bg-black border-t border-white/5">
-                <div className="container mx-auto px-6 max-w-3xl">
-                    <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter mb-12 text-center">
+            {/* FAQ SECTION (LIGHT branded) */}
+            <section className="py-24 bg-zinc-50 border-t border-zinc-300 relative">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#00cc00]/5 via-transparent to-transparent opacity-50 pointer-events-none" />
+
+                <div className="container mx-auto px-6 max-w-3xl relative z-10">
+                    <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter mb-12 text-center text-black">
                         Dúvidas Frequentes
                     </h2>
                     <div className="space-y-4">
                         {faqs.map((faq, idx) => (
-                            <div key={idx} className="border border-white/10 rounded-2xl bg-zinc-900/30 overflow-hidden">
+                            <div key={idx} className="border border-zinc-300 rounded-2xl bg-white overflow-hidden hover:border-[#00cc00] transition-colors group">
                                 <button
                                     onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
                                     className="w-full flex items-center justify-between p-6 text-left"
                                 >
-                                    <span className="font-bold text-lg text-white">{faq.question}</span>
-                                    <ChevronDown
-                                        className={`text-zinc-500 transition-transform duration-300 ${openFaqIndex === idx ? 'rotate-180 text-neon' : ''}`}
-                                    />
+                                    <span className={`font-bold text-lg transition-colors ${openFaqIndex === idx ? 'text-[#008800]' : 'text-black group-hover:text-black/80'}`}>
+                                        {faq.question}
+                                    </span>
+                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${openFaqIndex === idx ? 'bg-[#00cc00] rotate-180' : 'bg-zinc-200 group-hover:bg-[#00cc00]/20'}`}>
+                                        <ChevronDown className={`w-5 h-5 transition-colors ${openFaqIndex === idx ? 'text-white' : 'text-zinc-600 group-hover:text-black'}`} />
+                                    </div>
                                 </button>
                                 <motion.div
                                     initial={false}
                                     animate={{ height: openFaqIndex === idx ? "auto" : 0 }}
                                     className="overflow-hidden"
                                 >
-                                    <p className="p-6 pt-0 text-zinc-400 leading-relaxed">
-                                        {faq.answer}
-                                    </p>
+                                    <div className="p-6 pt-0">
+                                        <div className="w-full h-px bg-zinc-100 mb-4" />
+                                        <p className="text-zinc-700 leading-relaxed bg-zinc-50/50 p-4 rounded-xl">
+                                            {faq.answer}
+                                        </p>
+                                    </div>
                                 </motion.div>
                             </div>
                         ))}
@@ -238,6 +340,6 @@ export default function ServicePageLayout({
                 onClose={() => setIsBookingOpen(false)}
                 experienceTitle={title}
             />
-        </main>
+        </div>
     );
 }

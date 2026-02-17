@@ -5,7 +5,9 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Zap, GraduationCap, Cloud, Wind, Bird, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import BookingModal from "@/components/BookingModal";
+import dynamic from "next/dynamic";
+
+const BookingModal = dynamic(() => import("@/components/BookingModal"), { ssr: false });
 
 const experiences = [
     {
