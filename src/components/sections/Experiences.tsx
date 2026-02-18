@@ -28,7 +28,7 @@ const experiences = [
         icon: GraduationCap,
         image: "https://i.imgur.com/RTSEt0i.jpeg",
         col: 2,
-        link: "/curso-aff",
+        link: "/curso-aff-pro",
         tags: ["7 NÍVEIS", "CERTIFICADO"],
         description: "Aprenda a voar sozinho. O método de formação de atletas mais rápido e seguro do mundo."
     },
