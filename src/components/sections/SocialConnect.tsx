@@ -46,7 +46,7 @@ const SocialConnect = () => {
 
                     <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9]">
                         Compartilhe <br />
-                        <span className="text-transparent" style={{ WebkitTextStroke: "2px #39FF14" }}>o Hype</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-400">o Hype</span>
                     </h2>
 
                     <p className="text-zinc-600 text-xl max-w-lg font-medium leading-relaxed">

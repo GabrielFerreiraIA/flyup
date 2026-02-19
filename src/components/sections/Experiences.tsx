@@ -15,7 +15,7 @@ const experiences = [
         title: "Salto Duplo",
         badge: "Adrenalina",
         icon: Zap,
-        image: "https://i.imgur.com/5LRiDVB.jpeg",
+        image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470425/Salto_Duplo_1_hprebk.png",
         col: 1,
         link: "/salto-duplo",
         tags: ["12.000FT", "45S QUEDA"],
@@ -26,7 +26,7 @@ const experiences = [
         title: "Curso AFF",
         badge: "Escola",
         icon: GraduationCap,
-        image: "https://i.imgur.com/RTSEt0i.jpeg",
+        image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470433/Curso_AFF_Foto_1_jwmjre.png",
         col: 2,
         link: "/curso-aff-pro",
         tags: ["7 NÍVEIS", "CERTIFICADO"],
@@ -37,7 +37,7 @@ const experiences = [
         title: "Salto de Balão",
         badge: "Visual",
         icon: Cloud,
-        image: "https://i.imgur.com/kfs0in2.jpeg",
+        image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470430/Salto_Bal%C3%A3o_1_u1amjp.png",
         col: 1,
         link: "/salto-balao",
         tags: ["AMANHECER", "EXCLUSIVO"],
@@ -48,7 +48,7 @@ const experiences = [
         title: "Túnel de Vento",
         badge: "Técnica",
         icon: Wind,
-        image: "https://i.imgur.com/eXcfgmt.jpeg",
+        image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470429/Foto_Tunel_de_Vento_1_gn2b40.png",
         col: 2,
         link: "/tunel-de-vento",
         tags: ["INDOOR", "COACHING"],
@@ -59,7 +59,7 @@ const experiences = [
         title: "Wingsuit",
         badge: "Alta Performance",
         icon: Bird,
-        image: "https://i.imgur.com/xdbkj7m.jpeg",
+        image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470434/Wing_Suit_imagem_1_mhspao.png",
         col: 1,
         link: "/wingsuit",
         tags: ["PRO", "MAX SPEED"],
@@ -124,7 +124,7 @@ export default function Experiences() {
                         transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
                         className="text-6xl md:text-8xl lg:text-9xl font-black italic uppercase tracking-tighter transform -skew-x-6 leading-none text-black mb-6 relative z-10"
                     >
-                        ESCOLHA <span className="text-white [-webkit-text-stroke:2.5px_black]">SEU VOO</span>
+                        ESCOLHA <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-400">SEU VOO</span>
                     </motion.h2>
 
                     <motion.p

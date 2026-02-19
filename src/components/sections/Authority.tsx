@@ -52,7 +52,7 @@ export default function Authority() {
             <div
                 className="absolute inset-0 z-0 opacity-100"
                 style={{
-                    backgroundImage: "url('https://i.imgur.com/fXGW0hl.png')",
+                    backgroundImage: "url('https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470427/Backgorund_1_pk1aal.png')",
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
@@ -142,7 +142,7 @@ export default function Authority() {
                         >
                             <div
                                 className="absolute inset-0 bg-cover bg-center transition-all duration-700 filter grayscale group-hover:grayscale-0 group-hover:scale-105"
-                                style={{ backgroundImage: "url('https://i.imgur.com/gOVHmpV.jpeg')" }}
+                                style={{ backgroundImage: "url('https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771461011/Foto_Edu_Editada_Reduzida_pqwdly')" }}
                             />
 
                             {/* Overlay Gradient on Image */}

@@ -34,7 +34,7 @@ export default function AFFInstructor() {
 
                         {/* Photo - grayscale that reveals on hover */}
                         <img
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMo1uUBcBkR9NsoVP-ORDvgUYNe1BPnk8pPaQrkgPv3xDtW20o9Eg55k2GEwNekWt05cIWDlKHmLlYPG2kGvwQKId-AuOeZ3Lr_NET71XNvqAr6EfRIrjTCo6k6hbpKWfuXxHDWJb-nzFGgNsJxS-IDErLKdCdtB8IouZfxMSCvBI3mb5yVSJtcmurIhIk3qxWBqMD8IewCaZTVcpeVXxb_kPbXb9Hrgz4zIIKVIZOywg8T2ytDSR-mQlLoLV8_9TvdaRFyT8D2b8"
+                            src="https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771461011/Foto_Edu_Editada_Reduzida_pqwdly"
                             alt="Edu Esteves - Instrutor e Recordista"
                             className="relative rounded-lg shadow-2xl w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-500 object-cover aspect-[4/5]"
                         />
@@ -61,7 +61,7 @@ export default function AFFInstructor() {
                         {/* Main Headline */}
                         <h2 className="text-5xl md:text-6xl font-black italic uppercase text-black leading-[0.9] mb-6">
                             A Elite do<br />
-                            <span className="text-transparent" style={{ WebkitTextStroke: '2px #111' }}>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-400">
                                 Paraquedismo
                             </span>
                         </h2>

@@ -11,35 +11,35 @@ const testimonials = [
         author: "Danilo Nielson",
         role: "Aluno AFF",
         company: "Flyup",
-        avatar: "https://i.imgur.com/IDYWANx.png",
+        avatar: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771471457/Depoimento_Danilo_Nielson_1_ooyte9.png",
     },
     {
         quote: "Muito bom poder fazer e concluir o curso AFFpro, sem dúvidas uma ótima escolha para iniciar no esporte e evoluir. Sou grato por ter iniciado e feito o meu primeiro salto no dia da inauguração da FlyUp.",
         author: "Felipe Calhau",
         role: "Aluno AFFpro",
         company: "Flyup",
-        avatar: "https://i.imgur.com/odGsMUs.png",
+        avatar: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771471455/Depoimento_3_1_q0tco5.png",
     },
     {
         quote: "A Escola de paraquedismo Fly UP é simplesmente incrível! Desde a recepção até cada etapa do atendimento, tudo é feito com profissionalismo e paixão. Meus instrutores — Edu Esteves, Vitinho e Silvestre — são excepcionais.",
         author: "Thiago Silva",
         role: "Aluno AFF",
         company: "Flyup",
-        avatar: "https://i.imgur.com/vVSjGU3.png",
+        avatar: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771471459/Depoimento_1_1_xzeqnf.png",
     },
     {
         quote: "Conheci a Fly Up e o Edu, e desde então minha vida mudou. Hoje sou paraquedista e cada novo salto é uma experiência de prazer e aprendizado. Hoje me sinto realizado com o esporte que escolhi para viver!",
         author: "Leandro Soares",
         role: "Atleta",
         company: "Flyup",
-        avatar: "https://i.imgur.com/kBvoWwh.png",
+        avatar: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771471452/Depoimento_5_1_yvwmnc.png",
     },
     {
         quote: "O Edu é um excelente instrutor. Me senti acolhida e segura o tempo todo, nas aulas teóricas e práticas. Ele é muito experiente e competente! Guardo todos os ensinamentos e toda a energia boa!",
         author: "Just Paulinha",
         role: "Aluna AFF",
         company: "Flyup",
-        avatar: "https://i.imgur.com/3dOhHJU.png",
+        avatar: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771471452/Depoimento_6_1_jtfu27.png",
     },
 ]
 
@@ -276,7 +276,10 @@ export default function AFFTestimonials() {
                         Quem já voou com a gente
                     </span>
                     <h2 className="text-4xl md:text-5xl font-black italic uppercase text-white leading-none">
-                        Depoimentos Reais
+                        Depoimentos{" "}
+                        <span className="text-transparent" style={{ WebkitTextStroke: '2px #39FF14' }}>
+                            Reais
+                        </span>
                     </h2>
                 </motion.div>
 

@@ -114,46 +114,46 @@ function ComparisonTable() {
                         </th>
                     </tr>
                 </thead>
-                <tbody className="bg-white">
+                <tbody className="bg-zinc-950/40 backdrop-blur-sm">
                     {comparisonRows.map((row, i) => (
-                        <tr key={i} className="border-b border-zinc-100 last:border-0 hover:bg-zinc-50/80 transition-colors">
+                        <tr key={i} className="border-b border-zinc-800/50 last:border-0 hover:bg-zinc-900/50 transition-colors">
                             <td className="py-5 px-6">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-8 h-8 rounded-lg bg-zinc-100 flex items-center justify-center flex-shrink-0">
-                                        <row.Icon className="w-4 h-4 text-zinc-600" />
+                                    <div className="w-8 h-8 rounded-lg bg-zinc-900 flex items-center justify-center flex-shrink-0 border border-zinc-800">
+                                        <row.Icon className="w-4 h-4 text-zinc-400" />
                                     </div>
-                                    <span className="text-zinc-800 text-xs font-black uppercase tracking-widest">
+                                    <span className="text-zinc-300 text-xs font-black uppercase tracking-widest">
                                         {row.feature}
                                     </span>
                                 </div>
                             </td>
                             {/* Flyup Column - Highlighted BG */}
-                            <td className="py-5 px-6 text-center bg-zinc-900/5 relative border-r border-l border-zinc-100">
+                            <td className="py-5 px-6 text-center bg-[#39FF14]/5 relative border-r border-l border-zinc-800">
                                 {/* Green accent line on left/right for the column feel */}
                                 <div className="flex items-center justify-center gap-2">
                                     {row.flyup.type === "badge-green" ? (
-                                        <span className="inline-block bg-[#39FF14] text-black text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-sm">
+                                        <span className="inline-block bg-[#39FF14] text-black text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-[0_0_20px_rgba(57,255,20,0.3)]">
                                             {row.flyup.label}
                                         </span>
                                     ) : (
                                         <>
                                             <Check className="w-5 h-5 text-[#39FF14] stroke-[3px]" />
-                                            <span className="text-black font-bold text-sm tracking-tight">{row.flyup.label}</span>
+                                            <span className="text-white font-bold text-sm tracking-tight">{row.flyup.label}</span>
                                         </>
                                     )}
                                 </div>
                             </td>
                             {/* Traditional Column */}
                             <td className="py-5 px-6 text-center">
-                                <div className="flex items-center justify-center gap-2 opacity-60 grayscale hover:grayscale-0 transition-all">
+                                <div className="flex items-center justify-center gap-2">
                                     {row.traditional.type === "badge-red" ? (
-                                        <span className="inline-block bg-red-100 text-red-600 border border-red-200 text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+                                        <span className="inline-block bg-red-500/10 text-red-500 border border-red-500/20 text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
                                             {row.traditional.label}
                                         </span>
                                     ) : (
                                         <>
                                             <X className="w-5 h-5 text-red-500 stroke-[3px]" />
-                                            <span className="text-zinc-500 text-sm font-medium">{row.traditional.label}</span>
+                                            <span className="text-red-500/80 text-sm font-bold uppercase tracking-wide">{row.traditional.label}</span>
                                         </>
                                     )}
                                 </div>
@@ -275,8 +275,10 @@ export default function AFFComparison() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.15 }}
                         viewport={{ once: true }}
-                        className="bg-white rounded-2xl shadow-2xl shadow-zinc-200/60 border border-zinc-100 overflow-hidden"
+                        className="bg-zinc-950 rounded-2xl shadow-[0_0_80px_rgba(57,255,20,0.12)] border border-zinc-800 overflow-hidden relative"
                     >
+                        {/* Internal glow for total pop */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#39FF14]/5 to-transparent pointer-events-none" />
                         <ComparisonTable />
                     </motion.div>
                 </div>
@@ -309,9 +311,11 @@ export default function AFFComparison() {
                         <span className="text-[#39FF14] font-black uppercase tracking-[0.3em] text-sm mb-3 block">
                             Transparência Total
                         </span>
-                        <h2 className="text-5xl md:text-6xl font-black italic uppercase text-white leading-none">
-                            Pacote{" "}
-                            <span className="text-[#39FF14]">Aprovação Garantida</span>
+                        <h2 className="text-4xl md:text-6xl font-black italic uppercase text-white leading-none">
+                            Tudo que você recebe ao se tornar{" "}
+                            <span className="text-transparent" style={{ WebkitTextStroke: "1px #39FF14" }}>
+                                AFF PRO
+                            </span>
                         </h2>
                         <p className="text-zinc-500 mt-4 text-sm max-w-xl mx-auto">
                             Tudo o que você precisa para se tornar um paraquedista autônomo, sem surpresas no checkout.
@@ -319,7 +323,7 @@ export default function AFFComparison() {
                     </motion.div>
 
                     {/* Cards Grid — expandable */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
                         {includedItems.map((item, i) => (
                             <IncludedCard key={i} item={item} index={i} />
                         ))}

@@ -85,7 +85,7 @@ export default function SafetyObjections() {
             {/* Background Image - Grey Filtered but Visible */}
             <div className="absolute inset-0 z-0">
                 <img
-                    src="https://imgur.com/DAQLN9b.png"
+                    src="https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470435/Banner_Paraquedas_1_xzqj4x.png"
                     alt="Céu Flyup"
                     className="w-full h-full object-cover grayscale opacity-40 mix-blend-overlay"
                 />

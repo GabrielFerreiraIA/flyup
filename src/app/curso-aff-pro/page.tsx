@@ -7,6 +7,7 @@ import AFFTestimonialVideos from "@/components/curso-aff-pro/AFFTestimonialVideo
 import AFFTestimonials from "@/components/curso-aff-pro/AFFTestimonials";
 import AFFGallery3D from "@/components/curso-aff-pro/AFFGallery3D";
 import AFFPricingNew from "@/components/curso-aff-pro/AFFPricingNew";
+import AFFAlternativePricing from "@/components/curso-aff-pro/AFFAlternativePricing";
 import AFFFAQ from "@/components/curso-aff-pro/AFFFAQ";
 import SocialProof from "@/components/sections/SocialProof";
 
@@ -40,6 +41,9 @@ export default function CursoAFFProPage() {
 
             {/* 10. Preço / Ancoragem — PRETO */}
             <AFFPricingNew />
+
+            {/* 10.5 Pagamento Alternativo — PRETO */}
+            <AFFAlternativePricing />
 
             {/* 11. FAQ — PRETO */}
             <AFFFAQ />

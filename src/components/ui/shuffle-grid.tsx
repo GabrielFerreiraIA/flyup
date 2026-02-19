@@ -51,67 +51,67 @@ export const shuffle = (array: (typeof squareData)[0][]) => {
 export const squareData = [
     {
         id: 1,
-        src: "https://i.imgur.com/o8sl8vG.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470424/Foto_feed_15_b6nlkc.jpg",
     },
     {
         id: 2,
-        src: "https://i.imgur.com/Qz9ML80.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470423/Foto_feed_16_1_v5hisf.png",
     },
     {
         id: 3,
-        src: "https://i.imgur.com/ABADZ3h.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470422/Foto_feed_13_1_ypiwoz.png",
     },
     {
         id: 4,
-        src: "https://i.imgur.com/AIlwGo2.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470420/Foto_feed_14_1_kc82fy.png",
     },
     {
         id: 5,
-        src: "https://i.imgur.com/XRDxHDJ.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470419/Foto_feed_11_1_pydpdm.png",
     },
     {
         id: 6,
-        src: "https://i.imgur.com/cgMVrFQ.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470417/Foto_feed_12_1_xqssrd.png",
     },
     {
         id: 7,
-        src: "https://i.imgur.com/XkQ4EZB.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470417/Foto_feed_10_1_zoo74d.png",
     },
     {
         id: 8,
-        src: "https://i.imgur.com/mOKns8Y.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470415/Foto_feed_9_1_ozagb1.png",
     },
     {
         id: 9,
-        src: "https://i.imgur.com/JMvt67Z.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470414/Foto_feed_7_ppmqkl.jpg",
     },
     {
         id: 10,
-        src: "https://i.imgur.com/uV4yjGh.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470413/Foto_feed_6_feptej.jpg",
     },
     {
         id: 11,
-        src: "https://i.imgur.com/KrbCGgR.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470411/Foto_feed_5_mihgje.jpg",
     },
     {
         id: 12,
-        src: "https://i.imgur.com/jlsakCs.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470410/Foto_feed_3_1_hpydnc.png",
     },
     {
         id: 13,
-        src: "https://i.imgur.com/OUDWw0I.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470411/Foto_feed_4_1_feyhjb.png",
     },
     {
         id: 14,
-        src: "https://i.imgur.com/yLTKkdW.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470409/Foto_feed_2_bx8lar.webp",
     },
     {
         id: 15,
-        src: "https://i.imgur.com/Bku4NYX.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470424/Foto_feed_15_b6nlkc.jpg",
     },
     {
         id: 16,
-        src: "https://i.imgur.com/vVSjGU3.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470423/Foto_feed_16_1_v5hisf.png",
     },
 ];
 

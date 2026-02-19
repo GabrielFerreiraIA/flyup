@@ -13,8 +13,7 @@ const steps = [
             "Imersão teórica completa. Você aprende a linguagem do céu, equipamentos e procedimentos de emergência. Aqui começa a mudança de mentalidade.",
         nodeStyle: "bg-[#39FF14] border-zinc-950",
         nodeTextColor: "text-black",
-        image:
-            "https://lh3.googleusercontent.com/aida-public/AB6AXuB8uaR6cBnjWLWxWdog4w4Kr4QElE2G0der1Q5trWqCfSw5EeywmMFa-sjXxyxNUWb7vQT9wQLB1uEgeuRQedQCLikSVCmAIn3lqPOyG4O3t70sjSKrJ5HcCUM_nkTF6DV_gIeRwFR7JsWSO1S2Ay2GhaExjX4ha7YLES_884GxAyPV9bzGqSdYbH2XlCEEW4yK1c6iitm1PrhtOOS3BM8399qZugOE3dNCFRWYSZ9z1Z86mOtW_Njewg-Q-P_OzYoZ8YEODYV8450",
+        image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771462570/Curso_Aludo_16-9_b4hf3i",
     },
     {
         number: "02",
@@ -25,20 +24,29 @@ const steps = [
             "Aprenda a voar antes de saltar. Em um ambiente controlado, você domina a estabilidade do seu corpo. Isso elimina 90% da ansiedade do primeiro salto.",
         nodeStyle: "bg-zinc-950 border-2 border-[#39FF14]",
         nodeTextColor: "text-[#39FF14]",
-        image:
-            "https://lh3.googleusercontent.com/aida-public/AB6AXuANwRNQg8792-guc6jSA67HaP1jgabWz-FK6EjudIQ-GtbHs71QiaUwzasQ7N7gOOzNWE5sp8bskpkPgaWyl90fA24vmTocg1vmwHVO68Y8wkdVI6BvDgEcFKKGQpYNNr8nc9h2d9pM0xo_HNSjVDMnprv4eh_p0mWYb7PEIKS2YXKrI_6cqenKnGzxTmp6KkyFYugh_HZQ-XSXY2ZC80qnE-zzG3NUesESdA5nEp4mI6hQeo29C6onaaFzw7RYQz-I1wRzzFsNi0U",
+        image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771462572/Tunel_de_Vento_Editada_16-9_qrd4vh",
     },
     {
         number: "03",
-        title: "Céu Azul (7 Níveis)",
-        tag: "Liberdade Total",
+        title: "Saltos Nível 1 a 3",
+        tag: "Segurança Máxima",
         tagColor: "text-zinc-400",
         description:
-            "7 saltos progressivos. Do nível 1 com dois instrutores até o nível 7 onde você prova sua autonomia. A cada pouso, uma celebração com a galera.",
+            "Seus primeiros saltos reais. Dois instrutores saltam segurando você o tempo todo, garantindo estabilidade enquanto você pratica os movimentos.",
         nodeStyle: "bg-white border-4 border-zinc-950",
         nodeTextColor: "text-black",
-        image:
-            "https://lh3.googleusercontent.com/aida-public/AB6AXuBtC76PviQeV_VftqXcz0Qs77QVqMnsRjRDlwIymc_pbBzAq7Am64uBgxbf6KRzz5w9DxNIH-XUpYwsJjJm8pHlnNIckN9yiKTEENMhSHL5A37nkc0Z4cbmzysncsw80aLm4eVnk779cDAR0y_bTLh0UjiP0UB7zd6ZqL-eXff2WKeTc8nMI6vHB5Hkgrt9WfruvNMdT13qew4Cd4xKgG-e-038pL-_a90examyvOATaGneZ2jpskEmb33TcU3_JdMktppkVLPPIiM",
+        image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771462565/Aluno_AFF_6_Editada_16-9_iznjts",
+    },
+    {
+        number: "04",
+        title: "Graduação & Licença",
+        tag: "Liberdade Absoluta",
+        tagColor: "text-[#39FF14]",
+        description:
+            "O momento da consagração. Você salta sozinho, pousa e recebe sua licença oficial. Agora você é um paraquedista autônomo pronto para voar em qualquer lugar do mundo.",
+        nodeStyle: "bg-[#39FF14] border-zinc-950 shadow-[0_0_40px_rgba(57,255,20,0.6)]",
+        nodeTextColor: "text-black",
+        image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771462563/Aluno_AFF_5_Editado_16-9_tytsbj",
     },
 ];
 
@@ -95,7 +103,10 @@ export default function AFFJourney() {
                         Roadmap
                     </span>
                     <h2 className="text-5xl md:text-7xl font-black italic uppercase text-white leading-none">
-                        Sua Jornada até as Nuvens
+                        Sua Jornada até{" "}
+                        <span className="text-transparent" style={{ WebkitTextStroke: "1px #39FF14" }}>
+                            as Nuvens
+                        </span>
                     </h2>
                 </motion.div>
 
@@ -104,7 +115,7 @@ export default function AFFJourney() {
                     {/* Scroll-tracking vertical bar */}
                     <TimelineTrack />
 
-                    <div className="flex flex-col gap-40">
+                    <div className="flex flex-col gap-40 pb-20">
                         {steps.map((step, i) => {
                             const isEven = i % 2 === 0;
                             return (

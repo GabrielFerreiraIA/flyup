@@ -53,14 +53,18 @@ export default function Hero() {
     return (
         <section ref={containerRef} className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-black">
             {/* Video Background */}
-            <div className="absolute inset-0 z-0 pointer-events-none">
+            {/* Video Background */}
+            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black z-10" />
-                <iframe
-                    src="https://player.vimeo.com/video/1162024697?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-[177.78vh] h-[56.25vw] object-cover opacity-60"
-                    loading="lazy"
-                    title="Flyup Background Video"
-                />
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover opacity-60"
+                >
+                    <source src="https://res.cloudinary.com/dn50urzkv/video/upload/f_auto,q_auto/v1771466144/VIDEO_HERO_OTIMIZADO_FLYUP_twgnje.mp4" type="video/mp4" />
+                </video>
             </div>
 
             {/* Content */}

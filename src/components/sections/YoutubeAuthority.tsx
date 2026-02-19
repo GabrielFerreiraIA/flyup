@@ -32,7 +32,7 @@ export default function YoutubeAuthority() {
                         <div className="relative z-10 rounded-3xl overflow-hidden border border-zinc-800/50 bg-zinc-900/50 backdrop-blur-sm shadow-2xl transition-transform duration-700 hover:rotate-y-2 hover:rotate-x-2">
                             <div className="relative aspect-[4/5] w-full">
                                 <img
-                                    src="https://imgur.com/SgviuVp.png"
+                                    src="https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470879/Flyup_vtcxmo.webp"
                                     alt="Eduardo Esteves com Placa de 100k do YouTube"
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                 />

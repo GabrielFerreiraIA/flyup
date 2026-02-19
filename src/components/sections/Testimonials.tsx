@@ -20,7 +20,7 @@ export interface TestimonialData {
 const TESTIMONIALS_SOURCE: TestimonialData[] = [
     {
         id: "t1",
-        src: "https://i.imgur.com/vVSjGU3.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771471459/Depoimento_1_1_xzeqnf.png",
         name: "Thiago Silva",
         role: "Aluno AFF",
         text: "A Escola de paraquedismo Fly UP é simplesmente incrível! Desde a recepção até cada etapa do atendimento, tudo é feito com profissionalismo e paixão. Meus instrutores — Edu Esteves, Vitinho e Silvestre — são excepcionais: atenciosos, técnicos e inspiradores.",
@@ -28,7 +28,7 @@ const TESTIMONIALS_SOURCE: TestimonialData[] = [
     },
     {
         id: "t2",
-        src: "https://i.imgur.com/k9sB2x1.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771471456/Depoimento_2_1_elupzt.png",
         name: "Paloma Santos",
         role: "Salto Duplo",
         text: "Foi tudo incrível, desde o atendimento virtual até o presencial, Fly Up fez meu aniversário chegar a um limite literalmente alto! Amei de paixão e claro levei meu irmão e meu enteado na loucura também. Valeu cada segundo!",
@@ -36,7 +36,7 @@ const TESTIMONIALS_SOURCE: TestimonialData[] = [
     },
     {
         id: "t3",
-        src: "https://i.imgur.com/odGsMUs.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771471455/Depoimento_3_1_q0tco5.png",
         name: "Felipe Calhau",
         role: "Aluno AFFpro",
         text: "Muito bom poder fazer e concluir o curso AFFpro, sem dúvidas uma ótima escolha para iniciar no esporte e evoluir. Sou grato por ter iniciado e feito o meu primeiro salto no dia da inauguração da FlyUp.",
@@ -44,7 +44,7 @@ const TESTIMONIALS_SOURCE: TestimonialData[] = [
     },
     {
         id: "t4",
-        src: "https://i.imgur.com/IDYWANx.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771471457/Depoimento_Danilo_Nielson_1_ooyte9.png",
         name: "Danilo Nielson",
         role: "Aluno AFF",
         text: "Fui muito bem treinado por esse mestre, que me ensinou tudo detalhadamente e me deu tranquilidade e confiança. Quando cheguei no momento do salto estava tão tranquilo e treinado que meu salto foi muito bom!",
@@ -52,7 +52,7 @@ const TESTIMONIALS_SOURCE: TestimonialData[] = [
     },
     {
         id: "t5",
-        src: "https://i.imgur.com/XZ12vCm.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771471453/Depoimento_4_1_ut5h3i.png",
         name: "Ricardo Professor",
         role: "Salto Duplo",
         text: "Uma experiência incrível, curti tudo. Atendimento de primeira e uma vibe surreal. Recomendo muito!",
@@ -60,7 +60,7 @@ const TESTIMONIALS_SOURCE: TestimonialData[] = [
     },
     {
         id: "t6",
-        src: "https://i.imgur.com/kBvoWwh.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771471452/Depoimento_5_1_yvwmnc.png",
         name: "Leandro Soares",
         role: "Atleta",
         text: "Conheci a Fly Up e o Edu, e desde então minha vida mudou, hoje sou paraquedista e cada novo salto é uma experiência de prazer e aprendizado. Hoje me sinto realizado com o esporte que escolhi para viver!",
@@ -68,7 +68,7 @@ const TESTIMONIALS_SOURCE: TestimonialData[] = [
     },
     {
         id: "t7",
-        src: "https://i.imgur.com/3dOhHJU.png",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771471452/Depoimento_6_1_jtfu27.png",
         name: "Just Paulinha",
         role: "Aluna",
         text: "O Edu é um excelente instrutor. Me senti acolhida e segura o tempo todo, nas aulas teóricas e práticas. Ele é muito experiente e competência incrível! Guardo todos os ensinamentos e toda a energia boa!",
@@ -201,7 +201,7 @@ export default function Testimonials() {
                         QUEM JÁ
                     </h2>
                     <h2 className="text-5xl md:text-7xl lg:text-8xl font-black italic uppercase tracking-tighter leading-[0.85] text-transparent relative">
-                        <span className="text-transparent" style={{ WebkitTextStroke: '2.5px #39FF14', textShadow: '0 0 20px rgba(57,255,20,0.1)' }}>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-400">
                             VOOU COM A GENTE.
                         </span>
                     </h2>

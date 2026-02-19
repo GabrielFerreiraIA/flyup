@@ -45,9 +45,20 @@ export default function AFFPricingNew() {
                     </span>
                     <h2 className="text-5xl md:text-7xl font-black italic uppercase text-white leading-none">
                         Invista na sua{" "}
-                        <span className="text-[#39FF14]">Liberdade</span>
+                        <span className="text-transparent" style={{ WebkitTextStroke: '2px #39FF14' }}>
+                            Liberdade
+                        </span>
                     </h2>
                 </motion.div>
+
+                {/* Background Image - Same as 5 motivos section */}
+                <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
+                    <img
+                        src="https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470435/Banner_Paraquedas_1_xzqj4x.png"
+                        alt="Céu Flyup"
+                        className="w-full h-full object-cover grayscale opacity-40 mix-blend-overlay"
+                    />
+                </div>
 
                 {/* Pricing Card */}
                 <motion.div
@@ -120,23 +131,23 @@ export default function AFFPricingNew() {
                                 </p>
 
                                 {/* Price */}
-                                <div className="flex items-start justify-center gap-1 mb-2">
-                                    <span className="text-white text-2xl font-light mt-3">R$</span>
-                                    <span className="text-white font-black text-7xl md:text-8xl leading-none tracking-tighter">
-                                        {FINAL_PRICE}
-                                    </span>
+                                <div className="flex flex-col items-center justify-center mb-6">
+                                    <div className="flex items-baseline gap-1 mt-2">
+                                        <span className="text-zinc-400 text-lg font-bold">6x</span>
+                                        <span className="text-white font-black text-6xl md:text-7xl tracking-tighter">
+                                            R$ 1.050
+                                        </span>
+                                    </div>
+                                    <p className="text-[#39FF14] font-black text-sm uppercase tracking-widest mt-2 bg-[#39FF14]/10 px-3 py-1 rounded-full border border-[#39FF14]/20">
+                                        Ou R$ 5.900,00 à vista
+                                    </p>
                                 </div>
 
-                                {/* Installment box */}
+                                {/* Installment box - Removed as it's now the main focus */}
                                 <div className="w-full bg-white/5 border border-zinc-700 rounded-xl p-4 mb-6">
-                                    <p className="text-[#39FF14] font-black text-xs uppercase tracking-widest mb-1">
-                                        Opção Parcelada
+                                    <p className="text-zinc-400 text-xs text-center leading-relaxed">
+                                        *Equipamento completo, macacão, capacete, altímetro e rádio inclusos em todos os saltos.
                                     </p>
-                                    <p className="text-white text-lg font-bold">
-                                        {INSTALLMENTS}x de{" "}
-                                        <span className="text-2xl font-black">R$ {INSTALLMENT}</span>
-                                    </p>
-                                    <p className="text-zinc-600 text-[10px] mt-1">*No cartão de crédito</p>
                                 </div>
 
                                 {/* CTA Button */}

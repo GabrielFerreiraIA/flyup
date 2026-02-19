@@ -16,13 +16,15 @@ export default function AFFHero() {
             {/* Background Image/Video placeholder */}
             <div className="absolute inset-0 z-0">
                 <img
-                    src="https://images.unsplash.com/photo-1521673461240-991eb9c9c71e?q=80&w=2670&auto=format&fit=crop"
+                    src="https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771462569/Curso_AFF_Editada_16-9_lg5vuc"
                     alt="AFF Skydiving"
                     className="w-full h-full object-cover opacity-60"
                 />
 
                 {/* Dark overlay with pattern */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/90" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
+                {/* Extra bottom vignette */}
+                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-black/40 to-transparent z-[1]" />
                 <div className="absolute inset-0 opacity-[0.15] bg-[radial-gradient(#000_1px,transparent_1px)] bg-[size:20px_20px]" />
             </div>
 
