@@ -166,7 +166,7 @@ function ComparisonTable() {
     );
 }
 
-function IncludedCard({ item, index }: { item: includedItems[0]; index: number }) {
+function IncludedCard({ item, index }: { item: typeof includedItems[0]; index: number }) {
     const [open, setOpen] = useState(false);
 
     return (
