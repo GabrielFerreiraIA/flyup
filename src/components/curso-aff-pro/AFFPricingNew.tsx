@@ -31,6 +31,15 @@ export default function AFFPricingNew() {
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#39FF14]/5 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#39FF14]/4 rounded-full blur-3xl pointer-events-none" />
 
+            {/* Background Image - Same as 5 motivos section, now filling the whole area */}
+            <div className="absolute inset-0 pointer-events-none opacity-30">
+                <img
+                    src="https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470435/Banner_Paraquedas_1_xzqj4x.png"
+                    alt="Céu Flyup"
+                    className="w-full h-full object-cover grayscale opacity-20 mix-blend-overlay"
+                />
+            </div>
+
             <div className="container mx-auto px-6 relative z-10">
                 {/* Header */}
                 <motion.div
@@ -51,14 +60,6 @@ export default function AFFPricingNew() {
                     </h2>
                 </motion.div>
 
-                {/* Background Image - Same as 5 motivos section */}
-                <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
-                    <img
-                        src="https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470435/Banner_Paraquedas_1_xzqj4x.png"
-                        alt="Céu Flyup"
-                        className="w-full h-full object-cover grayscale opacity-40 mix-blend-overlay"
-                    />
-                </div>
 
                 {/* Pricing Card */}
                 <motion.div
