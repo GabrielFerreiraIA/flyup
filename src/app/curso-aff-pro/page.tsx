@@ -10,6 +10,7 @@ import AFFPricingNew from "@/components/curso-aff-pro/AFFPricingNew";
 import AFFAlternativePricing from "@/components/curso-aff-pro/AFFAlternativePricing";
 import AFFFAQ from "@/components/curso-aff-pro/AFFFAQ";
 import SocialProof from "@/components/sections/SocialProof";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 
 export default function CursoAFFProPage() {
     return (
@@ -47,6 +48,9 @@ export default function CursoAFFProPage() {
 
             {/* 11. FAQ — PRETO */}
             <AFFFAQ />
+
+            {/* Floating WhatsApp Button */}
+            <WhatsAppButton />
         </div>
     );
 }
