@@ -61,7 +61,7 @@ const experiences = [
         icon: Bird,
         image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470434/Wing_Suit_imagem_1_mhspao.png",
         col: 1,
-        link: "/wingsuit",
+        link: "/wingsuit-experience",
         tags: ["PRO", "MAX SPEED"],
         description: "A elite do voo humano. Sinta a incrível sustentação e controle do traje planador em alta velocidade."
     }
@@ -237,15 +237,6 @@ function ExperienceCard({ data, index, isInView, onBooking }: { data: any, index
                         <h3 className="text-3xl md:text-4xl font-black italic uppercase tracking-tighter text-black font-display leading-[0.8]">
                             {title}
                         </h3>
-                        <Button
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                onBooking();
-                            }}
-                            className="bg-neon text-black font-black italic rounded-xl px-6 h-12 text-sm tracking-wider border-none hover:bg-neon-hover shadow-lg shadow-neon/30 group/btn transition-all duration-300 active:scale-95"
-                        >
-                            AGENDAR <ArrowUpRight className="ml-1 size-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
-                        </Button>
                     </div>
 
                     <div className="h-[1px] w-full bg-zinc-100" />
@@ -263,6 +254,30 @@ function ExperienceCard({ data, index, isInView, onBooking }: { data: any, index
                     <p className="text-zinc-600 text-[15px] leading-relaxed font-semibold">
                         {description}
                     </p>
+
+                    <div className="flex gap-4 mt-auto pt-2">
+                        <Button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onBooking();
+                            }}
+                            className="flex-1 bg-neon text-black font-black italic rounded-xl h-14 text-sm tracking-wider border-none hover:bg-neon-hover shadow-lg shadow-neon/30 group/btn transition-all duration-300 active:scale-95 px-2"
+                        >
+                            AGENDAR <ArrowUpRight className="ml-1 size-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
+                        </Button>
+                        <Link
+                            href={link}
+                            onClick={(e) => e.stopPropagation()}
+                            className="flex-1"
+                        >
+                            <Button
+                                variant="outline"
+                                className="w-full h-14 border-2 border-neon text-neon font-black italic rounded-xl text-sm tracking-widest hover:bg-neon hover:text-black transition-all duration-300 active:scale-95 px-2 bg-black"
+                            >
+                                SAIBA MAIS
+                            </Button>
+                        </Link>
+                    </div>
                 </motion.div>
             </div>
         </motion.div>

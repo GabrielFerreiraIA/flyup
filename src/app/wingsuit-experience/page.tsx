@@ -6,7 +6,7 @@ export default function WingsuitExperiencePage() {
         <ServicePageLayout
             title="Wingsuit Experience"
             subtitle="Transforme seu corpo em uma asa e realize o sonho humano de voar."
-            heroImage="https://images.unsplash.com/photo-1549482199-bc1ca6f58502?q=80&w=3276&auto=format&fit=crop"
+            heroImage="https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771951036/Wingsuit_Editado_16-9_xks2hr.png"
             overview="O Wingsuit não é apenas um salto, é voo horizontal de alta performance. Esta experiência avançada permite que paraquedistas experientes (mínimo 200 saltos) iniciem na disciplina com segurança, ou realizem saltos monitorados com instrutores de nível mundial."
             steps={[
                 {

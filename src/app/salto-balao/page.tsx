@@ -5,7 +5,7 @@ export default function SaltoBalaoPage() {
         <ServicePageLayout
             title="Salto de Balão"
             subtitle="A experiência mais exclusiva e serena do paraquedismo."
-            heroImage="https://images.unsplash.com/photo-1542408892-d965d1d61993?q=80&w=2670&auto=format&fit=crop"
+            heroImage="https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771951036/Salto_Bal%C3%A3o_Editado_16-9_misn8s.png"
             overview="O salto de balão é o ápice da exclusividade no paraquedismo. Ao contrário do avião, não há vento ou barulho de motor. Você experimenta o 'dead air' — uma saída em silêncio absoluto onde a gravidade te puxa suavemente até atingir a velocidade terminal. É uma experiência transformadora e altamente fotogênica."
             steps={[
                 {
@@ -34,12 +34,12 @@ export default function SaltoBalaoPage() {
                 }
             ]}
             galleryImages={[
-                "https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?q=80&w=2670&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1540206351-d6465b3ac5c1?q=80&w=2672&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?q=80&w=2670&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1549482199-bc1ca6f58502?q=80&w=3276&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1582218412852-c0733d70669c?q=80&w=2670&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1531306728370-e2ebd9d7bb99?q=80&w=2670&auto=format&fit=crop"
+                "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771958051/Imagem_Balao_6_Editada_4-5_be0out.png",
+                "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771958050/Imagem_Balao_5_Editada_4-5_suomgt.png",
+                "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771958050/Imagem_Balao_Editada_4-5_c2uipb.png",
+                "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771958049/Imagem_Balao_2_Editada_4-5_ive7yc.png",
+                "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771958049/Imagem_Balao_3_Editada_4-5_myjoxk.png",
+                "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771958050/Imagem_Balao_4_Editada_4-5_jd43st.png"
             ]}
             pricingOptions={[
                 {

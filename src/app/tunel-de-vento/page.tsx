@@ -6,7 +6,7 @@ export default function TunelDeVentoPage() {
         <ServicePageLayout
             title="Túnel de Vento"
             subtitle="Acelere sua evolução ou voe pela primeira vez sem sair do chão."
-            heroImage="https://images.unsplash.com/photo-1549482199-bc1ca6f58502?q=80&w=3276&auto=format&fit=crop"
+            heroImage="https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771951037/Tunel_de_Vento_Editada_16-9_m6lvyg.png"
             overview="O Túnel de Vento é a melhor ferramenta para aprender a voar ou evoluir suas técnicas de paraquedismo. Em um ambiente controlado, com fluxo de ar laminar e instrutores campeões mundiais, você aprende 10x mais rápido do que no céu, com segurança total e feedback imediato."
             steps={[
                 {

@@ -176,28 +176,67 @@ export default function ServicePageLayout({
             </section>
 
             {/* GALLERY SECTION (DARK) */}
-            <section className="py-24 bg-black text-white relative">
+            <section className="py-24 bg-black text-white relative overflow-hidden">
                 <div className="absolute inset-0 bg-black/50" />
+                {/* Background Decor */}
+                <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-neon/5 blur-[120px] rounded-full pointer-events-none" />
+
                 <div className="container mx-auto px-6 relative z-10">
-                    <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter mb-12 text-center text-white">
-                        Galeria <span className="text-transparent" style={{ WebkitTextStroke: '1px #39FF14' }}>Exclusiva</span>
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[300px]">
-                        {galleryImages.map((img, idx) => (
+                    <div className="text-center mb-16">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="flex items-center justify-center gap-4 mb-4"
+                        >
+                            <div className="h-[2px] w-8 bg-neon" />
+                            <span className="text-neon font-black tracking-[0.3em] uppercase text-xs">MOMENTOS REAIS</span>
+                            <div className="h-[2px] w-8 bg-neon" />
+                        </motion.div>
+                        <h2 className="text-4xl md:text-6xl font-black italic uppercase tracking-tighter text-white">
+                            Galeria <span className="text-transparent" style={{ WebkitTextStroke: '1px #39FF14' }}>Exclusiva</span>
+                        </h2>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {galleryImages.slice(0, 6).map((img, idx) => (
                             <motion.div
                                 key={idx}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
+                                initial={{ opacity: 0, y: 40 }}
+                                whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5 }}
-                                className={`rounded-2xl overflow-hidden relative group cursor-pointer border-2 border-transparent hover:border-[#39FF14] transition-colors ${idx === 0 || idx === 6 ? 'md:col-span-2' : ''}`}
+                                transition={{
+                                    duration: 0.8,
+                                    delay: idx * 0.1,
+                                    ease: [0.21, 1.11, 0.81, 0.99]
+                                }}
+                                className="group relative aspect-[4/5] rounded-[32px] overflow-hidden cursor-pointer bg-zinc-900 border border-white/5"
                             >
-                                <img
+                                {/* Image with zoom on hover */}
+                                <motion.img
                                     src={img}
                                     alt={`Gallery ${idx}`}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                                 />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300" />
+
+                                {/* Overlay Gradient */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+
+                                {/* Interactive Border */}
+                                <div className="absolute inset-0 border-2 border-transparent group-hover:border-neon/50 rounded-[32px] transition-colors duration-500 z-20" />
+
+                                {/* View Indicator */}
+                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 z-30">
+                                    <div className="w-16 h-16 bg-neon rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-500 shadow-[0_0_30px_rgba(57,255,20,0.5)]">
+                                        <Zap size={24} className="text-black fill-black" />
+                                    </div>
+                                </div>
+
+                                {/* Subtle info (Optional, adds to premium feel) */}
+                                <div className="absolute bottom-6 left-6 right-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-30">
+                                    <div className="h-[1px] w-full bg-white/20 mb-3" />
+                                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-neon">Flyup Experience</p>
+                                </div>
                             </motion.div>
                         ))}
                     </div>
