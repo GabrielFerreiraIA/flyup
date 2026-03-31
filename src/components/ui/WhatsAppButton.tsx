@@ -15,8 +15,6 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [name, setName] = useState("");
-    const [phone, setPhone] = useState("");
-
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         
@@ -27,7 +25,6 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
         setIsOpen(false);
         // Reset form
         setName("");
-        setPhone("");
     };
 
     return (
@@ -73,19 +70,6 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
                                     />
                                 </div>
                                 
-                                <div className="space-y-2">
-                                    <label htmlFor="wa-phone" className="text-sm font-bold text-white uppercase tracking-wider">Telefone / WhatsApp</label>
-                                    <input
-                                        id="wa-phone"
-                                        type="tel"
-                                        required
-                                        value={phone}
-                                        onChange={(e) => setPhone(e.target.value)}
-                                        className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#25D366] transition-colors"
-                                        placeholder="(11) 99999-9999"
-                                    />
-                                </div>
-
                                 <button
                                     type="submit"
                                     className="w-full mt-4 bg-[#25D366] hover:bg-[#1ebd5c] text-white font-black italic uppercase tracking-wider px-6 py-4 rounded-xl flex items-center justify-center gap-2 hover:scale-[1.02] transition-all shadow-[0_0_20px_rgba(37,211,102,0.3)] hover:shadow-[0_0_40px_rgba(37,211,102,0.5)]"
