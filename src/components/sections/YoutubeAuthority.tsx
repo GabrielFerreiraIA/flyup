@@ -94,7 +94,7 @@ export default function YoutubeAuthority() {
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-lime-500"></span>
                                 </span>
-                                <span className="text-xs font-bold text-zinc-300 uppercase tracking-[0.2em] group-hover:text-white transition-colors">COMUNIDADE FLYUP</span>
+                                <span className="text-xs font-bold text-zinc-300 uppercase tracking-[0.2em] group-hover:text-white transition-colors">COMUNIDADE FLY UP</span>
                             </div>
 
                             {/* Headline with Light Green Outline */}

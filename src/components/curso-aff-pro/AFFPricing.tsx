@@ -32,7 +32,7 @@ const pricing = [
             "Aluguel de Equipamento Completo",
             "Dobragens Inclusas",
             "Debriefing em Vídeo (High Tech)",
-            "Acesso à Área VIP Flyup"
+            "Acesso à Área VIP Fly Up"
         ],
         highlight: true,
         icon: Zap
@@ -46,7 +46,7 @@ const pricing = [
             "Monitoria de navegação",
             "Descontos em saltos solo",
             "Workshops de dobragem avançada",
-            "Kit Atleta Flyup"
+            "Kit Atleta Fly Up"
         ],
         icon: Star
     }
@@ -118,6 +118,7 @@ export default function AFFPricing() {
                 isOpen={isBookingOpen}
                 onClose={() => setIsBookingOpen(false)}
                 experienceTitle="Matrícula AFF Pro"
+                source="form-matricula-aff"
             />
         </section>
     );

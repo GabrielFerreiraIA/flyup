@@ -55,6 +55,9 @@ interface ServicePageLayoutProps {
     faqs: FAQItem[];
     specialConditions?: SpecialConditionItem[];
     ctaText?: string;
+    sourceId?: string; // ID for webhook tracking
+    pricingTitle?: string;
+    renderBelowSteps?: React.ReactNode;
 }
 
 export default function ServicePageLayout({
@@ -67,7 +70,10 @@ export default function ServicePageLayout({
     pricingOptions,
     faqs,
     specialConditions,
-    ctaText = "Agendar Agora"
+    ctaText = "Agendar Agora",
+    sourceId = "geral", // Previne undefined
+    pricingTitle = "Investimento",
+    renderBelowSteps
 }: ServicePageLayoutProps) {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
@@ -135,43 +141,32 @@ export default function ServicePageLayout({
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1 }}
-                                className="bg-white border border-zinc-300 rounded-3xl overflow-hidden hover:border-[#00cc00] hover:shadow-[0_10px_40px_-10px_rgba(0,180,0,0.2)] transition-all duration-300 group flex flex-col h-full relative"
+                                className="bg-white border border-zinc-300 rounded-3xl p-8 hover:border-[#00cc00] hover:shadow-[0_10px_40px_-10px_rgba(0,180,0,0.2)] transition-all duration-300 group flex flex-col h-full relative"
                             >
-                                {step.image && (
-                                    <div className="h-48 w-full overflow-hidden relative">
-                                        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors z-10" />
-                                        <img
-                                            src={step.image}
-                                            alt={step.title}
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                        />
-                                        <div className="absolute bottom-4 left-4 z-20 w-12 h-12 bg-black/90 backdrop-blur-md rounded-xl flex items-center justify-center shadow-lg border border-[#39FF14]/50 group-hover:scale-110 transition-transform">
-                                            {(() => {
-                                                const IconComponent = step.icon ? iconMap[step.icon] : null;
-                                                return IconComponent
-                                                    ? <IconComponent className="text-[#39FF14] w-6 h-6" />
-                                                    : <div className="w-2 h-2 bg-[#39FF14] rounded-full" />;
-                                            })()}
-                                        </div>
+                                <div className="flex items-start justify-between mb-6">
+                                    <div className="w-16 h-16 bg-zinc-950 rounded-2xl flex items-center justify-center group-hover:bg-black transition-all duration-300 shadow-md shadow-zinc-300 border border-zinc-800">
+                                        {(() => {
+                                            const IconComponent = step.icon ? iconMap[step.icon] : null;
+                                            return IconComponent
+                                                ? <IconComponent className="text-[#39FF14] w-8 h-8 transition-colors" />
+                                                : <div className="w-2 h-2 bg-[#39FF14] rounded-full" />;
+                                        })()}
                                     </div>
-                                )}
-                                <div className="p-8 flex flex-col flex-grow relative">
-                                    {!step.image && (
-                                        <div className="w-16 h-16 bg-zinc-950 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-black transition-all duration-300 shadow-md shadow-zinc-300 border border-zinc-800">
-                                            {(() => {
-                                                const IconComponent = step.icon ? iconMap[step.icon] : null;
-                                                return IconComponent
-                                                    ? <IconComponent className="text-[#39FF14] w-8 h-8 transition-colors" />
-                                                    : <div className="w-2 h-2 bg-[#39FF14] rounded-full" />;
-                                            })()}
-                                        </div>
-                                    )}
-                                    <h3 className="text-xl font-black italic uppercase mb-3 text-black group-hover:text-[#008800] transition-colors">{step.title}</h3>
-                                    <p className="text-zinc-700 font-medium text-sm leading-relaxed flex-grow">{step.description}</p>
+                                    <span className="text-4xl font-black italic text-zinc-200 group-hover:text-[#39FF14]/20 transition-colors">
+                                        0{idx + 1}
+                                    </span>
                                 </div>
+                                <h3 className="text-xl font-black italic uppercase mb-3 text-black group-hover:text-[#008800] transition-colors">{step.title}</h3>
+                                <p className="text-zinc-700 font-medium text-sm leading-relaxed flex-grow">{step.description}</p>
                             </motion.div>
                         ))}
                     </div>
+
+                    {renderBelowSteps && (
+                        <div className="mt-20">
+                            {renderBelowSteps}
+                        </div>
+                    )}
                 </div>
             </section>
 
@@ -235,7 +230,7 @@ export default function ServicePageLayout({
                                 {/* Subtle info (Optional, adds to premium feel) */}
                                 <div className="absolute bottom-6 left-6 right-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-30">
                                     <div className="h-[1px] w-full bg-white/20 mb-3" />
-                                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-neon">Flyup Experience</p>
+                                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-neon">Fly Up Experience</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -254,7 +249,7 @@ export default function ServicePageLayout({
 
                     <div className="container mx-auto px-6 relative z-10">
                         <div className="text-center mb-16">
-                            <span className="text-[#008800] font-black tracking-widest uppercase text-sm mb-2 block bg-[#39FF14]/20 inline-block px-3 py-1 rounded-full">Exclusividade Flyup</span>
+                            <span className="text-[#008800] font-black tracking-widest uppercase text-sm mb-2 block bg-[#39FF14]/20 inline-block px-3 py-1 rounded-full">Exclusividade Fly Up</span>
                             <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter text-black">
                                 Condições Especiais
                             </h2>
@@ -295,14 +290,14 @@ export default function ServicePageLayout({
             <section className="py-24 bg-black text-white">
                 <div className="container mx-auto px-6">
                     <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter mb-16 text-center">
-                        Investimento
+                        {pricingTitle}
                     </h2>
-                    <div className="flex flex-wrap justify-center gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {pricingOptions.map((option, idx) => (
                             <motion.div
                                 key={idx}
                                 whileHover={{ y: -10 }}
-                                className={`w-full max-w-md rounded-3xl p-8 flex flex-col relative ${option.highlight ? 'bg-zinc-900 border-2 border-[#39FF14] shadow-[0_0_40px_rgba(57,255,20,0.15)]' : 'bg-zinc-900/30 border border-white/10'}`}
+                                className={`w-full rounded-2xl p-8 flex flex-col relative ${option.highlight ? 'bg-zinc-900 border-2 border-[#39FF14] shadow-[0_0_40px_rgba(57,255,20,0.15)]' : 'bg-zinc-900/30 border border-white/10'}`}
                             >
                                 {option.highlight && (
                                     <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#39FF14] text-black text-xs font-black uppercase px-4 py-1 rounded-full tracking-widest shadow-lg shadow-[#39FF14]/20">
@@ -378,6 +373,7 @@ export default function ServicePageLayout({
                 isOpen={isBookingOpen}
                 onClose={() => setIsBookingOpen(false)}
                 experienceTitle={title}
+                source={sourceId}
             />
         </div>
     );

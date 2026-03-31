@@ -83,10 +83,10 @@ const includedItems = [
     },
     {
         icon: "📖",
-        title: "Logbook Oficial (CBPQ)",
-        short: "Caderneta de saltos homologada pela Confederação.",
+        title: "Logbook Oficial (ABPQD)",
+        short: "Caderneta de saltos homologada pela Associação.",
         detail:
-            "Logbook oficial homologado pela Confederação Brasileira de Paraquedismo (CBPQ), necessário para registrar todos os seus saltos e obter sua licença de paraquedista.",
+            "Logbook oficial homologado pela Associação Brasileira de Paraquedismo (ABPQD), necessário para registrar todos os seus saltos e obter sua licença de paraquedista.",
     },
 ];
 
@@ -101,7 +101,7 @@ function ComparisonTable() {
                         <th className="py-4 px-6 w-1/3 align-bottom">
                             <div className="bg-black text-white rounded-t-xl py-3 px-4 border-t-4 border-[#39FF14] shadow-[0_-10px_20px_rgba(57,255,20,0.15)] relative z-10">
                                 <span className="font-black italic uppercase text-lg tracking-wide block">
-                                    Método Flyup
+                                    Método Fly Up
                                 </span>
                             </div>
                         </th>
@@ -127,7 +127,7 @@ function ComparisonTable() {
                                     </span>
                                 </div>
                             </td>
-                            {/* Flyup Column - Highlighted BG */}
+                            {/* Fly Up Column - Highlighted BG */}
                             <td className="py-5 px-6 text-center bg-[#39FF14]/5 relative border-r border-l border-zinc-800">
                                 {/* Green accent line on left/right for the column feel */}
                                 <div className="flex items-center justify-center gap-2">
@@ -230,7 +230,7 @@ function IncludedCard({ item, index }: { item: typeof includedItems[0]; index: n
 export default function AFFComparison() {
     return (
         <>
-            {/* ── SECTION 1: Flyup VS Tradicional (WHITE BG) ────────────────── */}
+            {/* ── SECTION 1: Fly Up VS Tradicional (WHITE BG) ────────────────── */}
             <section className="py-24 bg-white relative overflow-hidden" id="comparativo">
                 {/* Subtle sky image */}
                 <div
@@ -248,10 +248,10 @@ export default function AFFComparison() {
                         className="text-center mb-14"
                     >
                         <span className="inline-block text-[10px] font-black uppercase tracking-[0.35em] text-zinc-400 mb-4 border border-zinc-200 rounded-full px-4 py-1.5">
-                            Por que a Flyup é Diferente?
+                            Por que a Fly Up é Diferente?
                         </span>
                         <h2 className="text-4xl md:text-6xl font-black italic uppercase text-zinc-900 leading-none">
-                            Flyup{" "}
+                            Fly Up{" "}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-500">
                                 VS
                             </span>{" "}

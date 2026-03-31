@@ -18,7 +18,7 @@ const steps = [
     {
         number: "02",
         title: "Túnel de Vento",
-        tag: "O Diferencial Flyup",
+        tag: "O Diferencial Fly Up",
         tagColor: "text-[#39FF14]",
         description:
             "Aprenda a voar antes de saltar. Em um ambiente controlado, você domina a estabilidade do seu corpo. Isso elimina 90% da ansiedade do primeiro salto.",

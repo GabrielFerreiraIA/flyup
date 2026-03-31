@@ -3,16 +3,18 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, User, Phone, CheckCircle2, ArrowRight, ChevronDown } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
-
 import { createPortal } from "react-dom";
+import { FlyUpWebhook } from "@/lib/webhook-integration";
 
 interface BookingModalProps {
     isOpen: boolean;
     onClose: () => void;
     experienceTitle: string;
+    source?: string;
 }
 
 const countries = [
+    { name: 'Brasil', code: 'br', ddi: '+55' },
     { name: 'Afeganistão', code: 'af', ddi: '+93' },
     { name: 'África do Sul', code: 'za', ddi: '+27' },
     { name: 'Albânia', code: 'al', ddi: '+355' },
@@ -37,7 +39,6 @@ const countries = [
     { name: 'Bolívia', code: 'bo', ddi: '+591' },
     { name: 'Bósnia e Herzegovina', code: 'ba', ddi: '+387' },
     { name: 'Botsuana', code: 'bw', ddi: '+267' },
-    { name: 'Brasil', code: 'br', ddi: '+55' },
     { name: 'Brunei', code: 'bn', ddi: '+673' },
     { name: 'Bulgária', code: 'bg', ddi: '+359' },
     { name: 'Burquina Faso', code: 'bf', ddi: '+226' },
@@ -206,15 +207,16 @@ const countries = [
     { name: 'Zimbábue', code: 'zw', ddi: '+263' },
 ];
 
-export default function BookingModal({ isOpen, onClose, experienceTitle }: BookingModalProps) {
+export default function BookingModal({ isOpen, onClose, experienceTitle, source = 'geral' }: BookingModalProps) {
     const [formData, setFormData] = useState({
         name: "",
         fullPhone: "", // Store combined DDD + Number
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [activeField, setActiveField] = useState<"name" | "phone" | null>(null);
     const [mounted, setMounted] = useState(false);
-    const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+    const [selectedCountry, setSelectedCountry] = useState(countries.find(c => c.code === 'br') || countries[0]);
     const [isCountrySelectorOpen, setIsCountrySelectorOpen] = useState(false);
     const countrySelectorRef = useRef<HTMLDivElement>(null);
 
@@ -228,7 +230,7 @@ export default function BookingModal({ isOpen, onClose, experienceTitle }: Booki
         if (isOpen) {
             setFormData({ name: "", fullPhone: "" });
             setIsSubmitted(false);
-            setSelectedCountry(countries[0]);
+            setSelectedCountry(countries.find(c => c.code === 'br') || countries[0]);
             setIsCountrySelectorOpen(false);
             document.body.style.overflow = 'hidden';
         } else {
@@ -249,17 +251,33 @@ export default function BookingModal({ isOpen, onClose, experienceTitle }: Booki
         };
     }, [isOpen]);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Booking submitted:", {
-            name: formData.name,
-            phone: `${selectedCountry.ddi} ${formData.fullPhone}`,
-            experience: experienceTitle
-        });
-        setIsSubmitted(true);
-        setTimeout(() => {
-            onClose();
-        }, 3000);
+        setIsSubmitting(true);
+
+        try {
+            const phoneNumber = `${selectedCountry.ddi}${formData.fullPhone.replace(/\D/g, "")}`;
+
+            // Dispara para o fluxo do N8N através da integração
+            await FlyUpWebhook.send({
+                nome: formData.name,
+                telefone: phoneNumber
+            }, source, experienceTitle);
+
+            setIsSubmitted(true);
+            setTimeout(() => {
+                onClose();
+            }, 3000);
+        } catch (error) {
+            console.error("Erro ao enviar interesse:", error);
+            // Em caso de erro, ainda dá a mensagem de sucesso para não frustrar o usuário ou mostramos um aviso
+            setIsSubmitted(true);
+            setTimeout(() => {
+                onClose();
+            }, 3000);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     // Smart Phone Formatter (DDD + Number)
@@ -515,15 +533,16 @@ export default function BookingModal({ isOpen, onClose, experienceTitle }: Booki
                                     <div className="pt-4">
                                         <button
                                             type="submit"
+                                            disabled={isSubmitting}
                                             className="
                         group w-full relative overflow-hidden rounded-2xl bg-neon p-5 
                         transition-all duration-300 hover:shadow-[0_0_30px_rgba(57,255,20,0.4)]
-                        active:scale-[0.98]
+                        active:scale-[0.98] disabled:opacity-70 disabled:pointer-events-none
                       "
                                         >
                                             <div className="relative z-10 flex items-center justify-center gap-2">
                                                 <span className="text-black font-black italic uppercase tracking-[0.1em] text-sm">
-                                                    Confirmar Interesse
+                                                    {isSubmitting ? "Enviando..." : "Confirmar Interesse"}
                                                 </span>
                                                 <ArrowRight size={18} className="text-black transition-transform group-hover:translate-x-1" strokeWidth={3} />
                                             </div>

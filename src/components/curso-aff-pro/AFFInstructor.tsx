@@ -42,7 +42,7 @@ export default function AFFInstructor() {
                         {/* Name badge - bottom right */}
                         <div className="absolute bottom-6 -right-4 bg-black text-white px-5 py-3 rounded-lg shadow-2xl border-l-4 border-[#39FF14]">
                             <p className="text-white font-black italic uppercase text-lg leading-none">Edu Esteves</p>
-                            <p className="text-[#39FF14] text-xs uppercase tracking-widest font-bold mt-1">Mentor & Recordista</p>
+                            <p className="text-[#39FF14] text-xs uppercase tracking-widest font-bold mt-1 text-nowrap">Recordista Mundial & Campeão Brasileiro</p>
                         </div>
                     </motion.div>
 
@@ -74,11 +74,11 @@ export default function AFFInstructor() {
                         {/* Stats Cards - Dark on White */}
                         <div className="grid grid-cols-3 gap-3 mb-8">
                             <div className="bg-black text-white rounded-xl p-4">
-                                <div className="text-2xl md:text-3xl font-black italic text-white leading-none mb-1">20K+</div>
+                                <div className="text-2xl md:text-3xl font-black italic text-white leading-none mb-1">+13.000</div>
                                 <div className="text-zinc-400 text-[10px] font-bold uppercase tracking-widest">Saltos</div>
                             </div>
                             <div className="bg-black text-white rounded-xl p-4">
-                                <div className="text-2xl md:text-3xl font-black italic text-white leading-none mb-1">1500+</div>
+                                <div className="text-2xl md:text-3xl font-black italic text-white leading-none mb-1">+1850</div>
                                 <div className="text-zinc-400 text-[10px] font-bold uppercase tracking-widest">Alunos</div>
                             </div>
                             <div className="bg-[#39FF14] text-black rounded-xl p-4">
@@ -114,6 +114,7 @@ export default function AFFInstructor() {
                 isOpen={isBookingOpen}
                 onClose={() => setIsBookingOpen(false)}
                 experienceTitle="Mentoria com Edu Esteves"
+                source="form-interesse-aff"
             />
         </section>
     );

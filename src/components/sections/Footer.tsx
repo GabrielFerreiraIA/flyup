@@ -10,7 +10,7 @@ export default function Footer() {
                     {/* Brand Column */}
                     <div className="space-y-6">
                         <Link href="/" className="text-3xl font-bold tracking-tighter uppercase font-montserrat text-white">
-                            FLYUP <span className="text-primary">.</span>
+                            FLY UP <span className="text-primary">.</span>
                         </Link>
                         <p className="text-zinc-400 text-sm leading-relaxed max-w-xs">
                             A experiência de paraquedismo mais exclusiva de São Paulo.
@@ -79,7 +79,7 @@ export default function Footer() {
                 {/* Bottom Bar */}
                 <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
                     <p className="text-zinc-500 text-xs">
-                        © {new Date().getFullYear()} Flyup Elite Skydiving. Todos os direitos reservados.
+                        © {new Date().getFullYear()} Fly Up Elite Skydiving. Todos os direitos reservados.
                     </p>
                     <div className="flex items-center gap-6 text-xs text-zinc-500">
                         <Link href="#" className="hover:text-neon transition-colors">Termos de Uso</Link>

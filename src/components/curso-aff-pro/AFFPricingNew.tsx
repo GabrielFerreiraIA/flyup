@@ -12,7 +12,7 @@ const items = [
     { label: "Treinamento em Túnel de Vento (15min)", price: "R$ 900", bonus: false },
     { label: "7 Saltos de Instrução (Equipamento + Vaga)", price: "R$ 9.800", bonus: false },
     { label: "Filmagens Full HD para Debriefing", price: "R$ 1.500", bonus: false },
-    { label: "Logbook Oficial & Kit Flyup", price: "BÔNUS", bonus: true },
+    { label: "Logbook Oficial & Kit Fly Up", price: "BÔNUS", bonus: true },
     { label: "Acesso à Comunidade VIP (WhatsApp)", price: "INESTIMÁVEL", bonus: true },
 ];
 
@@ -35,7 +35,7 @@ export default function AFFPricingNew() {
             <div className="absolute inset-0 pointer-events-none opacity-30">
                 <img
                     src="https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470435/Banner_Paraquedas_1_xzqj4x.png"
-                    alt="Céu Flyup"
+                    alt="Céu Fly Up"
                     className="w-full h-full object-cover grayscale opacity-20 mix-blend-overlay"
                 />
             </div>
@@ -58,6 +58,9 @@ export default function AFFPricingNew() {
                             Liberdade
                         </span>
                     </h2>
+                    <p className="mt-6 text-xl md:text-2xl font-black uppercase text-[#39FF14] tracking-[0.2em]">
+                        CURSO AFF PRO
+                    </p>
                 </motion.div>
 
 
@@ -181,6 +184,7 @@ export default function AFFPricingNew() {
                 isOpen={isBookingOpen}
                 onClose={() => setIsBookingOpen(false)}
                 experienceTitle="Curso AFF Pro — Vaga Garantida"
+                source="form-matricula-aff"
             />
         </section>
     );

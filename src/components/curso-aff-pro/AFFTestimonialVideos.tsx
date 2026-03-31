@@ -11,7 +11,7 @@ const testimonials = [
         name: "Marcelo Yamin",
         role: "Aluno AFF",
         description:
-            "A “Fly Up Paraquedismo” atráves da sua equipe e em especial ao Edú Esteves, foi a casa que me acolheu, nutriu e me fez renascer assim como um lagarto no casulo que no final da metamorfose sai voando! Equipe muito competente e conhecedora do ser humano. A fórmula perfeita para ser tornar um paraquedista com muita segurança. Muito obrigado.",
+            "A “Fly Up Paraquedismo” atráves da sua equipe e em especial ao Edú Esteves, foi a casa que me acolheu, nutriu e me fez renascer assim como um lagarto no casulo que no final da metamorfose sai voando!",
         thumbnail: "https://img.youtube.com/vi/AVCIwOep8r4/maxresdefault.jpg",
         videoUrl: "https://www.youtube.com/watch?v=AVCIwOep8r4",
         tag: "Renascimento",
@@ -23,10 +23,32 @@ const testimonials = [
         name: "Douglas Reis",
         role: "Aluno AFF",
         description:
-            "Douglas destaca a metodologia Flyup e a mentoria de Edu Esteves como diferenciais na sua formação, ressaltando a paciência e a competência técnica da equipe.",
+            "Douglas destaca a metodologia Fly Up e a mentoria de Edu Esteves como diferenciais na sua formação, ressaltando a paciência e a competência técnica da equipe.",
         thumbnail: "https://img.youtube.com/vi/VgjGTvRV9uU/maxresdefault.jpg",
         videoUrl: "https://youtu.be/VgjGTvRV9uU",
         tag: "Evolução",
+        tagColor: "bg-black text-white",
+    },
+    {
+        id: 3,
+        quote: '"Experiência Inesquecível"',
+        name: "Arthur Santos",
+        role: "Aluno AFF",
+        description: "Arthur compartilha sua jornada desde o primeiro salto até a formatura no curso AFF PRO da Fly Up.",
+        thumbnail: "https://img.youtube.com/vi/uEFD155jnqM/maxresdefault.jpg",
+        videoUrl: "https://www.youtube.com/watch?v=uEFD155jnqM",
+        tag: "Liberdade",
+        tagColor: "bg-[#39FF14] text-black",
+    },
+    {
+        id: 4,
+        quote: '"Domínio dos Céus"',
+        name: "Lucas Ferreira",
+        role: "Aluno AFF",
+        description: "Lucas detalha como a mentoria de Edu Esteves ajudou a superar o medo e dominar as técnicas de queda livre.",
+        thumbnail: "https://img.youtube.com/vi/za18UUDqpMc/maxresdefault.jpg",
+        videoUrl: "https://youtu.be/za18UUDqpMc",
+        tag: "Performance",
         tagColor: "bg-black text-white",
     },
 ];
@@ -134,7 +156,7 @@ export default function AFFTestimonialVideos() {
                     className="text-center mt-16"
                 >
                     <p className="text-zinc-400 text-sm uppercase tracking-[0.3em] font-black">
-                        +1.500 histórias reais no nosso legado
+                        +1850 histórias reais no nosso legado
                     </p>
                 </motion.div>
             </div>

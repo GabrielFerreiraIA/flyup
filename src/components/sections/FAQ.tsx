@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const faqs = [
     {
         question: "É seguro saltar de paraquedas?",
-        answer: "Absolutamente. O paraquedismo é regulamentado e segue normas rígidas de segurança. Na Flyup, utilizamos equipamentos de última geração e todos os nossos equipamentos possuem dispositivos de abertura automática (DAA). Nossos instrutores são certificados e possuem milhares de saltos.",
+        answer: "Absolutamente. O paraquedismo é regulamentado e segue normas rígidas de segurança. Na Fly Up, utilizamos equipamentos de última geração e todos os nossos equipamentos possuem dispositivos de abertura automática (DAA). Nossos instrutores são certificados e possuem milhares de saltos.",
     },
     {
         question: "Preciso ter experiência prévia?",

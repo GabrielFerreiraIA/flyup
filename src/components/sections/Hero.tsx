@@ -55,13 +55,13 @@ export default function Hero() {
             {/* Video Background */}
             {/* Video Background */}
             <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black z-10" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60 z-10" />
                 <video
                     autoPlay
                     loop
                     muted
                     playsInline
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover opacity-60"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover opacity-80"
                 >
                     <source src="https://res.cloudinary.com/dn50urzkv/video/upload/f_auto,q_auto/v1771466144/VIDEO_HERO_OTIMIZADO_FLYUP_twgnje.mp4" type="video/mp4" />
                 </video>
@@ -69,11 +69,11 @@ export default function Hero() {
 
             {/* Content */}
             <div className="relative z-20 container mx-auto px-6 text-center">
-                <h2 className="hero-text-line text-lg md:text-xl font-bold tracking-[0.5em] text-neon mb-4 uppercase">
+                <h2 className="hero-text-line text-base md:text-lg font-bold tracking-[0.5em] text-neon mb-4 uppercase">
                     Paraquedismo Profissional
                 </h2>
 
-                <div className="hero-text-line mb-8 min-h-[160px] md:min-h-[220px] flex items-center justify-center">
+                <div className="hero-text-line mb-8 min-h-[120px] md:min-h-[180px] flex items-center justify-center">
                     <AnimatePresence mode="wait">
                         <motion.span
                             key={index}
@@ -81,7 +81,7 @@ export default function Hero() {
                             animate={{ y: 0, opacity: 1, rotateX: 0 }}
                             exit={{ y: -20, opacity: 0, rotateX: 20 }}
                             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                            className="text-6xl md:text-8xl lg:text-9xl font-black italic tracking-tighter leading-[0.9] text-white block"
+                            className="text-5xl md:text-7xl lg:text-8xl font-black italic tracking-tighter leading-[0.9] text-white block"
                         >
                             {phrases[index].top} <br />
                             <span className="text-stroke-neon text-transparent uppercase">
@@ -91,7 +91,7 @@ export default function Hero() {
                     </AnimatePresence>
                 </div>
 
-                <p className="hero-text-line text-gray-300 text-lg md:text-2xl max-w-2xl mx-auto mb-10 font-light">
+                <p className="hero-text-line text-gray-300 text-base md:text-xl max-w-2xl mx-auto mb-10 font-light">
                     A maior autoridade em saltos duplos e cursos AFF.
                     <br className="hidden md:block" />
                     Sua experiência definitiva de liberdade começa aqui.

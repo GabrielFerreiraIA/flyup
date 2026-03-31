@@ -19,7 +19,7 @@ const SAFETY_ITEMS = [
         id: 0,
         title: "Tecnologia AAD",
         subtitle: "Equipamento Inteligente",
-        description: "Todo paraquedas da Flyup é equipado com o sistema CYPRES (Cybernetic Parachute Release System). É um computador de bordo de tecnologia alemã que monitora altitude e velocidade, garantindo a abertura automática do reserva se necessário. É a mesma tecnologia usada por militares em todo o mundo.",
+        description: "Todo paraquedas da Fly Up é equipado com o sistema CYPRES (Cybernetic Parachute Release System). É um computador de bordo de tecnologia alemã que monitora altitude e velocidade, garantindo a abertura automática do reserva se necessário. É a mesma tecnologia usada por militares em todo o mundo.",
         icon: Shield,
         navLabel: "Tecnologia AAD"
     },
@@ -86,7 +86,7 @@ export default function SafetyObjections() {
             <div className="absolute inset-0 z-0">
                 <img
                     src="https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470435/Banner_Paraquedas_1_xzqj4x.png"
-                    alt="Céu Flyup"
+                    alt="Céu Fly Up"
                     className="w-full h-full object-cover grayscale opacity-40 mix-blend-overlay"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-zinc-950/60 to-zinc-950" />

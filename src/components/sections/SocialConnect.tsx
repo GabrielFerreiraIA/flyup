@@ -31,7 +31,7 @@ const SocialConnect = () => {
                         <div className="relative p-[3px] rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600">
                             <div className="bg-white p-[2px] rounded-full">
                                 <div className="w-16 h-16 rounded-full overflow-hidden relative">
-                                    <img src="https://i.imgur.com/pTo2v1r.png" alt="Flyup Profile" className="object-cover w-full h-full" />
+                                    <img src="https://i.imgur.com/pTo2v1r.png" alt="Fly Up Profile" className="object-cover w-full h-full" />
                                 </div>
                             </div>
                         </div>
@@ -79,7 +79,7 @@ const SocialConnect = () => {
                     </div>
 
                     <div className="absolute -bottom-20 -right-20 -z-10 rotate-[-10deg] opacity-10 pointer-events-none select-none">
-                        <h3 className="text-[12rem] font-black leading-none text-black">FLYUP</h3>
+                        <h3 className="text-[12rem] font-black leading-none text-black">FLY UP</h3>
                     </div>
                 </div>
 

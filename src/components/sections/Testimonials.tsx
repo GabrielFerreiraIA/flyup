@@ -39,7 +39,7 @@ const TESTIMONIALS_SOURCE: TestimonialData[] = [
         src: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771471455/Depoimento_3_1_q0tco5.png",
         name: "Felipe Calhau",
         role: "Aluno AFFpro",
-        text: "Muito bom poder fazer e concluir o curso AFFpro, sem dúvidas uma ótima escolha para iniciar no esporte e evoluir. Sou grato por ter iniciado e feito o meu primeiro salto no dia da inauguração da FlyUp.",
+        text: "Muito bom poder fazer e concluir o curso AFFpro, sem dúvidas uma ótima escolha para iniciar no esporte e evoluir. Sou grato por ter iniciado e feito o meu primeiro salto no dia da inauguração da Fly Up.",
         highlight: "iniciar no esporte e evoluir",
     },
     {
@@ -191,7 +191,7 @@ export default function Testimonials() {
                         <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-neon shadow-[0_0_8px_rgba(57,255,20,0.6)]"></span>
                     </span>
                     <span className="text-xs font-black text-zinc-700 uppercase tracking-[0.25em] relative z-10">
-                        COMUNIDADE FLYUP
+                        COMUNIDADE FLY UP
                     </span>
                 </div>
 

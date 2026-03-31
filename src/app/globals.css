@@ -8,6 +8,21 @@
   --font-sans: var(--font-inter);
   --font-display: var(--font-outfit);
 
+  /* ============================================
+     CRM — Paleta Azul Escuro (dark navy theme)
+     ============================================ */
+  --color-crm-900: #0C1B2E;
+  --color-crm-800: #152640;
+  --color-crm-700: #1E3A5F;
+  --color-crm-600: #2A4F7A;
+  --color-crm-500: #3B6EA8;
+  --color-crm-400: #5B8DC4;
+  --color-crm-300: #8BB3D8;
+  --color-crm-200: #BBD3EC;
+  --color-crm-100: #E5EFF8;
+  --color-crm-accent: #00B4D8;
+  --color-crm-energy: #FF6B35;
+
   /* Cores Principais */
   --color-neon: #39FF14;
   /* Verde Neon Forte (Flyup Brand) */
@@ -232,4 +247,20 @@
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+}
+
+/* CRM Animations */
+@keyframes crm-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.crm-fade-in {
+  animation: crm-fade-in 0.2s ease-out;
 }

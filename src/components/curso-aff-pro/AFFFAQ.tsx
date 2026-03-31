@@ -31,7 +31,7 @@ const faqs = [
     },
     {
         question: "O que acontece se eu reprovar um nível?",
-        answer: "Caso não cumpra os objetivos de segurança de um nível, você precisará repeti-lo. Na Flyup, isso é raríssimo (menos de 1%) graças ao nosso treinamento prévio em Túnel de Vento, que prepara seu corpo antes de ir para o céu.",
+        answer: "Caso não cumpra os objetivos de segurança de um nível, você precisará repeti-lo. Na Fly Up, isso é raríssimo (menos de 1%) graças ao nosso treinamento prévio em Túnel de Vento, que prepara seu corpo antes de ir para o céu.",
     },
     {
         question: "Quantos saltos posso fazer em um dia?",

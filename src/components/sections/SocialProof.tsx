@@ -4,7 +4,7 @@ const partners = [
     { name: "Red Bull", icon: Zap },
     { name: "GoPro", icon: Globe },
     { name: "Globo Esporte", icon: Star },
-    { name: "CBPQ", icon: Award }, // Confederação Brasileira de Paraquedismo
+    { name: "ABPQD", icon: Award }, // Associação Brasileira de Paraquedismo
     { name: "USPA", icon: Shield }, // US Parachute Association
     { name: "Vibe", icon: Anchor },
 ];

@@ -18,8 +18,10 @@ const experiences = [
         image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470425/Salto_Duplo_1_hprebk.png",
         col: 1,
         link: "/salto-duplo",
-        tags: ["12.000FT", "45S QUEDA"],
-        description: "A porta de entrada. Conectado a um instrutor, 200km/h de pura liberdade."
+        tags: ["12.000FT", "50S QUEDA"],
+        description: "A porta de entrada. Conectado a um instrutor, 200km/h de pura liberdade.",
+        oldPrice: "759,00",
+        price: "645,00"
     },
     {
         id: "curso-aff",
@@ -29,7 +31,7 @@ const experiences = [
         image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470433/Curso_AFF_Foto_1_jwmjre.png",
         col: 2,
         link: "/curso-aff-pro",
-        tags: ["7 NÍVEIS", "CERTIFICADO"],
+        tags: ["7 NÍVEIS", "CERTIFICADO", "TEÓRICO INCLUSO"],
         description: "Aprenda a voar sozinho. O método de formação de atletas mais rápido e seguro do mundo."
     },
     {
@@ -122,9 +124,12 @@ export default function Experiences() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                        className="text-6xl md:text-8xl lg:text-9xl font-black italic uppercase tracking-tighter transform -skew-x-6 leading-none text-black mb-6 relative z-10"
+                        className="text-4xl md:text-6xl lg:text-7xl font-black italic uppercase tracking-tighter transform -skew-x-6 leading-none text-black mb-6 relative z-10"
                     >
-                        ESCOLHA <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-400">SEU VOO</span>
+                        ESCOLHA <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-400 block mt-2">
+                            SUA AVENTURA
+                        </span>
                     </motion.h2>
 
                     <motion.p
@@ -161,13 +166,14 @@ export default function Experiences() {
                 isOpen={!!bookingExp}
                 onClose={() => setBookingExp(null)}
                 experienceTitle={bookingExp || ""}
+                source={`link-home-${experiences.find(e => e.title === bookingExp)?.id}`}
             />
         </section>
     );
 }
 
 function ExperienceCard({ data, index, isInView, onBooking }: { data: any, index: number, isInView: boolean, onBooking: () => void }) {
-    const { title, badge, icon: Icon, image, link, tags, description } = data;
+    const { title, badge, icon: Icon, image, link, tags, description, oldPrice, price } = data;
     const [isHovered, setIsHovered] = useState(false);
 
     return (
@@ -233,10 +239,47 @@ function ExperienceCard({ data, index, isInView, onBooking }: { data: any, index
                     className="absolute inset-x-0 bottom-0 bg-white z-30 px-10 py-10 flex flex-col gap-6 shadow-[0_-20px_40px_rgba(0,0,0,0.1)]"
                 >
                     {/* Header Row */}
-                    <div className="flex items-center justify-between">
-                        <h3 className="text-3xl md:text-4xl font-black italic uppercase tracking-tighter text-black font-display leading-[0.8]">
+                    <div className="flex items-start justify-between min-h-[70px]">
+                        <h3 className="text-3xl md:text-4xl flex-shrink-0 max-w-[50%] font-black italic uppercase tracking-tighter text-black font-display leading-[1] mt-2">
                             {title}
                         </h3>
+                        {price && (
+                            <div className="relative flex flex-col items-end justify-center transform group-hover:scale-105 transition-transform duration-500 origin-right mt-1">
+                                
+                                {/* Preço Original (Riscado em Vermelho) */}
+                                <div className="flex items-center gap-2 mb-1.5 mr-3">
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+                                        DE:
+                                    </span>
+                                    <span className="text-sm font-black italic text-red-500 line-through tracking-tighter">
+                                        R$ {oldPrice}
+                                    </span>
+                                </div>
+
+                                {/* Bloco Premium de Preço */}
+                                <div className="bg-gradient-to-br from-zinc-900 to-black text-[#39FF14] pr-5 pl-6 py-2.5 rounded-xl transform -skew-x-6 border border-[#39FF14]/20 border-b-[#39FF14]/50 border-r-[#39FF14]/50 shadow-[0_10px_30px_-10px_rgba(57,255,20,0.4)] relative overflow-hidden group/price">
+                                    
+                                    {/* Efeito de Brilho Dinâmico */}
+                                    <motion.div 
+                                        animate={{ x: ["-100%", "200%"] }}
+                                        transition={{ repeat: Infinity, duration: 2.5, ease: "linear", repeatDelay: 1.5 }}
+                                        className="absolute inset-0 bg-gradient-to-r from-transparent via-[#39FF14]/15 to-transparent flex-shrink-0"
+                                    />
+                                    
+                                    <div className="flex flex-col items-end relative z-10 transform skew-x-6">
+                                        <span className="text-[9px] font-bold text-white tracking-[0.2em] uppercase opacity-75 mb-0.5">
+                                            POR APENAS
+                                        </span>
+                                        <span className="text-4xl font-black italic tracking-tighter leading-none flex items-baseline gap-1.5 font-display drop-shadow-[0_0_15px_rgba(57,255,20,0.3)]">
+                                            <span className="text-[18px] text-white opacity-90">R$</span> 
+                                            <span className="text-[42px] leading-[0.8]">{price.split(',')[0]}</span>
+                                            <span className="text-[20px] leading-[0.8]">,{price.split(',')[1]}</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        )}
                     </div>
 
                     <div className="h-[1px] w-full bg-zinc-100" />

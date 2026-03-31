@@ -114,7 +114,7 @@ export default function AFFLevelsPathway() {
                 >
                     <div className="relative z-10">
                         <GraduationCap className="w-16 h-16 mx-auto mb-6" />
-                        <h3 className="text-3xl md:text-5xl font-black italic uppercase mb-2">Graduado na Flyup</h3>
+                        <h3 className="text-3xl md:text-5xl font-black italic uppercase mb-2">Graduado na Fly Up</h3>
                         <p className="font-bold text-lg max-w-xl mx-auto opacity-80 uppercase tracking-tighter italic">
                             Após o nível 7, você recebe seu brevê de paraquedista e está livre para voar em qualquer lugar do mundo.
                         </p>

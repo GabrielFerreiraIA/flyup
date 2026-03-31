@@ -103,7 +103,7 @@ export default function Authority() {
 
                         {/* Description */}
                         <p className="text-zinc-400 text-base md:text-lg mb-10 max-w-lg leading-relaxed">
-                            Liderada por <strong className="text-white">Edu Esteves</strong>, recordista mundial e autoridade no esporte, a FlyUp entrega a experiência mais técnica, segura e visceral da sua vida.
+                            Liderada por <strong className="text-white">Edu Esteves</strong>, recordista mundial e autoridade no esporte, a Fly Up entrega a experiência mais técnica, segura e visceral da sua vida.
                         </p>
 
                         {/* CTA REMOVED AS REQUESTED */}

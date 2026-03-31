@@ -36,7 +36,7 @@ export default function YoutubeChannel() {
                     className="inline-flex items-center gap-3 mb-6 px-4 py-1.5 rounded-full bg-red-950/30 border border-red-900/50 backdrop-blur-sm"
                 >
                     <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                    <span className="text-red-400 font-bold uppercase tracking-[0.3em] text-[10px]">FLYUP TV</span>
+                    <span className="text-red-400 font-bold uppercase tracking-[0.3em] text-[10px]">FLY UP TV</span>
                 </motion.div>
 
                 {/* Main Title - Premium Typography */}
@@ -79,7 +79,7 @@ export default function YoutubeChannel() {
                     {/* Thumbnail Image */}
                     <img
                         src="https://imgur.com/9qvTweh.png"
-                        alt="Salto de Avião a 15k Pés - Flyup TV"
+                        alt="Salto de Avião a 15k Pés - Fly Up TV"
                         className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 filter brightness-90 group-hover:brightness-100"
                     />
 

@@ -57,7 +57,7 @@ export default function AFFWhatIs() {
                     <h2 className="text-5xl md:text-7xl lg:text-8xl font-black italic uppercase text-zinc-900 leading-[0.9] tracking-tighter mb-8">
                         O Que é o{" "}
                         <span className="relative inline-block">
-                            <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#39FF14] to-emerald-500">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#39FF14] to-emerald-500 pr-2">
                                 Curso AFF PRO?
                             </span>
                             {/* Underline accent */}
