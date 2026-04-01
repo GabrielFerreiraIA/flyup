@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
+import type { Route } from 'next'
 import { SidebarLogout } from './_components/sidebar-logout'
 import { Toaster } from 'sonner'
 
@@ -46,7 +47,7 @@ export default async function CRMLayout({
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
+              href={item.href as Route}
               className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-crm-300
                          hover:bg-crm-800 hover:text-neutral-100 transition-colors group"
             >
