@@ -73,7 +73,7 @@ export default function Article() {
 
                         <h2 className="text-3xl font-black italic uppercase text-black mt-16 mb-8 tracking-tighter">A Prática Célere no Voo Livre Subjetivo</h2>
                         <p className="text-lg text-zinc-600 leading-loose mb-10">
-                            Como funciona o paraquedismo se não estivermos amarrados pelo peitoral de um mestre de salto gigante em nosso colar cervical? No AFF os amparos vitais passam pro lado exterior: dois incríveis 'Jump Masters' (Instrutores Coach qualificados nível CBPq) irão travar tuas pernas, quadril e a camisa, caindo juntinhos formados deitados, estabilizando e nivelando teu centro aerodinâmico durante exaustivos sessenta gloriosos segundos a brutais duzentos quilômetros de veloz queda livre ininterruptos em todas as curvas!
+                            Como funciona o paraquedismo se não estivermos amarrados pelo peitoral de um mestre de salto gigante em nosso colar cervical? No AFF os amparos vitais passam pro lado exterior: dois incríveis 'Jump Masters' (Instrutores Coach credenciados pelas entidades brasileiras do esporte) irão travar tuas pernas, quadril e a camisa, caindo juntinhos formados deitados, estabilizando e nivelando teu centro aerodinâmico durante exaustivos sessenta gloriosos segundos a brutais duzentos quilômetros de veloz queda livre ininterruptos em todas as curvas!
                         </p>
 
                         <h2 className="text-3xl font-black italic uppercase text-black mt-16 mb-8 tracking-tighter">Benefícios do Treinamento Imersivo</h2>

@@ -26,22 +26,22 @@ export default function SaltoDuploPage() {
             image: "https://images.unsplash.com/photo-1534149626607-4221d6fb86b5?q=80&w=800&auto=format&fit=crop"
         },
         {
-            id: "vip",
-            title: "VIP (Externo)",
-            description: "Conectado a um instrutor, com um segundo paraquedista realizando fotos e vídeos incríveis de vários ângulos diferentes e cinematográficos.",
-            icon: Video,
-            color: "from-purple-500/10 to-purple-500/5",
-            accent: "purple-500",
-            image: "https://images.unsplash.com/photo-1455582916367-25f75bfc6710?q=80&w=800&auto=format&fit=crop"
-        },
-        {
             id: "experience",
-            title: "Experience (Social)",
-            description: "Salto duplo premium com equipe de filmagem especializada, edição profissional e conteúdo exclusivo formatado para viralizar nas suas redes sociais.",
+            title: "Experience (Autonomia)",
+            description: "A experiência definitiva: além da produção cinematográfica, você assume o controle do altímetro e pilota o paraquedas, sentindo a real autonomia de um aluno.",
             icon: Sparkles,
             color: "from-amber-500/10 to-amber-500/5",
             accent: "amber-500",
             image: "https://images.unsplash.com/photo-1596700816960-94d35eb843c9?q=80&w=800&auto=format&fit=crop"
+        },
+        {
+            id: "vip",
+            title: "VIP (Cinematográfico)",
+            description: "Conectado a um instrutor, com um segundo paraquedista realizando fotos e vídeos de vários ângulos diferentes e cinematográficos.",
+            icon: Video,
+            color: "from-purple-500/10 to-purple-500/5",
+            accent: "purple-500",
+            image: "https://images.unsplash.com/photo-1455582916367-25f75bfc6710?q=80&w=800&auto=format&fit=crop"
         }
     ];
 
@@ -141,14 +141,14 @@ export default function SaltoDuploPage() {
                         highlight: true
                     },
                     {
+                        title: "Salto Duplo Experience",
+                        price: "R$ 1.010",
+                        features: ["Você Pilota o Paraquedas", "Uso de Altímetro no Braço", "Sinal de Comando para Abertura", "Foco total na Autonomia", "Filmagem Dupla (VIP + Selfie)"]
+                    },
+                    {
                         title: "Salto Duplo VIP",
                         price: "R$ 1.290",
                         features: ["Salto a 12.000 pés", "Cameraman Externo Dedicado", "Fotos e Vídeos em HD", "Ângulos Cinematográficos", "Kit VIP (Camiseta + Boné)"]
-                    },
-                    {
-                        title: "Salto Duplo Experience",
-                        price: "R$ 1.590",
-                        features: ["Pacote Completo (VIP + Selfie)", "Edição Premium para Reels/TikTok", "Cameraman + Handycam", "Conteúdo Viral Garantido", "Experiência Fly Up Total"]
                     }
                 ]}
                 faqs={[

@@ -158,12 +158,17 @@ export default function YoutubeAuthority() {
                             transition={{ delay: 0.4 }}
                             className="flex flex-col sm:flex-row items-start sm:items-center gap-6"
                         >
-                            <button className="group relative px-8 py-4 bg-white hover:bg-gray-100 text-black rounded-full overflow-hidden transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(57,255,20,0.4)]">
+                            <a 
+                                href="https://www.youtube.com/@flyup" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="group relative px-8 py-4 bg-white hover:bg-gray-100 text-black rounded-full overflow-hidden transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(57,255,20,0.4)] inline-flex items-center justify-center"
+                            >
                                 <div className="absolute inset-0 bg-neon translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)]" />
                                 <span className="relative z-10 font-black text-xs uppercase tracking-[0.2em] flex items-center gap-2 group-hover:text-black transition-colors">
-                                    Junte-se a nós <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                                     Junte-se a nós <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                                 </span>
-                            </button>
+                            </a>
                             <p className="text-zinc-600 text-xs max-w-xs">
                                 Junte-se a <span className="text-zinc-300">+100.000 inscritos</span> consumindo conteúdo de alta performance.
                             </p>

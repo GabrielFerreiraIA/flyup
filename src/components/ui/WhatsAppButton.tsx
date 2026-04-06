@@ -10,21 +10,24 @@ interface WhatsAppButtonProps {
 }
 
 const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
-    phoneNumber = "5511999999999", // Placeholder
+    phoneNumber = "5515998282280",
     message = "Olá! Gostaria de saber mais informações.",
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         
-        const finalMessage = `Olá, meu nome é ${name}. ${message}`;
+        const finalMessage = `Olá, meu nome é ${name}, meu telefone é ${phone}. ${message}`;
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(finalMessage)}`;
         
         window.open(whatsappUrl, '_blank');
         setIsOpen(false);
         // Reset form
         setName("");
+        setPhone("");
     };
 
     return (
@@ -67,6 +70,19 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
                                         onChange={(e) => setName(e.target.value)}
                                         className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#25D366] transition-colors"
                                         placeholder="Seu nome"
+                                    />
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label htmlFor="wa-phone" className="text-sm font-bold text-white uppercase tracking-wider">Telefone / WhatsApp</label>
+                                    <input
+                                        id="wa-phone"
+                                        type="tel"
+                                        required
+                                        value={phone}
+                                        onChange={(e) => setPhone(e.target.value)}
+                                        className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#25D366] transition-colors"
+                                        placeholder="(15) 99999-9999"
                                     />
                                 </div>
                                 

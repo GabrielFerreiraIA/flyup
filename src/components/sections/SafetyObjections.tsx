@@ -17,17 +17,17 @@ import {
 const SAFETY_ITEMS = [
     {
         id: 0,
-        title: "Tecnologia AAD",
+        title: "Tecnologia DAA",
         subtitle: "Equipamento Inteligente",
         description: "Todo paraquedas da Fly Up é equipado com o sistema CYPRES (Cybernetic Parachute Release System). É um computador de bordo de tecnologia alemã que monitora altitude e velocidade, garantindo a abertura automática do reserva se necessário. É a mesma tecnologia usada por militares em todo o mundo.",
         icon: Shield,
-        navLabel: "Tecnologia AAD"
+        navLabel: "Tecnologia DAA"
     },
     {
         id: 1,
         title: "Instrutores de Elite",
         subtitle: "Certificação Internacional",
-        description: "Nossa equipe não é apenas experiente, é a elite. Todos os instrutores possuem certificações USPA (United States Parachute Association) e CBPq, com milhares de saltos computados. Você não vai saltar com um iniciante, mas com um especialista em voo humano.",
+        description: "Nossa equipe não é apenas experiente, é a elite. Todos os instrutores possuem certificações USPA (United States Parachute Association) e entidades brasileiras do esporte, com milhares de saltos computados. Você não vai saltar com um iniciante, mas com um especialista em voo humano.",
         icon: Medal,
         navLabel: "Instrutores"
     },

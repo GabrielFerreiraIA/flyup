@@ -36,7 +36,7 @@ const experiences = [
     },
     {
         id: "salto-balao",
-        title: "Salto de Balão",
+        title: "Voos e Saltos de Balão",
         badge: "Visual",
         icon: Cloud,
         image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470430/Salto_Bal%C3%A3o_1_u1amjp.png",
@@ -64,7 +64,7 @@ const experiences = [
         image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771470434/Wing_Suit_imagem_1_mhspao.png",
         col: 1,
         link: "/wingsuit-experience",
-        tags: ["PRO", "MAX SPEED"],
+        tags: ["A partir da categoria B", "PRO", "MAX SPEED"],
         description: "A elite do voo humano. Sinta a incrível sustentação e controle do traje planador em alta velocidade."
     }
 ];
@@ -287,7 +287,14 @@ function ExperienceCard({ data, index, isInView, onBooking }: { data: any, index
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2">
                         {tags.map((tag: string) => (
-                            <span key={tag} className="text-[11px] font-bold text-zinc-500 bg-zinc-100 px-4 py-1.5 rounded-full uppercase tracking-tight">
+                            <span 
+                                key={tag} 
+                                className={`text-[11px] font-bold px-4 py-1.5 rounded-full uppercase tracking-tight ${
+                                    tag === "A partir da categoria B"
+                                        ? "bg-yellow-400 text-black border border-black/10 shadow-[0_0_15px_rgba(250,204,21,0.3)] animate-pulse"
+                                        : "text-zinc-500 bg-zinc-100 text-nowrap"
+                                }`}
+                            >
                                 {tag}
                             </span>
                         ))}

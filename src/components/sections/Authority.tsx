@@ -6,8 +6,8 @@ import { Trophy, CheckCircle2, Youtube, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const stats = [
-    { label: "Saltos Realizados", value: 20000, suffix: "+", prefix: "" },
-    { label: "Alunos Formados", value: 1500, suffix: "+", prefix: "" },
+    { label: "Saltos Realizados", value: 1300, suffix: "+", prefix: "" },
+    { label: "Alunos Formados", value: 1850, suffix: "+", prefix: "" },
     { label: "Segurança", value: 100, suffix: "%", prefix: "" },
     { label: "Canal do Youtube", value: 1, suffix: "", prefix: "#TOP" },
 ];

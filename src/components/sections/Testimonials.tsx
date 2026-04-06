@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 // ==========================================
 // TYPES & DATA
@@ -74,60 +75,205 @@ const TESTIMONIALS_SOURCE: TestimonialData[] = [
         text: "O Edu é um excelente instrutor. Me senti acolhida e segura o tempo todo, nas aulas teóricas e práticas. Ele é muito experiente e competência incrível! Guardo todos os ensinamentos e toda a energia boa!",
         highlight: "acolhida e segura",
     },
+    {
+        id: "t8",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435307/1_k9kijz.webp",
+        name: "Natalia Grespan",
+        role: "Aluna AFF",
+        text: "Terminei meu AFF na Fly Up com o mestre Edu e sou imensamente grata a ele e a essa escola por todos os ensinamentos e por toda confiança! O Edu tem muita experiência e te passa muita segurança do início ao fim. Com certeza, melhor escolha que fiz!",
+        highlight: "melhor escolha que fiz",
+    },
+    {
+        id: "t9",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435307/2_tuma4h.webp",
+        name: "Fernando Penteadinho",
+        role: "Aluno",
+        text: "Pra quem sonha em saltar e se tornar um paraquedista, o lugar é FlyUp. Edu e todo seu time são extremamente profissionais, cuidando do seu processo evolutivo no esporte de uma maneira que voce se sente seguro e confiante. Recomendadíssimo. A melhor escola do Brasil!",
+        highlight: "melhor escola do Brasil",
+    },
+    {
+        id: "t10",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435310/3_fsvc9f.webp",
+        name: "Filipe Calhau",
+        role: "Aluno AFFpro",
+        text: "Muito bom poder fazer e concluir o curso AFFpro, sem dúvidas uma ótima escola para iniciar no esporte e evoluir. Sou grato por ter iniciado e feito o meu primeiro salto no dia da inauguração da FlyUp e agora formado sigo contente em busca da evolução no esporte. Gratidão!!!",
+        highlight: "evolução no esporte",
+    },
+    {
+        id: "t11",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435310/4_lkvqyc.webp",
+        name: "Igor Ramos",
+        role: "Aluno AFF Pro",
+        text: "Melhor Escola com os melhores instrutores AFF Pro! Em breve voltarei para mais aventuras",
+        highlight: "aventuras",
+    },
+    {
+        id: "t12",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435314/5_hl1jtk.webp",
+        name: "Gustavi Alonco",
+        role: "Aluno",
+        text: "Profissionalismo e segurança em primeiro lugar! Sem contar toda a simpatia e parceria de toda a equipe! Melhor escola do Brasil!",
+        highlight: "Profissionalismo e segurança",
+    },
+    {
+        id: "t13",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435311/7_g6wz5j.webp",
+        name: "Kleber Toledo",
+        role: "Aluno",
+        text: "Escola Fly Up que realizou meu sonho , pessoas que se dedicam aos alunos completamente , fui muito bem acolhido e continuo ate hoje !!! que Deus continuo nos proporcionando essa amizade !!!",
+        highlight: "realizou meu sonho",
+    },
+    {
+        id: "t14",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435311/7_g6wz5j.webp",
+        name: "Rodrigo Ro",
+        role: "Salto Duplo",
+        text: "Foi uma experiência incrível fazer um salto de paraquedas com a escola de paraquedismo Fly Up, sob a orientação do instrutor Edu Esteves. O Edu é um instrutor extremamente experiente e cuidadoso, que me deixou completamente à vontade durante todo o processo. Com certeza recomendo a Fly Up paraquedismo e o instrutor Edu Esteves para quem deseja viver essa experiência única e emocionante!",
+        highlight: "experiência única e emocionante",
+    },
+    {
+        id: "t15",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435317/8_hucisr.webp",
+        name: "Beatriz Miranda",
+        role: "Salto Duplo",
+        text: "Confiei a melhor experiência da minha vida a escola Fly Up Paraquedismo. Foi surreal e eu indico a todos. Da medo? Claro! Mas eles super te tranquilizam, passam confiança e o instrutor foi super atencioso. Obrigada a todos os envolvidos.",
+        highlight: "melhor experiência da minha vida",
+    },
+    {
+        id: "t16",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435310/9_jws0k8.webp",
+        name: "Fabiano",
+        role: "Aluno",
+        text: "Escola com estrutura completa e profissionais hiper gabaritos com décadas de experiência sempre presente no seu aprendizado teórico e prático!",
+        highlight: "estrutura completa",
+    },
+    {
+        id: "t17",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435310/10_xwocrn.webp",
+        name: "Leone Thomasini",
+        role: "Atleta",
+        text: "Escola com uma estrutura incrível e instrutores altamente capacitados. Onde me formei e continuo saltando. Nota 10",
+        highlight: "instrutores altamente capacitados",
+    },
+    {
+        id: "t18",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435317/11_euwgii.webp",
+        name: "Jorge Rigoli",
+        role: "Aluno AFF Pro",
+        text: "O Edu Esteves é um profissional excelente. Me senti super seguro em fazer o curso AFF Pro desde o início. É um gigante no ar. Super recomendo a FlyUp... se você teve alguma experiência frustrante no passado, dê uma chance e você mesmo, se permita e procure o Edu Esteves.",
+        highlight: "É um gigante no ar",
+    },
+    {
+        id: "t19",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435323/12_iy9rg1.webp",
+        name: "Bruno Henrique",
+        role: "Salto Duplo",
+        text: "Muito bom, a equipe completa e muito atenciosa do começo ao fim, te passam a maior segurança do mundo, experiência única pra quem é fã de adrenalina, super recomendo a escola",
+        highlight: "super recomendo",
+    },
+    {
+        id: "t20",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435314/13_zrtwcl.webp",
+        name: "Vitor Anjos",
+        role: "Aluno AFF",
+        text: "Edu Esteves é um profissional fora da curva. Quando encontrei a FlyUp Paraquedismo e conversei a respeito das minhas angústias e problemas que tive no passado, consegui ter a segurança e profissionalismo que buscava para continuar e finalizar o curso AFF.",
+        highlight: "segurança e profissionalismo",
+    },
+    {
+        id: "t21",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435320/14_mqpfbn.webp",
+        name: "Pedro Godtfredsen",
+        role: "Aluno",
+        text: "Atendimento atencioso, profissionalidade nos ensinamentos, instrutor de extrema qualidade técnica e muito experiente. Edu Esteves é destaque e referência no esporte onde o cuidado e competência têm que vir sempre em primeiro lugar.",
+        highlight: "destaque e referência",
+    },
+    {
+        id: "t22",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435321/15_h1xlbs.webp",
+        name: "fabiana strazza",
+        role: "Aluna",
+        text: "Escola maravilhosa! Que proporciona as melhores experiências!!!",
+        highlight: "Escola maravilhosa",
+    },
+    {
+        id: "t23",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435320/16_kvuf1f.webp",
+        name: "Barbara R.",
+        role: "Salto Duplo",
+        text: "Desde o primeiro contato tive um ótimo atendimento, foi a empresa que mais me senti confortável pra realizar o salto. Atendimento top de toda equipe, local aconchegante. Meus parabéns a todos os instrutores e à empresa por realizar sonhos no lugar mais lindo que podemos visitar, o céu!",
+        highlight: "melhor atendimento",
+    },
+    {
+        id: "t24",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435323/17_uj6ulj.webp",
+        name: "Cristiane Mendes",
+        role: "Salto Duplo",
+        text: "Minha experiência em saltar foi incrível, melhor do que eu imaginava, todo o atendimento , foi tudo perfeito, me passaram bastante segurança",
+        highlight: "tudo perfeito",
+    },
+    {
+        id: "t25",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435324/18_xunink.webp",
+        name: "Vera lucia Escobar",
+        role: "Salto Duplo",
+        text: "Excelente Equipe desde o 1º contato. Super atenciosos. Os instrutores são animados e nos deixam tão envolvidos que confiamos plenamente. Foi sem dúvida A MELHOR EXPERIÊNCIA DA MINHA VIDA. Com certeza voltarei.",
+        highlight: "A MELHOR EXPERIÊNCIA DA MINHA VIDA",
+    },
+    {
+        id: "t26",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435324/19_lsgfy6.webp",
+        name: "Kathiene Ibiapino",
+        role: "Salto Duplo",
+        text: "Experiência incrível. Instrutores experientes lhe-dão muita segurança no salto. Atendimento com excelência e prontidão. Parabéns a toda equipe, recomendo a Fly Up Paraquedismo.",
+        highlight: "excelência e prontidão",
+    },
+    {
+        id: "t27",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435324/20-_1__ctnjjc.webp",
+        name: "Luiza Avila",
+        role: "Salto Duplo",
+        text: "Foi uma experiência incrível, profissionais com experiência e capacidade suficientes para trazer segurança à esse momento!!! Com certeza escolheria outras vezes voar com a Fly Up Boituva!",
+        highlight: "profissionais com experiência",
+    },
 ];
 
-// Generate a larger dataset for the bubble grid by repeating
-const TESTIMONIALS = [
-    ...TESTIMONIALS_SOURCE,
-    ...TESTIMONIALS_SOURCE.map(t => ({ ...t, id: t.id + "_dup1" })),
-    ...TESTIMONIALS_SOURCE.slice(0, 4).map(t => ({ ...t, id: t.id + "_dup2" }))
-];
+const TESTIMONIALS = [...TESTIMONIALS_SOURCE];
 
 // ==========================================
-// GRID LAYOUT - DENSE BUBBLE STYLE
+// GRID LAYOUT - ORGANIC DIAMOND BLOB (3-4-5-4-3 = 19)
+// Estilo original da imagem 2, mais simétrico e com 19 depoimentos
+// Container: max-w-[900px] h-[900px]
 // ==========================================
 
 const GRID_POSITIONS = [
-    // Row 1 - Top
-    { x: 35, y: 8, size: 95 },
-    { x: 50, y: 5, size: 110 },
-    { x: 65, y: 8, size: 95 },
+    // Row 1 — 3 circles (topo)
+    { x: 37, y: 12, size: 100 },
+    { x: 50, y: 10, size: 115 },
+    { x: 63, y: 12, size: 100 },
 
-    // Row 2
-    { x: 28, y: 20, size: 100 },
-    { x: 42, y: 18, size: 115 },
-    { x: 58, y: 18, size: 115 },
-    { x: 72, y: 20, size: 100 },
+    // Row 2 — 4 circles
+    { x: 27, y: 26, size: 105 },
+    { x: 41, y: 24, size: 120 },
+    { x: 59, y: 24, size: 120 },
+    { x: 73, y: 26, size: 105 },
 
-    // Row 3
-    { x: 22, y: 33, size: 95 },
-    { x: 35, y: 31, size: 110 },
-    { x: 50, y: 30, size: 130 }, // Center highlight
-    { x: 65, y: 31, size: 110 },
-    { x: 78, y: 33, size: 95 },
+    // Row 3 — 5 circles (mais larga, centro em destaque)
+    { x: 18, y: 42, size: 100 },
+    { x: 33, y: 40, size: 118 },
+    { x: 50, y: 38, size: 138 },
+    { x: 67, y: 40, size: 118 },
+    { x: 82, y: 42, size: 100 },
 
-    // Row 4
-    { x: 28, y: 46, size: 105 },
-    { x: 42, y: 44, size: 120 },
-    { x: 58, y: 44, size: 120 },
-    { x: 72, y: 46, size: 105 },
+    // Row 4 — 4 circles
+    { x: 27, y: 58, size: 105 },
+    { x: 41, y: 56, size: 120 },
+    { x: 59, y: 56, size: 120 },
+    { x: 73, y: 58, size: 105 },
 
-    // Row 5
-    { x: 65, y: 58, size: 115 },
-    { x: 35, y: 58, size: 115 },
-    { x: 50, y: 57, size: 135 }, // Center big
-    { x: 65, y: 58, size: 115 },
-    { x: 78, y: 60, size: 95 },
-
-    // Row 6
-    { x: 28, y: 73, size: 100 },
-    { x: 42, y: 71, size: 110 },
-    { x: 58, y: 71, size: 110 },
-    { x: 72, y: 73, size: 100 },
-
-    // Row 7 - Bottom
-    { x: 35, y: 86, size: 95 },
-    { x: 50, y: 84, size: 105 },
+    // Row 5 — 3 circles
+    { x: 37, y: 72, size: 100 },
+    { x: 50, y: 70, size: 115 },
+    { x: 63, y: 72, size: 100 },
 ];
 
 export default function Testimonials() {
@@ -136,7 +282,7 @@ export default function Testimonials() {
     const activeTestimonials = TESTIMONIALS.slice(0, GRID_POSITIONS.length);
 
     return (
-        <section className="relative py-32 bg-white overflow-hidden min-h-[1100px] flex flex-col items-center justify-center">
+        <section className="relative py-24 md:py-32 bg-white overflow-hidden min-h-screen md:min-h-[1000px] flex flex-col items-center justify-center">
 
             {/* Smooth Curve Transitions - Organic Inverted */}
             <div className="absolute top-0 left-0 w-full h-32 md:h-48 z-10 pointer-events-none">
@@ -159,25 +305,9 @@ export default function Testimonials() {
                 </svg>
             </div>
 
-            {/* Background Pattern - Subtle Hexagonal Grid */}
-            <div className="absolute inset-0 opacity-[0.015] pointer-events-none overflow-hidden">
-                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <pattern id="hexpattern" x="0" y="0" width="100" height="86.6" patternUnits="userSpaceOnUse">
-                            <path
-                                d="M50 0 L93.3 25 L93.3 75 L50 100 L6.7 75 L6.7 25 Z"
-                                fill="none"
-                                stroke="#39FF14"
-                                strokeWidth="1"
-                                opacity="1"
-                            />
-                        </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#hexpattern)" />
-                </svg>
-            </div>
 
-            {/* Floating Accent Glows - Static, no animate-pulse */}
+
+            {/* Floating Accent Glows */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
                 <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-neon/[0.02] rounded-full blur-3xl" />
                 <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-neon/[0.015] rounded-full blur-3xl" />
@@ -208,8 +338,8 @@ export default function Testimonials() {
                 </div>
             </div>
 
-            {/* GRID SECTION - Dense Bubble Formation */}
-            <div className="relative w-full max-w-[900px] h-[900px] mx-auto z-20">
+            {/* BUBBLE GRID — Organic Diamond Blob */}
+            <div className="relative w-full aspect-square max-w-[900px] mx-auto z-20 mt-10 md:mt-0">
                 {activeTestimonials.map((item, index) => {
                     const pos = GRID_POSITIONS[index] || { x: 50, y: 50, size: 0 };
                     const isHovered = hoveredId === item.id;
@@ -218,17 +348,20 @@ export default function Testimonials() {
                     return (
                         <motion.div
                             key={item.id}
-                            className="absolute transform-gpu"
+                            className={cn(
+                                "absolute transform-gpu transition-all duration-300",
+                                isHovered ? "w-[85vw] max-w-[360px] h-auto" : ""
+                            )}
                             initial={{ opacity: 0, scale: 0 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: index * 0.05 }}
+                            transition={{ duration: 0.5, delay: index * 0.04 }}
                             style={{
                                 left: `${pos.x}%`,
                                 top: `${pos.y}%`,
                                 zIndex: isHovered ? 100 : 10,
-                                width: isHovered ? "360px" : `${pos.size}px`,
-                                height: isHovered ? "auto" : `${pos.size}px`,
+                                width: isHovered ? undefined : `${(pos.size / 900) * 100}%`,
+                                height: isHovered ? undefined : `${(pos.size / 900) * 100}%`,
                                 x: "-50%",
                                 y: "-50%",
                             }}

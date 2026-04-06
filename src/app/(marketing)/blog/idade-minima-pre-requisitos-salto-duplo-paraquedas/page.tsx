@@ -3,7 +3,7 @@ import { ArrowLeft, Calendar, Tag, User, MapPin } from "lucide-react";
 
 export const metadata = {
     title: "Idade mínima e pré-requisitos para o Salto Duplo de Paraquedas | Fly Up",
-    description: "Existem limites de idade ou de peso? Entenda as regras da CBPq e prepare-se adequadamente para a sua aventura no céu de Boituva.",
+    description: "Existem limites de idade ou de peso? Entenda as regras das entidades brasileiras do esporte e prepare-se adequadamente para a sua aventura no céu de Boituva.",
     keywords: "idade mínima para salto duplo de paraquedas, limite de peso para salto duplo, salto duplo de paraquedas autorização dos pais, pré requisitos salto duplo, quem não pode saltar de paraquedas",
 };
 
@@ -23,7 +23,7 @@ export default function Article() {
                 </div>
                 <div className="container relative z-10 mx-auto px-6 text-center mt-12 max-w-5xl">
                     <div className="flex justify-center items-center gap-2 mb-6 text-neon text-[10px] font-black uppercase tracking-[0.3em]">
-                        <Tag size={12} /> Regras da CBPq
+                        <Tag size={12} /> Regras das Entidades Nacionais
                     </div>
                     <h1 className="text-4xl md:text-6xl font-black italic uppercase tracking-tighter text-white mb-8 drop-shadow-xl leading-tight">
                         Idade Mínima e <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon to-emerald-400">Pré-Requisitos</span> para o Salto Duplo de Paraquedas
@@ -51,7 +51,7 @@ export default function Article() {
                         </p>
 
                         <p className="text-lg text-zinc-600 leading-loose mb-10">
-                            Questões que parecem lendas urbanas enchem as caixas de mensagens dos aeroclubes da capital nacional do paraquedismo: <em>"Tem restrição de tamanho, idade ou dores?"</em> Vamos deixar o achismo de lado e esclarecer rigidamente as diretrizes da <strong>Confederação Brasileira de Paraquedismo (CBPq)</strong>.
+                            Questões que parecem lendas urbanas enchem as caixas de mensagens dos aeroclubes da capital nacional do paraquedismo: <em>"Tem restrição de tamanho, idade ou dores?"</em> Vamos deixar o achismo de lado e esclarecer rigidamente as diretrizes das <strong>entidades brasileiras do esporte</strong>.
                         </p>
 
                         <h2 className="text-3xl font-black italic uppercase text-black mt-16 mb-8 tracking-tighter">O Fator Legal: Qual a Idade Mínima para Salto Duplo?</h2>

@@ -30,7 +30,7 @@ export default function Article() {
                     </h1>
                     <div className="flex flex-wrap justify-center items-center gap-4 text-zinc-300 text-xs font-black uppercase tracking-widest">
                         <div className="flex items-center gap-2 rounded-full px-5 py-2 backdrop-blur-md bg-white/10 border border-white/20"><Calendar size={14} className="text-neon" /> 20 FEV 2026</div>
-                        <div className="flex items-center gap-2 rounded-full px-5 py-2 backdrop-blur-md bg-white/10 border border-white/20"><User size={14} className="text-neon" /> Equipe Técnica CBPq</div>
+                        <div className="flex items-center gap-2 rounded-full px-5 py-2 backdrop-blur-md bg-white/10 border border-white/20"><User size={14} className="text-neon" /> Equipe Técnica das Entidades do Esporte</div>
                         <div className="flex items-center gap-2 rounded-full px-5 py-2 backdrop-blur-md bg-white/10 border border-white/20"><MapPin size={14} className="text-neon" /> Boituva - SP</div>
                     </div>
                 </div>
@@ -103,7 +103,7 @@ export default function Article() {
                         </p>
 
                         <p className="text-lg text-zinc-600 leading-loose mb-10">
-                            Passando essa peneira estelar de segurança da CBPq, abraçam-se fortes amigos irmãos do ar. Você virou recém formado e certificado atleta saltador de esportes nas alturas, liberado orgulhosamente das obrigações com mestres caros voando acorrentado do lado. Podendo enfim ir comprar a própria parafernália alçando as categorias das nuvens sozinho para domingos maravilhosos até o fim de seus felizes dias saltitantes nos paraquedas!
+                            Passando essa peneira estelar de segurança das entidades brasileiras do esporte, abraçam-se fortes amigos irmãos do ar. Você virou recém formado e certificado atleta saltador de esportes nas alturas, liberado orgulhosamente das obrigações com mestres caros voando acorrentado do lado. Podendo enfim ir comprar a própria parafernália alçando as categorias das nuvens sozinho para domingos maravilhosos até o fim de seus felizes dias saltitantes nos paraquedas!
                         </p>
                     </article>
 

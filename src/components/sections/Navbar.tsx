@@ -3,17 +3,17 @@
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Menu, X, ChevronDown, Search, Phone, Calendar, BookOpen } from "lucide-react";
+import { Menu, X, ChevronDown, Search, Phone, Calendar, BookOpen, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import BookingModal from "@/components/BookingModal";
 
 const experiences = [
     { name: "Salto Duplo", href: "/salto-duplo" },
 ];
 
 const cursosParaquedismo = [
-    { name: "Curso de Paraquedismo AFF", href: "/curso-aff" },
     { name: "Curso de Paraquedismo AFF Pro", href: "/curso-aff-pro" },
     { name: "Curso de Wingsuit", href: "/curso-wingsuit" },
 ];
@@ -32,6 +32,7 @@ export default function Navbar() {
     const [lastScrollY, setLastScrollY] = useState(0);
     const [showNavbar, setShowNavbar] = useState(true);
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+    const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
     const navRef = useRef<HTMLElement>(null);
 
     const isHoveredRef = useRef(false);
@@ -103,12 +104,10 @@ export default function Navbar() {
             )}
         >
             <div className={cn("container mx-auto px-6 transition-all duration-500", isScrolled ? "h-16" : "h-20")}>
-                <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-12 h-full">
+                <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-10 h-full">
 
-                    {/* LEFT MENU: Experiences & Courses */}
-                    <nav className="hidden lg:flex items-center gap-6 justify-start pl-4">
-
-                        {/* SALTO DUPLO (Direct Link) */}
+                    {/* LEFT MENU: Experiences & Courses (Dropdowns) */}
+                    <nav className="hidden lg:flex items-center gap-10 justify-start pl-4">
                         <Link
                             href="/salto-duplo"
                             className="flex items-center gap-1.5 text-xs font-black text-white hover:text-neon transition-colors uppercase tracking-widest py-4 relative group"
@@ -117,14 +116,14 @@ export default function Navbar() {
                             <span className="absolute bottom-2 left-0 w-0 h-[2px] bg-neon transition-all duration-300 group-hover:w-full" />
                         </Link>
 
-                        {/* DIREITA Cursos */}
+                        {/* Cursos Dropdown */}
                         <div
                             className="relative group h-full flex items-center"
                             onMouseEnter={() => setActiveDropdown("cursos")}
                             onMouseLeave={() => setActiveDropdown(null)}
                         >
                             <button className="flex items-center gap-1.5 text-xs font-black text-white hover:text-neon transition-colors uppercase tracking-widest py-4 relative group-hover:text-neon">
-                                CURSOS DE PARAQUEDISMO
+                                CURSOS
                                 <ChevronDown size={14} className={cn("transition-transform duration-300", activeDropdown === "cursos" ? "rotate-180 text-neon" : "text-zinc-500 group-hover:text-neon")} />
                                 <span className="absolute bottom-2 left-0 w-0 h-[2px] bg-neon transition-all duration-300 group-hover:w-full" />
                             </button>
@@ -136,7 +135,7 @@ export default function Navbar() {
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         exit={{ opacity: 0, y: 10, scale: 0.98 }}
                                         transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
-                                        className="absolute top-full left-0 w-80 bg-black/90 backdrop-blur-xl border border-white/5 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden py-3 z-50 ring-1 ring-white/10"
+                                        className="absolute top-full left-0 w-80 bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.7)] overflow-hidden py-3 z-50 ring-1 ring-white/10"
                                     >
                                         <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
                                         {cursosParaquedismo.map((item, idx) => (
@@ -148,7 +147,7 @@ export default function Navbar() {
                                             >
                                                 <Link
                                                     href={item.href}
-                                                    className="block px-8 py-3.5 text-sm font-bold text-zinc-400 hover:text-white hover:bg-white/5 transition-all uppercase tracking-wide border-l-2 border-transparent hover:border-neon relative overflow-hidden"
+                                                    className="block px-8 py-3.5 text-sm font-bold text-zinc-400 hover:text-neon hover:bg-white/5 transition-all uppercase tracking-wide border-l-2 border-transparent hover:border-neon relative overflow-hidden"
                                                 >
                                                     <span className="relative z-10">{item.name}</span>
                                                 </Link>
@@ -159,14 +158,14 @@ export default function Navbar() {
                             </AnimatePresence>
                         </div>
 
-                        {/* OUTRAS EXPERIÊNCIAS DROPDOWN */}
+                        {/* Experiências Dropdown */}
                         <div
                             className="relative group h-full flex items-center"
                             onMouseEnter={() => setActiveDropdown("outras")}
                             onMouseLeave={() => setActiveDropdown(null)}
                         >
                             <button className="flex items-center gap-1.5 text-xs font-black text-white hover:text-neon transition-colors uppercase tracking-widest py-4 relative group-hover:text-neon">
-                                OUTRAS EXPERIÊNCIAS
+                                EXPERIÊNCIAS
                                 <ChevronDown size={14} className={cn("transition-transform duration-300", activeDropdown === "outras" ? "rotate-180 text-neon" : "text-zinc-500 group-hover:text-neon")} />
                                 <span className="absolute bottom-2 left-0 w-0 h-[2px] bg-neon transition-all duration-300 group-hover:w-full" />
                             </button>
@@ -178,7 +177,7 @@ export default function Navbar() {
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         exit={{ opacity: 0, y: 10, scale: 0.98 }}
                                         transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
-                                        className="absolute top-full left-0 w-72 bg-black/90 backdrop-blur-xl border border-white/5 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden py-3 z-50 ring-1 ring-white/10"
+                                        className="absolute top-full left-0 w-72 bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.7)] overflow-hidden py-3 z-50 ring-1 ring-white/10"
                                     >
                                         <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
                                         {outrasExperiencias.map((item, idx) => (
@@ -190,7 +189,7 @@ export default function Navbar() {
                                             >
                                                 <Link
                                                     href={item.href}
-                                                    className="block px-8 py-3.5 text-sm font-bold text-zinc-400 hover:text-white hover:bg-white/5 transition-all uppercase tracking-wide border-l-2 border-transparent hover:border-neon relative overflow-hidden"
+                                                    className="block px-8 py-3.5 text-sm font-bold text-zinc-400 hover:text-neon hover:bg-white/5 transition-all uppercase tracking-wide border-l-2 border-transparent hover:border-neon relative overflow-hidden"
                                                 >
                                                     <span className="relative z-10">{item.name}</span>
                                                 </Link>
@@ -200,11 +199,13 @@ export default function Navbar() {
                                 )}
                             </AnimatePresence>
                         </div>
-
                     </nav>
 
                     {/* CENTER: LOGO */}
-                    <div className="flex-shrink-0">
+                    <div className={cn(
+                        "flex-shrink-0 transition-opacity duration-300",
+                        isScrolled && !showNavbar ? "opacity-0 invisible" : "opacity-100 visible"
+                    )}>
                         <Link href="/" className="block relative group">
                             <div className="absolute inset-0 bg-neon/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             <img
@@ -218,19 +219,18 @@ export default function Navbar() {
                         </Link>
                     </div>
 
-                    {/* RIGHT MENU: Agenda, Blog, Contact */}
-                    <div className="hidden lg:flex items-center gap-6 justify-end pr-4">
-
-                        {/* 
-                        <Link href="/agenda-eventos" className="flex items-center gap-2 text-xs font-bold text-white hover:text-neon transition-colors uppercase tracking-widest group">
-                            <Calendar size={16} className="text-zinc-500 group-hover:text-neon transition-colors" />
-                            <span>Agenda / Eventos</span>
+                    {/* RIGHT MENU: Info & Action */}
+                    <div className="hidden lg:flex items-center gap-10 justify-end pr-4">
+                        <Link href="/faq" className="flex items-center gap-2 text-xs font-black text-white hover:text-neon transition-colors uppercase tracking-widest group py-4 relative">
+                            <HelpCircle size={14} className="text-zinc-500 group-hover:text-neon transition-colors" />
+                            <span>FAQ</span>
+                            <span className="absolute bottom-2 left-0 w-0 h-[2px] bg-neon transition-all duration-300 group-hover:w-full" />
                         </Link>
-                        */}
 
-                        <Link href="/blog" className="flex items-center gap-2 text-xs font-bold text-white hover:text-neon transition-colors uppercase tracking-widest group">
-                            <BookOpen size={16} className="text-zinc-500 group-hover:text-neon transition-colors" />
+                        <Link href="/blog" className="flex items-center gap-2 text-xs font-black text-white hover:text-neon transition-colors uppercase tracking-widest group py-4 relative">
+                            <BookOpen size={14} className="text-zinc-500 group-hover:text-neon transition-colors" />
                             <span>Blog</span>
+                            <span className="absolute bottom-2 left-0 w-0 h-[2px] bg-neon transition-all duration-300 group-hover:w-full" />
                         </Link>
 
                         <Button 
@@ -242,8 +242,7 @@ export default function Navbar() {
                                         element.scrollIntoView({ behavior: "smooth" });
                                     }
                                 } else {
-                                    // Handle other cases if needed or just keep current modal behavior
-                                    // (Assuming current button opens the modal elsewhere if it's not a link)
+                                    setIsBookingModalOpen(true);
                                 }
                             }}
                         >
@@ -252,6 +251,14 @@ export default function Navbar() {
                         </Button>
                     </div>
                 </div>
+
+                {/* Booking Modal */}
+                <BookingModal 
+                    isOpen={isBookingModalOpen}
+                    onClose={() => setIsBookingModalOpen(false)}
+                    experienceTitle="Contato Direto"
+                    source="navbar-agendar"
+                />
 
                 {/* MOBILE TOGGLE */}
                 <button
@@ -332,6 +339,13 @@ export default function Navbar() {
                                     <Calendar className="text-neon" /> Agenda / Eventos
                                 </Link>
                                 */}
+                                <Link
+                                    href="/faq"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="flex items-center gap-4 text-xl font-bold text-zinc-300 hover:text-white mb-4"
+                                >
+                                    <HelpCircle className="text-neon" /> FAQ
+                                </Link>
                                 <Link
                                     href="/blog"
                                     onClick={() => setIsMobileMenuOpen(false)}

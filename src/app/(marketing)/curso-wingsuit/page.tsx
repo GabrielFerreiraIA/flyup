@@ -7,7 +7,7 @@ export default function CursoWingsuitPage() {
             title="Curso de Wingsuit"
             subtitle="Domine o voo horizontal e as leis da aerodinâmica paraquedista."
             heroImage="https://images.unsplash.com/photo-1549482199-bc1ca6f58502?q=80&w=3276&auto=format&fit=crop"
-            overview="Este curso é destinado a paraquedistas experientes que desejam entrar na disciplina de Wingsuit. O First Flight Course (FFC) é homologado pela USPA e CBPq, cobrindo teoria de voo, equipamentos de segurança, procedimentos de emergência, navegação e pouso fora da área."
+            overview="Este curso é destinado a paraquedistas experientes que desejam entrar na disciplina de Wingsuit. O First Flight Course (FFC) é homologado pela USPA e entidades brasileiras do esporte, cobrindo teoria de voo, equipamentos de segurança, procedimentos de emergência, navegação e pouso fora da área."
             steps={[
                 {
                     title: "Teoria Avançada FFC",

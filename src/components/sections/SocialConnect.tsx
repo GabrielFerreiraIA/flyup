@@ -62,12 +62,22 @@ const SocialConnect = () => {
                     </div>
 
                     <div className="flex flex-wrap gap-4 pt-2">
-                        <Button className="h-14 bg-black text-[#39FF14] hover:bg-zinc-800 hover:text-[#39FF14] font-bold uppercase tracking-wider rounded-xl px-10 text-lg transition-all hover:scale-105 shadow-xl shadow-black/10">
+                        <a 
+                            href="https://www.instagram.com/flyupparaquedismo/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="h-14 bg-black text-[#39FF14] hover:bg-zinc-800 hover:text-[#39FF14] font-bold uppercase tracking-wider rounded-xl px-10 text-lg transition-all hover:scale-105 shadow-xl shadow-black/10 flex items-center justify-center"
+                        >
                             Seguir Agora
-                        </Button>
-                        <div className="h-14 px-6 flex items-center justify-center border-2 border-zinc-200 rounded-xl font-bold uppercase tracking-wider text-sm hover:border-black transition-colors cursor-pointer">
+                        </a>
+                        <a 
+                            href="https://www.instagram.com/stories/flyupparaquedismo/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="h-14 px-6 flex items-center justify-center border-2 border-zinc-200 rounded-xl font-bold uppercase tracking-wider text-sm hover:border-black transition-colors cursor-pointer"
+                        >
                             Ver Stories
-                        </div>
+                        </a>
                     </div>
 
                 </div>

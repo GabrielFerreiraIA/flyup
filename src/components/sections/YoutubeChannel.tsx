@@ -6,6 +6,7 @@ import { Play, ArrowUpRight } from "lucide-react";
 
 export default function YoutubeChannel() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const [isPlaying, setIsPlaying] = React.useState(false);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -13,6 +14,9 @@ export default function YoutubeChannel() {
     });
 
     const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+
+    const videoId = "XNotLwB8e0g";
+    const videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
 
     return (
         <section
@@ -71,59 +75,46 @@ export default function YoutubeChannel() {
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: "circOut" }}
-                    className="relative w-full max-w-6xl mx-auto aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-black border border-white/10 group cursor-pointer"
+                    onClick={() => !isPlaying && setIsPlaying(true)}
+                    className="relative w-full max-w-6xl mx-auto aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-black border border-white/10 group cursor-pointer bg-black"
                 >
                     {/* Glowing Border Effect */}
                     <div className="absolute inset-0 rounded-3xl ring-1 ring-white/10 group-hover:ring-white/20 transition-all duration-500 z-20 pointer-events-none" />
 
-                    {/* Thumbnail Image */}
-                    <img
-                        src="https://imgur.com/9qvTweh.png"
-                        alt="Salto de Avião a 15k Pés - Fly Up TV"
-                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 filter brightness-90 group-hover:brightness-100"
-                    />
+                    {isPlaying ? (
+                        <iframe
+                            src={videoUrl}
+                            title="YouTube video player"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                            className="w-full h-full relative z-10"
+                        />
+                    ) : (
+                        <>
+                            {/* Thumbnail Image */}
+                            <img
+                                src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+                                alt="Salto de Avião a 15k Pés - Fly Up TV"
+                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 filter brightness-90 group-hover:brightness-100"
+                            />
 
-                    {/* Cinematic Overlay Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
+                            {/* Cinematic Overlay Gradient */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
 
-                    {/* Play Button (Center) - Magnetic & Glass */}
-                    <div className="absolute inset-0 flex items-center justify-center z-30">
-                        <div className="relative group/play">
-                            <div className="absolute inset-0 bg-red-600 rounded-full blur-xl opacity-20 group-hover/play:opacity-40 transition-opacity duration-500 scale-150" />
-                            <div className="w-20 h-20 md:w-28 md:h-28 bg-white/5 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 group-hover/play:scale-110 transition-transform duration-500 ease-out shadow-2xl">
-                                <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg group-hover/play:bg-red-600 transition-colors duration-300">
-                                    <Play className="w-6 h-6 fill-black text-black ml-1 group-hover/play:fill-white group-hover/play:text-white transition-colors duration-300" />
+                            {/* Play Button (Center) - Magnetic & Glass */}
+                            <div className="absolute inset-0 flex items-center justify-center z-30">
+                                <div className="relative group/play">
+                                    <div className="absolute inset-0 bg-red-600 rounded-full blur-xl opacity-20 group-hover/play:opacity-40 transition-opacity duration-500 scale-150" />
+                                    <div className="w-20 h-20 md:w-28 md:h-28 bg-white/5 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 group-hover/play:scale-110 transition-transform duration-500 ease-out shadow-2xl">
+                                        <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg group-hover/play:bg-red-600 transition-colors duration-300">
+                                            <Play className="w-6 h-6 fill-black text-black ml-1 group-hover/play:fill-white group-hover/play:text-white transition-colors duration-300" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    {/* Video Info Overlay (Bottom Left) - Glassmorph */}
-                    <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 max-w-lg text-left z-30">
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.4 }}
-                            className="flex flex-col gap-4"
-                        >
-                            <span className="inline-flex self-start px-3 py-1 bg-red-600 text-white text-[10px] font-bold uppercase tracking-wider rounded-md shadow-lg shadow-red-900/50">
-                                Estreia
-                            </span>
-                            <div>
-                                <h3 className="text-3xl md:text-5xl font-black text-white uppercase italic font-display mb-2 drop-shadow-lg leading-none">
-                                    SALTO DE AVIÃO <br />
-                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400">A 15K PÉS</span> ✈️
-                                </h3>
-                                <div className="h-1 w-20 bg-red-600 mt-4 rounded-full" />
-                            </div>
-                        </motion.div>
-                    </div>
-
-                    {/* Tech details (Top Right) */}
-                    <div className="absolute top-8 right-8 flex gap-2 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <span className="px-2 py-1 bg-black/60 backdrop-blur-md text-[10px] font-mono text-white rounded border border-white/10">4K ULTRA HD</span>
-                        <span className="px-2 py-1 bg-black/60 backdrop-blur-md text-[10px] font-mono text-white rounded border border-white/10">60 FPS</span>
-                    </div>
+                        </>
+                    )}
                 </motion.div>
 
                 {/* Bottom CTA Button - Premium Glow */}
@@ -134,7 +125,12 @@ export default function YoutubeChannel() {
                     transition={{ delay: 0.4 }}
                     className="mt-16"
                 >
-                    <button className="group relative px-10 py-5 bg-transparent overflow-hidden rounded-full transition-all hover:scale-105 active:scale-95">
+                    <a
+                        href="https://www.youtube.com/@flyup"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative inline-flex items-center justify-center px-10 py-5 bg-transparent overflow-hidden rounded-full transition-all hover:scale-105 active:scale-95"
+                    >
                         <div className="absolute inset-0 border border-zinc-700 rounded-full group-hover:border-white/50 transition-colors duration-500" />
                         <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
                         <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-purple-600 opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-500" />
@@ -143,7 +139,7 @@ export default function YoutubeChannel() {
                             Inscrever-se no Canal
                             <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-white group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform duration-300" />
                         </span>
-                    </button>
+                    </a>
                 </motion.div>
 
             </div>

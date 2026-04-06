@@ -92,7 +92,7 @@ export default function Hero() {
                 </div>
 
                 <p className="hero-text-line text-gray-300 text-base md:text-xl max-w-2xl mx-auto mb-10 font-light">
-                    A maior autoridade em saltos duplos e cursos AFF.
+                    A maior autoridade em saltos duplos e cursos AFF.&nbsp;
                     <br className="hidden md:block" />
                     Sua experiência definitiva de liberdade começa aqui.
                 </p>

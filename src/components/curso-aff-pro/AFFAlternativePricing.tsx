@@ -93,7 +93,7 @@ const options: PricingOption[] = [
         highlight: false,
         button: {
             text: "Começar Iniciação",
-            url: "https://wa.me/5585991823131",
+            url: "https://wa.me/5515998282280",
             external: true,
             leadModal: true,
             waMessage: "Olá! Tenho interesse em começar pelo Curso Teórico + Nível 1. Podem me passar mais informações?",
@@ -120,7 +120,7 @@ const options: PricingOption[] = [
         highlight: false,
         button: {
             text: "Agendar Padrão",
-            url: "https://wa.me/5585991823131",
+            url: "https://wa.me/5515998282280",
             external: true,
             leadModal: true,
             waMessage: "Olá! Tenho interesse no Curso AFF Convencional. Podem me passar mais informações?",
@@ -147,7 +147,7 @@ const options: PricingOption[] = [
         highlight: true,
         button: {
             text: "Quero ser AFF PRO",
-            url: "https://wa.me/5585991823131",
+            url: "https://wa.me/5515998282280",
             external: true,
             leadModal: true,
             waMessage: "Olá! Tenho interesse no Curso AFF PRO. Podem me passar mais informações?",

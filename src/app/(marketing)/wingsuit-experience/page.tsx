@@ -50,7 +50,7 @@ export default function WingsuitExperiencePage() {
                 {
                     title: "Pack Performance",
                     price: "R$ 3.800",
-                    features: ["5 Saltos Guiados", "Coaching de Performance", "Análise de Trajetória 3D", "Certificação USPA/CBPq"],
+                    features: ["5 Saltos Guiados", "Coaching de Performance", "Análise de Trajetória 3D", "Certificação USPA e entidades brasileiras do esporte"],
                     highlight: true
                 }
             ]}
