@@ -31,12 +31,35 @@ export default function AFFWhatIs() {
         <section className="relative bg-white overflow-hidden py-28" id="o-que-e">
             {/* Background image — sky, very subtle */}
             <div
-                className="absolute inset-0 bg-cover bg-center opacity-[0.07] grayscale pointer-events-none"
+                className="absolute inset-0 bg-cover bg-center opacity-[0.05] grayscale pointer-events-none"
                 style={{
                     backgroundImage:
                         "url('https://images.unsplash.com/photo-1475506631979-7271290aa6dd?q=80&w=2000&auto=format&fit=crop')",
                 }}
             />
+
+            {/* Green Grid Background */}
+            <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
+                <div className="absolute inset-0 opacity-[0.08]"
+                    style={{
+                        backgroundImage: `
+                            linear-gradient(to right, #39FF14 1px, transparent 1px),
+                            linear-gradient(to bottom, #39FF14 1px, transparent 1px)
+                        `,
+                        backgroundSize: '40px 40px',
+                    }}
+                />
+                
+                <div className="absolute inset-0 opacity-[0.05]"
+                    style={{
+                        backgroundImage: `
+                            linear-gradient(to right, #39FF14 1px, transparent 1px),
+                            linear-gradient(to bottom, #39FF14 1px, transparent 1px)
+                        `,
+                        backgroundSize: '200px 200px',
+                    }}
+                />
+            </div>
 
             {/* Top border accent */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#39FF14] to-transparent" />

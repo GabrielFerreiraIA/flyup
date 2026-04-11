@@ -26,7 +26,10 @@ interface FAQItem {
 
 interface PricingItem {
     title: string;
-    price: string;
+    titleClassName?: string;
+    price: string | React.ReactNode;
+    priceSubtext?: string | null;
+    priceClassName?: string;
     features: string[];
     highlight?: boolean;
 }
@@ -292,7 +295,7 @@ export default function ServicePageLayout({
                     <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter mb-16 text-center">
                         {pricingTitle}
                     </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className={`grid grid-cols-1 md:grid-cols-2 ${pricingOptions.length === 5 ? 'lg:grid-cols-5' : pricingOptions.length === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4'} gap-6`}>
                         {pricingOptions.map((option, idx) => (
                             <motion.div
                                 key={idx}
@@ -304,10 +307,14 @@ export default function ServicePageLayout({
                                         Mais Popular
                                     </div>
                                 )}
-                                <h3 className="text-2xl font-black italic uppercase mb-2">{option.title}</h3>
-                                <div className="text-4xl font-black text-white mb-6 tracking-tight">
+                                <h3 className={`font-black italic uppercase mb-2 ${option.titleClassName || (pricingOptions.length === 5 ? 'text-lg lg:text-base xl:text-lg' : 'text-2xl')}`}>{option.title}</h3>
+                                <div className={`font-black text-white mb-6 tracking-tight ${option.priceClassName || (pricingOptions.length === 5 ? 'text-2xl lg:text-xl xl:text-2xl' : 'text-4xl')}`}>
                                     {option.price}
-                                    <span className="text-sm font-bold text-zinc-500 ml-2 tracking-normal align-middle">/ pessoa</span>
+                                    {option.priceSubtext !== null && (
+                                        <span className={`font-bold text-zinc-500 ml-2 tracking-normal align-middle ${pricingOptions.length === 5 ? 'text-xs' : 'text-sm'}`}>
+                                            {option.priceSubtext || '/ pessoa'}
+                                        </span>
+                                    )}
                                 </div>
                                 <ul className="flex-1 space-y-4 mb-8">
                                     {option.features.map((feature, fIdx) => (

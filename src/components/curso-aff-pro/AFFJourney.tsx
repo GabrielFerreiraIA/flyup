@@ -35,7 +35,7 @@ const steps = [
             "Seus primeiros saltos reais. Dois instrutores saltam segurando você o tempo todo, garantindo estabilidade enquanto você pratica os movimentos.",
         nodeStyle: "bg-white border-4 border-zinc-950",
         nodeTextColor: "text-black",
-        image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771462565/Aluno_AFF_6_Editada_16-9_iznjts",
+        image: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775817272/Imagem_AFF_Niveis_ejncy4.webp",
     },
     {
         number: "04",

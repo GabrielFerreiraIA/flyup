@@ -37,12 +37,12 @@ export default function CursoAffPage() {
             pricingOptions={[
                 {
                     title: "Pacote Teórico + Salto 1",
-                    price: "R$ 1.650",
+                    price: "R$ 1.700",
                     features: ["Curso Teórico Completo", "Material Didático", "1º Salto AFF Nível 1", "Vídeos do Salto", "Caderneta de Salto"]
                 },
                 {
                     title: "Curso Completo AFF",
-                    price: "R$ 6.800",
+                    price: "12x R$ 670",
                     features: ["Teoria + 7 Níveis", "Todos os vídeos dos saltos", "Instrutores Dedicados", "Macacão e Capacete Aluguel Incluso", "Formatura"],
                     highlight: true
                 }

@@ -80,8 +80,8 @@ const options: PricingOption[] = [
         title: "Teórico + Nível 1",
         subtitle: "Iniciação ao Esporte",
         pricePrefix: "R$",
-        priceMain: "1.500,00",
-        priceSub: "Estimativa",
+        priceMain: "1.700,00",
+        priceSub: "Iniciação ao Esporte",
         description: "O primeiro passo real no esporte com instrução e seu primeiro salto prático.",
         features: [
             { text: "10 horas de curso presencial", strikethrough: false },
@@ -105,9 +105,9 @@ const options: PricingOption[] = [
         id: "aff-convencional",
         title: "AFF Convencional",
         subtitle: "Curso Padrão",
-        pricePrefix: "R$",
-        priceMain: "5.800,00",
-        priceSub: "Estimativa",
+        pricePrefix: "12x",
+        priceMain: "670",
+        priceSub: "Ou R$ 6.700,00 à vista",
         description: "O curso completo de paraquedismo na modalidade tradicional pelas escolas.",
         features: [
             { text: "Curso teórico completo", strikethrough: false },
@@ -131,9 +131,9 @@ const options: PricingOption[] = [
         id: "aff-pro",
         title: "AFF PRO",
         subtitle: "A Formação Premium",
-        pricePrefix: "6x",
-        priceMain: "1.050",
-        priceSub: "Ou R$ 5.900,00 à vista",
+        pricePrefix: "12x",
+        priceMain: "775",
+        priceSub: "Ou R$ 7.750,00 à vista",
         description: "O método validado que forma atletas com segurança e sem surpresas financeiras.",
         features: [
             { text: "Túnel de Vento (Diferencial)", strikethrough: false },
@@ -374,7 +374,7 @@ export default function AFFAlternativePricing() {
                             </span>
                         </h2>
                         <p className="text-zinc-400 text-sm max-w-2xl mx-auto leading-relaxed">
-                            Aqui você escolhe como fazer o curso. Opte por consumir apenas a teoria online da sua casa, fazer os primeiros níveis ou escolher a formação mais completa e premium do Ceará.
+                            Aqui você escolhe como fazer o curso. Opte por consumir apenas a teoria online da sua casa, fazer os primeiros níveis ou escolher a formação mais completa e premium do Brasil.
                         </p>
                     </motion.div>
 

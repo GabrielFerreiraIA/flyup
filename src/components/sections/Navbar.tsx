@@ -15,13 +15,10 @@ const experiences = [
 
 const cursosParaquedismo = [
     { name: "Curso de Paraquedismo AFF Pro", href: "/curso-aff-pro" },
-    { name: "Curso de Wingsuit", href: "/curso-wingsuit" },
 ];
 
 const outrasExperiencias = [
-    { name: "Salto de balão", href: "/salto-balao" },
-    { name: "Passeio de balão", href: "/salto-balao" },
-    { name: "Túnel de vento", href: "/tunel-de-vento" },
+    { name: "Saltos e passeios de balão", href: "/salto-balao" },
 ];
 
 export default function Navbar() {

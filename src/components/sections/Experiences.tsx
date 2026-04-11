@@ -95,12 +95,25 @@ export default function Experiences() {
                     <path d="M0,800 C300,700 600,200 1400,100" stroke="#101010" fill="none" strokeWidth="1" strokeDasharray="10 20" opacity="0.1" />
                 </svg>
 
-                {/* Speed Particles */}
-                <div className="absolute inset-0 opacity-15"
+                {/* Speed Particles / Grid Pattern */}
+                <div className="absolute inset-0 opacity-[0.08]"
                     style={{
-                        backgroundImage: `radial-gradient(#39FF14 1px, transparent 1px)`,
-                        backgroundSize: '60px 60px',
-                        transform: 'skewX(-20deg)'
+                        backgroundImage: `
+                            linear-gradient(to right, #39FF14 1px, transparent 1px),
+                            linear-gradient(to bottom, #39FF14 1px, transparent 1px)
+                        `,
+                        backgroundSize: '40px 40px',
+                    }}
+                />
+                
+                {/* Secondary Offset Grid for Depth */}
+                <div className="absolute inset-0 opacity-[0.05]"
+                    style={{
+                        backgroundImage: `
+                            linear-gradient(to right, #39FF14 1px, transparent 1px),
+                            linear-gradient(to bottom, #39FF14 1px, transparent 1px)
+                        `,
+                        backgroundSize: '200px 200px',
                     }}
                 />
             </div>
@@ -315,18 +328,20 @@ function ExperienceCard({ data, index, isInView, onBooking }: { data: any, index
                         >
                             AGENDAR <ArrowUpRight className="ml-1 size-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
                         </Button>
-                        <Link
-                            href={link}
-                            onClick={(e) => e.stopPropagation()}
-                            className="flex-1"
-                        >
-                            <Button
-                                variant="outline"
-                                className="w-full h-14 border-2 border-neon text-neon font-black italic rounded-xl text-sm tracking-widest hover:bg-neon hover:text-black transition-all duration-300 active:scale-95 px-2 bg-black"
+                        {data.id !== "tunel-vento" && data.id !== "wingsuit" && (
+                            <Link
+                                href={link}
+                                onClick={(e) => e.stopPropagation()}
+                                className="flex-1"
                             >
-                                SAIBA MAIS
-                            </Button>
-                        </Link>
+                                <Button
+                                    variant="outline"
+                                    className="w-full h-14 border-2 border-neon text-neon font-black italic rounded-xl text-sm tracking-widest hover:bg-neon hover:text-black transition-all duration-300 active:scale-95 px-2 bg-black"
+                                >
+                                    SAIBA MAIS
+                                </Button>
+                            </Link>
+                        )}
                     </div>
                 </motion.div>
             </div>

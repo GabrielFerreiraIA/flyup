@@ -126,7 +126,7 @@ export default function YoutubeChannel() {
                     className="mt-16"
                 >
                     <a
-                        href="https://www.youtube.com/@flyup"
+                        href="https://www.youtube.com/@FlyUpParaquedismo"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group relative inline-flex items-center justify-center px-10 py-5 bg-transparent overflow-hidden rounded-full transition-all hover:scale-105 active:scale-95"

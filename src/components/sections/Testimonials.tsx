@@ -125,11 +125,11 @@ const TESTIMONIALS_SOURCE: TestimonialData[] = [
     },
     {
         id: "t14",
-        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435311/7_g6wz5j.webp",
-        name: "Rodrigo Ro",
-        role: "Salto Duplo",
-        text: "Foi uma experiência incrível fazer um salto de paraquedas com a escola de paraquedismo Fly Up, sob a orientação do instrutor Edu Esteves. O Edu é um instrutor extremamente experiente e cuidadoso, que me deixou completamente à vontade durante todo o processo. Com certeza recomendo a Fly Up paraquedismo e o instrutor Edu Esteves para quem deseja viver essa experiência única e emocionante!",
-        highlight: "experiência única e emocionante",
+        src: "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775435314/13_zrtwcl.webp",
+        name: "Vitor Anjos",
+        role: "Aluno AFF",
+        text: "Edu Esteves é um profissional fora da curva. Quando encontrei a FlyUp Paraquedismo e conversei a respeito das minhas angústias e problemas que tive no passado, consegui ter a segurança e profissionalismo que buscava para continuar e finalizar o curso AFF.",
+        highlight: "segurança e profissionalismo",
     },
     {
         id: "t15",
@@ -344,14 +344,12 @@ export default function Testimonials() {
                     const pos = GRID_POSITIONS[index] || { x: 50, y: 50, size: 0 };
                     const isHovered = hoveredId === item.id;
                     const isOthersHovered = hoveredId !== null && !isHovered;
+                    const sizePct = `${(pos.size / 900) * 100}%`;
 
                     return (
                         <motion.div
                             key={item.id}
-                            className={cn(
-                                "absolute transform-gpu transition-all duration-300",
-                                isHovered ? "w-[85vw] max-w-[360px] h-auto" : ""
-                            )}
+                            className="absolute transform-gpu"
                             initial={{ opacity: 0, scale: 0 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
@@ -359,89 +357,73 @@ export default function Testimonials() {
                             style={{
                                 left: `${pos.x}%`,
                                 top: `${pos.y}%`,
+                                width: sizePct,
+                                height: sizePct,
+                                transform: "translate(-50%, -50%)",
                                 zIndex: isHovered ? 100 : 10,
-                                width: isHovered ? undefined : `${(pos.size / 900) * 100}%`,
-                                height: isHovered ? undefined : `${(pos.size / 900) * 100}%`,
-                                x: "-50%",
-                                y: "-50%",
                             }}
                             onMouseEnter={() => setHoveredId(item.id)}
                             onMouseLeave={() => setHoveredId(null)}
                         >
+                            {/* Circle bubble — mantém o tamanho fixo, nunca muda */}
                             <motion.div
-                                layout
-                                className={`
-                                    relative w-full overflow-hidden transition-all duration-300
-                                    ${isHovered
-                                        ? "rounded-xl p-6 bg-zinc-950/95 backdrop-blur-xl border border-zinc-800 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8)] z-[100]"
-                                        : "rounded-full h-full bg-white shadow-xl border-2 border-zinc-50 hover:border-neon/50 hover:shadow-neon/20 group cursor-pointer"
-                                    }
-                                `}
+                                className="w-full h-full rounded-full overflow-hidden bg-white shadow-xl border-2 border-zinc-50 hover:border-neon/50 cursor-pointer"
                                 animate={{
                                     scale: isOthersHovered ? 0.9 : 1,
                                     opacity: isOthersHovered ? 0.3 : 1,
                                 }}
-                                transition={{
-                                    duration: 0.3,
-                                    layout: { type: "spring", stiffness: 260, damping: 28, mass: 0.8 }
-                                }}
+                                transition={{ duration: 0.25 }}
                             >
-                                {/* Active Card Gradient Border Effect */}
-                                {isHovered && (
-                                    <>
-                                        <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-neon/50 to-transparent" />
-                                        <div className="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-neon/20 to-transparent" />
-                                        <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
-                                    </>
-                                )}
+                                <img
+                                    src={item.src}
+                                    alt={item.name}
+                                    className="w-full h-full object-cover"
+                                />
+                            </motion.div>
 
-                                <div className={`flex items-center gap-4 ${isHovered ? "mb-5" : "w-full h-full justify-center"}`}>
-                                    <div className={`relative overflow-hidden rounded-full border-2 border-white/10 shrink-0 shadow-inner ${isHovered ? "w-16 h-16 ring-4 ring-neon/10" : "w-full h-full"}`}>
-                                        <motion.img
-                                            animate={{ scale: isHovered ? 1.05 : 1 }}
-                                            src={item.src}
-                                            alt={item.name}
-                                            className="w-full h-full object-cover transition-all duration-500"
-                                        />
-                                    </div>
+                            {/* Hover card — overlay absoluto que não altera o size do elemento pai */}
+                            {isHovered && (
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.92, y: 8 }}
+                                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                                    exit={{ opacity: 0, scale: 0.92, y: 8 }}
+                                    transition={{ duration: 0.2, ease: "easeOut" }}
+                                    className="absolute left-1/2 -translate-x-1/2 bottom-[calc(100%+12px)] w-[320px] max-w-[90vw] bg-zinc-950/98 backdrop-blur-xl border border-zinc-800 rounded-2xl p-5 shadow-[0_20px_60px_-10px_rgba(0,0,0,0.85)] pointer-events-none z-[200]"
+                                >
+                                    {/* gradient border top */}
+                                    <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-neon/50 to-transparent rounded-t-2xl" />
 
-                                    {isHovered && (
-                                        <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="flex flex-col">
-                                            <span className="font-black text-white leading-tight uppercase font-display text-sm tracking-wide">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-neon/30 shrink-0">
+                                            <img src={item.src} alt={item.name} className="w-full h-full object-cover" />
+                                        </div>
+                                        <div>
+                                            <span className="block font-black text-white text-sm uppercase tracking-wide leading-tight">
                                                 {item.name}
                                             </span>
-                                            <span className="text-neon text-[10px] font-bold uppercase tracking-[0.2em] mt-0.5">
+                                            <span className="block text-neon text-[10px] font-bold uppercase tracking-[0.2em] mt-0.5">
                                                 {item.role}
                                             </span>
-                                        </motion.div>
-                                    )}
-                                </div>
+                                        </div>
+                                    </div>
 
-                                {/* Testimonial Text with Highlight */}
-                                {isHovered && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.1 }}
-                                    >
-                                        <Quote className="w-6 h-6 text-neon mb-3 fill-neon/10 opacity-100" />
-                                        <p className="text-zinc-300 text-sm leading-relaxed font-medium">
-                                            "
-                                            {item.text.split(item.highlight).map((part, i, arr) => (
-                                                <React.Fragment key={i}>
-                                                    {part}
-                                                    {i < arr.length - 1 && (
-                                                        <span className="bg-neon text-black px-1.5 py-0.5 font-bold mx-0.5 rounded-sm">
-                                                            {item.highlight}
-                                                        </span>
-                                                    )}
-                                                </React.Fragment>
-                                            ))}
-                                            "
-                                        </p>
-                                    </motion.div>
-                                )}
-                            </motion.div>
+                                    <Quote className="w-5 h-5 text-neon mb-2 fill-neon/10" />
+                                    <p className="text-zinc-300 text-xs leading-relaxed font-medium">
+                                        &ldquo;
+                                        {item.text.split(item.highlight).map((part, i, arr) => (
+                                            <React.Fragment key={i}>
+                                                {part}
+                                                {i < arr.length - 1 && (
+                                                    <span className="bg-neon text-black px-1 py-0.5 font-bold mx-0.5 rounded-sm">
+                                                        {item.highlight}
+                                                    </span>
+                                                )}
+                                            </React.Fragment>
+                                        ))}
+                                        &rdquo;
+                                    </p>
+                                </motion.div>
+                            )}
                         </motion.div>
                     );
                 })}

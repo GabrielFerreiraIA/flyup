@@ -40,11 +40,11 @@ export default function CursoAFFProPage() {
             {/* 9. Galeria 3D "Veja na Prática" — BRANCO + grid verde */}
             <AFFGallery3D />
 
-            {/* 10. Preço / Ancoragem — PRETO */}
-            <AFFPricingNew />
-
             {/* 10.5 Pagamento Alternativo — PRETO */}
             <AFFAlternativePricing />
+
+            {/* 10. Preço / Ancoragem — PRETO */}
+            <AFFPricingNew />
 
             {/* 11. FAQ — PRETO */}
             <AFFFAQ />

@@ -137,13 +137,13 @@ export default function AFFPricingNew() {
                                 {/* Price */}
                                 <div className="flex flex-col items-center justify-center mb-6">
                                     <div className="flex items-baseline gap-1 mt-2">
-                                        <span className="text-zinc-400 text-lg font-bold">6x</span>
+                                        <span className="text-zinc-400 text-lg font-bold">12x</span>
                                         <span className="text-white font-black text-6xl md:text-7xl tracking-tighter">
-                                            R$ 1.050
+                                            R$ 775
                                         </span>
                                     </div>
                                     <p className="text-[#39FF14] font-black text-sm uppercase tracking-widest mt-2 bg-[#39FF14]/10 px-3 py-1 rounded-full border border-[#39FF14]/20">
-                                        Ou R$ 5.900,00 à vista
+                                        Ou R$ 7.750,00 à vista
                                     </p>
                                 </div>
 
@@ -170,9 +170,9 @@ export default function AFFPricingNew() {
                                     <span>Compra 100% Segura</span>
                                 </div>
 
-                                <div className="mt-4 flex items-center gap-2 text-zinc-600 text-xs">
-                                    <Shield className="w-3 h-3 text-[#39FF14]" />
-                                    <span>Escola homologada pela CBP</span>
+                                <div className="mt-4 flex items-center gap-2 text-zinc-600 text-xs text-center">
+                                    <Shield className="w-3 h-3 text-[#39FF14] flex-shrink-0" />
+                                    <span>Escola homologada pelas entidades nacionais e internacionais</span>
                                 </div>
                             </div>
                         </div>

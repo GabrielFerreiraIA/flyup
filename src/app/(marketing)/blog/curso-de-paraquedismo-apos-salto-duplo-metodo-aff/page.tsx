@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { ArrowLeft, Calendar, Tag, User, MapPin } from "lucide-react";
 
@@ -31,7 +32,7 @@ export default function Article() {
                     <div className="flex flex-wrap justify-center items-center gap-4 text-zinc-300 text-xs font-black uppercase tracking-widest">
                         <div className="flex items-center gap-2 rounded-full px-5 py-2 backdrop-blur-md bg-white/10 border border-white/20"><Calendar size={14} className="text-neon" /> 21 FEV 2026</div>
                         <div className="flex items-center gap-2 rounded-full px-5 py-2 backdrop-blur-md bg-white/10 border border-white/20"><User size={14} className="text-neon" /> Head Coach</div>
-                        <div className="flex items-center gap-2 rounded-full px-5 py-2 backdrop-blur-md bg-white/10 border border-white/20"><MapPin size={14} className="text-neon" /> Boituva - SP</div>
+                        <div className="flex items-center gap-2 rounded-full px-5 pSy-2 backdrop-blur-md bg-white/10 border border-white/20"><MapPin size={14} className="text-neon" /> Boituva - SP</div>
                     </div>
                 </div>
             </section>

@@ -159,7 +159,7 @@ export default function YoutubeAuthority() {
                             className="flex flex-col sm:flex-row items-start sm:items-center gap-6"
                         >
                             <a 
-                                href="https://www.youtube.com/@flyup" 
+                                href="https://www.youtube.com/@FlyUpParaquedismo" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                                 className="group relative px-8 py-4 bg-white hover:bg-gray-100 text-black rounded-full overflow-hidden transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(57,255,20,0.4)] inline-flex items-center justify-center"

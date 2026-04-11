@@ -4,8 +4,8 @@ export default function SaltoBalaoPage() {
     return (
         <ServicePageLayout
             sourceId="botao-agendar-salto-balao"
-            title="Salto de Balão"
-            subtitle="A experiência mais exclusiva e serena do paraquedismo."
+            title="Saltos e Passeios de Balão"
+            subtitle="Passeio de Balão | Salto Duplo de Balão | Salto para Atletas | Balão Exclusivo Família e Casal | Eventos Especiais e Pedidos de Casamento"
             heroImage="https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771951036/Salto_Bal%C3%A3o_Editado_16-9_misn8s.png"
             overview="O salto de balão é o ápice da exclusividade no paraquedismo. Ao contrário do avião, não há vento ou barulho de motor. Você experimenta o 'dead air' — uma saída em silêncio absoluto onde a gravidade te puxa suavemente até atingir a velocidade terminal. É uma experiência transformadora e altamente fotogênica."
             steps={[
@@ -42,34 +42,59 @@ export default function SaltoBalaoPage() {
                 "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771958049/Imagem_Balao_3_Editada_4-5_myjoxk.png",
                 "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771958050/Imagem_Balao_4_Editada_4-5_jd43st.png"
             ]}
+            pricingTitle="Preços e condições"
             pricingOptions={[
                 {
                     title: "Salto Duplo de Balão",
-                    price: "R$ 1.950",
-                    features: ["Voo de Balão", "Salto Duplo com Instrutor Elite", "Fotos e Vídeos Inclusos", "Brinde com Espumante", "Translado de volta à DZ"]
+                    price: "Consultar Condição",
+                    priceClassName: "text-xl lg:text-lg xl:text-xl",
+                    priceSubtext: null,
+                    features: ["Voo de Balão", "Salto Duplo com Instrutor Elite", "Fotos e Vídeos Inclusos", "Brinde com Espumante", "Translado de volta à DZ"],
+                    highlight: true
+                },
+                {
+                    title: "Balão Coletivo",
+                    price: "A partir de R$ 250",
+                    priceClassName: "text-xl lg:text-lg xl:text-xl",
+                    features: ["Voo de 45 a 60 min", "Até 8 pessoas no cesto", "Brinde com Espumante no pouso", "Café da manhã pós-voo", "Crianças até 40kg: R$ 250"]
+                },
+                {
+                    title: "Balão Exclusivo Família",
+                    price: "R$ 3.800",
+                    priceClassName: "text-2xl lg:text-xl xl:text-2xl",
+                    priceSubtext: "/ total",
+                    features: ["Voo Exclusivo de 45 a 60 min", "Até 8 pessoas (ou max 550kg)", "Brinde com Espumante no pouso", "Café da manhã pós-voo"]
+                },
+                {
+                    title: "Balão Exclusivo Casal",
+                    price: "R$ 3.000",
+                    priceClassName: "text-2xl lg:text-xl xl:text-2xl",
+                    priceSubtext: "/ total",
+                    features: ["Voo Exclusivo de 45 a 60 min", "Exclusivo para 2 pessoas", "Café da manhã a bordo", "Espumante a bordo", "Ideal para casamentos"]
                 },
                 {
                     title: "Atleta (Solo)",
-                    price: "R$ 450",
-                    features: ["Voo de Balão", "Vaga para Atleta Licenciado", "Acompanhamento de Segurança", "Brinde com Espumante", "Resgate Incluso"],
-                    highlight: true
+                    price: "Consultar Condição",
+                    priceClassName: "text-xl lg:text-lg xl:text-xl",
+                    priceSubtext: null,
+                    features: ["Voo de Balão", "Vaga para Atleta Licenciado", "Acompanhamento de Segurança", "Brinde com Espumante", "Resgate Incluso"]
                 }
             ]}
             specialConditions={[
                 {
-                    title: "Voo Exclusivo",
-                    description: "Feche o balão apenas para você e seus convidados. Ideal para pedidos de casamento e ocasiões intimistas.",
+                    title: "Pedidos de Casamento",
+                    description: "Garanta uma dose extra de romance com nosso pacote exclusivo para casais, contendo café da manhã e espumante a bordo durante o voo.",
                     icon: "Star"
                 },
                 {
-                    title: "Para Atletas",
-                    description: "Pacotes de jumps tickets para grupos de atletas licenciados com condições especiais para organizer.",
+                    title: "Grupos e Famílias",
+                    description: "Divida nossa experiência e um belíssimo café da manhã pós-voo em um passeio com cesto para até 8 pessoas, em voo reservado ou coletivo.",
                     icon: "Users"
                 },
                 {
-                    title: "Produção de Conteúdo",
-                    description: "Suporte logístico total para marcas e produtores que desejam filmar no ambiente único do balão.",
-                    icon: "Camera"
+                    title: "Para Atletas",
+                    description: "Temos pacotes de jumps tickets destinados aos grupos de atletas já licenciados com condições especiais para organizer.",
+                    icon: "Plane"
                 }
             ]}
             faqs={[
