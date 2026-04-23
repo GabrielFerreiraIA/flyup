@@ -7,6 +7,12 @@
   /* Fontes */
   --font-sans: var(--font-inter);
   --font-display: var(--font-outfit);
+  --font-sport: "Barlow Condensed", sans-serif;
+
+  /* Flyup Links Colors */
+  --color-flyup-green: #3CFF00;
+  --color-flyup-dark: #0B0E11;
+  --color-flyup-card: #14181C;
 
   /* ============================================
      CRM — Paleta Azul Escuro (dark navy theme)

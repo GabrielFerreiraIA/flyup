@@ -11,6 +11,7 @@ interface BookingModalProps {
     onClose: () => void;
     experienceTitle: string;
     source?: string;
+    redirectUrl?: string;
 }
 
 const countries = [
@@ -207,7 +208,7 @@ const countries = [
     { name: 'Zimbábue', code: 'zw', ddi: '+263' },
 ];
 
-export default function BookingModal({ isOpen, onClose, experienceTitle, source = 'geral' }: BookingModalProps) {
+export default function BookingModal({ isOpen, onClose, experienceTitle, source = 'geral', redirectUrl }: BookingModalProps) {
     const [formData, setFormData] = useState({
         name: "",
         fullPhone: "", // Store combined DDD + Number
@@ -266,6 +267,9 @@ export default function BookingModal({ isOpen, onClose, experienceTitle, source 
 
             setIsSubmitted(true);
             setTimeout(() => {
+                if (redirectUrl) {
+                    window.location.href = redirectUrl;
+                }
                 onClose();
             }, 3000);
         } catch (error) {
@@ -273,6 +277,9 @@ export default function BookingModal({ isOpen, onClose, experienceTitle, source 
             // Em caso de erro, ainda dá a mensagem de sucesso para não frustrar o usuário ou mostramos um aviso
             setIsSubmitted(true);
             setTimeout(() => {
+                if (redirectUrl) {
+                    window.location.href = redirectUrl;
+                }
                 onClose();
             }, 3000);
         } finally {
