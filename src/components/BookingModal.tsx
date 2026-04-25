@@ -10,6 +10,7 @@ interface BookingModalProps {
     isOpen: boolean;
     onClose: () => void;
     experienceTitle: string;
+    webhookTitle?: string;
     source?: string;
     redirectUrl?: string;
 }
@@ -208,7 +209,7 @@ const countries = [
     { name: 'Zimbábue', code: 'zw', ddi: '+263' },
 ];
 
-export default function BookingModal({ isOpen, onClose, experienceTitle, source = 'geral', redirectUrl }: BookingModalProps) {
+export default function BookingModal({ isOpen, onClose, experienceTitle, webhookTitle, source = 'geral', redirectUrl }: BookingModalProps) {
     const [formData, setFormData] = useState({
         name: "",
         fullPhone: "", // Store combined DDD + Number
@@ -263,24 +264,20 @@ export default function BookingModal({ isOpen, onClose, experienceTitle, source 
             await FlyUpWebhook.send({
                 nome: formData.name,
                 telefone: phoneNumber
-            }, source, experienceTitle);
+            }, source, webhookTitle || experienceTitle);
 
             setIsSubmitted(true);
             setTimeout(() => {
-                if (redirectUrl) {
-                    window.location.href = redirectUrl;
-                }
-                onClose();
+                const queryParam = redirectUrl ? `?redirectUrl=${encodeURIComponent(redirectUrl)}` : '';
+                window.location.href = `/agendamento-concluido${queryParam}`;
             }, 3000);
         } catch (error) {
             console.error("Erro ao enviar interesse:", error);
             // Em caso de erro, ainda dá a mensagem de sucesso para não frustrar o usuário ou mostramos um aviso
             setIsSubmitted(true);
             setTimeout(() => {
-                if (redirectUrl) {
-                    window.location.href = redirectUrl;
-                }
-                onClose();
+                const queryParam = redirectUrl ? `?redirectUrl=${encodeURIComponent(redirectUrl)}` : '';
+                window.location.href = `/agendamento-concluido${queryParam}`;
             }, 3000);
         } finally {
             setIsSubmitting(false);

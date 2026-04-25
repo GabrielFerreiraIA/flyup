@@ -61,6 +61,7 @@ interface ServicePageLayoutProps {
     sourceId?: string; // ID for webhook tracking
     pricingTitle?: string;
     renderBelowSteps?: React.ReactNode;
+    webhookTitle?: string;
 }
 
 export default function ServicePageLayout({
@@ -76,7 +77,8 @@ export default function ServicePageLayout({
     ctaText = "Agendar Agora",
     sourceId = "geral", // Previne undefined
     pricingTitle = "Investimento",
-    renderBelowSteps
+    renderBelowSteps,
+    webhookTitle
 }: ServicePageLayoutProps) {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
@@ -380,6 +382,7 @@ export default function ServicePageLayout({
                 isOpen={isBookingOpen}
                 onClose={() => setIsBookingOpen(false)}
                 experienceTitle={title}
+                webhookTitle={webhookTitle || title}
                 source={sourceId}
             />
         </div>

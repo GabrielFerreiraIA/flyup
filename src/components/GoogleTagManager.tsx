@@ -6,8 +6,8 @@ import { usePathname } from "next/navigation";
 export default function GoogleTagManager({ gtmId }: { gtmId: string }) {
   const pathname = usePathname();
 
-  // Não renderiza o GTM nas rotas do CRM
-  if (pathname?.startsWith("/crm")) {
+  // Não renderiza o GTM nas rotas do CRM ou na página de agendamento concluído
+  if (pathname?.startsWith("/crm") || pathname === "/agendamento-concluido") {
     return null;
   }
 

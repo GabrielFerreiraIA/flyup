@@ -92,7 +92,8 @@ export default function SaltoDuplo2Page() {
             <DiscountPopup />
             <ServicePageLayout
                 sourceId="salto-duplo-2-page"
-                title="Salto Duplo (V2)"
+                title="Salto Duplo"
+                webhookTitle="Salto Duplo (V2)"
                 subtitle="Sinta a liberdade absoluta a 200km/h com total segurança."
                 heroImage="https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771951037/Salto_Duplo_Editado_16-9_qgdiqh.png"
                 overview="O Salto Duplo é a maneira mais fácil e segura de realizar o sonho de voar. Conectado a um instrutor experiente e certificado, você saltará de 12.000 pés, experimentando cerca de 50 segundos de queda livre seguidos por 5 a 7 minutos de navegação com o paraquedas aberto."
