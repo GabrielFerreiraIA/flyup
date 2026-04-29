@@ -7,12 +7,6 @@
   /* Fontes */
   --font-sans: var(--font-inter);
   --font-display: var(--font-outfit);
-  --font-sport: "Barlow Condensed", sans-serif;
-
-  /* Flyup Links Colors */
-  --color-flyup-green: #3CFF00;
-  --color-flyup-dark: #0B0E11;
-  --color-flyup-card: #14181C;
 
   /* ============================================
      CRM — Paleta Azul Escuro (dark navy theme)
@@ -225,22 +219,23 @@
   }
 }
 
-/* Custom Scrollbar Utility */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
+/* Custom Scrollbars Global */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(57, 255, 20, 0.3);
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(57, 255, 20, 0.4);
 }
 
 /* Scrollbar Hide Utility */
@@ -259,7 +254,7 @@
 @keyframes crm-fade-in {
   from {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -268,5 +263,20 @@
 }
 
 .crm-fade-in {
-  animation: crm-fade-in 0.2s ease-out;
+  animation: crm-fade-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pulse-neon {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(57, 255, 20, 0.5));
+  }
+  50% {
+    opacity: 0.5;
+    filter: drop-shadow(0 0 2px rgba(57, 255, 20, 0.2));
+  }
+}
+
+.animate-pulse-neon {
+  animation: pulse-neon 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }

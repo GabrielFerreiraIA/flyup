@@ -11,9 +11,10 @@ import type { Lead, LeadStatus } from '@/lib/types'
 interface SortableLeadCardProps {
   lead: Lead
   onExpand: (lead: Lead) => void
+  onDelete?: (lead: Lead) => void
 }
 
-function SortableLeadCard({ lead, onExpand }: SortableLeadCardProps) {
+function SortableLeadCard({ lead, onExpand, onDelete }: SortableLeadCardProps) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id: lead.id })
 
@@ -24,7 +25,7 @@ function SortableLeadCard({ lead, onExpand }: SortableLeadCardProps) {
 
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <LeadCard lead={lead} onExpand={onExpand} isDragging={isDragging} />
+      <LeadCard lead={lead} onExpand={onExpand} onDelete={onDelete} isDragging={isDragging} />
     </div>
   )
 }
@@ -35,9 +36,10 @@ interface KanbanColumnProps {
   emoji: string
   leads: Lead[]
   onExpand: (lead: Lead) => void
+  onDelete?: (lead: Lead) => void
 }
 
-export function KanbanColumn({ status, label, emoji, leads, onExpand }: KanbanColumnProps) {
+export function KanbanColumn({ status, label, emoji, leads, onExpand, onDelete }: KanbanColumnProps) {
   const { setNodeRef, isOver } = useDroppable({ id: status })
 
   const totalValue = leads.reduce((sum, l) => sum + (l.valor_estimado ?? 0), 0)
@@ -74,7 +76,7 @@ export function KanbanColumn({ status, label, emoji, leads, onExpand }: KanbanCo
           strategy={verticalListSortingStrategy}
         >
           {leads.map((lead) => (
-            <SortableLeadCard key={lead.id} lead={lead} onExpand={onExpand} />
+            <SortableLeadCard key={lead.id} lead={lead} onExpand={onExpand} onDelete={onDelete} />
           ))}
         </SortableContext>
 
