@@ -25,7 +25,7 @@ export default function CRMLoginPage() {
       return
     }
 
-    router.push('/dashboard')
+    router.push('/crm/dashboard')
     router.refresh()
   }
 

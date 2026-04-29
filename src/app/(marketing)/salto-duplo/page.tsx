@@ -134,6 +134,7 @@ export default function SaltoDuploPage() {
                         price: "R$ 690",
                         features: ["Salto a 12.000 pés", "Instrutor Certificado ABPQD/USPA", "Equipamento de Ponta (Sigma)", "Foco 100% na emoção"]
                     },
+                    {
                         title: "Salto Duplo Selfie",
                         price: "R$ 890",
                         features: ["Salto a 12.000 pés", "Vídeo e Fotos (Handycam)", "Gravação em Close-up", "Link para Download Digital"],

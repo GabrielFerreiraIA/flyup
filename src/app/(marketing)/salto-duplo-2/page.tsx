@@ -138,17 +138,20 @@ export default function SaltoDuplo2Page() {
                     },
                     {
                         title: "Salto Duplo Selfie",
-                        price: "Consultar Promoções",
+                        price: <span className="text-zinc-500 text-lg lg:text-base xl:text-lg">Consultar Promoções</span>,
+                        priceSubtext: null,
                         features: ["Salto a 12.000 pés", "Vídeo e Fotos (Handycam)", "Gravação em Close-up", "Link para Download Digital"]
                     },
                     {
                         title: "Salto Duplo Experience",
-                        price: "Consultar Promoções",
+                        price: <span className="text-zinc-500 text-lg lg:text-base xl:text-lg">Consultar Promoções</span>,
+                        priceSubtext: null,
                         features: ["Você Pilota o Paraquedas", "Uso de Altímetro no Braço", "Foco total na Autonomia", "Filmagem Dupla (VIP + Selfie)"]
                     },
                     {
                         title: "Salto Duplo VIP",
-                        price: "Consultar Promoções",
+                        price: <span className="text-zinc-500 text-lg lg:text-base xl:text-lg">Consultar Promoções</span>,
+                        priceSubtext: null,
                         features: ["Salto a 12.000 pés", "Cameraman Externo Dedicado", "Fotos e Vídeos em HD", "Ângulos Cinematográficos"]
                     }
                 ]}
