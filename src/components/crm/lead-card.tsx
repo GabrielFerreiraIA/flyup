@@ -1,6 +1,6 @@
 'use client'
 
-import { MessageCircle, Phone, ChevronRight } from 'lucide-react'
+import { MessageCircle, Phone, ChevronRight, X } from 'lucide-react'
 import { TemperatureBadge } from './temperature-badge'
 import { TagBadge } from './tag-badge'
 import { formatRelativeDate, formatCurrency } from '@/lib/utils/date'
@@ -11,31 +11,48 @@ import type { Lead } from '@/lib/types'
 interface LeadCardProps {
   lead: Lead
   onExpand: (lead: Lead) => void
+  onDelete?: (lead: Lead) => void
   isDragging?: boolean
 }
 
-export function LeadCard({ lead, onExpand, isDragging }: LeadCardProps) {
+export function LeadCard({ lead, onExpand, onDelete, isDragging }: LeadCardProps) {
   return (
     <div
       className={cn(
         'bg-crm-800 rounded-lg p-3 cursor-pointer border border-crm-700',
         'hover:bg-crm-700 hover:border-crm-500 transition-all duration-150',
-        'shadow-sm group crm-fade-in',
+        'shadow-sm group crm-fade-in relative',
         isDragging && 'opacity-50 rotate-2 scale-105 shadow-xl'
       )}
       onClick={() => onExpand(lead)}
     >
+      {/* Botão de Excluir */}
+      {onDelete && !isDragging && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation()
+            onDelete(lead)
+          }}
+          className="absolute top-2 right-2 p-1 text-crm-500 hover:text-red-500 hover:bg-red-500/10 rounded-md opacity-0 group-hover:opacity-100 transition-all"
+          title="Arquivar lead"
+        >
+          <X size={14} />
+        </button>
+      )}
+
       {/* Header: temperatura + experiência */}
       <div className="flex items-center justify-between mb-2">
         <TemperatureBadge temperatura={lead.temperatura} showLabel />
-        <ChevronRight
-          size={14}
-          className="text-crm-500 opacity-0 group-hover:opacity-100 transition-opacity"
-        />
+        {!onDelete && (
+          <ChevronRight
+            size={14}
+            className="text-crm-500 opacity-0 group-hover:opacity-100 transition-opacity"
+          />
+        )}
       </div>
 
       {/* Nome */}
-      <h3 className="font-semibold text-neutral-100 text-sm leading-tight truncate">
+      <h3 className="font-semibold text-neutral-100 text-sm leading-tight truncate pr-6">
         {lead.nome}
       </h3>
 
