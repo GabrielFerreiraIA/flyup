@@ -13,7 +13,7 @@ export function TagBadge({ tag, onRemove, className }: TagBadgeProps) {
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium',
+        'inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[9px] font-black uppercase tracking-widest',
         className
       )}
       style={{ backgroundColor: `${tag.cor_hex}20`, color: tag.cor_hex, border: `1px solid ${tag.cor_hex}40` }}

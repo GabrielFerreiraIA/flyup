@@ -22,25 +22,25 @@ export function DashboardMetric({
   return (
     <div
       className={cn(
-        'bg-crm-800 border border-crm-700 rounded-xl p-5 hover:border-crm-500 transition-colors',
+        'bg-surface border border-white/10 rounded-2xl p-6 hover:border-neon/50 hover:shadow-[0_0_20px_rgba(57,255,20,0.15)] transition-all duration-300 group',
         className
       )}
     >
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-xs font-medium text-crm-400 uppercase tracking-wider">{label}</p>
-          <p className="text-3xl font-bold text-neutral-100 mt-1">{value}</p>
-          {sublabel && <p className="text-xs text-crm-500 mt-1">{sublabel}</p>}
+          <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest group-hover:text-neon transition-colors">{label}</p>
+          <p className="text-3xl font-black text-white mt-1 uppercase italic tracking-wider">{value}</p>
+          {sublabel && <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-1">{sublabel}</p>}
         </div>
-        <span className="text-2xl">{emoji}</span>
+        <span className="text-2xl group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">{emoji}</span>
       </div>
       {trend && (
         <div
           className={cn(
             'mt-3 text-xs font-medium',
-            trend === 'up' && 'text-green-400',
-            trend === 'down' && 'text-red-400',
-            trend === 'neutral' && 'text-crm-400'
+            trend === 'up' && 'text-neon',
+            trend === 'down' && 'text-red-500',
+            trend === 'neutral' && 'text-zinc-400'
           )}
         >
           {trend === 'up' && '↑ '}

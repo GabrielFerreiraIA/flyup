@@ -19,7 +19,7 @@ export function TemperatureBadge({
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium',
+        'inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] font-black uppercase tracking-widest',
         className
       )}
       style={{ backgroundColor: `${config.color}20`, color: config.color }}

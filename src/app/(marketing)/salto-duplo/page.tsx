@@ -132,23 +132,22 @@ export default function SaltoDuploPage() {
                     {
                         title: "Salto Duplo FUN",
                         price: "R$ 690",
-                        features: ["Salto a 12.000 pés", "Instrutor Certificado ABPQD/USPA", "Equipamento de Ponta (Sigma)", "Foco 100% na emoção", "Certificado de Coragem"]
+                        features: ["Salto a 12.000 pés", "Instrutor Certificado ABPQD/USPA", "Equipamento de Ponta (Sigma)", "Foco 100% na emoção"]
                     },
-                    {
                         title: "Salto Duplo Selfie",
                         price: "R$ 890",
-                        features: ["Salto a 12.000 pés", "Vídeo e Fotos (Handycam)", "Gravação em Close-up", "Link para Download Digital", "Camiseta Fly Up exclusiva"],
+                        features: ["Salto a 12.000 pés", "Vídeo e Fotos (Handycam)", "Gravação em Close-up", "Link para Download Digital"],
                         highlight: true
                     },
                     {
                         title: "Salto Duplo Experience",
                         price: "R$ 1.010",
-                        features: ["Você Pilota o Paraquedas", "Uso de Altímetro no Braço", "Sinal de Comando para Abertura", "Foco total na Autonomia", "Filmagem Dupla (VIP + Selfie)"]
+                        features: ["Você Pilota o Paraquedas", "Uso de Altímetro no Braço", "Foco total na Autonomia", "Filmagem Dupla (VIP + Selfie)"]
                     },
                     {
                         title: "Salto Duplo VIP",
                         price: "R$ 1.290",
-                        features: ["Salto a 12.000 pés", "Cameraman Externo Dedicado", "Fotos e Vídeos em HD", "Ângulos Cinematográficos", "Kit VIP (Camiseta + Boné)"]
+                        features: ["Salto a 12.000 pés", "Cameraman Externo Dedicado", "Fotos e Videos em HD", "Ângulos Cinematográficos"]
                     }
                 ]}
                 faqs={[

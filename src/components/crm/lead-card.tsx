@@ -1,6 +1,6 @@
 'use client'
 
-import { MessageCircle, Phone, ChevronRight, X } from 'lucide-react'
+import { MessageCircle, Phone, ChevronRight } from 'lucide-react'
 import { TemperatureBadge } from './temperature-badge'
 import { TagBadge } from './tag-badge'
 import { formatRelativeDate, formatCurrency } from '@/lib/utils/date'
@@ -11,62 +11,45 @@ import type { Lead } from '@/lib/types'
 interface LeadCardProps {
   lead: Lead
   onExpand: (lead: Lead) => void
-  onDelete?: (lead: Lead) => void
   isDragging?: boolean
 }
 
-export function LeadCard({ lead, onExpand, onDelete, isDragging }: LeadCardProps) {
+export function LeadCard({ lead, onExpand, isDragging }: LeadCardProps) {
   return (
     <div
       className={cn(
-        'bg-crm-800 rounded-lg p-3 cursor-pointer border border-crm-700',
-        'hover:bg-crm-700 hover:border-crm-500 transition-all duration-150',
-        'shadow-sm group crm-fade-in relative',
-        isDragging && 'opacity-50 rotate-2 scale-105 shadow-xl'
+        'bg-surface rounded-xl p-4 cursor-pointer border border-white/5',
+        'hover:bg-surface-hover hover:border-neon/50 hover:shadow-[0_0_15px_rgba(57,255,20,0.15)] transition-all duration-300',
+        'shadow-md group crm-fade-in',
+        isDragging && 'opacity-50 rotate-3 scale-105 shadow-[0_0_20px_rgba(57,255,20,0.2)] border-neon'
       )}
       onClick={() => onExpand(lead)}
     >
-      {/* Botão de Excluir */}
-      {onDelete && !isDragging && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            onDelete(lead)
-          }}
-          className="absolute top-2 right-2 p-1 text-crm-500 hover:text-red-500 hover:bg-red-500/10 rounded-md opacity-0 group-hover:opacity-100 transition-all"
-          title="Arquivar lead"
-        >
-          <X size={14} />
-        </button>
-      )}
-
       {/* Header: temperatura + experiência */}
       <div className="flex items-center justify-between mb-2">
         <TemperatureBadge temperatura={lead.temperatura} showLabel />
-        {!onDelete && (
-          <ChevronRight
-            size={14}
-            className="text-crm-500 opacity-0 group-hover:opacity-100 transition-opacity"
-          />
-        )}
+        <ChevronRight
+          size={14}
+          className="text-neon opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1"
+        />
       </div>
 
       {/* Nome */}
-      <h3 className="font-semibold text-neutral-100 text-sm leading-tight truncate pr-6">
+      <h3 className="font-black text-white text-sm leading-tight truncate uppercase tracking-wider mt-1">
         {lead.nome}
       </h3>
 
       {/* Experiência */}
       {lead.experience && (
-        <p className="text-xs text-crm-300 mt-0.5 truncate">
+        <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mt-1 truncate">
           🪂 {lead.experience.nome}
         </p>
       )}
 
       {/* Valor + Data */}
-      <div className="flex items-center justify-between mt-2 text-xs text-crm-400">
+      <div className="flex items-center justify-between mt-3 text-[10px] text-zinc-500 font-bold uppercase tracking-widest">
         {lead.valor_estimado && (
-          <span className="text-green-400 font-medium">
+          <span className="text-neon font-black italic">
             {formatCurrency(lead.valor_estimado)}
           </span>
         )}
@@ -75,7 +58,7 @@ export function LeadCard({ lead, onExpand, onDelete, isDragging }: LeadCardProps
 
       {/* Fonte */}
       {lead.fonte_label && (
-        <p className="text-xs text-crm-500 mt-1 truncate">
+        <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-2 truncate">
           🔗 {lead.fonte_label}
         </p>
       )}
@@ -87,19 +70,19 @@ export function LeadCard({ lead, onExpand, onDelete, isDragging }: LeadCardProps
             <TagBadge key={tag.id} tag={tag} />
           ))}
           {lead.tags.length > 3 && (
-            <span className="text-xs text-crm-500">+{lead.tags.length - 3}</span>
+            <span className="text-[10px] font-bold text-zinc-500">+{lead.tags.length - 3}</span>
           )}
         </div>
       )}
 
       {/* Ações rápidas */}
-      <div className="flex gap-2 mt-3 pt-2 border-t border-crm-700/50">
+      <div className="flex gap-3 mt-4 pt-3 border-t border-white/5">
         <a
           href={phoneToWhatsApp(lead.telefone)}
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => e.stopPropagation()}
-          className="flex items-center gap-1 text-xs text-green-400 hover:text-green-300 transition-colors"
+          className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-neon hover:text-white transition-colors"
         >
           <MessageCircle size={12} />
           WhatsApp
@@ -107,7 +90,7 @@ export function LeadCard({ lead, onExpand, onDelete, isDragging }: LeadCardProps
         <a
           href={`tel:${lead.telefone_normalizado}`}
           onClick={(e) => e.stopPropagation()}
-          className="flex items-center gap-1 text-xs text-crm-400 hover:text-crm-300 transition-colors"
+          className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
         >
           <Phone size={12} />
           Ligar
