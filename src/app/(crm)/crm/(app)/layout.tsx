@@ -4,11 +4,11 @@ import Link from 'next/link'
 import { SidebarLogout } from './_components/sidebar-logout'
 
 const NAV_ITEMS = [
-  { href: '/dashboard', label: 'Dashboard',    emoji: '📊' },
-  { href: '/pipeline',  label: 'Pipeline',     emoji: '🔄' },
-  { href: '/leads',     label: 'Todos os Leads', emoji: '👥' },
-  { href: '/config/experiences', label: 'Experiências', emoji: '🪂' },
-  { href: '/config/tags',        label: 'Etiquetas',    emoji: '🏷️' },
+  { href: '/crm/dashboard', label: 'Dashboard',    emoji: '📊' },
+  { href: '/crm/pipeline',  label: 'Pipeline',     emoji: '🔄' },
+  { href: '/crm/leads',     label: 'Todos os Leads', emoji: '👥' },
+  { href: '/crm/config/experiences', label: 'Experiências', emoji: '🪂' },
+  { href: '/crm/config/tags',        label: 'Etiquetas',    emoji: '🏷️' },
 ] as const
 
 export default async function CRMLayout({
