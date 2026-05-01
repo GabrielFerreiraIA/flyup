@@ -20,11 +20,11 @@ export default async function CRMLayout({
   const { data: { user } } = await supabase.auth.getUser()
 
   if (!user) {
-    redirect('/login')
+    redirect('/crm/login')
   }
 
   return (
-    <div className="flex h-screen bg-background overflow-hidden">
+    <div className="flex h-screen bg-background overflow-hidden" suppressHydrationWarning>
       {/* Sidebar */}
       <aside className="w-60 flex-shrink-0 bg-background border-r border-white/10 flex flex-col">
         {/* Logo */}

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { X } from 'lucide-react'
 import { CustomSelect } from './custom-select'
-import { getExperiences, createLead } from '@/lib/supabase/queries'
+import { getExperiences } from '@/lib/supabase/queries'
 import type { Experience, LeadStatus, LeadTemperatura } from '@/lib/types'
 import { PIPELINE_COLUMNS, TEMPERATURA_CONFIG } from '@/lib/types'
 import { toast } from 'sonner'
@@ -51,23 +51,34 @@ export function AddLeadModal({ open, onOpenChange, onSuccess }: AddLeadModalProp
 
     try {
       setIsSubmitting(true)
-      await createLead({
-        nome,
-        telefone,
-        email: email || null,
-        experience_id: experienceId || null,
-        status,
-        temperatura,
-        valor_estimado: valor ? Number(valor) : 0,
-        fonte: 'manual',
-        fonte_label: 'Adicionado Manualmente',
+      const res = await fetch('/api/crm/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nome,
+          telefone,
+          email: email || null,
+          experience_id: experienceId || null,
+          status,
+          temperatura,
+          valor_estimado: valor ? Number(valor) : 0,
+          fonte: 'manual',
+          fonte_label: 'Adicionado Manualmente',
+        }),
       })
+
+      if (!res.ok) {
+        let msg = `Erro ${res.status}`
+        try { const j = await res.json(); msg = j.error || msg } catch { /* ignore */ }
+        throw new Error(msg)
+      }
+
       toast.success('Lead criado com sucesso!')
       onSuccess()
       onOpenChange(false)
     } catch (error) {
       console.error(error)
-      toast.error('Erro ao criar lead.')
+      toast.error(error instanceof Error ? error.message : 'Erro ao criar lead.')
     } finally {
       setIsSubmitting(false)
     }
