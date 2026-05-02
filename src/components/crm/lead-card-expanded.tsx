@@ -14,7 +14,6 @@ import {
   getLeadHistory,
   getLeadNotifications,
   getTagDefinitions,
-  softDeleteLead,
 } from '@/lib/supabase/queries'
 import {
   PIPELINE_COLUMNS,
@@ -39,6 +38,7 @@ export function LeadCardExpanded({ lead, onClose, onUpdate }: LeadCardExpandedPr
   const [allTags, setAllTags] = useState<TagDefinition[]>([])
   const [saving, setSaving] = useState(false)
   const [deleting, setDeleting] = useState(false)
+  const [confirmDelete, setConfirmDelete] = useState(false)
 
   useEffect(() => {
     getLeadHistory(lead.id).then(setHistory)
@@ -70,12 +70,18 @@ export function LeadCardExpanded({ lead, onClose, onUpdate }: LeadCardExpandedPr
   }
 
   async function handleDelete() {
-    if (!confirm('Tem certeza que deseja excluir este lead? Essa ação não pode ser desfeita.')) return
-    
     setDeleting(true)
     try {
-      await softDeleteLead(lead.id)
-      onUpdate({ ...lead, deleted_at: new Date().toISOString() }) // isso vai removê-lo das listas ativas
+      const res = await fetch('/api/crm/leads', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: lead.id }),
+      })
+      if (!res.ok) {
+        const j = await res.json().catch(() => ({}))
+        throw new Error(j.error || `Erro ${res.status}`)
+      }
+      onUpdate({ ...lead, deleted_at: new Date().toISOString() })
       onClose()
     } catch (error) {
       console.error(error)
@@ -88,6 +94,7 @@ export function LeadCardExpanded({ lead, onClose, onUpdate }: LeadCardExpandedPr
   )
 
   return (
+    <>
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
       <div className="bg-background rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-[0_0_50px_rgba(0,0,0,0.8)] border border-white/10">
         {/* Header */}
@@ -236,7 +243,7 @@ export function LeadCardExpanded({ lead, onClose, onUpdate }: LeadCardExpandedPr
                 Histórico
               </h3>
               <button
-                onClick={handleDelete}
+                onClick={() => setConfirmDelete(true)}
                 disabled={deleting}
                 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-red-500 hover:text-red-400 hover:bg-red-500/10 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
               >
@@ -275,5 +282,34 @@ export function LeadCardExpanded({ lead, onClose, onUpdate }: LeadCardExpandedPr
         </div>
       </div>
     </div>
+
+    {confirmDelete && (
+      <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+        <div className="bg-surface rounded-2xl w-full max-w-sm shadow-[0_0_50px_rgba(0,0,0,0.8)] border border-red-500/30 p-6">
+          <h3 className="text-lg font-black italic uppercase tracking-widest text-red-400 mb-2">
+            Excluir Lead
+          </h3>
+          <p className="text-sm text-zinc-400 mb-6">
+            Tem certeza que deseja excluir <span className="text-white font-bold">{lead.nome}</span>? Essa ação não pode ser desfeita.
+          </p>
+          <div className="flex justify-end gap-3">
+            <button
+              onClick={() => setConfirmDelete(false)}
+              className="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
+            >
+              Cancelar
+            </button>
+            <button
+              onClick={() => { setConfirmDelete(false); handleDelete() }}
+              disabled={deleting}
+              className="px-5 py-2 bg-red-500/10 text-red-400 border border-red-500/50 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-red-500 hover:text-white transition-all disabled:opacity-50"
+            >
+              Sim, Excluir
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   )
 }
