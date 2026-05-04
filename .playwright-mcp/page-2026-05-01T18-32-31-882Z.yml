@@ -1,0 +1,131 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e5]:
+        - img "Fly Up Logo" [ref=e6]
+        - generic [ref=e7]:
+          - heading "FlyUp CRM" [level=1] [ref=e8]
+          - paragraph [ref=e9]: Lead Management
+      - navigation [ref=e10]:
+        - link "📊 Dashboard" [ref=e11] [cursor=pointer]:
+          - /url: /crm/dashboard
+          - generic [ref=e12]: 📊
+          - generic [ref=e13]: Dashboard
+        - link "🔄 Pipeline" [ref=e14] [cursor=pointer]:
+          - /url: /crm/pipeline
+          - generic [ref=e15]: 🔄
+          - generic [ref=e16]: Pipeline
+        - link "👥 Todos os Leads" [ref=e17] [cursor=pointer]:
+          - /url: /crm/leads
+          - generic [ref=e18]: 👥
+          - generic [ref=e19]: Todos os Leads
+        - link "🪂 Experiências" [ref=e20] [cursor=pointer]:
+          - /url: /crm/config/experiences
+          - generic [ref=e21]: 🪂
+          - generic [ref=e22]: Experiências
+        - link "🏷️ Etiquetas" [ref=e23] [cursor=pointer]:
+          - /url: /crm/config/tags
+          - generic [ref=e24]: 🏷️
+          - generic [ref=e25]: Etiquetas
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]: P
+          - paragraph [ref=e30]: projetoflyup
+        - button "Sair" [ref=e31]:
+          - img [ref=e32]
+          - text: Sair
+    - main [ref=e35]:
+      - generic [ref=e36]:
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - heading "Todos os Leads" [level=1] [ref=e39]
+            - paragraph [ref=e40]: 2 leads encontrados
+          - button "Novo Lead" [active] [ref=e41]:
+            - img [ref=e42]
+            - text: Novo Lead
+        - generic [ref=e43]:
+          - generic [ref=e44]:
+            - img [ref=e45]
+            - textbox "Buscar por nome, telefone, fonte..." [ref=e48]
+          - generic [ref=e49]:
+            - button "Todos" [ref=e50]
+            - button "Novo" [ref=e51]
+            - button "A Contactar" [ref=e52]
+            - button "Qualificado" [ref=e53]
+            - button "Convertido" [ref=e54]
+            - button "Perdido" [ref=e55]
+        - table [ref=e57]:
+          - rowgroup [ref=e58]:
+            - row "Lead Experiência Status Valor" [ref=e59]:
+              - columnheader "Lead" [ref=e60]
+              - columnheader "Experiência" [ref=e61]
+              - columnheader "Status" [ref=e62]
+              - columnheader "Valor" [ref=e63]
+          - rowgroup [ref=e80]:
+            - row "🔴 Teste (11) 99765-7588 Curso AFF Convertido R$ 950,00" [ref=e81] [cursor=pointer]:
+              - cell "🔴 Teste (11) 99765-7588" [ref=e82]:
+                - generic [ref=e83]:
+                  - generic [ref=e84]: 🔴
+                  - generic [ref=e85]:
+                    - paragraph [ref=e86]: Teste
+                    - paragraph [ref=e87]: (11) 99765-7588
+              - cell "Curso AFF" [ref=e88]
+              - cell "Convertido" [ref=e89]
+              - cell "R$ 950,00" [ref=e90]
+            - row "🟡 Renan +5511957092760 Salto Duplo (Tandem) Perdido R$ 1.200,00" [ref=e91] [cursor=pointer]:
+              - cell "🟡 Renan +5511957092760" [ref=e92]:
+                - generic [ref=e93]:
+                  - generic [ref=e94]: 🟡
+                  - generic [ref=e95]:
+                    - paragraph [ref=e96]: Renan
+                    - paragraph [ref=e97]: "+5511957092760"
+              - cell "Salto Duplo (Tandem)" [ref=e98]
+              - cell "Perdido" [ref=e99]
+              - cell "R$ 1.200,00" [ref=e100]
+        - generic [ref=e103]:
+          - generic [ref=e104]:
+            - heading "Adicionar Novo Lead" [level=2] [ref=e105]
+            - button [ref=e106]:
+              - img [ref=e107]
+          - generic [ref=e110]:
+            - generic [ref=e111]:
+              - text: Nome *
+              - 'textbox "Ex: João Silva" [ref=e112]'
+            - generic [ref=e113]:
+              - generic [ref=e114]:
+                - text: Telefone *
+                - 'textbox "Ex: 11999999999" [ref=e115]'
+              - generic [ref=e116]:
+                - text: Email
+                - textbox "Opcional" [ref=e117]
+            - generic [ref=e118]:
+              - text: Experiência de Interesse
+              - button "Nenhuma / Não sabe" [ref=e120]:
+                - generic [ref=e121]: Nenhuma / Não sabe
+                - img [ref=e122]
+            - generic [ref=e124]:
+              - generic [ref=e125]:
+                - text: Status Inicial
+                - button "🆕 Novo" [ref=e127]:
+                  - generic [ref=e129]:
+                    - generic [ref=e130]: 🆕
+                    - text: Novo
+                  - img [ref=e131]
+              - generic [ref=e133]:
+                - text: Temperatura
+                - button "🟡 Morno" [ref=e135]:
+                  - generic [ref=e137]:
+                    - generic [ref=e138]: 🟡
+                    - text: Morno
+                  - img [ref=e139]
+            - generic [ref=e141]:
+              - text: Valor Estimado (R$)
+              - spinbutton [ref=e142]
+            - generic [ref=e143]:
+              - button "Cancelar" [ref=e144]
+              - button "Salvar Lead" [ref=e145]
+  - generic "Fale conosco no WhatsApp" [ref=e67] [cursor=pointer]:
+    - img [ref=e69]
+  - button "Open Next.js Dev Tools" [ref=e76] [cursor=pointer]:
+    - img [ref=e77]
+  - alert [ref=e101]

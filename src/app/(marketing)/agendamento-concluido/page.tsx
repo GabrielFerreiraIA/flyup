@@ -9,7 +9,7 @@ import Script from "next/script";
 function AgendamentoConcluidoContent() {
   const searchParams = useSearchParams();
   const [countdown, setCountdown] = useState(6);
-  const redirectUrl = searchParams.get("redirectUrl") || "https://wa.me/5515998282280";
+  const redirectUrl = searchParams.get("redirectUrl") || "https://wa.me/5515998282280?text=Ol%C3%A1!%20Acabei%20de%20realizar%20um%20agendamento%20pelo%20site%20e%20gostaria%20de%20confirmar.";
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -90,6 +90,8 @@ function AgendamentoConcluidoContent() {
 
           <Link
             href={redirectUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group relative inline-flex items-center justify-center px-8 py-4 bg-neon rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(57,255,20,0.4)] hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto"
           >
             <span className="relative z-10 flex items-center gap-2 text-black font-black italic uppercase tracking-[0.1em] text-xs">

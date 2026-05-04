@@ -1,0 +1,115 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e5]:
+        - img "Fly Up Logo" [ref=e6]
+        - generic [ref=e7]:
+          - heading "FlyUp CRM" [level=1] [ref=e8]
+          - paragraph [ref=e9]: Lead Management
+      - navigation [ref=e10]:
+        - link "📊 Dashboard" [ref=e11] [cursor=pointer]:
+          - /url: /crm/dashboard
+          - generic [ref=e12]: 📊
+          - generic [ref=e13]: Dashboard
+        - link "🔄 Pipeline" [ref=e14] [cursor=pointer]:
+          - /url: /crm/pipeline
+          - generic [ref=e15]: 🔄
+          - generic [ref=e16]: Pipeline
+        - link "👥 Todos os Leads" [ref=e17] [cursor=pointer]:
+          - /url: /crm/leads
+          - generic [ref=e18]: 👥
+          - generic [ref=e19]: Todos os Leads
+        - link "🪂 Experiências" [ref=e20] [cursor=pointer]:
+          - /url: /crm/config/experiences
+          - generic [ref=e21]: 🪂
+          - generic [ref=e22]: Experiências
+        - link "🏷️ Etiquetas" [ref=e23] [cursor=pointer]:
+          - /url: /crm/config/tags
+          - generic [ref=e24]: 🏷️
+          - generic [ref=e25]: Etiquetas
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]: P
+          - paragraph [ref=e30]: projetoflyup
+        - button "Sair" [ref=e31]:
+          - img [ref=e32]
+          - text: Sair
+    - main [ref=e35]:
+      - generic [ref=e36]:
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - heading "Todos os Leads" [level=1] [ref=e39]
+            - paragraph [ref=e40]: 0 leads encontrados
+          - button "Novo Lead" [ref=e41]:
+            - img [ref=e42]
+            - text: Novo Lead
+        - generic [ref=e43]:
+          - generic [ref=e44]:
+            - img [ref=e45]
+            - textbox "Buscar por nome, telefone, fonte..." [ref=e48]
+          - generic [ref=e49]:
+            - button "Todos" [ref=e50]
+            - button "Novo" [ref=e51]
+            - button "A Contactar" [ref=e52]
+            - button "Qualificado" [ref=e53]
+            - button "Convertido" [ref=e54]
+            - button "Perdido" [ref=e55]
+        - generic [ref=e56]:
+          - table [ref=e57]:
+            - rowgroup [ref=e58]:
+              - row "Lead Experiência Status Valor" [ref=e59]:
+                - columnheader "Lead" [ref=e60]
+                - columnheader "Experiência" [ref=e61]
+                - columnheader "Status" [ref=e62]
+                - columnheader "Valor" [ref=e63]
+            - rowgroup
+          - generic [ref=e190]:
+            - paragraph [ref=e191]: Nenhum lead encontrado
+            - paragraph [ref=e192]: Tente ajustar os filtros de busca
+        - generic [ref=e147]:
+          - generic [ref=e148]:
+            - heading "Adicionar Novo Lead" [level=2] [ref=e149]
+            - button [ref=e150]:
+              - img [ref=e151]
+          - generic [ref=e154]:
+            - generic [ref=e155]:
+              - text: Nome *
+              - 'textbox "Ex: João Silva" [active] [ref=e156]'
+            - generic [ref=e157]:
+              - generic [ref=e158]:
+                - text: Telefone *
+                - 'textbox "Ex: 11999999999" [ref=e159]'
+              - generic [ref=e160]:
+                - text: Email
+                - textbox "Opcional" [ref=e161]
+            - generic [ref=e162]:
+              - text: Experiência de Interesse
+              - button "Nenhuma / Não sabe" [ref=e164]:
+                - generic [ref=e165]: Nenhuma / Não sabe
+                - img [ref=e166]
+            - generic [ref=e168]:
+              - generic [ref=e169]:
+                - text: Status Inicial
+                - button "🆕 Novo" [ref=e171]:
+                  - generic [ref=e173]:
+                    - generic [ref=e174]: 🆕
+                    - text: Novo
+                  - img [ref=e175]
+              - generic [ref=e177]:
+                - text: Temperatura
+                - button "🟡 Morno" [ref=e179]:
+                  - generic [ref=e181]:
+                    - generic [ref=e182]: 🟡
+                    - text: Morno
+                  - img [ref=e183]
+            - generic [ref=e185]:
+              - text: Valor Estimado (R$)
+              - spinbutton [ref=e186]
+            - generic [ref=e187]:
+              - button "Cancelar" [ref=e188]
+              - button "Salvar Lead" [ref=e189]
+  - generic "Fale conosco no WhatsApp" [ref=e67] [cursor=pointer]:
+    - img [ref=e69]
+  - button "Open Next.js Dev Tools" [ref=e76] [cursor=pointer]:
+    - img [ref=e77]
+  - alert [ref=e101]

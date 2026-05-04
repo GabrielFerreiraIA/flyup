@@ -43,7 +43,11 @@ description: Comprehensive blueprint for recreating the Flyup V2 website (Elite 
 
 ## 🎨 2. Design System Global
 
+> [!IMPORTANT]
+> **Fonte da Verdade**: Todas as alterações visuais, componentes e estilos devem ser baseados obrigatoriamente no Design System da FlyUp documentado no arquivo `design-system.html`. Este arquivo é a referência primária e soberana para cores, tipografia, componentes e padrões de layout.
+
 ### 2.1 Cores (Tailwind/CSS Variables)
+
 Definidas em `src/app/globals.css`.
 
 | Token | Valor | Uso |

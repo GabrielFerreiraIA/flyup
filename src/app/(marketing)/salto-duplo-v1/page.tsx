@@ -5,7 +5,7 @@ import DiscountPopup from "@/components/DiscountPopup";
 import { motion } from "framer-motion";
 import { Camera, Video, Zap, Sparkles } from "lucide-react";
 
-export default function SaltoDuplo2Page() {
+export default function SaltoDuploPage() {
     const jumpTypes = [
         {
             id: "fun",
@@ -91,13 +91,12 @@ export default function SaltoDuplo2Page() {
         <>
             <DiscountPopup />
             <ServicePageLayout
-                sourceId="salto-duplo-2-page"
+                sourceId="salto-duplo-page"
                 title="Salto Duplo"
-                webhookTitle="Salto Duplo (V2)"
                 subtitle="Sinta a liberdade absoluta a 200km/h com total segurança."
                 heroImage="https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771951037/Salto_Duplo_Editado_16-9_qgdiqh.png"
                 overview="O Salto Duplo é a maneira mais fácil e segura de realizar o sonho de voar. Conectado a um instrutor experiente e certificado, você saltará de 12.000 pés, experimentando cerca de 50 segundos de queda livre seguidos por 5 a 7 minutos de navegação com o paraquedas aberto."
-                pricingTitle="Escolha a sua modalidade"
+                pricingTitle="Planos e Preços"
                 // renderBelowSteps={JumpTypesSection}
                 steps={[
                     {
@@ -107,7 +106,7 @@ export default function SaltoDuplo2Page() {
                     },
                     {
                         title: "O Voo Panorâmico",
-                        description: "Subida de 15 minutos até 12.000 pés with vista espetacular de Boituva.",
+                        description: "Subida de 15 minutos até 12.000 pés com vista espetacular de Boituva.",
                         icon: "Cloud"
                     },
                     {
@@ -132,27 +131,24 @@ export default function SaltoDuplo2Page() {
                 pricingOptions={[
                     {
                         title: "Salto Duplo FUN",
-                        price: "R$ 645,00",
-                        features: ["Salto a 12.000 pés", "Instrutor Certificado ABPQD/USPA", "Equipamento de Ponta (Sigma)", "Foco 100% na emoção"],
-                        highlight: true
+                        price: "R$ 690",
+                        features: ["Salto a 12.000 pés", "Instrutor Certificado ABPQD/USPA", "Equipamento de Ponta (Sigma)", "Foco 100% na emoção"]
                     },
                     {
                         title: "Salto Duplo Selfie",
-                        price: <span className="text-zinc-500 text-lg lg:text-base xl:text-lg">Consultar Promoções</span>,
-                        priceSubtext: null,
-                        features: ["Salto a 12.000 pés", "Vídeo e Fotos (Handycam)", "Gravação em Close-up", "Link para Download Digital"]
+                        price: "R$ 890",
+                        features: ["Salto a 12.000 pés", "Vídeo e Fotos (Handycam)", "Gravação em Close-up", "Link para Download Digital"],
+                        highlight: true
                     },
                     {
                         title: "Salto Duplo Experience",
-                        price: <span className="text-zinc-500 text-lg lg:text-base xl:text-lg">Consultar Promoções</span>,
-                        priceSubtext: null,
+                        price: "R$ 1.010",
                         features: ["Você Pilota o Paraquedas", "Uso de Altímetro no Braço", "Foco total na Autonomia", "Filmagem Dupla (VIP + Selfie)"]
                     },
                     {
                         title: "Salto Duplo VIP",
-                        price: <span className="text-zinc-500 text-lg lg:text-base xl:text-lg">Consultar Promoções</span>,
-                        priceSubtext: null,
-                        features: ["Salto a 12.000 pés", "Cameraman Externo Dedicado", "Fotos e Vídeos em HD", "Ângulos Cinematográficos"]
+                        price: "R$ 1.290",
+                        features: ["Salto a 12.000 pés", "Cameraman Externo Dedicado", "Fotos e Videos em HD", "Ângulos Cinematográficos"]
                     }
                 ]}
                 faqs={[

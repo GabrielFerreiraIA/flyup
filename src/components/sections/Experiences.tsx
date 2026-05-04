@@ -20,8 +20,8 @@ const experiences = [
         link: "/salto-duplo",
         tags: ["12.000FT", "50S QUEDA"],
         description: "A porta de entrada. Conectado a um instrutor, 200km/h de pura liberdade.",
-        oldPrice: "759,00",
-        price: "645,00"
+        oldPrice: "890,00",
+        price: "745,00"
     },
     {
         id: "curso-aff",
@@ -257,38 +257,63 @@ function ExperienceCard({ data, index, isInView, onBooking }: { data: any, index
                             {title}
                         </h3>
                         {price && (
-                            <div className="relative flex flex-col items-end justify-center transform group-hover:scale-105 transition-transform duration-500 origin-right mt-1">
+                            <div className="relative flex flex-col items-end justify-center transform group-hover:scale-[1.03] transition-all duration-700 origin-right mt-1">
                                 
-                                {/* Preço Original (Riscado em Vermelho) */}
-                                <div className="flex items-center gap-2 mb-1.5 mr-3">
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">
-                                        DE:
-                                    </span>
-                                    <span className="text-sm font-black italic text-red-500 line-through tracking-tighter">
-                                        R$ {oldPrice}
-                                    </span>
-                                </div>
-
-                                {/* Bloco Premium de Preço */}
-                                <div className="bg-gradient-to-br from-zinc-900 to-black text-[#39FF14] pr-5 pl-6 py-2.5 rounded-xl transform -skew-x-6 border border-[#39FF14]/20 border-b-[#39FF14]/50 border-r-[#39FF14]/50 shadow-[0_10px_30px_-10px_rgba(57,255,20,0.4)] relative overflow-hidden group/price">
+                                {/* Bloco Premium de Preço Unificado - UI/UX PRO MAX */}
+                                <div className="bg-gradient-to-br from-[#0a0a0a] via-[#151515] to-black pr-7 pl-8 py-5 rounded-[28px] transform -skew-x-6 border border-white/10 border-b-neon/30 border-r-neon/30 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.8),0_0_20px_rgba(57,255,20,0.1)] relative overflow-hidden group/price">
                                     
-                                    {/* Efeito de Brilho Dinâmico */}
+                                    {/* Glassmorphism Highlight Layer */}
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-white/[0.02] to-transparent pointer-events-none" />
+                                    
+                                    {/* Advanced Dynamic Shine Effect */}
                                     <motion.div 
-                                        animate={{ x: ["-100%", "200%"] }}
-                                        transition={{ repeat: Infinity, duration: 2.5, ease: "linear", repeatDelay: 1.5 }}
-                                        className="absolute inset-0 bg-gradient-to-r from-transparent via-[#39FF14]/15 to-transparent flex-shrink-0"
+                                        animate={{ 
+                                            x: ["-150%", "250%"],
+                                            rotate: [25, 25]
+                                        }}
+                                        transition={{ 
+                                            repeat: Infinity, 
+                                            duration: 3.5, 
+                                            ease: "easeInOut", 
+                                            repeatDelay: 1 
+                                        }}
+                                        className="absolute top-[-50%] left-0 w-16 h-[200%] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent flex-shrink-0 z-0"
                                     />
                                     
-                                    <div className="flex flex-col items-end relative z-10 transform skew-x-6">
-                                        <span className="text-[9px] font-bold text-white tracking-[0.2em] uppercase opacity-75 mb-0.5">
-                                            POR APENAS
-                                        </span>
-                                        <span className="text-4xl font-black italic tracking-tighter leading-none flex items-baseline gap-1.5 font-display drop-shadow-[0_0_15px_rgba(57,255,20,0.3)]">
-                                            <span className="text-[18px] text-white opacity-90">R$</span> 
-                                            <span className="text-[42px] leading-[0.8]">{price.split(',')[0]}</span>
-                                            <span className="text-[20px] leading-[0.8]">,{price.split(',')[1]}</span>
-                                        </span>
+                                    <div className="flex flex-col items-end relative z-10 transform skew-x-6 gap-1.5">
+                                        {/* Preço Original (Aumentado para Contraste) */}
+                                        <div className="flex items-center gap-2.5 opacity-80 hover:opacity-100 transition-opacity">
+                                            <span className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em]">
+                                                DE:
+                                            </span>
+                                            <span className="text-2xl md:text-3xl font-black italic text-red-500 line-through tracking-tighter flex items-baseline gap-0.5 drop-shadow-[0_0_12px_rgba(239,68,68,0.3)]">
+                                                <span className="text-xs mr-0.5 font-bold">R$</span> {oldPrice}
+                                            </span>
+                                        </div>
+
+                                        {/* Preço Promocional (Ajustado para tamanho mais harmônico) */}
+                                        <div className="flex flex-col items-end leading-none">
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <div className="h-[1px] w-4 bg-neon/30" />
+                                                <span className="text-[9px] font-black text-neon tracking-[0.4em] uppercase drop-shadow-[0_0_8px_rgba(57,255,20,0.3)]">
+                                                    POR APENAS
+                                                </span>
+                                            </div>
+                                            
+                                            <span className="text-4xl font-black italic tracking-tighter text-white flex items-baseline gap-1.5 font-display">
+                                                <span className="text-[14px] text-zinc-400 font-bold opacity-80">R$</span> 
+                                                <span className="text-[38px] md:text-[42px] leading-[0.8] text-neon drop-shadow-[0_0_20px_rgba(57,255,20,0.4)]">
+                                                    {price.split(',')[0]}
+                                                </span>
+                                                <span className="text-[20px] leading-[0.8] text-neon/80">
+                                                    ,{price.split(',')[1]}
+                                                </span>
+                                            </span>
+                                        </div>
                                     </div>
+
+                                    {/* Corner Accent */}
+                                    <div className="absolute top-0 right-0 w-12 h-12 bg-neon/5 rounded-bl-full border-b border-l border-white/5" />
                                 </div>
                                 
                             </div>
@@ -319,15 +344,17 @@ function ExperienceCard({ data, index, isInView, onBooking }: { data: any, index
                     </p>
 
                     <div className="flex gap-4 mt-auto pt-2">
-                        <Button
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                onBooking();
-                            }}
-                            className="flex-1 bg-neon text-black font-black italic rounded-xl h-14 text-sm tracking-wider border-none hover:bg-neon-hover shadow-lg shadow-neon/30 group/btn transition-all duration-300 active:scale-95 px-2"
-                        >
-                            AGENDAR <ArrowUpRight className="ml-1 size-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
-                        </Button>
+                        {data.id !== "curso-aff" && (
+                            <Button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    onBooking();
+                                }}
+                                className="flex-1 bg-neon text-black font-black italic rounded-xl h-14 text-sm tracking-wider border-none hover:bg-neon-hover shadow-lg shadow-neon/30 group/btn transition-all duration-300 active:scale-95 px-2"
+                            >
+                                AGENDAR <ArrowUpRight className="ml-1 size-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
+                            </Button>
+                        )}
                         {data.id !== "tunel-vento" && data.id !== "wingsuit" && (
                             <Link
                                 href={link}

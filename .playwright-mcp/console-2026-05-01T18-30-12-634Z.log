@@ -1,0 +1,14 @@
+[     249ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[     420ms] [LOG] [Fast Refresh] done in 273ms @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[     687ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3000/crm/login:0
+[     987ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[    1041ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[    9262ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[   14384ms] [LOG] [Fast Refresh] done in 5232ms @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[   14542ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[   14915ms] [LOG] [Fast Refresh] done in 481ms @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[   16204ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[   16286ms] [LOG] [Fast Refresh] done in 190ms @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[   16774ms] [WARNING] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[   16813ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[   16963ms] [LOG] [Fast Refresh] done in 667ms @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297

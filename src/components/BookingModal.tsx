@@ -269,7 +269,9 @@ export default function BookingModal({ isOpen, onClose, experienceTitle, webhook
             setIsSubmitted(true);
             setTimeout(() => {
                 const queryParam = redirectUrl ? `?redirectUrl=${encodeURIComponent(redirectUrl)}` : '';
-                window.location.href = `/agendamento-concluido${queryParam}`;
+                const url = `/agendamento-concluido${queryParam}`;
+                window.open(url, '_blank');
+                onClose();
             }, 3000);
         } catch (error) {
             console.error("Erro ao enviar interesse:", error);
@@ -277,7 +279,9 @@ export default function BookingModal({ isOpen, onClose, experienceTitle, webhook
             setIsSubmitted(true);
             setTimeout(() => {
                 const queryParam = redirectUrl ? `?redirectUrl=${encodeURIComponent(redirectUrl)}` : '';
-                window.location.href = `/agendamento-concluido${queryParam}`;
+                const url = `/agendamento-concluido${queryParam}`;
+                window.open(url, '_blank');
+                onClose();
             }, 3000);
         } finally {
             setIsSubmitting(false);

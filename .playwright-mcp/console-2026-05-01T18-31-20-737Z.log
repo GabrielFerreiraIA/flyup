@@ -1,0 +1,23 @@
+[     126ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[     235ms] [LOG] [Fast Refresh] done in 214ms @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[    2636ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[    2722ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[    2913ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[    4351ms] [LOG] [Fast Refresh] done in 1559ms @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[   63922ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[   63990ms] [LOG] [Fast Refresh] done in 174ms @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[  181124ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[  183978ms] [LOG] [Fast Refresh] done in 2958ms @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[  404463ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[  404468ms] [LOG] [Fast Refresh] done in 112ms @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[  729514ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[  730397ms] [LOG] [Fast Refresh] done in 987ms @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[  730578ms] [WARNING] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[  730605ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[  730651ms] [LOG] [Fast Refresh] done in 177ms @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[  733980ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[  734049ms] [LOG] [Fast Refresh] done in 174ms @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[  734878ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[  734970ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[  735140ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297
+[  735170ms] [LOG] [Fast Refresh] done in 138ms @ http://localhost:3000/_next/static/chunks/4ffd0_next_dist_3cfd1620._.js:2297

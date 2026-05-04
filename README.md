@@ -2,7 +2,14 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### 🎨 Design System
+Todas as alterações visuais, componentes e estilos deste projeto devem ser baseados obrigatoriamente no Design System da FlyUp.
+- **Referência Principal**: [design-system.html](./design-system.html)
+
+---
+
 First, run the development server:
+
 
 ```bash
 npm run dev

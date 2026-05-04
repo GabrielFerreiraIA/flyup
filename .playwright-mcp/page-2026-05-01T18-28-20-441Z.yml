@@ -1,0 +1,22 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: 🪂
+      - heading "FlyUp CRM" [level=1] [ref=e6]
+      - paragraph [ref=e7]: Sistema de Gestão de Leads
+    - generic [ref=e8]:
+      - heading "Acesso Restrito" [level=2] [ref=e10]
+      - generic [ref=e11]:
+        - generic [ref=e12]:
+          - generic [ref=e13]: Email
+          - textbox "seu@email.com" [ref=e14]: teste@flyup.com
+        - generic [ref=e15]:
+          - generic [ref=e16]: Senha
+          - textbox "••••••••" [ref=e17]: Teste123456
+        - generic [ref=e33]: Email ou senha incorretos.
+        - button "Entrar no Sistema" [ref=e18]
+  - generic "Fale conosco no WhatsApp" [ref=e19] [cursor=pointer]:
+    - img [ref=e21]
+  - button "Open Next.js Dev Tools" [ref=e28] [cursor=pointer]:
+    - img [ref=e29]
+  - alert [ref=e32]

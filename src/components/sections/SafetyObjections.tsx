@@ -19,7 +19,7 @@ const SAFETY_ITEMS = [
         id: 0,
         title: "Tecnologia DAA",
         subtitle: "Equipamento Inteligente",
-        description: "Todo paraquedas da Fly Up é equipado com o sistema CYPRES (Cybernetic Parachute Release System). É um computador de bordo de tecnologia alemã que monitora altitude e velocidade, garantindo a abertura automática do reserva se necessário. É a mesma tecnologia usada por militares em todo o mundo.",
+        description: "Todo paraquedas da Fly Up é equipado com o sistema DAA (Dispositivo de Abertura Automatica). É um computador de bordo que monitora altitude e velocidade, garantindo a abertura automática do paraquedas reserva se necessário. É a mesma tecnologia usada por militares em todo o mundo.",
         icon: Shield,
         navLabel: "Tecnologia DAA"
     },
@@ -27,7 +27,7 @@ const SAFETY_ITEMS = [
         id: 1,
         title: "Instrutores de Elite",
         subtitle: "Certificação Internacional",
-        description: "Nossa equipe não é apenas experiente, é a elite. Todos os instrutores possuem certificações USPA (United States Parachute Association) e entidades brasileiras do esporte, com milhares de saltos computados. Você não vai saltar com um iniciante, mas com um especialista em voo humano.",
+        description: "Nossa equipe não é apenas experiente, é a elite. Todos os instrutores possuem certificações USPA (United States Parachute Association) e entidades brasileiras do esporte, com mais de 5000 saltos computados. Você vai saltar com um especialista em voo humano.",
         icon: Medal,
         navLabel: "Instrutores"
     },
@@ -43,7 +43,7 @@ const SAFETY_ITEMS = [
         id: 3,
         title: "Controle Climático",
         subtitle: "Monitoramento Real-Time",
-        description: "Segurança não se negocia. Temos uma estação meteorológica dedicada no dropzone. Monitoramos ventos, nuvens e visibilidade em tempo real. Se as condições não forem 100% perfeitas e seguras para o seu nível de salto, nós não decolamos.",
+        description: "Segurança não se negocia. Temos uma estação meteorológica dedicada no dropzone. Monitoramos ventos, nuvens e visibilidade em tempo real. Se as condições forem 100% perfeitas e seguras para o seu nível de salto, nós realizamos o seu salto.",
         icon: CloudSun,
         navLabel: "Clima"
     },
@@ -51,7 +51,7 @@ const SAFETY_ITEMS = [
         id: 4,
         title: "Pouso Suave",
         subtitle: "Técnica de Chegada",
-        description: "O medo de 'cair' é comum, mas o pouso é um deslizamento. Nossos paraquedas modernos (Retangulares Ram-Air) permitem um planeio suave, controlado por freios aerodinâmicos. Na maioria das vezes, você pousa suavemente em pé ou deslizando na grama.",
+        description: "O medo de 'cair' é comum, mas o pouso é um deslizamento. Nossos paraquedas modernos permitem um planeio suave, controlado por freios aerodinâmicos. Fazendo você pousa suavemente em pé ou deslizando na grama.",
         icon: Feather, // Changed from PlaneLanding
         navLabel: "Pouso"
     }

@@ -1,0 +1,1009 @@
+﻿<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Fly Up — Design System v2</title>
+<meta name="description" content="Living Design System da Fly Up Elite Skydiving"/>
+<link data-precedence="next" href="flyupparaquedismo.com.br/assets/6f97f66cff128c49_c3af4f27db77.css" rel="stylesheet"/>
+<link data-precedence="next" href="flyupparaquedismo.com.br/assets/ce718594190e0910_b26b84d4d6ac.css" rel="stylesheet"/>
+<style>
+/* =============================================
+   DESIGN SYSTEM NAV
+============================================= */
+.ds-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+  background: rgba(9,9,11,0.95); backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(57,255,20,0.2);
+  padding: 0 2rem; height: 48px;
+  display: flex; align-items: center; gap: 0;
+  overflow-x: auto; white-space: nowrap;
+}
+.ds-nav a {
+  color: #71717a; font-size: 10px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: .15em;
+  padding: 0 1rem; height: 48px; display: inline-flex;
+  align-items: center; text-decoration: none;
+  border-bottom: 2px solid transparent; transition: all .2s;
+}
+.ds-nav a:hover, .ds-nav a.active { color: #39FF14; border-bottom-color: #39FF14; }
+.ds-section-label {
+  display: inline-block; font-size: 10px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: .35em;
+  color: #39FF14; border: 1px solid rgba(57,255,20,0.3);
+  border-radius: 9999px; padding: 4px 16px; margin-bottom: 20px;
+}
+.ds-section-title {
+  font-size: clamp(2rem, 6vw, 5rem); font-weight: 900;
+  font-style: italic; text-transform: uppercase;
+  letter-spacing: -.04em; line-height: .9;
+}
+.ds-wrapper { padding-top: 48px; }
+/* DS Doc helpers */
+.ds-doc-section { padding: 80px 0; }
+.ds-doc-section + .ds-doc-section { border-top: 1px solid rgba(255,255,255,0.05); }
+.ds-container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+.ds-spec-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+  gap: 24px;
+}
+.ds-spec-label { font-size: 11px; font-weight: 900; color: #52525b; text-transform: uppercase; letter-spacing: .15em; min-width: 120px; }
+.ds-spec-meta { font-size: 11px; font-weight: 700; color: #52525b; font-family: monospace; white-space: nowrap; }
+.ds-swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 16px; }
+.ds-swatch { border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
+.ds-swatch-color { height: 80px; }
+.ds-swatch-info { padding: 10px 12px; background: #18181b; }
+.ds-swatch-name { font-size: 11px; font-weight: 900; color: #fff; text-transform: uppercase; letter-spacing: .1em; }
+.ds-swatch-value { font-size: 10px; color: #52525b; font-family: monospace; margin-top: 2px; }
+.ds-btn-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin: 16px 0; }
+.ds-component-group { margin-bottom: 48px; }
+.ds-component-title { font-size: 11px; font-weight: 900; color: #52525b; text-transform: uppercase; letter-spacing: .2em; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.ds-motion-card {
+  background: #18181b; border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px; padding: 32px; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+}
+.ds-motion-label { font-size: 10px; font-weight: 900; color: #52525b; text-transform: uppercase; letter-spacing: .2em; }
+.ds-motion-demo { cursor: pointer; }
+.ds-grid-demo { display: grid; gap: 12px; }
+.ds-grid-cell { background: rgba(57,255,20,0.05); border: 1px dashed rgba(57,255,20,0.2); border-radius: 8px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #52525b; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }
+/* Surface demos */
+.surface-demo { border-radius: 16px; padding: 24px; margin-bottom: 12px; }
+/* Icon grid */
+.ds-icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px,1fr)); gap: 16px; }
+.ds-icon-item { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 8px; background: #18181b; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; }
+.ds-icon-name { font-size: 9px; font-weight: 700; color: #52525b; text-transform: uppercase; letter-spacing: .1em; text-align: center; }
+</style>
+</head>
+<body class="inter_7b064e0d-module__MOT0tq__variable outfit_de7557ea-module__HvPnFW__variable antialiased bg-black text-white min-h-screen flex flex-col selection:bg-neon selection:text-black">
+<!-- DS NAV -->
+<nav class="ds-nav">
+  <a href="#hero">Hero</a>
+  <a href="#typography">Tipografia</a>
+  <a href="#colors">Cores</a>
+  <a href="#components">Componentes</a>
+  <a href="#layout">Layout</a>
+  <a href="#motion">Motion</a>
+  <a href="#icons">Ícones</a>
+</nav>
+
+<div class="ds-wrapper">
+
+<!-- =============================================
+  0) HERO — Clone exato (texto adaptado)
+============================================= -->
+<section id="hero" class="relative h-screen w-full overflow-hidden flex items-center justify-center bg-black">
+  <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60 z-10"></div>
+    <video autoplay class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover opacity-80" loop muted playsinline>
+      <source src="flyupparaquedismo.com.br/assets/VIDEO_HERO_OTIMIZADO_FLYUP_twg_bddb48510fd0.mp4" type="video/mp4"/>
+    </video>
+  </div>
+  <div class="relative z-20 container mx-auto px-6 text-center">
+    <h2 class="hero-text-line text-base md:text-lg font-bold tracking-[0.5em] text-neon mb-4 uppercase">Design System Oficial</h2>
+    <div class="hero-text-line mb-8 min-h-[120px] md:min-h-[180px] flex items-center justify-center">
+      <span class="text-5xl md:text-7xl lg:text-8xl font-black italic tracking-tighter leading-[0.9] text-white block">SISTEMA DE <br/><span class="text-stroke-neon text-transparent uppercase">DESIGN</span></span>
+    </div>
+    <p class="hero-text-line text-gray-300 text-base md:text-xl max-w-2xl mx-auto mb-10 font-light">
+      O padrão visual completo da Fly Up Elite Skydiving. <br class="hidden md:block"/>Componentes, cores, tipografia e motion — tudo em um lugar.
+    </p>
+  </div>
+</section>
+
+<!-- =============================================
+  1) TIPOGRAFIA
+============================================= -->
+<section id="typography" class="ds-doc-section bg-black">
+  <div class="ds-container">
+    <span class="ds-section-label">01 — Tipografia</span>
+    <h2 class="ds-section-title text-white mb-16">Hierarquia<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-400">Tipográfica</span></h2>
+
+    <!-- H1 -->
+    <div class="ds-spec-row">
+      <span class="ds-spec-label">Heading 1</span>
+      <div class="flex-1">
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-black italic uppercase tracking-tighter leading-[0.9] text-white">FLY UP</h1>
+      </div>
+      <span class="ds-spec-meta">80px / 0.9 / Black Italic</span>
+    </div>
+    <!-- H2 gradient -->
+    <div class="ds-spec-row">
+      <span class="ds-spec-label">Heading 2 Gradient</span>
+      <div class="flex-1">
+        <h2 class="text-4xl md:text-6xl lg:text-7xl font-black italic uppercase tracking-tighter leading-none">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-400">SUA AVENTURA</span>
+        </h2>
+      </div>
+      <span class="ds-spec-meta">72px / 1 / Black Italic</span>
+    </div>
+    <!-- H2 stroke -->
+    <div class="ds-spec-row">
+      <span class="ds-spec-label">Heading 2 Stroke</span>
+      <div class="flex-1">
+        <h2 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter leading-none text-transparent" style="-webkit-text-stroke:2px #39FF14">TEM QUE SABER VOAR.</h2>
+      </div>
+      <span class="ds-spec-meta">60px / stroke 2px #39FF14</span>
+    </div>
+    <!-- H3 -->
+    <div class="ds-spec-row">
+      <span class="ds-spec-label">Heading 3</span>
+      <div class="flex-1">
+        <h3 class="text-4xl md:text-5xl font-black italic uppercase tracking-tighter text-white">Salto Duplo</h3>
+      </div>
+      <span class="ds-spec-meta">48px / Black Italic</span>
+    </div>
+    <!-- H4 -->
+    <div class="ds-spec-row">
+      <span class="ds-spec-label">Heading 4</span>
+      <div class="flex-1">
+        <h3 class="text-3xl md:text-4xl font-black italic uppercase tracking-tighter text-white">Curso AFF PRO</h3>
+      </div>
+      <span class="ds-spec-meta">36px / Black Italic</span>
+    </div>
+    <!-- Bold L nav -->
+    <div class="ds-spec-row">
+      <span class="ds-spec-label">Bold L — Nav</span>
+      <div class="flex-1">
+        <span class="text-xs font-black text-white uppercase tracking-widest">SALTO DUPLO / CURSOS / EXPERIÊNCIAS</span>
+      </div>
+      <span class="ds-spec-meta">12px / Black / tracking-widest</span>
+    </div>
+    <!-- Bold M label -->
+    <div class="ds-spec-row">
+      <span class="ds-spec-label">Bold M — Label</span>
+      <div class="flex-1">
+        <span class="text-zinc-500 font-black uppercase tracking-[0.25em] text-base">EXPERIÊNCIAS</span>
+      </div>
+      <span class="ds-spec-meta">16px / tracking [0.25em]</span>
+    </div>
+    <!-- Bold S stat -->
+    <div class="ds-spec-row">
+      <span class="ds-spec-label">Bold S — Stat</span>
+      <div class="flex-1">
+        <span class="text-zinc-500 text-[10px] md:text-xs font-bold uppercase tracking-widest">Saltos Realizados</span>
+      </div>
+      <span class="ds-spec-meta">10–12px / Bold / tracking-widest</span>
+    </div>
+    <!-- Paragraph -->
+    <div class="ds-spec-row">
+      <span class="ds-spec-label">Paragraph</span>
+      <div class="flex-1 max-w-xl">
+        <p class="text-zinc-300 text-lg leading-relaxed">Liderada por <strong class="text-white">Edu Esteves</strong>, recordista mundial e autoridade no esporte, a Fly Up entrega a experiência mais técnica, segura e visceral da sua vida.</p>
+      </div>
+      <span class="ds-spec-meta">18px / light / leading-relaxed</span>
+    </div>
+    <!-- Regular M -->
+    <div class="ds-spec-row">
+      <span class="ds-spec-label">Regular M</span>
+      <div class="flex-1 max-w-xl">
+        <p class="text-zinc-400 text-base leading-relaxed">Acompanhe as aventuras, aprenda com as dicas e sinta a <span class="text-white font-medium">vibe da nossa comunidade</span>.</p>
+      </div>
+      <span class="ds-spec-meta">16px / zinc-400</span>
+    </div>
+    <!-- Regular S -->
+    <div class="ds-spec-row">
+      <span class="ds-spec-label">Regular S</span>
+      <div class="flex-1 max-w-xl">
+        <p class="text-zinc-400 text-sm leading-relaxed">A experiência de paraquedismo mais exclusiva de São Paulo. Segurança absoluta, instrutores de elite.</p>
+      </div>
+      <span class="ds-spec-meta">14px / zinc-400</span>
+    </div>
+    <!-- Stat number -->
+    <div class="ds-spec-row">
+      <span class="ds-spec-label">Stat Number</span>
+      <div class="flex-1">
+        <p class="text-3xl md:text-4xl font-black text-white font-display tabular-nums">1,850+</p>
+      </div>
+      <span class="ds-spec-meta">36–40px / Black / tabular-nums</span>
+    </div>
+    <!-- Price display -->
+    <div class="ds-spec-row">
+      <span class="ds-spec-label">Preço Display</span>
+      <div class="flex-1">
+        <span class="text-4xl font-black italic tracking-tighter leading-none text-[#39FF14] flex items-baseline gap-1.5 font-display">
+          <span class="text-[18px] text-white opacity-90">R$</span><span class="text-[42px] leading-[0.8]">645</span><span class="text-[20px] leading-[0.8]">,00</span>
+        </span>
+      </div>
+      <span class="ds-spec-meta">42px main / italic / neon</span>
+    </div>
+    <!-- Serif quote -->
+    <div class="ds-spec-row">
+      <span class="ds-spec-label">Quote — Serif</span>
+      <div class="flex-1 max-w-xl">
+        <p class="text-xl md:text-2xl font-serif italic text-zinc-600 leading-relaxed">"O único método que combina tecnologia de túnel de vento, instrução de elite e foco absoluto na sua segurança."</p>
+      </div>
+      <span class="ds-spec-meta">20–24px / Serif / Italic</span>
+    </div>
+    <!-- Mono coord -->
+    <div class="ds-spec-row">
+      <span class="ds-spec-label">Mono — Coords</span>
+      <div class="flex-1">
+        <span class="text-[10px] font-mono text-zinc-400">COORD_LOCK: 23.2163° S, 47.7122° W<br/>ALT_STATE: 14.000FT_MSL</span>
+      </div>
+      <span class="ds-spec-meta">10px / Mono / zinc-400</span>
+    </div>
+  </div>
+</section>
+<!-- =============================================
+  2) CORES & SUPERFÍCIES
+============================================= -->
+<section id="colors" class="ds-doc-section bg-zinc-950">
+  <div class="ds-container">
+    <span class="ds-section-label">02 — Cores &amp; Superfícies</span>
+    <h2 class="ds-section-title text-white mb-4">Paleta<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-400">Cromática</span></h2>
+    <p class="text-zinc-500 text-sm mb-12 uppercase tracking-widest font-bold">Todas as cores provêm do CSS original — nenhuma é criada aqui.</p>
+
+    <!-- Cores primárias -->
+    <div class="ds-component-title">Cores Primárias</div>
+    <div class="ds-swatch-grid mb-12">
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background:#39FF14;box-shadow:0 0 30px rgba(57,255,20,0.5)"></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">Neon / Primary</div><div class="ds-swatch-value">#39FF14 · rgb(57,255,20)</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background:#22cc0a"></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">Neon Hover</div><div class="ds-swatch-value">#22cc0a · bg-neon-hover</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background:#10b981"></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">Emerald 400</div><div class="ds-swatch-value">#10b981 · gradient end</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background:#25D366"></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">WhatsApp</div><div class="ds-swatch-value">#25D366 · CTA flutuante</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background:#ef4444"></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">Red 500</div><div class="ds-swatch-value">#ef4444 · Preço riscado</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background:#facc15"></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">Yellow 400</div><div class="ds-swatch-value">#facc15 · Badge pulse</div></div>
+      </div>
+    </div>
+
+    <!-- Backgrounds -->
+    <div class="ds-component-title">Backgrounds & Superfícies</div>
+    <div class="ds-swatch-grid mb-12">
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background:#000000"></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">bg-black</div><div class="ds-swatch-value">#000000 · Hero, main</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background:#09090b"></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">bg-zinc-950</div><div class="ds-swatch-value">#09090b · Footer, sec</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background:#18181b"></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">bg-zinc-900</div><div class="ds-swatch-value">#18181b · Cards dark</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background:#27272a"></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">bg-zinc-800</div><div class="ds-swatch-value">#27272a · Borders</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background:#ffffff;border:1px solid #e4e4e7"></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">bg-white</div><div class="ds-swatch-value">#FFFFFF · Light sections</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background:#f2f2f2"></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">bg-[#F2F2F2]</div><div class="ds-swatch-value">#F2F2F2 · Instagram sec</div></div>
+      </div>
+    </div>
+
+    <!-- Gradientes -->
+    <div class="ds-component-title">Gradientes</div>
+    <div class="ds-swatch-grid mb-12">
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background:linear-gradient(to right,#39FF14,#10b981)"></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">Neon → Emerald</div><div class="ds-swatch-value">Headings, texto destaque</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background:linear-gradient(to bottom,rgba(0,0,0,0.2),transparent,rgba(0,0,0,0.6))"></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">Hero Overlay</div><div class="ds-swatch-value">from-black/20 to-black/60</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background:linear-gradient(to right,transparent,rgba(57,255,20,0.5),transparent)"></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">Line Neon</div><div class="ds-swatch-value">Divisores topo/base</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background:radial-gradient(circle at 50% 50%,rgba(57,255,20,0.08),transparent 70%)"></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">Radial Glow</div><div class="ds-swatch-value">BG sections escuras</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background:linear-gradient(to bottom right,#18181b,#000)"></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">Card Dark</div><div class="ds-swatch-value">Price card, glass dark</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background:linear-gradient(to right,#ef4444,#9333ea)"></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">Red → Purple</div><div class="ds-swatch-value">YT subscribe hover</div></div>
+      </div>
+    </div>
+
+    <!-- Texto -->
+    <div class="ds-component-title">Texto</div>
+    <div class="ds-swatch-grid">
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-black flex items-center justify-center"><span class="text-white font-black text-2xl">Aa</span></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">text-white</div><div class="ds-swatch-value">#FFFFFF · Títulos, CTAs</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-black flex items-center justify-center"><span class="text-zinc-300 font-black text-2xl">Aa</span></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">text-zinc-300</div><div class="ds-swatch-value">#d4d4d8 · Body principal</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-black flex items-center justify-center"><span class="text-zinc-400 font-black text-2xl">Aa</span></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">text-zinc-400</div><div class="ds-swatch-value">#a1a1aa · Descrições</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-black flex items-center justify-center"><span class="text-zinc-500 font-black text-2xl">Aa</span></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">text-zinc-500</div><div class="ds-swatch-value">#71717a · Labels, muted</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-white flex items-center justify-center"><span class="text-zinc-900 font-black text-2xl">Aa</span></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">text-zinc-900</div><div class="ds-swatch-value">#18181b · Light sections</div></div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-black flex items-center justify-center"><span class="text-[#39FF14] font-black text-2xl">Aa</span></div>
+        <div class="ds-swatch-info"><div class="ds-swatch-name">text-neon</div><div class="ds-swatch-value">#39FF14 · Destaques</div></div>
+      </div>
+    </div>
+
+    <!-- Superfícies Glass/Blur -->
+    <div class="ds-component-title mt-12">Superfícies Glass & Blur</div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="surface-demo" style="background:rgba(255,255,255,0.05);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.1)">
+        <p class="text-xs font-black text-zinc-400 uppercase tracking-widest mb-1">Glass Dark</p>
+        <p class="text-zinc-600 text-xs font-mono">bg-white/5 + backdrop-blur-xl</p>
+        <p class="text-zinc-600 text-xs font-mono">border border-white/10</p>
+      </div>
+      <div class="surface-demo" style="background:rgba(57,255,20,0.03);backdrop-filter:blur(24px);border:1px solid rgba(57,255,20,0.2)">
+        <p class="text-xs font-black text-[#39FF14] uppercase tracking-widest mb-1">Glass Neon</p>
+        <p class="text-zinc-600 text-xs font-mono">bg-[#39FF14]/3 + backdrop-blur</p>
+        <p class="text-zinc-600 text-xs font-mono">border border-[#39FF14]/20</p>
+      </div>
+      <div class="surface-demo" style="background:rgba(57,255,20,0.05);border:2px solid rgba(57,255,20,0.3);box-shadow:0 0 50px rgba(57,255,20,0.15)">
+        <p class="text-xs font-black text-[#39FF14] uppercase tracking-widest mb-1">Card Premium (AFF PRO)</p>
+        <p class="text-zinc-600 text-xs font-mono">border-[#39FF14] + ring-1</p>
+        <p class="text-zinc-600 text-xs font-mono">shadow-[0_0_50px_rgba(57,255,20,.15)]</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- =============================================
+  3) COMPONENTES UI
+============================================= -->
+<section id="components" class="ds-doc-section bg-black">
+  <div class="ds-container">
+    <span class="ds-section-label">03 — Componentes UI</span>
+    <h2 class="ds-section-title text-white mb-16">Biblioteca<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-400">de Componentes</span></h2>
+
+    <!-- BOTÕES -->
+    <div class="ds-component-group">
+      <div class="ds-component-title">Botões — Estados</div>
+      <div class="ds-btn-row">
+        <!-- Primary CTA -->
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer h-9 has-[>svg]:px-3 bg-neon hover:bg-neon-hover text-black font-black italic uppercase tracking-wider px-8 py-6 rounded-xl hover:scale-105 transition-all shadow-[0_0_20px_rgba(57,255,20,0.3)] hover:shadow-[0_0_40px_rgba(57,255,20,0.5)] relative overflow-hidden group/btn" data-slot="button">
+          <span class="relative z-10">Contato / Agendar</span>
+          <div class="absolute inset-0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"></div>
+        </button>
+
+        <!-- Card CTA neon -->
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer py-2 has-[>svg]:px-3 flex-1 max-w-[160px] bg-neon text-black font-black italic rounded-xl h-14 text-sm tracking-wider border-none hover:bg-neon-hover shadow-lg shadow-neon/30 group/btn transition-all duration-300 active:scale-95 px-2" data-slot="button">
+          AGENDAR
+          <svg aria-hidden="true" class="lucide lucide-arrow-up-right ml-1 size-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </button>
+
+        <!-- Outline neon -->
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer shadow-xs py-2 has-[>svg]:px-3 max-w-[160px] h-14 border-2 border-neon text-neon font-black italic rounded-xl text-sm tracking-widest hover:bg-neon hover:text-black transition-all duration-300 active:scale-95 px-6 bg-black" data-slot="button">SAIBA MAIS</button>
+
+        <!-- White round (Curso AFF hero) -->
+        <button class="inline-flex items-center justify-center gap-2 cursor-pointer bg-white hover:bg-[#39FF14] text-black font-black italic uppercase text-lg px-12 py-4 rounded-full transition-all duration-500 hover:scale-105 active:scale-95 group overflow-hidden relative" data-slot="button">
+          <span class="relative z-10 flex items-center">Iniciar Formação
+            <svg class="lucide lucide-arrow-right ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </button>
+
+        <!-- Dark zinc -->
+        <button class="inline-flex items-center justify-center gap-2 cursor-pointer py-4 font-black uppercase tracking-wider text-sm rounded-xl transition-all bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700 px-6">Comprar Agora</button>
+
+        <!-- Big italic neon (checkout) -->
+        <button class="inline-flex items-center justify-center gap-2 cursor-pointer py-5 bg-[#39FF14] hover:bg-[#2ecc11] text-black font-black italic uppercase text-2xl rounded-xl shadow-[0_0_30px_rgba(57,255,20,0.5)] hover:shadow-[0_0_50px_rgba(57,255,20,0.7)] transition-all duration-300 px-8">Quero Saltar</button>
+
+        <!-- Disabled state -->
+        <button class="inline-flex items-center justify-center gap-2 cursor-pointer bg-neon text-black font-black italic uppercase tracking-wider px-8 py-4 rounded-xl opacity-50 pointer-events-none" disabled>Desabilitado</button>
+      </div>
+      <!-- Social button -->
+      <div class="ds-btn-row mt-4">
+        <a class="group relative px-8 py-4 bg-white hover:bg-gray-100 text-black rounded-full overflow-hidden transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(57,255,20,0.4)] inline-flex items-center justify-center" href="#">
+          <div class="absolute inset-0 bg-neon translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)]"></div>
+          <span class="relative z-10 font-black text-xs uppercase tracking-[0.2em] flex items-center gap-2 group-hover:text-black transition-colors">Junte-se a nós
+            <svg class="lucide lucide-arrow-right w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
+        <a class="group relative inline-flex items-center justify-center px-10 py-5 bg-transparent overflow-hidden rounded-full transition-all hover:scale-105 active:scale-95" href="#">
+          <div class="absolute inset-0 border border-zinc-700 rounded-full group-hover:border-white/50 transition-colors duration-500"></div>
+          <div class="absolute -inset-1 bg-gradient-to-r from-red-500 to-purple-600 opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-500"></div>
+          <span class="relative z-10 flex items-center gap-3 text-white text-xs font-bold uppercase tracking-[0.3em]">Inscrever-se no Canal
+            <svg class="lucide lucide-arrow-up-right w-4 h-4 text-zinc-400 group-hover:text-white group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform duration-300" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </span>
+        </a>
+        <a class="h-14 bg-black text-[#39FF14] hover:bg-zinc-800 font-bold uppercase tracking-wider rounded-xl px-10 text-lg transition-all hover:scale-105 shadow-xl flex items-center justify-center" href="#">Seguir Agora</a>
+        <a class="h-14 px-6 flex items-center justify-center border-2 border-zinc-200 rounded-xl font-bold uppercase tracking-wider text-sm hover:border-black transition-colors text-zinc-800 bg-white" href="#">Ver Stories</a>
+      </div>
+    </div>
+
+    <!-- INPUT -->
+    <div class="ds-component-group">
+      <div class="ds-component-title">Input — E-mail Newsletter</div>
+      <div class="flex flex-col gap-3 max-w-sm">
+        <input class="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon/50 transition-all placeholder:text-zinc-600" placeholder="Seu melhor e-mail (default)" type="email"/>
+        <input class="w-full bg-zinc-900 border border-neon rounded-lg px-4 py-3 text-sm text-white outline-none ring-1 ring-neon/50 placeholder:text-zinc-600" placeholder="E-mail (focus)" type="email" value="voar@flyup.com.br"/>
+      </div>
+    </div>
+
+    <!-- CARDS EXPERIÊNCIA -->
+    <div class="ds-component-group">
+      <div class="ds-component-title">Card de Experiência (hover lift + reveal)</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl">
+        <div class="group relative h-[400px] w-full rounded-[40px] overflow-hidden cursor-pointer bg-white shadow-[0_20px_40px_-5px_rgba(0,0,0,0.1),0_0_0_1px_rgba(0,0,0,0.05)] hover:shadow-[0_45px_100px_-20px_rgba(0,0,0,0.3),0_0_50px_rgba(57,255,20,0.15)] flex flex-col perspective-1000 transition-all duration-500">
+          <div class="relative w-full h-full overflow-hidden">
+            <img alt="Salto Duplo" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 ease-out" src="flyupparaquedismo.com.br/assets/Salto_Duplo_1_hprebk_79c47e9d6d80.png"/>
+            <div class="absolute top-8 right-8 z-40">
+              <div class="bg-black/40 backdrop-blur-md border border-white/10 rounded-xl px-4 py-2 flex items-center gap-2">
+                <svg aria-hidden="true" class="lucide lucide-zap text-neon" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-white">Adrenalina</span>
+              </div>
+            </div>
+            <div class="absolute bottom-12 left-10 z-20 pointer-events-none">
+              <h3 class="text-4xl md:text-5xl font-black italic uppercase tracking-tighter text-white drop-shadow-[0_2px_15px_rgba(0,0,0,0.8)] font-display">Salto Duplo</h3>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+          </div>
+        </div>
+
+        <!-- Card dark (YouTube content) -->
+        <div class="group relative p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 hover:border-lime-500/30 hover:bg-zinc-800/80 transition-all duration-300 overflow-hidden hover:shadow-2xl hover:shadow-lime-900/10 hover:-translate-y-1 cursor-pointer">
+          <div class="absolute inset-0 bg-gradient-to-br from-lime-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative z-10 flex flex-row items-center gap-5">
+            <div class="p-0 w-20 h-20 rounded-2xl bg-zinc-950/50 border border-zinc-800/50 group-hover:border-lime-500/50 group-hover:scale-110 transition-all duration-300 shadow-lg flex items-center justify-center overflow-hidden shrink-0">
+              <img alt="Curso AFF" class="w-full h-full object-contain transform scale-[1.7] group-hover:scale-[1.9] filter brightness-125 group-hover:brightness-150 group-hover:drop-shadow-[0_0_15px_rgba(57,255,20,0.4)] transition-all duration-500" src="flyupparaquedismo.com.br/assets/H8vkCne_f7141297ccfb.png"/>
+            </div>
+            <div>
+              <h3 class="text-white font-black uppercase text-sm tracking-wide group-hover:text-lime-400 transition-colors">Curso AFF</h3>
+              <p class="text-zinc-500 text-xs mt-1 font-medium group-hover:text-zinc-400 transition-colors">Passo a passo completo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BADGE / TAG -->
+    <div class="ds-component-group">
+      <div class="ds-component-title">Badges & Tags</div>
+      <div class="flex flex-wrap gap-3">
+        <span class="text-[11px] font-bold px-4 py-1.5 rounded-full uppercase tracking-tight text-zinc-500 bg-zinc-100 text-nowrap">12.000FT</span>
+        <span class="text-[11px] font-bold px-4 py-1.5 rounded-full uppercase tracking-tight text-zinc-500 bg-zinc-100 text-nowrap">50S QUEDA</span>
+        <span class="text-[11px] font-bold px-4 py-1.5 rounded-full uppercase tracking-tight bg-yellow-400 text-black border border-black/10 shadow-[0_0_15px_rgba(250,204,21,0.3)] animate-pulse">A partir da categoria B</span>
+        <span class="inline-block bg-[#39FF14] text-black text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-[0_0_20px_rgba(57,255,20,0.3)]">Incluso</span>
+        <span class="inline-block bg-red-500/10 text-red-500 border border-red-500/20 text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-full">Inexistente</span>
+        <span class="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-lg bg-[#39FF14] text-black">Renascimento</span>
+        <span class="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-lg bg-black text-white">Performance</span>
+        <span class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-red-950/30 border border-red-900/50 backdrop-blur-sm">
+          <div class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></div>
+          <span class="text-red-400 font-bold uppercase tracking-[0.3em] text-[10px]">FLY UP TV</span>
+        </span>
+        <span class="bg-[#39FF14] text-black font-black text-xs uppercase tracking-widest px-4 py-2 rounded-full shadow-[0_0_20px_rgba(57,255,20,0.5)]">Oferta Especial</span>
+      </div>
+    </div>
+
+    <!-- ACCORDION FAQ -->
+    <div class="ds-component-group">
+      <div class="ds-component-title">Accordion — FAQ (ambos os estilos)</div>
+      <div class="space-y-3 max-w-2xl">
+        <!-- Aberto (dark) -->
+        <div class="border rounded-lg overflow-hidden border-primary/30 bg-zinc-900/80">
+          <button class="w-full flex items-center justify-between p-6 text-left">
+            <span class="text-lg font-bold font-montserrat uppercase text-primary">É seguro saltar de paraquedas?</span>
+            <span class="p-2 rounded-full bg-primary text-black">
+              <svg class="lucide lucide-minus" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="overflow-hidden max-h-32 opacity-100">
+            <div class="p-6 pt-0 text-zinc-400 leading-relaxed border-t border-white/5 mt-2">Absolutamente. O paraquedismo é regulamentado e segue normas rígidas de segurança. Na Fly Up, utilizamos equipamentos de última geração.</div>
+          </div>
+        </div>
+        <!-- Fechado (dark zinc) -->
+        <div class="border border-white/5 bg-zinc-900/30 rounded-lg overflow-hidden hover:border-white/10">
+          <button class="w-full flex items-center justify-between p-6 text-left">
+            <span class="text-lg font-bold font-montserrat uppercase text-white">Preciso ter experiência prévia?</span>
+            <span class="p-2 rounded-full bg-white/5 text-zinc-400">
+              <svg class="lucide lucide-plus" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            </span>
+          </button>
+        </div>
+        <!-- AFF PRO style -->
+        <div class="border rounded-xl border-zinc-800 bg-zinc-900/40 hover:border-zinc-700">
+          <button class="w-full flex items-center justify-between p-5 text-left">
+            <span class="font-bold uppercase tracking-wide text-sm text-zinc-400">Quantos saltos eu faço no curso?</span>
+            <svg class="lucide lucide-chevron-down w-5 h-5 text-zinc-600" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICING CARD -->
+    <div class="ds-component-group">
+      <div class="ds-component-title">Pricing Card — Destaque (AFF PRO)</div>
+      <div class="max-w-xs">
+        <div class="relative p-6 rounded-3xl flex flex-col border border-[#39FF14] bg-zinc-900/60 shadow-[0_0_50px_rgba(57,255,20,0.15)] ring-1 ring-[#39FF14]/50">
+          <div class="mb-5 pb-5 border-b border-zinc-800/80">
+            <h3 class="font-black uppercase italic text-3xl text-white tracking-wide mb-1">AFF PRO</h3>
+            <p class="text-[#39FF14] text-xs font-bold uppercase tracking-widest opacity-80">A Formação Premium</p>
+          </div>
+          <div class="mb-6">
+            <div class="flex items-baseline gap-1 mb-2">
+              <span class="text-zinc-500 font-bold text-xl">12x</span>
+              <span class="text-white font-black tracking-tighter text-5xl">R$ 775</span>
+            </div>
+          </div>
+          <button class="w-full flex items-center justify-center gap-2 py-4 font-black uppercase tracking-wider text-sm rounded-xl bg-[#39FF14] hover:bg-[#2ecc11] text-black shadow-[0_0_20px_rgba(57,255,20,0.3)] hover:shadow-[0_0_30px_rgba(57,255,20,0.5)]">Quero ser AFF PRO</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- METRICS CARD -->
+    <div class="ds-component-group">
+      <div class="ds-component-title">Card de Métricas — Números de Elite</div>
+      <div class="max-w-2xl relative bg-zinc-900/40 backdrop-blur-xl border border-white/5 p-8 rounded-2xl shadow-2xl hover:border-neon/30 transition-colors duration-500 group/metrics">
+        <div class="absolute -top-4 left-8 bg-neon text-black px-4 py-1.5 rounded-md font-black text-[10px] uppercase tracking-[0.2em] shadow-[0_0_15px_rgba(57,255,20,0.4)] border border-white/20 transform -skew-x-12">
+          <span class="block transform skew-x-12">Números de Elite</span>
+        </div>
+        <div class="grid grid-cols-4 gap-8 relative z-10">
+          <div class="flex flex-col items-start px-2 group/stat">
+            <p class="text-3xl md:text-4xl font-black text-white font-display mb-1 group-hover/stat:text-neon transition-colors duration-300"><span class="tabular-nums">1,300+</span></p>
+            <p class="text-zinc-500 text-[10px] font-bold uppercase tracking-widest">Saltos Realizados</p>
+          </div>
+          <div class="flex flex-col items-start px-2 group/stat">
+            <p class="text-3xl md:text-4xl font-black text-white font-display mb-1 group-hover/stat:text-neon transition-colors duration-300"><span class="tabular-nums">1,850+</span></p>
+            <p class="text-zinc-500 text-[10px] font-bold uppercase tracking-widest">Alunos Formados</p>
+          </div>
+          <div class="flex flex-col items-start px-2 group/stat">
+            <p class="text-3xl md:text-4xl font-black text-white font-display mb-1 group-hover/stat:text-neon transition-colors duration-300"><span class="tabular-nums">100%</span></p>
+            <p class="text-zinc-500 text-[10px] font-bold uppercase tracking-widest">Segurança</p>
+          </div>
+          <div class="flex flex-col items-start px-2 group/stat">
+            <p class="text-3xl md:text-4xl font-black text-white font-display mb-1 group-hover/stat:text-neon transition-colors duration-300"><span class="tabular-nums">#TOP1</span></p>
+            <p class="text-zinc-500 text-[10px] font-bold uppercase tracking-widest">Canal do Youtube</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <div class="ds-component-group">
+      <div class="ds-component-title">Tabela Comparativa</div>
+      <div class="bg-zinc-950 rounded-2xl shadow-[0_0_80px_rgba(57,255,20,0.12)] border border-zinc-800 overflow-hidden max-w-2xl">
+        <div class="overflow-x-auto">
+          <table class="w-full border-collapse">
+            <thead>
+              <tr>
+                <th class="text-left py-4 px-4 text-zinc-400 text-xs uppercase tracking-widest font-bold w-1/3"></th>
+                <th class="py-4 px-6 w-1/3 align-bottom">
+                  <div class="bg-black text-white rounded-t-xl py-3 px-4 border-t-4 border-[#39FF14] shadow-[0_-10px_20px_rgba(57,255,20,0.15)]">
+                    <span class="font-black italic uppercase text-lg tracking-wide block">Método Fly Up</span>
+                  </div>
+                </th>
+                <th class="py-4 px-6 w-1/3 align-bottom">
+                  <div class="py-3 px-4"><span class="text-zinc-500 font-bold italic uppercase text-base tracking-wide">Escolas Comuns</span></div>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-zinc-950/40">
+              <tr class="border-b border-zinc-800/50 hover:bg-zinc-900/50 transition-colors">
+                <td class="py-5 px-6"><span class="text-zinc-300 text-xs font-black uppercase tracking-widest">Túnel de Vento</span></td>
+                <td class="py-5 px-6 text-center bg-[#39FF14]/5 border-r border-l border-zinc-800"><span class="inline-block bg-[#39FF14] text-black text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-[0_0_20px_rgba(57,255,20,0.3)]">Incluso</span></td>
+                <td class="py-5 px-6 text-center"><span class="inline-block bg-red-500/10 text-red-500 border border-red-500/20 text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-full">Inexistente</span></td>
+              </tr>
+              <tr class="border-b border-zinc-800/50 hover:bg-zinc-900/50 transition-colors">
+                <td class="py-5 px-6"><span class="text-zinc-300 text-xs font-black uppercase tracking-widest">Instrutor</span></td>
+                <td class="py-5 px-6 text-center bg-[#39FF14]/5 border-r border-l border-zinc-800">
+                  <div class="flex items-center justify-center gap-2">
+                    <svg class="lucide lucide-check w-5 h-5 text-[#39FF14] stroke-[3px]" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+                    <span class="text-white font-bold text-sm">Elite / Recordista</span>
+                  </div>
+                </td>
+                <td class="py-5 px-6 text-center">
+                  <div class="flex items-center justify-center gap-2">
+                    <svg class="lucide lucide-x w-5 h-5 text-red-500 stroke-[3px]" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    <span class="text-red-500/80 text-sm font-bold uppercase">Padrão</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- =============================================
+  4) LAYOUT & SPACING
+============================================= -->
+<section id="layout" class="ds-doc-section bg-zinc-950">
+  <div class="ds-container">
+    <span class="ds-section-label">04 — Layout &amp; Spacing</span>
+    <h2 class="ds-section-title text-white mb-16">Layout &amp;<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-400">Estrutura</span></h2>
+
+    <!-- Container -->
+    <div class="ds-component-group">
+      <div class="ds-component-title">Container & Grid Base</div>
+      <div class="space-y-3 text-sm">
+        <div class="flex items-center justify-between p-4 bg-zinc-900/50 rounded-xl border border-zinc-800">
+          <span class="text-zinc-400 font-mono">.container.mx-auto.px-6</span>
+          <span class="text-zinc-500 font-mono text-xs">max-width: ~1280px · padding: 24px</span>
+        </div>
+        <div class="flex items-center justify-between p-4 bg-zinc-900/50 rounded-xl border border-zinc-800">
+          <span class="text-zinc-400 font-mono">.container.max-w-4xl</span>
+          <span class="text-zinc-500 font-mono text-xs">FAQ, price sections: ~896px</span>
+        </div>
+        <div class="flex items-center justify-between p-4 bg-zinc-900/50 rounded-xl border border-zinc-800">
+          <span class="text-zinc-400 font-mono">.container.max-w-6xl</span>
+          <span class="text-zinc-500 font-mono text-xs">Cards grid, hero comparativo: ~1152px</span>
+        </div>
+        <div class="flex items-center justify-between p-4 bg-zinc-900/50 rounded-xl border border-zinc-800">
+          <span class="text-zinc-400 font-mono">Section padding</span>
+          <span class="text-zinc-500 font-mono text-xs">py-24 (96px) · py-32 (128px)</span>
+        </div>
+        <div class="flex items-center justify-between p-4 bg-zinc-900/50 rounded-xl border border-zinc-800">
+          <span class="text-zinc-400 font-mono">Hero height</span>
+          <span class="text-zinc-500 font-mono text-xs">h-screen (100vh) · overflow-hidden</span>
+        </div>
+        <div class="flex items-center justify-between p-4 bg-zinc-900/50 rounded-xl border border-zinc-800">
+          <span class="text-zinc-400 font-mono">Header height</span>
+          <span class="text-zinc-500 font-mono text-xs">h-20 (80px) · fixed top-0 z-50</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Padrão 1: Hero Layout - Centro -->
+    <div class="ds-component-group">
+      <div class="ds-component-title">Padrão 1 — Hero Centralizado (Home)</div>
+      <div class="relative h-48 bg-black rounded-2xl border border-zinc-800 overflow-hidden flex items-center justify-center">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60"></div>
+        <div class="text-center relative z-10">
+          <div class="ds-grid-cell border-none bg-transparent text-zinc-600 mb-2">EYEBROW TEXT · tracking-[0.5em] · text-neon · uppercase</div>
+          <div class="ds-grid-cell border-none bg-transparent text-zinc-400 mb-2">H1 HEADLINE · font-black italic · 5xl → 8xl · text-white</div>
+          <div class="ds-grid-cell border-none bg-transparent text-zinc-600">PARAGRAPH · text-gray-300 · max-w-2xl</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Padrão 2: Grid 2 colunas stagger -->
+    <div class="ds-component-group">
+      <div class="ds-component-title">Padrão 2 — Grid 2 Col Stagger (Experiências)</div>
+      <div class="grid grid-cols-2 gap-4 max-w-xl">
+        <div class="flex flex-col gap-4">
+          <div class="ds-grid-cell h-24 rounded-[16px]">Card 1<br/>(topo)</div>
+          <div class="ds-grid-cell h-24 rounded-[16px]">Card 3</div>
+          <div class="ds-grid-cell h-24 rounded-[16px]">Card 5</div>
+        </div>
+        <div class="flex flex-col gap-4 mt-16">
+          <div class="ds-grid-cell h-24 rounded-[16px]">Card 2<br/>(offset md:mt-400px)</div>
+          <div class="ds-grid-cell h-24 rounded-[16px]">Card 4</div>
+        </div>
+      </div>
+      <p class="text-zinc-600 text-xs font-mono mt-3">grid-cols-2 · col-2 offset: md:mt-[400px]</p>
+    </div>
+
+    <!-- Padrão 3: Split 50/50 -->
+    <div class="ds-component-group">
+      <div class="ds-component-title">Padrão 3 — Split 50/50 (Legado, Instructor)</div>
+      <div class="grid grid-cols-2 gap-6 max-w-2xl">
+        <div class="ds-grid-cell h-40 rounded-xl flex-col gap-2">
+          <div class="text-xs text-zinc-500 font-mono">TEXT CONTENT</div>
+          <div class="text-[9px] text-zinc-700">H2 + paragraph + metrics card</div>
+          <div class="text-[9px] text-zinc-700">gap-16 lg:gap-24 · items-center</div>
+        </div>
+        <div class="ds-grid-cell h-40 rounded-xl flex-col gap-2">
+          <div class="text-xs text-zinc-500 font-mono">IMAGE/MEDIA</div>
+          <div class="text-[9px] text-zinc-700">aspect-[4/5] · rounded-3xl</div>
+          <div class="text-[9px] text-zinc-700">group hover: grayscale → color</div>
+        </div>
+      </div>
+      <p class="text-zinc-600 text-xs font-mono mt-3">grid-cols-1 lg:grid-cols-2 · gap-16 lg:gap-24 · items-center</p>
+    </div>
+
+    <!-- Padrão 4: Timeline zigzag -->
+    <div class="ds-component-group">
+      <div class="ds-component-title">Padrão 4 — Timeline Zigzag (Jornada AFF)</div>
+      <div class="relative max-w-xl">
+        <div class="absolute left-1/2 top-0 bottom-0 w-px bg-zinc-800 hidden md:block"></div>
+        <div class="flex flex-col gap-8">
+          <div class="relative flex items-center justify-between">
+            <div class="ds-grid-cell w-5/12 h-16 text-[9px] text-zinc-600 flex-col">TEXT RIGHT<br/>md:text-right md:pr-16</div>
+            <div class="w-10 h-10 rounded-full bg-[#39FF14] flex items-center justify-center z-10 text-black font-black text-xs absolute left-1/2 -translate-x-1/2 hidden md:flex shadow-[0_0_20px_rgba(57,255,20,0.5)]">01</div>
+            <div class="ds-grid-cell w-5/12 h-16 text-[9px] text-zinc-600 flex-col">IMAGE<br/>aspect-video rounded-2xl</div>
+          </div>
+          <div class="relative flex items-center justify-between">
+            <div class="ds-grid-cell w-5/12 h-16 text-[9px] text-zinc-600 flex-col">IMAGE<br/>md:order-first md:pr-16</div>
+            <div class="w-10 h-10 rounded-full bg-zinc-950 border-2 border-[#39FF14] flex items-center justify-center z-10 text-[#39FF14] font-black text-xs absolute left-1/2 -translate-x-1/2 hidden md:flex">02</div>
+            <div class="ds-grid-cell w-5/12 h-16 text-[9px] text-zinc-600 flex-col">TEXT LEFT<br/>md:order-last md:pl-16</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Padrão 5: Pricing grid 4 colunas -->
+    <div class="ds-component-group">
+      <div class="ds-component-title">Padrão 5 — Pricing Grid 4 Colunas</div>
+      <div class="grid grid-cols-4 gap-3 max-w-2xl">
+        <div class="ds-grid-cell h-24 rounded-2xl text-[9px] text-zinc-700">Curso Online<br/>border-zinc-800</div>
+        <div class="ds-grid-cell h-24 rounded-2xl text-[9px] text-zinc-700">Teórico + N1<br/>border-zinc-800</div>
+        <div class="ds-grid-cell h-24 rounded-2xl text-[9px] text-zinc-700">AFF Conv.<br/>border-zinc-800</div>
+        <div class="ds-grid-cell h-24 rounded-2xl text-[9px] text-[#39FF14] border-[#39FF14] shadow-[0_0_30px_rgba(57,255,20,0.15)]">AFF PRO<br/>DESTAQUE<br/>lg:-translate-y-4</div>
+      </div>
+      <p class="text-zinc-600 text-xs font-mono mt-3">grid-cols-1 md:grid-cols-2 lg:grid-cols-4 · gap-6 · items-stretch</p>
+    </div>
+
+    <!-- Spacing Scale -->
+    <div class="ds-component-group">
+      <div class="ds-component-title">Spacing Scale</div>
+      <div class="flex items-end gap-4 flex-wrap">
+        <div class="text-center"><div class="bg-[#39FF14]/20 border border-[#39FF14]/30 w-6 h-2 mb-1 rounded"></div><span class="text-zinc-600 text-[9px] font-mono">8px</span></div>
+        <div class="text-center"><div class="bg-[#39FF14]/20 border border-[#39FF14]/30 w-8 h-4 mb-1 rounded"></div><span class="text-zinc-600 text-[9px] font-mono">16px</span></div>
+        <div class="text-center"><div class="bg-[#39FF14]/20 border border-[#39FF14]/30 w-10 h-6 mb-1 rounded"></div><span class="text-zinc-600 text-[9px] font-mono">24px</span></div>
+        <div class="text-center"><div class="bg-[#39FF14]/20 border border-[#39FF14]/30 w-12 h-8 mb-1 rounded"></div><span class="text-zinc-600 text-[9px] font-mono">32px</span></div>
+        <div class="text-center"><div class="bg-[#39FF14]/20 border border-[#39FF14]/30 w-16 h-10 mb-1 rounded"></div><span class="text-zinc-600 text-[9px] font-mono">40px</span></div>
+        <div class="text-center"><div class="bg-[#39FF14]/20 border border-[#39FF14]/30 w-20 h-12 mb-1 rounded"></div><span class="text-zinc-600 text-[9px] font-mono">48px</span></div>
+        <div class="text-center"><div class="bg-[#39FF14]/20 border border-[#39FF14]/30 w-24 h-16 mb-1 rounded"></div><span class="text-zinc-600 text-[9px] font-mono">64px</span></div>
+        <div class="text-center"><div class="bg-[#39FF14]/20 border border-[#39FF14]/30 w-28 h-20 mb-1 rounded"></div><span class="text-zinc-600 text-[9px] font-mono">80px</span></div>
+        <div class="text-center"><div class="bg-[#39FF14]/20 border border-[#39FF14]/30 w-32 h-24 mb-1 rounded"></div><span class="text-zinc-600 text-[9px] font-mono">96px</span></div>
+        <div class="text-center"><div class="bg-[#39FF14]/20 border border-[#39FF14]/30 w-36 h-32 mb-1 rounded"></div><span class="text-zinc-600 text-[9px] font-mono">128px</span></div>
+      </div>
+    </div>
+
+    <!-- Border radius -->
+    <div class="ds-component-group">
+      <div class="ds-component-title">Border Radius</div>
+      <div class="flex gap-6 flex-wrap items-end">
+        <div class="text-center"><div class="bg-zinc-800 border border-zinc-700 w-16 h-16 rounded-lg mb-2"></div><span class="text-zinc-600 text-[9px] font-mono">rounded-lg<br/>8px</span></div>
+        <div class="text-center"><div class="bg-zinc-800 border border-zinc-700 w-16 h-16 rounded-xl mb-2"></div><span class="text-zinc-600 text-[9px] font-mono">rounded-xl<br/>12px · buttons</span></div>
+        <div class="text-center"><div class="bg-zinc-800 border border-zinc-700 w-16 h-16 rounded-2xl mb-2"></div><span class="text-zinc-600 text-[9px] font-mono">rounded-2xl<br/>16px · cards</span></div>
+        <div class="text-center"><div class="bg-zinc-800 border border-zinc-700 w-16 h-16 rounded-3xl mb-2"></div><span class="text-zinc-600 text-[9px] font-mono">rounded-3xl<br/>24px · pricing</span></div>
+        <div class="text-center"><div class="bg-zinc-800 border border-zinc-700 w-16 h-16 rounded-full mb-2"></div><span class="text-zinc-600 text-[9px] font-mono">rounded-full<br/>buttons, avatars</span></div>
+        <div class="text-center"><div class="bg-zinc-800 border border-zinc-700 w-20 h-20 rounded-[40px] mb-2"></div><span class="text-zinc-600 text-[9px] font-mono">rounded-[40px]<br/>experience cards</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- MOTION SECTION -->
+<section id="motion" class="ds-doc-section bg-black">
+  <div class="ds-container">
+    <span class="ds-section-label">05 — Motion &amp; Interação</span>
+    <h2 class="ds-section-title text-white mb-4">Motion &amp;<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-400">Animações</span></h2>
+    <p class="text-zinc-500 text-sm mb-16 uppercase tracking-widest font-bold">Todas as transições reusam classes exatas do CSS original.</p>
+
+    <style>
+    @keyframes ds-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    @keyframes ds-glow-pulse { 0%,100%{box-shadow:0 0 20px rgba(57,255,20,0.3)} 50%{box-shadow:0 0 50px rgba(57,255,20,0.7)} }
+    .ds-anim-float { animation: ds-float 3s ease-in-out infinite; }
+    .ds-anim-glow { animation: ds-glow-pulse 2s ease-in-out infinite; }
+    </style>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+
+      <!-- 1. Button shine sweep -->
+      <div class="ds-motion-card">
+        <div class="ds-motion-label">Button Shine Sweep</div>
+        <button class="inline-flex items-center justify-center gap-2 cursor-pointer bg-neon hover:bg-neon-hover text-black font-black italic uppercase tracking-wider px-8 py-4 rounded-xl hover:scale-105 transition-all shadow-[0_0_20px_rgba(57,255,20,0.3)] hover:shadow-[0_0_40px_rgba(57,255,20,0.5)] relative overflow-hidden group/btn">
+          <span class="relative z-10">Hover me</span>
+          <div class="absolute inset-0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"></div>
+        </button>
+        <p class="text-zinc-600 text-[10px] font-mono">translate-x-[-100%] → [100%]<br/>duration-1000 · skew-x-12</p>
+      </div>
+
+      <!-- 2. Image scale on hover -->
+      <div class="ds-motion-card">
+        <div class="ds-motion-label">Image Scale (Card Hover)</div>
+        <div class="group w-48 h-32 rounded-2xl overflow-hidden cursor-pointer border border-zinc-800">
+          <img alt="demo" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 ease-out" src="flyupparaquedismo.com.br/assets/Salto_Duplo_1_hprebk_79c47e9d6d80.png"/>
+        </div>
+        <p class="text-zinc-600 text-[10px] font-mono">group-hover:scale-110<br/>transition-transform duration-1000 ease-out</p>
+      </div>
+
+      <!-- 3. Nav underline -->
+      <div class="ds-motion-card">
+        <div class="ds-motion-label">Nav Underline Expand</div>
+        <a class="flex items-center gap-1.5 text-xs font-black text-white hover:text-neon transition-colors uppercase tracking-widest py-4 relative group cursor-pointer">
+          SALTO DUPLO
+          <span class="absolute bottom-2 left-0 w-0 h-[2px] bg-neon transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <p class="text-zinc-600 text-[10px] font-mono">w-0 → group-hover:w-full<br/>transition-all duration-300</p>
+      </div>
+
+      <!-- 4. Social icon hover -->
+      <div class="ds-motion-card">
+        <div class="ds-motion-label">Social Icon Lift + Glow</div>
+        <a class="w-14 h-14 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-400 hover:bg-neon hover:text-black transition-all duration-300 hover:scale-110 hover:shadow-[0_0_15px_rgba(57,255,20,0.4)] cursor-pointer">
+          <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+        </a>
+        <p class="text-zinc-600 text-[10px] font-mono">hover:bg-neon hover:scale-110<br/>hover:shadow-[0_0_15px_rgba(57,255,20,0.4)]</p>
+      </div>
+
+      <!-- 5. YouTube channel button -->
+      <div class="ds-motion-card">
+        <div class="ds-motion-label">Fill Slide (YouTube CTA)</div>
+        <a class="group relative px-8 py-3 bg-white hover:bg-gray-100 text-black rounded-full overflow-hidden transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(57,255,20,0.4)] inline-flex items-center justify-center cursor-pointer">
+          <div class="absolute inset-0 bg-neon translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)]"></div>
+          <span class="relative z-10 font-black text-xs uppercase tracking-[0.2em] group-hover:text-black transition-colors">Junte-se a nós</span>
+        </a>
+        <p class="text-zinc-600 text-[10px] font-mono">bg-neon translate-y-[100%] →<br/>group-hover:translate-y-0 · cubic-bezier</p>
+      </div>
+
+      <!-- 6. Card reveal panel -->
+      <div class="ds-motion-card">
+        <div class="ds-motion-label">Card Reveal Panel (Experiências)</div>
+        <p class="text-zinc-600 text-[10px] font-mono text-center">Panel absoluto bottom-0<br/>transform:translateY(100%) inicial<br/>group-hover → translateY(0)<br/>transition-transform duration-500</p>
+        <div class="relative w-48 h-24 bg-zinc-800 rounded-xl overflow-hidden group cursor-pointer border border-zinc-700">
+          <div class="absolute inset-x-0 bottom-0 bg-white z-30 px-3 py-2 flex flex-col gap-1 shadow transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+            <p class="text-xs font-black italic uppercase text-black">Salto Duplo</p>
+            <p class="text-[10px] text-zinc-500">hover para revelar</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Ping dot -->
+      <div class="ds-motion-card">
+        <div class="ds-motion-label">Ping Dot (Live indicator)</div>
+        <div class="flex items-center gap-3">
+          <span class="relative flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-lime-500"></span>
+          </span>
+          <span class="text-xs font-bold text-zinc-300 uppercase tracking-[0.2em]">COMUNIDADE LIVE</span>
+        </div>
+        <p class="text-zinc-600 text-[10px] font-mono">animate-ping · opacity-75<br/>bg-lime-400 / bg-lime-500</p>
+      </div>
+
+      <!-- 8. WhatsApp pulse -->
+      <div class="ds-motion-card">
+        <div class="ds-motion-label">WhatsApp Pulse Ring</div>
+        <div class="relative w-16 h-16">
+          <div class="absolute inset-0 rounded-full bg-[#25D366] ds-anim-glow"></div>
+          <div class="w-full h-full bg-[#25D366] rounded-full flex items-center justify-center">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+          </div>
+        </div>
+        <p class="text-zinc-600 text-[10px] font-mono">scale pulse · shadow glow<br/>transition-shadow hover</p>
+      </div>
+
+      <!-- 9. Badge pulse -->
+      <div class="ds-motion-card">
+        <div class="ds-motion-label">Badge Animate Pulse</div>
+        <span class="text-[11px] font-bold px-4 py-1.5 rounded-full uppercase tracking-tight bg-yellow-400 text-black border border-black/10 shadow-[0_0_15px_rgba(250,204,21,0.3)] animate-pulse">A partir da categoria B</span>
+        <p class="text-zinc-600 text-[10px] font-mono">animate-pulse<br/>shadow-[0_0_15px_rgba(250,204,21,.3)]</p>
+      </div>
+    </div>
+
+    <!-- Transition reference table -->
+    <div class="ds-component-title">Referência de Transições</div>
+    <div class="space-y-2">
+      <div class="flex items-center justify-between p-3 bg-zinc-900/50 rounded-lg border border-zinc-800">
+        <span class="text-zinc-400 text-xs font-mono">transition-all duration-300</span>
+        <span class="text-zinc-600 text-xs">Nav links, tags, icon hovers</span>
+      </div>
+      <div class="flex items-center justify-between p-3 bg-zinc-900/50 rounded-lg border border-zinc-800">
+        <span class="text-zinc-400 text-xs font-mono">transition-all duration-500</span>
+        <span class="text-zinc-600 text-xs">Cards, buttons scale, logo hover</span>
+      </div>
+      <div class="flex items-center justify-between p-3 bg-zinc-900/50 rounded-lg border border-zinc-800">
+        <span class="text-zinc-400 text-xs font-mono">transition-transform duration-1000</span>
+        <span class="text-zinc-600 text-xs">Image zoom (group-hover:scale-110)</span>
+      </div>
+      <div class="flex items-center justify-between p-3 bg-zinc-900/50 rounded-lg border border-zinc-800">
+        <span class="text-zinc-400 text-xs font-mono">transition-transform duration-1000 (shine)</span>
+        <span class="text-zinc-600 text-xs">Button shine: translate-x-[-100%] → [100%]</span>
+      </div>
+      <div class="flex items-center justify-between p-3 bg-zinc-900/50 rounded-lg border border-zinc-800">
+        <span class="text-zinc-400 text-xs font-mono">ease-[cubic-bezier(0.23,1,0.32,1)]</span>
+        <span class="text-zinc-600 text-xs">YouTube CTA fill slide</span>
+      </div>
+      <div class="flex items-center justify-between p-3 bg-zinc-900/50 rounded-lg border border-zinc-800">
+        <span class="text-zinc-400 text-xs font-mono">transition-opacity duration-700</span>
+        <span class="text-zinc-600 text-xs">Card overlay, logo glow</span>
+      </div>
+      <div class="flex items-center justify-between p-3 bg-zinc-900/50 rounded-lg border border-zinc-800">
+        <span class="text-zinc-400 text-xs font-mono">transition-colors duration-300</span>
+        <span class="text-zinc-600 text-xs">Text color, border color changes</span>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ICONS -->
+<section id="icons" class="ds-doc-section bg-zinc-950">
+  <div class="ds-container">
+    <span class="ds-section-label">06 — Ícones</span>
+    <h2 class="ds-section-title text-white mb-4">Sistema<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-400">de Ícones</span></h2>
+    <p class="text-zinc-500 text-sm mb-12 font-bold uppercase tracking-widest">Lucide Icons — stroke 1.5–2px · currentColor · size via w/h classes</p>
+    <div class="ds-component-group">
+      <div class="ds-component-title">Tamanhos (size-4=16px, size-8=32px)</div>
+      <div class="flex items-end gap-6 mb-12">
+        <div class="text-center"><svg class="text-zinc-400 w-3 h-3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg><p class="text-zinc-600 text-[9px] font-mono mt-1">12px<br/>badge</p></div>
+        <div class="text-center"><svg class="text-zinc-400 w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg><p class="text-zinc-600 text-[9px] font-mono mt-1">14px<br/>nav/inline</p></div>
+        <div class="text-center"><svg class="text-zinc-400 w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg><p class="text-zinc-600 text-[9px] font-mono mt-1">20px<br/>table/list</p></div>
+        <div class="text-center"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg><p class="text-zinc-600 text-[9px] font-mono mt-1">24px<br/>feature cards</p></div>
+        <div class="text-center"><svg class="text-zinc-400 w-8 h-8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg><p class="text-zinc-600 text-[9px] font-mono mt-1">32px<br/>parceiros</p></div>
+        <div class="text-center"><svg class="text-[#39FF14] w-10 h-10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg><p class="text-zinc-600 text-[9px] font-mono mt-1">40px<br/>safety tabs</p></div>
+      </div>
+    </div>
+    <div class="ds-component-group">
+      <div class="ds-component-title">Galeria — Ícones Presentes nos Sites</div>
+      <div class="ds-icon-grid">
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg><span class="ds-icon-name">zap</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg><span class="ds-icon-name">shield</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978"/><path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978"/><path d="M18 9h1.5a1 1 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"/><path d="M6 9H4.5a1 1 0 0 1 0-5H6"/></svg><span class="ds-icon-name">trophy</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg><span class="ds-icon-name">graduation-cap</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12.8 19.6A2 2 0 1 0 14 16H2"/><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/><path d="M9.8 4.4A2 2 0 1 1 11 8H2"/></svg><span class="ds-icon-name">wind</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg><span class="ds-icon-name">cloud</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg><span class="ds-icon-name">bird</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg><span class="ds-icon-name">plane</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span class="ds-icon-name">circle-question</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg><span class="ds-icon-name">map-pin</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><span class="ds-icon-name">star</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg><span class="ds-icon-name">arrow-right</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg><span class="ds-icon-name">arrow-up-right</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg><span class="ds-icon-name">chevron-down</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span class="ds-icon-name">plus</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/></svg><span class="ds-icon-name">minus</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg><span class="ds-icon-name">play</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg><span class="ds-icon-name">instagram</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg><span class="ds-icon-name">facebook</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span class="ds-icon-name">check</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span class="ds-icon-name">x</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span class="ds-icon-name">circle-check</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg><span class="ds-icon-name">heart</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg><span class="ds-icon-name">menu</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg><span class="ds-icon-name">phone</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect height="16" rx="2" width="20" x="2" y="4"/></svg><span class="ds-icon-name">mail</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg><span class="ds-icon-name">award</span></div>
+        <div class="ds-icon-item"><svg class="text-zinc-400 w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg><span class="ds-icon-name">book-open</span></div>
+      </div>
+      <p class="text-zinc-600 text-xs font-mono mt-6">Todos os ícones acima são do conjunto Lucide Icons. Cor via currentColor, herdando text-* do elemento pai.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER DO DS -->
+<footer class="bg-zinc-950 border-t border-white/5 py-16">
+  <div class="ds-container text-center">
+    <a class="text-3xl font-bold tracking-tighter uppercase font-montserrat text-white" href="#">FLY UP <span class="text-primary">.</span></a>
+    <p class="text-zinc-500 text-sm mt-4 max-w-md mx-auto">Design System v2 — Extraído das páginas flyupparaquedismo.com.br e /curso_aff_pro<br/>Todos os estilos, classes e assets pertencem ao projeto original.</p>
+    <p class="text-zinc-700 text-xs mt-6 font-mono">CSS: 6f97f66cff128c49_c3af4f27db77.css · ce718594190e0910_b26b84d4d6ac.css · Lucide Icons · Inter + Outfit (variável)</p>
+  </div>
+</footer>
+
+</div><!-- /ds-wrapper -->
+</body>
+</html>

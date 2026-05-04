@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const faqs = [
     {
         question: "É seguro saltar de paraquedas?",
-        answer: "Absolutamente. O paraquedismo é regulamentado e segue normas rígidas de segurança. Na Fly Up, utilizamos equipamentos de última geração e todos os nossos equipamentos possuem dispositivos de abertura automática (DAA). Nossos instrutores são certificados e possuem milhares de saltos.",
+        answer: "Absolutamente. O paraquedismo é regulamentado e segue normas rígidas de segurança. Na Fly Up, utilizamos equipamentos de última geração e todos os nossos equipamentos possuem dispositivos de abertura automática (DAA). Nossos instrutores são certificados e possuem mais de 5000 saltos.",
     },
     {
         question: "Preciso ter experiência prévia?",
@@ -23,7 +23,7 @@ const faqs = [
     },
     {
         question: "E se o paraquedas não abrir?",
-        answer: "Todos os equipamentos de paraquedismo possuem DOIS paraquedas: o principal e o reserva. O reserva é dobrado por um especialista certificado e inspecionado periodicamente. Além disso, existe o Cybernetic Parachute Release System (Cypres), um computador que abre o reserva automaticamente caso necessário.",
+        answer: "Todos os equipamentos de paraquedismo possuem DOIS paraquedas: o principal e o reserva. O reserva é dobrado por um especialista certificado e inspecionado periodicamente. Além disso, existe o DAA (Dispositivo de Abertura Automática), um computador de bordo que monitora altitude e velocidade, garantindo a abertura automática do paraquedas reserva caso necessário.",
     },
 ];
 

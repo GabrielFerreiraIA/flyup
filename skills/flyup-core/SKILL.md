@@ -16,6 +16,14 @@ This skill contains the fundamental design principles and technical requirements
     - Body: Inter (Clean and readable).
 - **Core Motto**: "Tem que saber voar."
 
+## 🎨 2. Design System Global
+
+> [!IMPORTANT]
+> **Fonte da Verdade**: Todas as alterações visuais, componentes e estilos devem ser baseados obrigatoriamente no Design System da FlyUp documentado no arquivo `design-system.html`. Este arquivo é a referência primária para cores, tipografia, componentes e padrões de layout.
+
+### 2.1 Cores (Tailwind/CSS Variables)
+
+
 ## Technical Stack
 - **Framework**: Next.js 15 (App Router).
 - **Styling**: Tailwind CSS 4.

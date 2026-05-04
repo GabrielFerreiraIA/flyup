@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion } from "framer-motion";
 import gsap from 'gsap';
+import BookingBanner from './BookingBanner';
 
 const phrases = [
     {
@@ -51,7 +52,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section ref={containerRef} className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-black">
+        <section ref={containerRef} className="relative h-screen w-full flex items-center justify-center bg-black">
             {/* Video Background */}
             {/* Video Background */}
             <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -100,6 +101,8 @@ export default function Hero() {
                 {/* Buttons */}
 
             </div>
+
+            <BookingBanner />
         </section>
     );
 }

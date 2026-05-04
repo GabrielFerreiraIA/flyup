@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import { AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 const BookingModal = dynamic(() => import("@/components/BookingModal"), { ssr: false });
@@ -32,6 +33,7 @@ interface PricingItem {
     priceClassName?: string;
     features: string[];
     highlight?: boolean;
+    image?: string;
 }
 
 interface SpecialConditionItem {
@@ -82,6 +84,7 @@ export default function ServicePageLayout({
 }: ServicePageLayoutProps) {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+    const [selectedGalleryImage, setSelectedGalleryImage] = useState<string | null>(null);
 
     return (
         <div className="bg-black min-h-screen font-sans selection:bg-neon selection:text-black" suppressHydrationWarning>
@@ -174,68 +177,59 @@ export default function ServicePageLayout({
                     )}
                 </div>
             </section>
-
-            {/* GALLERY SECTION (DARK) */}
-            <section className="py-24 bg-black text-white relative overflow-hidden">
-                <div className="absolute inset-0 bg-black/50" />
-                {/* Background Decor */}
-                <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-neon/5 blur-[120px] rounded-full pointer-events-none" />
-
-                <div className="container mx-auto px-6 relative z-10">
-                    <div className="text-center mb-16">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="flex items-center justify-center gap-4 mb-4"
-                        >
-                            <div className="h-[2px] w-8 bg-neon" />
-                            <span className="text-neon font-black tracking-[0.3em] uppercase text-xs">MOMENTOS REAIS</span>
-                            <div className="h-[2px] w-8 bg-neon" />
-                        </motion.div>
-                        <h2 className="text-4xl md:text-6xl font-black italic uppercase tracking-tighter text-white">
-                            Galeria <span className="text-transparent" style={{ WebkitTextStroke: '1px #39FF14' }}>Exclusiva</span>
-                        </h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {galleryImages.slice(0, 6).map((img, idx) => (
+            {/* PRICING SECTION (DARK) */}
+            <section className="py-24 bg-black text-white">
+                <div className="container mx-auto px-6">
+                    <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter mb-16 text-center">
+                        {pricingTitle}
+                    </h2>
+                    <div className={`grid grid-cols-1 md:grid-cols-2 ${pricingOptions.length === 5 ? 'lg:grid-cols-5' : pricingOptions.length === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4'} gap-6`}>
+                        {pricingOptions.map((option, idx) => (
                             <motion.div
                                 key={idx}
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{
-                                    duration: 0.8,
-                                    delay: idx * 0.1,
-                                    ease: [0.21, 1.11, 0.81, 0.99]
-                                }}
-                                className="group relative aspect-[4/5] rounded-[32px] overflow-hidden cursor-pointer bg-zinc-900 border border-white/5"
+                                whileHover={{ y: -10 }}
+                                className={`w-full rounded-3xl flex flex-col relative group ${option.highlight ? 'bg-zinc-900 border-2 border-[#39FF14] shadow-[0_0_50px_rgba(57,255,20,0.15)]' : 'bg-zinc-900/40 border border-white/10'}`}
                             >
-                                {/* Image with zoom on hover */}
-                                <motion.img
-                                    src={img}
-                                    alt={`Gallery ${idx}`}
-                                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                                />
-
-                                {/* Overlay Gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-
-                                {/* Interactive Border */}
-                                <div className="absolute inset-0 border-2 border-transparent group-hover:border-neon/50 rounded-[32px] transition-colors duration-500 z-20" />
-
-                                {/* View Indicator */}
-                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 z-30">
-                                    <div className="w-16 h-16 bg-neon rounded-full flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-500 shadow-[0_0_30px_rgba(57,255,20,0.5)]">
-                                        <Zap size={24} className="text-black fill-black" />
+                                {option.image && (
+                                    <div className="w-full h-72 relative flex items-center justify-center p-4 overflow-hidden rounded-t-3xl bg-gradient-to-b from-white/5 to-transparent">
+                                        <img 
+                                            src={option.image} 
+                                            alt={option.title}
+                                            className="w-full h-full object-contain drop-shadow-[0_0_25px_rgba(57,255,20,0.3)] group-hover:scale-110 transition-transform duration-700 ease-out"
+                                        />
+                                        {/* Subtle glow behind image */}
+                                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(57,255,20,0.1),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                                     </div>
-                                </div>
-
-                                {/* Subtle info (Optional, adds to premium feel) */}
-                                <div className="absolute bottom-6 left-6 right-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-30">
-                                    <div className="h-[1px] w-full bg-white/20 mb-3" />
-                                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-neon">Fly Up Experience</p>
+                                )}
+                                {option.highlight && (
+                                    <div className="absolute top-4 right-4 bg-[#39FF14] text-black text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-widest shadow-lg shadow-[#39FF14]/20 z-20">
+                                        Mais Popular
+                                    </div>
+                                )}
+                                <div className="px-8 pb-8 pt-2">
+                                    <h3 className={`font-black italic uppercase mb-2 ${option.titleClassName || (pricingOptions.length === 5 ? 'text-lg lg:text-base xl:text-lg' : 'text-2xl')}`}>{option.title}</h3>
+                                    <div className={`font-black text-white mb-6 tracking-tight ${option.priceClassName || (pricingOptions.length === 5 ? 'text-2xl lg:text-xl xl:text-2xl' : 'text-4xl')}`}>
+                                        {option.price}
+                                        {option.priceSubtext !== null && (
+                                            <span className={`font-bold text-zinc-500 ml-2 tracking-normal align-middle ${pricingOptions.length === 5 ? 'text-xs' : 'text-sm'}`}>
+                                                {option.priceSubtext || '/ pessoa'}
+                                            </span>
+                                        )}
+                                    </div>
+                                    <ul className="flex-1 space-y-4 mb-8">
+                                        {option.features.map((feature, fIdx) => (
+                                            <li key={fIdx} className="flex items-start gap-3">
+                                                <CheckCircle2 className="w-5 h-5 text-[#39FF14] shrink-0" />
+                                                <span className="text-zinc-300 text-sm font-medium">{feature}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <Button
+                                        onClick={() => setIsBookingOpen(true)}
+                                        className={`w-full py-6 font-black italic uppercase rounded-xl ${option.highlight ? 'bg-[#39FF14] text-black hover:bg-[#32e010] shadow-lg shadow-[#39FF14]/20' : 'bg-white/10 text-white hover:bg-white/20'}`}
+                                    >
+                                        Reservar Vaga
+                                    </Button>
                                 </div>
                             </motion.div>
                         ))}
@@ -291,52 +285,87 @@ export default function ServicePageLayout({
                 </section>
             )}
 
-            {/* PRICING SECTION (DARK) */}
-            <section className="py-24 bg-black text-white">
-                <div className="container mx-auto px-6">
-                    <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter mb-16 text-center">
-                        {pricingTitle}
-                    </h2>
-                    <div className={`grid grid-cols-1 md:grid-cols-2 ${pricingOptions.length === 5 ? 'lg:grid-cols-5' : pricingOptions.length === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4'} gap-6`}>
-                        {pricingOptions.map((option, idx) => (
+            {/* GALLERY SECTION (DARK - CAROUSEL PRO MAX) */}
+            <section className="py-16 bg-black text-white relative overflow-hidden">
+                <div className="absolute inset-0 bg-black/50" />
+                {/* Background Decor */}
+                <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-neon/5 blur-[120px] rounded-full pointer-events-none" />
+
+                <div className="container mx-auto px-6 relative z-10">
+                    <div className="flex items-end justify-between mb-10">
+                        <div className="text-left">
                             <motion.div
-                                key={idx}
-                                whileHover={{ y: -10 }}
-                                className={`w-full rounded-2xl p-8 flex flex-col relative ${option.highlight ? 'bg-zinc-900 border-2 border-[#39FF14] shadow-[0_0_40px_rgba(57,255,20,0.15)]' : 'bg-zinc-900/30 border border-white/10'}`}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                className="flex items-center gap-3 mb-2"
                             >
-                                {option.highlight && (
-                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#39FF14] text-black text-xs font-black uppercase px-4 py-1 rounded-full tracking-widest shadow-lg shadow-[#39FF14]/20">
-                                        Mais Popular
-                                    </div>
-                                )}
-                                <h3 className={`font-black italic uppercase mb-2 ${option.titleClassName || (pricingOptions.length === 5 ? 'text-lg lg:text-base xl:text-lg' : 'text-2xl')}`}>{option.title}</h3>
-                                <div className={`font-black text-white mb-6 tracking-tight ${option.priceClassName || (pricingOptions.length === 5 ? 'text-2xl lg:text-xl xl:text-2xl' : 'text-4xl')}`}>
-                                    {option.price}
-                                    {option.priceSubtext !== null && (
-                                        <span className={`font-bold text-zinc-500 ml-2 tracking-normal align-middle ${pricingOptions.length === 5 ? 'text-xs' : 'text-sm'}`}>
-                                            {option.priceSubtext || '/ pessoa'}
-                                        </span>
-                                    )}
-                                </div>
-                                <ul className="flex-1 space-y-4 mb-8">
-                                    {option.features.map((feature, fIdx) => (
-                                        <li key={fIdx} className="flex items-start gap-3">
-                                            <CheckCircle2 className="w-5 h-5 text-[#39FF14] shrink-0" />
-                                            <span className="text-zinc-300 text-sm font-medium">{feature}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                                <Button
-                                    onClick={() => setIsBookingOpen(true)}
-                                    className={`w-full py-6 font-black italic uppercase rounded-xl ${option.highlight ? 'bg-[#39FF14] text-black hover:bg-[#32e010] shadow-lg shadow-[#39FF14]/20' : 'bg-white/10 text-white hover:bg-white/20'}`}
-                                >
-                                    Reservar Vaga
-                                </Button>
+                                <div className="h-[2px] w-6 bg-neon" />
+                                <span className="text-neon font-black tracking-[0.3em] uppercase text-[10px]">VISUAL EXPERIENCE</span>
                             </motion.div>
-                        ))}
+                            <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter text-white leading-none">
+                                Galeria <span className="text-transparent" style={{ WebkitTextStroke: '1px #39FF14' }}>Exclusiva</span>
+                            </h2>
+                        </div>
+                        
+                        {/* Custom Navigation indicators (purely visual/feedback) */}
+                        <div className="hidden md:flex gap-2 mb-2">
+                             <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mr-2 flex items-center">Arraste para explorar</div>
+                             <div className="w-10 h-0.5 bg-neon/20 rounded-full relative overflow-hidden">
+                                 <motion.div 
+                                    animate={{ x: ["-100%", "100%"] }}
+                                    transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                                    className="absolute inset-0 bg-neon w-1/3" 
+                                 />
+                             </div>
+                        </div>
+                    </div>
+
+                    {/* Infinite Marquee Container */}
+                    <div className="relative overflow-hidden -mx-6 px-6">
+                        <div className="flex w-max">
+                            <motion.div 
+                                animate={{ x: ["0%", "-50%"] }}
+                                transition={{ 
+                                    duration: 30, // Ajuste a velocidade aqui
+                                    ease: "linear",
+                                    repeat: Infinity
+                                }}
+                                whileHover={{ animationPlayState: "paused" }}
+                                className="flex gap-6 pr-6"
+                            >
+                                {[...galleryImages, ...galleryImages].map((img, idx) => (
+                                    <motion.div
+                                        key={idx}
+                                        onClick={() => setSelectedGalleryImage(img)}
+                                        className="relative flex-shrink-0 w-[280px] md:w-[320px] aspect-[4/5] h-[350px] md:h-[420px] rounded-[32px] overflow-hidden bg-zinc-900 border border-white/5 group shadow-2xl cursor-pointer"
+                                    >
+                                        <img
+                                            src={img}
+                                            alt={`Gallery ${idx}`}
+                                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                                        />
+
+                                        {/* Glassmorphism Overlay */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+
+                                        {/* Interactive Border (Premium Neon) */}
+                                        <div className="absolute inset-0 border-[1px] border-transparent group-hover:border-neon/30 rounded-[32px] transition-all duration-500 z-20 pointer-events-none" />
+
+                                        {/* Bottom Info */}
+                                        <div className="absolute bottom-6 left-6 right-6 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-30">
+                                            <div className="h-[1px] w-8 bg-neon mb-3" />
+                                            <p className="text-[9px] font-black uppercase tracking-[0.3em] text-white/90">Fly Up Experience</p>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </div>
                     </div>
                 </div>
             </section>
+
+
 
             {/* FAQ SECTION (LIGHT branded) */}
             <section className="py-24 bg-zinc-50 border-t border-zinc-300 relative">
@@ -385,6 +414,49 @@ export default function ServicePageLayout({
                 webhookTitle={webhookTitle || title}
                 source={sourceId}
             />
+
+            {/* LIGHTBOX MODAL */}
+            <AnimatePresence>
+                {selectedGalleryImage && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 md:p-10"
+                        onClick={() => setSelectedGalleryImage(null)}
+                    >
+                        <motion.button
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="absolute top-6 right-6 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white z-50 transition-colors"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedGalleryImage(null);
+                            }}
+                        >
+                            <ChevronDown className="w-6 h-6 rotate-180" />
+                        </motion.button>
+
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                            className="relative max-w-5xl w-full max-h-full flex items-center justify-center"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <img
+                                src={selectedGalleryImage}
+                                alt="Gallery Lightbox"
+                                className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-[0_0_50px_rgba(57,255,20,0.2)] border border-white/10"
+                            />
+                            <div className="absolute -bottom-10 left-0 right-0 text-center">
+                                <span className="text-zinc-500 font-black italic uppercase tracking-[0.3em] text-[10px]">Pressione para fechar</span>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

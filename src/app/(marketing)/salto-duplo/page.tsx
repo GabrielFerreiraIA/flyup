@@ -5,7 +5,7 @@ import DiscountPopup from "@/components/DiscountPopup";
 import { motion } from "framer-motion";
 import { Camera, Video, Zap, Sparkles } from "lucide-react";
 
-export default function SaltoDuploPage() {
+export default function SaltoDuplo2Page() {
     const jumpTypes = [
         {
             id: "fun",
@@ -91,12 +91,13 @@ export default function SaltoDuploPage() {
         <>
             <DiscountPopup />
             <ServicePageLayout
-                sourceId="salto-duplo-page"
+                sourceId="salto-duplo-2-page"
                 title="Salto Duplo"
+                webhookTitle="Salto Duplo (V2)"
                 subtitle="Sinta a liberdade absoluta a 200km/h com total segurança."
                 heroImage="https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771951037/Salto_Duplo_Editado_16-9_qgdiqh.png"
                 overview="O Salto Duplo é a maneira mais fácil e segura de realizar o sonho de voar. Conectado a um instrutor experiente e certificado, você saltará de 12.000 pés, experimentando cerca de 50 segundos de queda livre seguidos por 5 a 7 minutos de navegação com o paraquedas aberto."
-                pricingTitle="Planos e Preços"
+                pricingTitle="Escolha a sua modalidade"
                 // renderBelowSteps={JumpTypesSection}
                 steps={[
                     {
@@ -106,7 +107,7 @@ export default function SaltoDuploPage() {
                     },
                     {
                         title: "O Voo Panorâmico",
-                        description: "Subida de 15 minutos até 12.000 pés com vista espetacular de Boituva.",
+                        description: "Subida de 15 minutos até 12.000 pés with vista espetacular de Boituva.",
                         icon: "Cloud"
                     },
                     {
@@ -121,34 +122,101 @@ export default function SaltoDuploPage() {
                     }
                 ]}
                 galleryImages={[
-                    "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775816257/Salto-Duplo-Imagem-1-_1__ybja2d.webp",
-                    "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775816257/Salto-Duplo-Imagem-2-_1__rnnz1o.webp",
-                    "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775816257/Salto-Duplo-Imagem-3-_1__wed3kl.webp",
-                    "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775816257/Salto-Duplo-Imagem-4-_1__d5wr5r.webp",
-                    "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775816258/Salto-Duplo-Imagem-5-_1__bs4vk5.webp",
-                    "https://res.cloudinary.com/dn50urzkv/image/upload/q_auto/f_auto/v1775816258/Salto-Duplo-Imagem-6-_1__nzekhq.webp"
+                    "https://res.cloudinary.com/dn50urzkv/image/upload/v1777885605/Salto_Duplo_-_2_Final_net3xi.webp",
+                    "https://res.cloudinary.com/dn50urzkv/image/upload/v1777885606/Salto_Duplo_-_4_Final_yvmkuw.webp",
+                    "https://res.cloudinary.com/dn50urzkv/image/upload/v1777885606/Salto-Duplo-5_-_Final_rrkzlm.webp",
+                    "https://res.cloudinary.com/dn50urzkv/image/upload/v1777885606/Salto_Duplo_-_3_Final_tgnapp.webp",
+                    "https://res.cloudinary.com/dn50urzkv/image/upload/v1777885606/Salto-Duplo-1_Final_y2xwks.webp",
+                    "https://res.cloudinary.com/dn50urzkv/image/upload/v1777885605/Salto-Duplo-_6_gb9bnk.webp"
                 ]}
                 pricingOptions={[
                     {
-                        title: "Salto Duplo FUN",
-                        price: "R$ 690",
-                        features: ["Salto a 12.000 pés", "Instrutor Certificado ABPQD/USPA", "Equipamento de Ponta (Sigma)", "Foco 100% na emoção"]
+                        title: "Salto Fun",
+                        price: (
+                            <div className="flex flex-col gap-2 mt-2">
+                                <div className="space-y-1">
+                                    <div className="flex items-center gap-2 opacity-60">
+                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">De:</span>
+                                        <span className="text-lg font-black italic line-through text-red-500/80">R$ 629</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-neon">Por:</span>
+                                        <span className="text-4xl font-black italic text-white tracking-tighter">R$ 599</span>
+                                    </div>
+                                </div>
+                                <div className="text-[10px] font-black italic text-neon uppercase tracking-widest">
+                                    Ou 12x de R$ 62,90
+                                </div>
+                            </div>
+                        ),
+                        priceClassName: "block",
+                        priceSubtext: null,
+                        image: "https://res.cloudinary.com/dn50urzkv/image/upload/v1777882708/Salto_Fun_gvsb6v.png",
+                        features: [
+                            "Salto a 12.000 pés",
+                            "Equipamento de Ponta (Sigma)",
+                            "Treinamento pré-salto de elite",
+                            "Óculos de proteção premium",
+                            "Sem registro de imagens"
+                        ],
+                        highlight: false
                     },
                     {
-                        title: "Salto Duplo Selfie",
-                        price: "R$ 890",
-                        features: ["Salto a 12.000 pés", "Vídeo e Fotos (Handycam)", "Gravação em Close-up", "Link para Download Digital"],
+                        title: "Salto Handycam",
+                        price: (
+                            <div className="flex flex-col gap-2 mt-2">
+                                <div className="space-y-1">
+                                    <div className="flex items-center gap-2 opacity-60">
+                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">De:</span>
+                                        <span className="text-lg font-black italic line-through text-red-500/80">R$ 890</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-neon">Por:</span>
+                                        <span className="text-4xl font-black italic text-white tracking-tighter">R$ 745</span>
+                                    </div>
+                                </div>
+                                <div className="text-[10px] font-black italic text-neon uppercase tracking-widest">
+                                    Ou 12x de R$ 82,90
+                                </div>
+                            </div>
+                        ),
+                        priceClassName: "block",
+                        priceSubtext: null,
+                        image: "https://res.cloudinary.com/dn50urzkv/image/upload/v1777882708/Salto_Handcan_vwouto.png",
+                        features: [
+                            "Todos os benefícios do Salto Fun",
+                            "Registro por câmera de punho (Instrutor)",
+                            "Vídeo editado com trilha sonora",
+                            "Aprox. 200 fotos de alta resolução",
+                            "Link para download digital"
+                        ],
                         highlight: true
                     },
                     {
-                        title: "Salto Duplo Experience",
-                        price: "R$ 1.010",
-                        features: ["Você Pilota o Paraquedas", "Uso de Altímetro no Braço", "Foco total na Autonomia", "Filmagem Dupla (VIP + Selfie)"]
+                        title: "Salto Super VIP",
+                        price: <span className="text-zinc-500 text-lg lg:text-base xl:text-lg">Consultar Promoções</span>,
+                        priceSubtext: null,
+                        image: "https://res.cloudinary.com/dn50urzkv/image/upload/v1777887040/Salto_Super_Vip_srkbfq.png",
+                        features: [
+                            "Upgrade total da experiência Handycam",
+                            "Cameraman Cinegrafista externo exclusivo",
+                            "Vídeo editado com trilha cinematográfica",
+                            "Aprox. 350 fotos de ângulos externos",
+                            "Múltiplas perspectivas de queda livre"
+                        ]
                     },
                     {
-                        title: "Salto Duplo VIP",
-                        price: "R$ 1.290",
-                        features: ["Salto a 12.000 pés", "Cameraman Externo Dedicado", "Fotos e Videos em HD", "Ângulos Cinematográficos"]
+                        title: "Super VIP Plus",
+                        price: <span className="text-zinc-500 text-lg lg:text-base xl:text-lg">Consultar Promoções</span>,
+                        priceSubtext: null,
+                        image: "https://res.cloudinary.com/dn50urzkv/image/upload/v1777882708/Salto_Super_VIP_PLUS_kmgoqi.png",
+                        features: [
+                            "O ápice da experiência Super VIP",
+                            "Vídeo editado exclusivo para Reels/TikTok",
+                            "Acesso a todos os vídeos brutos (Raw)",
+                            "KIT VIP Exclusivo Fly Up",
+                            "Prioridade no embarque"
+                        ]
                     }
                 ]}
                 faqs={[

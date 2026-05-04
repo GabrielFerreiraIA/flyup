@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 const faqs = [
     {
         question: "É seguro saltar de paraquedas?",
-        answer: "Absolutamente. O paraquedismo é regulamentado e segue normas rígidas de segurança. Na Fly Up, utilizamos equipamentos de última geração e todos os nossos equipamentos possuem dispositivos de abertura automática (DAA). Nossos instrutores são certificados pelas entidades brasileiras do esporte e possuem milhares de saltos.",
+        answer: "Absolutamente. O paraquedismo é regulamentado e segue normas rígidas de segurança. Na Fly Up, utilizamos equipamentos de última geração e todos os nossos equipamentos possuem dispositivos de abertura automática (DAA). Nossos instrutores são certificados pelas entidades brasileiras do esporte e possuem mais de 5000 saltos.",
     },
     {
         question: "Preciso ter experiência prévia para o salto duplo?",
@@ -224,7 +224,7 @@ export default function FAQPage() {
                     <p className="text-zinc-400 mb-10 max-w-xl mx-auto text-lg">
                         Nossa equipe está preparada para responder qualquer pergunta adicional. Entre em contato conosco e tire suas dúvidas!
                     </p>
-                    <Link href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">
+                    <Link href="https://wa.me/5515998282280" target="_blank" rel="noopener noreferrer">
                         <Button className="bg-neon hover:bg-neon-hover text-black font-black italic uppercase tracking-wider px-8 py-7 text-lg rounded-xl transition-all shadow-[0_0_30px_rgba(57,255,20,0.3)] hover:shadow-[0_0_50px_rgba(57,255,20,0.5)] flex items-center gap-3 relative overflow-hidden group/btn mx-auto">
                             <span className="relative z-10 flex items-center gap-2">
                                 <MessageCircle size={22} className="group-hover/btn:scale-110 transition-transform" />
