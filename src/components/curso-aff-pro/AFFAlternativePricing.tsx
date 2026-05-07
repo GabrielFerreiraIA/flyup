@@ -106,8 +106,8 @@ const options: PricingOption[] = [
         title: "AFF Convencional",
         subtitle: "Curso Padrão",
         pricePrefix: "12x",
-        priceMain: "670",
-        priceSub: "Ou R$ 6.700,00 à vista",
+        priceMain: "690",
+        priceSub: "Ou R$ 6.990,00 à vista",
         description: "O curso completo de paraquedismo na modalidade tradicional pelas escolas.",
         features: [
             { text: "Curso teórico completo", strikethrough: false },
@@ -132,8 +132,8 @@ const options: PricingOption[] = [
         title: "AFF PRO",
         subtitle: "A Formação Premium",
         pricePrefix: "12x",
-        priceMain: "775",
-        priceSub: "Ou R$ 7.750,00 à vista",
+        priceMain: "794",
+        priceSub: "Ou R$ 7.940,00 à vista",
         description: "O método validado que forma atletas com segurança e sem surpresas financeiras.",
         features: [
             { text: "Túnel de Vento (Diferencial)", strikethrough: false },

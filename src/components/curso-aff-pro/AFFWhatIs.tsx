@@ -115,7 +115,7 @@ export default function AFFWhatIs() {
                 </motion.div>
 
                 {/* ── Four Pillars ── */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8 relative z-10">
                     {pillars.map((p, i) => (
                         <motion.div
                             key={i}
@@ -127,19 +127,26 @@ export default function AFFWhatIs() {
                                 ease: [0.22, 1, 0.36, 1],
                             }}
                             viewport={{ once: true }}
-                            className="group relative bg-zinc-50 hover:bg-white border border-zinc-100 hover:border-[#39FF14]/30 rounded-2xl p-6 text-center transition-all duration-300 hover:shadow-xl hover:shadow-[#39FF14]/5 hover:-translate-y-1"
+                            className="group relative bg-zinc-900 border border-white/5 rounded-2xl p-6 text-center transition-all duration-300 hover:shadow-2xl hover:shadow-[#39FF14]/5 hover:-translate-y-1 overflow-hidden"
                         >
+                            {/* Texture Overlay */}
+                            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+                                style={{ 
+                                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` 
+                                }} 
+                            />
+
                             {/* Icon */}
-                            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-zinc-900 group-hover:bg-[#39FF14] transition-colors duration-300 mb-4 mx-auto">
+                            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-black border border-white/5 group-hover:bg-[#39FF14] transition-colors duration-300 mb-4 mx-auto relative z-10">
                                 <p.icon className="w-6 h-6 text-[#39FF14] group-hover:text-black transition-colors duration-300" />
                             </div>
-                            <h3 className="font-black uppercase text-zinc-900 text-sm tracking-wide mb-2">
+                            <h3 className="font-black uppercase text-white text-sm tracking-wide mb-2 relative z-10">
                                 {p.title}
                             </h3>
-                            <p className="text-zinc-500 text-xs leading-relaxed">{p.desc}</p>
+                            <p className="text-zinc-500 text-xs leading-relaxed relative z-10">{p.desc}</p>
 
                             {/* Bottom accent line on hover */}
-                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-1/2 h-0.5 bg-[#39FF14] rounded-full transition-all duration-500" />
+                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-1/2 h-0.5 bg-[#39FF14] rounded-full transition-all duration-500 z-10" />
                         </motion.div>
                     ))}
                 </div>

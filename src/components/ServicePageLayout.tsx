@@ -149,10 +149,17 @@ export default function ServicePageLayout({
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1 }}
-                                className="bg-white border border-zinc-300 rounded-3xl p-8 hover:border-[#00cc00] hover:shadow-[0_10px_40px_-10px_rgba(0,180,0,0.2)] transition-all duration-300 group flex flex-col h-full relative"
+                                className="bg-zinc-900 border border-white/10 rounded-3xl p-8 hover:border-[#00cc00] hover:shadow-[0_10px_40px_-10px_rgba(0,180,0,0.4)] transition-all duration-300 group flex flex-col h-full relative overflow-hidden"
                             >
-                                <div className="flex items-start justify-between mb-6">
-                                    <div className="w-16 h-16 bg-zinc-950 rounded-2xl flex items-center justify-center group-hover:bg-black transition-all duration-300 shadow-md shadow-zinc-300 border border-zinc-800">
+                                {/* Texture Overlay */}
+                                <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+                                    style={{ 
+                                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` 
+                                    }} 
+                                />
+
+                                <div className="flex items-start justify-between mb-6 relative z-10">
+                                    <div className="w-16 h-16 bg-black rounded-2xl flex items-center justify-center group-hover:bg-[#1a1a1a] transition-all duration-300 shadow-xl border border-white/5">
                                         {(() => {
                                             const IconComponent = step.icon ? iconMap[step.icon] : null;
                                             return IconComponent
@@ -160,12 +167,12 @@ export default function ServicePageLayout({
                                                 : <div className="w-2 h-2 bg-[#39FF14] rounded-full" />;
                                         })()}
                                     </div>
-                                    <span className="text-4xl font-black italic text-zinc-200 group-hover:text-[#39FF14]/20 transition-colors">
+                                    <span className="text-4xl font-black italic text-white/5 group-hover:text-[#39FF14]/10 transition-colors">
                                         0{idx + 1}
                                     </span>
                                 </div>
-                                <h3 className="text-xl font-black italic uppercase mb-3 text-black group-hover:text-[#008800] transition-colors">{step.title}</h3>
-                                <p className="text-zinc-700 font-medium text-sm leading-relaxed flex-grow">{step.description}</p>
+                                <h3 className="text-xl font-black italic uppercase mb-3 text-white group-hover:text-[#39FF14] transition-colors relative z-10">{step.title}</h3>
+                                <p className="text-zinc-400 font-medium text-sm leading-relaxed flex-grow relative z-10">{step.description}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -177,7 +184,7 @@ export default function ServicePageLayout({
                     )}
                 </div>
             </section>
-            {/* PRICING SECTION (DARK) */}
+            {/* PRICING SECTION (DARK) */}
             <section className="py-24 bg-black text-white">
                 <div className="container mx-auto px-6">
                     <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter mb-16 text-center">
@@ -262,22 +269,30 @@ export default function ServicePageLayout({
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: idx * 0.1 }}
-                                    className="bg-zinc-50 border border-zinc-300 p-8 rounded-3xl hover:bg-white hover:border-[#00cc00]/50 hover:shadow-xl transition-all duration-300 group relative overflow-hidden"
                                 >
-                                    <div className="absolute top-0 right-0 w-24 h-24 bg-[#00cc00]/10 rounded-bl-full -mr-4 -mt-4 transition-all group-hover:scale-150 group-hover:bg-[#00cc00]/20" />
+                                    <div className="bg-zinc-900 border border-white/10 p-8 rounded-3xl hover:border-[#00cc00]/50 hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)] transition-all duration-300 group relative overflow-hidden">
+                                        {/* Texture Overlay */}
+                                        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+                                            style={{ 
+                                                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` 
+                                            }} 
+                                        />
 
-                                    <div className="w-14 h-14 bg-zinc-950 border border-zinc-800 rounded-xl flex items-center justify-center mb-6 px-3 shadow-md group-hover:scale-110 transition-transform relative z-10">
-                                        {(() => {
-                                            const IconComponent = condition.icon ? iconMap[condition.icon] : null;
-                                            return IconComponent
-                                                ? <IconComponent className="w-7 h-7 text-[#39FF14] transition-colors" />
-                                                : <div className="w-2 h-2 bg-neon rounded-full" />;
-                                        })()}
+                                        <div className="absolute top-0 right-0 w-24 h-24 bg-[#39FF14]/5 rounded-bl-full -mr-4 -mt-4 transition-all group-hover:scale-150 group-hover:bg-[#39FF14]/10" />
+
+                                        <div className="w-14 h-14 bg-black border border-white/10 rounded-xl flex items-center justify-center mb-6 px-3 shadow-xl group-hover:scale-110 transition-transform relative z-10">
+                                            {(() => {
+                                                const IconComponent = condition.icon ? iconMap[condition.icon] : null;
+                                                return IconComponent
+                                                    ? <IconComponent className="w-7 h-7 text-[#39FF14] transition-colors" />
+                                                    : <div className="w-2 h-2 bg-neon rounded-full" />;
+                                            })()}
+                                        </div>
+                                        <h3 className="text-xl font-black italic uppercase mb-3 text-white relative z-10 group-hover:text-[#39FF14] transition-colors">{condition.title}</h3>
+                                        <p className="text-zinc-400 text-sm font-medium leading-relaxed relative z-10">
+                                            {condition.description}
+                                        </p>
                                     </div>
-                                    <h3 className="text-xl font-black italic uppercase mb-3 text-black relative z-10 group-hover:text-[#008800] transition-colors">{condition.title}</h3>
-                                    <p className="text-zinc-700 text-sm leading-relaxed relative z-10">
-                                        {condition.description}
-                                    </p>
                                 </motion.div>
                             ))}
                         </div>

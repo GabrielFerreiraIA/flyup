@@ -51,7 +51,7 @@ const SAFETY_ITEMS = [
         id: 4,
         title: "Pouso Suave",
         subtitle: "Técnica de Chegada",
-        description: "O medo de 'cair' é comum, mas o pouso é um deslizamento. Nossos paraquedas modernos permitem um planeio suave, controlado por freios aerodinâmicos. Fazendo você pousa suavemente em pé ou deslizando na grama.",
+        description: "O medo de 'cair' é comum, mas o pouso é um deslizamento. Nossos paraquedas modernos permitem um planeio suave, controlado por freios aerodinâmicos. Fazendo você pousar suavemente em pé ou deslizar na grama.",
         icon: Feather, // Changed from PlaneLanding
         navLabel: "Pouso"
     }

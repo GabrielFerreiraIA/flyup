@@ -24,7 +24,7 @@ const pricing = [
     },
     {
         title: "Formação Completa",
-        price: "R$ 8.900",
+        price: "R$ 6.990",
         desc: "Os 7 níveis + Graduação.",
         features: [
             "Ground School Incluso",

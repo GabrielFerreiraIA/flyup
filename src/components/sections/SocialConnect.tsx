@@ -84,8 +84,14 @@ const SocialConnect = () => {
 
                 {/* Right Content - Grid */}
                 <div className="relative w-full h-full flex flex-col justify-center">
-                    <div className="bg-white p-3 rounded-[2rem] shadow-2xl shadow-black/10 rotate-1 hover:rotate-0 transition-transform duration-700 ease-out border border-zinc-100">
-                        <ShuffleGrid className="h-[500px] md:h-[650px] w-full gap-2" />
+                    <div className="bg-zinc-900 p-3 rounded-[2rem] shadow-2xl shadow-black/40 rotate-1 hover:rotate-0 transition-transform duration-700 ease-out border border-white/5 relative overflow-hidden">
+                        {/* Texture Overlay */}
+                        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+                            style={{ 
+                                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` 
+                            }} 
+                        />
+                        <ShuffleGrid className="h-[500px] md:h-[650px] w-full gap-2 relative z-10" />
                     </div>
 
                     <div className="absolute -bottom-20 -right-20 -z-10 rotate-[-10deg] opacity-10 pointer-events-none select-none">

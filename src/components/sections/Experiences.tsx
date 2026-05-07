@@ -32,7 +32,9 @@ const experiences = [
         col: 2,
         link: "/curso-aff-pro",
         tags: ["7 NÍVEIS", "CERTIFICADO", "TEÓRICO INCLUSO"],
-        description: "Aprenda a voar sozinho. O método de formação de atletas mais rápido e seguro do mundo."
+        description: "Aprenda a voar sozinho. O método de formação de atletas mais rápido e seguro do mundo.",
+        promoText: "Aproveite a promoção de inverno",
+        promoBadge: "CONDIÇÃO ÚNICA"
     },
     {
         id: "salto-balao",
@@ -202,7 +204,7 @@ function ExperienceCard({ data, index, isInView, onBooking }: { data: any, index
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={onBooking}
-            className="group relative h-[600px] md:h-[750px] w-full rounded-[40px] overflow-hidden cursor-pointer bg-white shadow-[0_20px_40px_-5px_rgba(0,0,0,0.1),0_15px_25px_-5px_rgba(0,0,0,0.1),0_0_0_1px_rgba(0,0,0,0.05)] hover:shadow-[0_45px_100px_-20px_rgba(0,0,0,0.3),0_0_50px_rgba(57,255,20,0.15)] flex flex-col perspective-1000 transition-all duration-500"
+            className="group relative h-[600px] md:h-[750px] w-full rounded-[40px] overflow-hidden cursor-pointer bg-zinc-900 shadow-[0_20px_40px_-5px_rgba(0,0,0,0.3),0_15px_25px_-5px_rgba(0,0,0,0.2)] hover:shadow-[0_45px_100px_-20px_rgba(0,0,0,0.5),0_0_50px_rgba(57,255,20,0.15)] flex flex-col perspective-1000 transition-all duration-500 border border-white/5"
         >
             {/* Main Content Area */}
             <div className="relative w-full h-full overflow-hidden">
@@ -244,18 +246,71 @@ function ExperienceCard({ data, index, isInView, onBooking }: { data: any, index
                 {/* Dark Overlay gradient */}
                 <div className={`absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent transition-opacity duration-700 ${isHovered ? 'opacity-0' : 'opacity-100'}`} />
 
-                {/* White Info Panel (Slides up on hover) */}
+                {/* Chumbo Info Panel (Slides up on hover) */}
                 <motion.div
                     initial={{ y: "100%" }}
                     animate={{ y: isHovered ? "0%" : "100%" }}
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute inset-x-0 bottom-0 bg-white z-30 px-10 py-10 flex flex-col gap-6 shadow-[0_-20px_40px_rgba(0,0,0,0.1)]"
+                    className="absolute inset-x-0 bottom-0 bg-[#121212] z-30 px-10 py-10 flex flex-col gap-6 shadow-[0_-20px_40px_rgba(0,0,0,0.4)] border-t border-white/5"
                 >
+                    {/* Texture Overlay */}
+                    <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+                        style={{ 
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` 
+                        }} 
+                    />
+
                     {/* Header Row */}
-                    <div className="flex items-start justify-between min-h-[70px]">
-                        <h3 className="text-3xl md:text-4xl flex-shrink-0 max-w-[50%] font-black italic uppercase tracking-tighter text-black font-display leading-[1] mt-2">
-                            {title}
-                        </h3>
+                    <div className="flex items-start justify-between min-h-[70px] relative z-10 gap-4">
+                        <div className="flex flex-col flex-1">
+                            <div className="flex items-center gap-4 flex-wrap">
+                                <h3 className="text-3xl md:text-4xl font-black italic uppercase tracking-tighter text-white font-display leading-[1] mt-2">
+                                    {title}
+                                </h3>
+                                
+                                {/* Pro Max Striking Tag - REFINED */}
+                                {data.promoText && (
+                                    <motion.div
+                                        initial={{ scale: 0, opacity: 0, rotate: -5 }}
+                                        animate={isHovered ? { scale: 1, opacity: 1, rotate: 0 } : {}}
+                                        transition={{ 
+                                            type: "spring", 
+                                            stiffness: 300, 
+                                            damping: 20,
+                                            delay: 0.3 
+                                        }}
+                                        className="relative mt-2 group/promo flex flex-col items-center gap-2"
+                                    >
+                                        {/* Controlled Glowing Aura */}
+                                        <div className="absolute -inset-2 bg-neon/15 blur-xl rounded-full opacity-0 group-hover/promo:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                                        
+                                        <div className="relative flex items-center gap-2 bg-gradient-to-br from-neon via-[#4dff2b] to-emerald-500 px-4 py-2 rounded-xl border border-white/30 shadow-[0_10px_30px_-5px_rgba(57,255,20,0.4)] transform -skew-x-6 hover:skew-x-0 transition-all duration-500 overflow-hidden">
+                                            {/* Dynamic Shine Layer */}
+                                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover/promo:translate-x-[200%] transition-transform duration-1000 ease-in-out pointer-events-none" />
+                                            
+                                            <Zap size={14} className="text-black fill-black animate-pulse" />
+                                            
+                                            <div className="flex flex-col leading-tight">
+                                                <span className="text-[10px] md:text-[11px] font-black text-black uppercase tracking-tighter">
+                                                    {data.promoBadge}
+                                                </span>
+                                                <span className="text-[7px] font-black text-black/60 uppercase tracking-[0.2em]">
+                                                    TEMPORADA 2026
+                                                </span>
+                                            </div>
+                                        </div>
+                                        
+                                        {/* Refined Subtitle */}
+                                        <motion.span 
+                                            animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 3 }}
+                                            className="text-[7px] font-black text-neon uppercase tracking-[0.4em] whitespace-nowrap drop-shadow-[0_0_8px_rgba(57,255,20,0.5)]"
+                                        >
+                                            TEMPO LIMITADO
+                                        </motion.span>
+                                    </motion.div>
+                                )}
+                            </div>
+                        </div>
                         {price && (
                             <div className="relative flex flex-col items-end justify-center transform group-hover:scale-[1.03] transition-all duration-700 origin-right mt-1">
                                 
@@ -320,17 +375,17 @@ function ExperienceCard({ data, index, isInView, onBooking }: { data: any, index
                         )}
                     </div>
 
-                    <div className="h-[1px] w-full bg-zinc-100" />
+                    <div className="h-[1px] w-full bg-white/5 relative z-10" />
 
                     {/* Tags */}
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 relative z-10">
                         {tags.map((tag: string) => (
                             <span 
                                 key={tag} 
                                 className={`text-[11px] font-bold px-4 py-1.5 rounded-full uppercase tracking-tight ${
                                     tag === "A partir da categoria B"
                                         ? "bg-yellow-400 text-black border border-black/10 shadow-[0_0_15px_rgba(250,204,21,0.3)] animate-pulse"
-                                        : "text-zinc-500 bg-zinc-100 text-nowrap"
+                                        : "text-zinc-400 bg-white/5 border border-white/5 text-nowrap"
                                 }`}
                             >
                                 {tag}
@@ -339,11 +394,11 @@ function ExperienceCard({ data, index, isInView, onBooking }: { data: any, index
                     </div>
 
                     {/* Description */}
-                    <p className="text-zinc-600 text-[15px] leading-relaxed font-semibold">
+                    <p className="text-zinc-400 text-[15px] leading-relaxed font-semibold relative z-10">
                         {description}
                     </p>
 
-                    <div className="flex gap-4 mt-auto pt-2">
+                    <div className="flex gap-4 mt-auto pt-2 relative z-10">
                         {data.id !== "curso-aff" && (
                             <Button
                                 onClick={(e) => {

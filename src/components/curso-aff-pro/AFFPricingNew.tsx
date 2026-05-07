@@ -17,8 +17,8 @@ const items = [
 ];
 
 const TOTAL_ANCHOR = "R$ 15.000+";
-const FINAL_PRICE = "6.900";
-const INSTALLMENT = "680,00";
+const FINAL_PRICE = "7.940";
+const INSTALLMENT = "794,00";
 const INSTALLMENTS = "12";
 
 export default function AFFPricingNew() {
@@ -139,11 +139,11 @@ export default function AFFPricingNew() {
                                     <div className="flex items-baseline gap-1 mt-2">
                                         <span className="text-zinc-400 text-lg font-bold">12x</span>
                                         <span className="text-white font-black text-6xl md:text-7xl tracking-tighter">
-                                            R$ 775
+                                            R$ {INSTALLMENT.split(',')[0]}
                                         </span>
                                     </div>
                                     <p className="text-[#39FF14] font-black text-sm uppercase tracking-widest mt-2 bg-[#39FF14]/10 px-3 py-1 rounded-full border border-[#39FF14]/20">
-                                        Ou R$ 7.750,00 à vista
+                                        Ou R$ {FINAL_PRICE},00 à vista
                                     </p>
                                 </div>
 
