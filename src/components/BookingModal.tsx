@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, User, Phone, CheckCircle2, ArrowRight, ChevronDown } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { FlyUpWebhook } from "@/lib/webhook-integration";
+import { sendLead } from "@/lib/webhook-integration";
+import { getDeviceType } from "@/lib/utils/device";
 
 interface BookingModalProps {
     isOpen: boolean;
@@ -257,35 +258,48 @@ export default function BookingModal({ isOpen, onClose, experienceTitle, webhook
         e.preventDefault();
         setIsSubmitting(true);
 
+        // Abre a aba imediatamente (dentro do gesto do usuário) para não ser bloqueada pelo popup blocker
+        const confirmTab = window.open('', '_blank');
+
+        const navigateConfirmTab = () => {
+            const exp = encodeURIComponent(webhookTitle || experienceTitle);
+            const url = `/agendamento-concluido?exp=${exp}`;
+            if (confirmTab) confirmTab.location.href = url;
+        };
+
         try {
             const phoneNumber = `${selectedCountry.ddi}${formData.fullPhone.replace(/\D/g, "")}`;
+            const deviceType = getDeviceType();
+            const sourceWithDevice = `${source}-${deviceType}`;
+            const searchParams = new URLSearchParams(window.location.search);
 
-            // Dispara para o fluxo do N8N através da integração
-            await FlyUpWebhook.send({
-                nome: formData.name,
-                telefone: phoneNumber
-            }, source, webhookTitle || experienceTitle);
-
-            setIsSubmitted(true);
-            setTimeout(() => {
-                const queryParam = redirectUrl ? `?redirectUrl=${encodeURIComponent(redirectUrl)}` : '';
-                const url = `/agendamento-concluido${queryParam}`;
-                window.open(url, '_blank');
-                onClose();
-            }, 3000);
+            await sendLead(
+                { nome: formData.name, telefone: phoneNumber },
+                sourceWithDevice,
+                webhookTitle || experienceTitle,
+                {
+                    page_path: window.location.pathname,
+                    referrer: document.referrer || '',
+                    utm_source:   searchParams.get('utm_source')   || '',
+                    utm_medium:   searchParams.get('utm_medium')   || '',
+                    utm_campaign: searchParams.get('utm_campaign') || '',
+                    utm_content:  searchParams.get('utm_content')  || '',
+                    utm_term:     searchParams.get('utm_term')     || '',
+                    device_type: deviceType,
+                }
+            );
         } catch (error) {
             console.error("Erro ao enviar interesse:", error);
-            // Em caso de erro, ainda dá a mensagem de sucesso para não frustrar o usuário ou mostramos um aviso
-            setIsSubmitted(true);
-            setTimeout(() => {
-                const queryParam = redirectUrl ? `?redirectUrl=${encodeURIComponent(redirectUrl)}` : '';
-                const url = `/agendamento-concluido${queryParam}`;
-                window.open(url, '_blank');
-                onClose();
-            }, 3000);
         } finally {
             setIsSubmitting(false);
         }
+
+        // Exibe confirmação e navega a aba já aberta
+        setIsSubmitted(true);
+        setTimeout(() => {
+            navigateConfirmTab();
+            onClose();
+        }, 1500);
     };
 
     // Smart Phone Formatter (DDD + Number)

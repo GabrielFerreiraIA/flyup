@@ -111,41 +111,49 @@ export default function SafetyObjections() {
 
                 {/* Icons Navigation - Dark/Neon variant */}
                 <div className="flex justify-center mb-12">
-                    <div className="flex gap-4 md:gap-8 overflow-x-auto pb-10 pt-4 px-4 md:px-0 w-full md:w-auto scrollbar-hide snap-x items-center">
-                        {SAFETY_ITEMS.map((item, index) => {
-                            const isActive = activeIndex === index;
-                            return (
-                                <button
-                                    key={item.id}
-                                    onClick={() => handleTabClick(index)}
-                                    className={`relative flex flex-col items-center gap-4 min-w-[90px] md:min-w-[110px] group transition-all duration-300 snap-center focus:outline-none`}
-                                >
-                                    {/* Icon Circle */}
-                                    <div className={`
-                                        w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center border-2 transition-all duration-500 relative z-10
-                                        ${isActive
-                                            ? "border-[#39FF14] bg-[#39FF14]/10 shadow-[0_0_20px_rgba(57,255,20,0.3)] scale-110"
-                                            : "border-zinc-800 bg-zinc-900 group-hover:border-zinc-600 text-zinc-500 group-hover:text-zinc-300"}
-                                    `}>
-                                        <item.icon className={`w-6 h-6 md:w-8 md:h-8 transition-colors duration-300 ${isActive ? "text-[#39FF14]" : "text-current"}`} strokeWidth={1.5} />
-                                    </div>
+                    <div className="relative w-full md:w-auto">
+                        {/* Left Fade */}
+                        <div className="absolute left-0 top-0 bottom-10 w-12 bg-gradient-to-r from-zinc-950 to-transparent z-20 pointer-events-none md:hidden" />
+                        
+                        {/* Right Fade */}
+                        <div className="absolute right-0 top-0 bottom-10 w-12 bg-gradient-to-l from-zinc-950 to-transparent z-20 pointer-events-none md:hidden" />
 
-                                    {/* Label */}
-                                    <span className={`text-[10px] md:text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isActive ? "text-[#39FF14]" : "text-zinc-600 group-hover:text-zinc-500"}`}>
-                                        {item.navLabel}
-                                    </span>
+                        <div className="flex gap-4 md:gap-8 overflow-x-auto pb-10 pt-4 px-6 md:px-0 w-full md:w-auto scrollbar-hide snap-x items-center">
+                            {SAFETY_ITEMS.map((item, index) => {
+                                const isActive = activeIndex === index;
+                                return (
+                                    <button
+                                        key={item.id}
+                                        onClick={() => handleTabClick(index)}
+                                        className={`relative flex flex-col items-center gap-4 min-w-[100px] md:min-w-[110px] group transition-all duration-300 snap-center focus:outline-none`}
+                                    >
+                                        {/* Icon Circle */}
+                                        <div className={`
+                                            w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center border-2 transition-all duration-500 relative z-10
+                                            ${isActive
+                                                ? "border-[#39FF14] bg-[#39FF14]/10 shadow-[0_0_20px_rgba(57,255,20,0.3)] scale-110"
+                                                : "border-zinc-800 bg-zinc-900 group-hover:border-zinc-600 text-zinc-500 group-hover:text-zinc-300"}
+                                        `}>
+                                            <item.icon className={`w-6 h-6 md:w-8 md:h-8 transition-colors duration-300 ${isActive ? "text-[#39FF14]" : "text-current"}`} strokeWidth={1.5} />
+                                        </div>
 
-                                    {/* Connecting Line Segment */}
-                                    {isActive && (
-                                        <motion.div
-                                            layoutId="activeTabIndicator"
-                                            className="absolute -bottom-8 w-px h-8 bg-gradient-to-b from-[#39FF14] to-transparent z-0"
-                                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                        />
-                                    )}
-                                </button>
-                            );
-                        })}
+                                        {/* Label */}
+                                        <span className={`text-[10px] md:text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${isActive ? "text-[#39FF14]" : "text-zinc-600 group-hover:text-zinc-500"}`}>
+                                            {item.navLabel}
+                                        </span>
+
+                                        {/* Connecting Line Segment */}
+                                        {isActive && (
+                                            <motion.div
+                                                layoutId="activeTabIndicator"
+                                                className="absolute -bottom-8 w-px h-8 bg-gradient-to-b from-[#39FF14] to-transparent z-0"
+                                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                            />
+                                        )}
+                                    </button>
+                                );
+                            })}
+                        </div>
                     </div>
                 </div>
 

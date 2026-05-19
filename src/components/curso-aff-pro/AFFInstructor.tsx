@@ -113,7 +113,7 @@ export default function AFFInstructor() {
             <BookingModal
                 isOpen={isBookingOpen}
                 onClose={() => setIsBookingOpen(false)}
-                experienceTitle="Mentoria com Edu Esteves"
+                experienceTitle="Curso AFF"
                 source="form-interesse-aff"
             />
         </section>

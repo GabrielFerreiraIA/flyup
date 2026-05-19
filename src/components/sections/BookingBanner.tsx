@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import * as Dialog from "@radix-ui/react-dialog";
 import { User, Phone, Zap, GraduationCap, ArrowRight, X, CheckCircle2, ChevronDown } from "lucide-react";
 import { FlyUpWebhook } from "@/lib/webhook-integration";
+import { getDeviceType } from "@/lib/utils/device";
 
 const countries = [
     { name: 'Brasil', code: 'br', ddi: '+55' },
@@ -213,30 +214,44 @@ export default function BookingBanner() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    // Abre a aba imediatamente (dentro do gesto do usuário) para não ser bloqueada pelo popup blocker
+    const confirmTab = window.open('', '_blank');
+    const exp = encodeURIComponent(selectedService === "duplo" ? "Salto Duplo" : "Curso AFF");
+
     try {
       const phoneNumber = `${selectedCountry.ddi}${formData.phone.replace(/\D/g, "")}`;
+      const deviceType = getDeviceType();
+      const sourceWithDevice = `banner-oportunidade-${deviceType}`;
+      const searchParams = new URLSearchParams(window.location.search);
+
       await FlyUpWebhook.send({
         nome: formData.name,
         telefone: phoneNumber
-      }, 'banner-oportunidade', selectedService === "duplo" ? "Salto Duplo" : "Curso de Paraquedismo");
-
-      setIsSubmitted(true);
-      setTimeout(() => {
-        window.open('/agendamento-concluido', '_blank');
-        setIsOpen(false);
-        setIsSubmitted(false);
-        setFormData({ name: "", phone: "" });
-      }, 3000);
+      }, sourceWithDevice, selectedService === "duplo" ? "Salto Duplo" : "Curso AFF", {
+        page_path: window.location.pathname,
+        referrer: document.referrer || '',
+        utm_source:   searchParams.get('utm_source')   || '',
+        utm_medium:   searchParams.get('utm_medium')   || '',
+        utm_campaign: searchParams.get('utm_campaign') || '',
+        utm_content:  searchParams.get('utm_content')  || '',
+        utm_term:     searchParams.get('utm_term')     || '',
+        device_type: deviceType,
+      });
     } catch (error) {
       console.error(error);
-      setIsSubmitted(true);
-      setTimeout(() => {
-        window.open('/agendamento-concluido', '_blank');
-        setIsOpen(false);
-      }, 3000);
     } finally {
       setIsSubmitting(false);
     }
+
+    // Exibe confirmação e navega a aba já aberta
+    setIsSubmitted(true);
+    setTimeout(() => {
+      if (confirmTab) confirmTab.location.href = `/agendamento-concluido?exp=${exp}`;
+      setIsOpen(false);
+      setIsSubmitted(false);
+      setFormData({ name: "", phone: "" });
+    }, 1500);
   };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {

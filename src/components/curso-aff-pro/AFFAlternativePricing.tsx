@@ -5,6 +5,7 @@ import { Check, Info, ExternalLink, X, Phone, User, ArrowRight, CheckCircle2 } f
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { FlyUpWebhook, FONTES } from "@/lib/webhook-integration";
+import { getDeviceType } from "@/lib/utils/device";
 
 // ─── FONTES chave por card ────────────────────────────────────────────────────
 const CARD_FONTE: Record<string, string> = {
@@ -203,22 +204,27 @@ function LeadModal({ isOpen, option, onClose }: LeadModalProps) {
         if (!option) return;
         setIsSubmitting(true);
 
+        // Abre a aba imediatamente (dentro do gesto do usuário) para não ser bloqueada pelo popup blocker
+        const confirmTab = window.open('', '_blank');
+        const exp = encodeURIComponent(option.button.experiencia || option.title);
+        const wamsg = encodeURIComponent(option.button.waMessage || "Olá! Tenho interesse no curso.");
+
         const telefone = `+55${phone.replace(/\D/g, "")}`;
-        const fonte = CARD_FONTE[option.id] || "geral";
+        const deviceType = getDeviceType();
+        const fonte = `${CARD_FONTE[option.id] || "geral"}-${deviceType}`;
         const experiencia = option.button.experiencia || option.title;
 
         try {
-            await FlyUpWebhook.send({ nome: name, telefone }, fonte, experiencia);
+            await FlyUpWebhook.send({ nome: name, telefone }, fonte, experiencia, { device_type: deviceType });
         } catch (_) {
             // falha silenciosa — ainda redireciona
         }
 
         setIsDone(true);
 
-        // Aguarda 1.5s e então redireciona ao WhatsApp
+        // Navega a aba já aberta para a página de confirmação
         setTimeout(() => {
-            const msg = encodeURIComponent(option.button.waMessage || "Olá! Tenho interesse no curso.");
-            window.open(`${option.button.url}?text=${msg}`, "_blank", "noopener,noreferrer");
+            if (confirmTab) confirmTab.location.href = `/agendamento-concluido?exp=${exp}&wamsg=${wamsg}`;
             onClose();
         }, 1500);
     };

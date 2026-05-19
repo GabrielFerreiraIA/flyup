@@ -3,12 +3,11 @@
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Menu, X, ChevronDown, Search, Phone, Calendar, BookOpen, HelpCircle } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight, BookOpen, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import BookingModal from "@/components/BookingModal";
-
 const experiences = [
     { name: "Salto Duplo", href: "/salto-duplo" },
 ];
@@ -86,20 +85,23 @@ export default function Navbar() {
     }, []); // Empty dependency array = stable listeners
 
     return (
-        <header
-            ref={navRef}
-            onMouseEnter={() => { setIsHovered(true); setShowNavbar(true); }}
-            onMouseLeave={() => { setIsHovered(false); }}
-            className={cn(
-                "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out", // Reduced duration slightly for snappier feel
-                // Base spacing
-                isScrolled ? "py-2" : "py-4",
-                // Background logic: Always dark/glass when scrolled, transparent at top
-                isScrolled ? "bg-black/90 backdrop-blur-md shadow-2xl" : "bg-transparent",
-                // Hiding logic: Slide up if scrolled and inactive
-                isScrolled && !showNavbar ? "-translate-y-full" : "translate-y-0"
-            )}
-        >
+        <>
+            <header
+                ref={navRef}
+                onMouseEnter={() => { setIsHovered(true); setShowNavbar(true); }}
+                onMouseLeave={() => { setIsHovered(false); }}
+                className={cn(
+                    "fixed left-0 right-0 z-[60] transition-all duration-500 ease-in-out",
+                    "top-0",
+                    // Base spacing
+                    isScrolled ? "py-2" : "py-4",
+                    // Background logic: Always dark/glass when scrolled, transparent at top
+                    isScrolled ? "bg-black/90 backdrop-blur-md shadow-2xl" : "bg-transparent",
+                    // Hiding logic: Slide up if scrolled and inactive
+                    isScrolled && !showNavbar ? "-translate-y-full" : "translate-y-0"
+                )}
+            >
+
             <div className={cn("container mx-auto px-6 transition-all duration-500", isScrolled ? "h-16" : "h-20")}>
                 <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-10 h-full">
 
@@ -250,126 +252,159 @@ export default function Navbar() {
                 </div>
 
                 {/* Booking Modal */}
-                <BookingModal 
+                <BookingModal
                     isOpen={isBookingModalOpen}
                     onClose={() => setIsBookingModalOpen(false)}
-                    experienceTitle="Contato Direto"
+                    experienceTitle=""
                     source="navbar-agendar"
                 />
 
                 {/* MOBILE TOGGLE */}
                 <button
-                    className="lg:hidden text-white hover:text-neon transition-colors absolute right-6 top-1/2 -translate-y-1/2 z-50"
+                    className="lg:hidden text-white hover:text-neon transition-colors absolute right-6 top-1/2 -translate-y-1/2 z-50 w-11 h-11 flex items-center justify-center"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
                 >
-                    {isMobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
+                    <AnimatePresence mode="wait" initial={false}>
+                        {isMobileMenuOpen ? (
+                            <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
+                                <X size={28} />
+                            </motion.div>
+                        ) : (
+                            <motion.div key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
+                                <Menu size={28} />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </button>
             </div>
-
-            {/* MOBILE MENU FULLSCREEN */}
-            <AnimatePresence>
-                {isMobileMenuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, x: "100%" }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: "100%" }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="fixed inset-0 bg-[#050505] z-40 flex flex-col pt-32 px-10 gap-8 overflow-y-auto"
-                    >
-                        {/* Mobile Sections */}
-                        <div className="space-y-8">
-                            <div>
-                                <h3 className="text-neon text-xs font-black uppercase tracking-[0.3em] mb-6 border-b border-white/10 pb-2">Experiências</h3>
-                                <div className="flex flex-col gap-4">
-                                    {experiences.map(item => (
-                                        <Link
-                                            key={item.name}
-                                            href={item.href}
-                                            onClick={() => setIsMobileMenuOpen(false)}
-                                            className="text-2xl font-black text-white italic uppercase tracking-tighter hover:text-neon transition-colors"
-                                        >
-                                            {item.name}
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div>
-                                <h3 className="text-neon text-xs font-black uppercase tracking-[0.3em] mb-6 border-b border-white/10 pb-2">Cursos de Paraquedismo</h3>
-                                <div className="flex flex-col gap-4">
-                                    {cursosParaquedismo.map(item => (
-                                        <Link
-                                            key={item.name}
-                                            href={item.href}
-                                            onClick={() => setIsMobileMenuOpen(false)}
-                                            className="text-2xl font-black text-white italic uppercase tracking-tighter hover:text-neon transition-colors"
-                                        >
-                                            {item.name}
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div>
-                                <h3 className="text-neon text-xs font-black uppercase tracking-[0.3em] mb-6 border-b border-white/10 pb-2">Outras Experiências</h3>
-                                <div className="flex flex-col gap-4">
-                                    {outrasExperiencias.map(item => (
-                                        <Link
-                                            key={item.name}
-                                            href={item.href}
-                                            onClick={() => setIsMobileMenuOpen(false)}
-                                            className="text-2xl font-black text-white italic uppercase tracking-tighter hover:text-neon transition-colors"
-                                        >
-                                            {item.name}
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div className="pt-8 border-t border-white/10 flexflex-col gap-6">
-                                {/* 
-                                <Link
-                                    href="/agenda-eventos"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    className="flex items-center gap-4 text-xl font-bold text-zinc-300 hover:text-white mb-4"
-                                >
-                                    <Calendar className="text-neon" /> Agenda / Eventos
-                                </Link>
-                                */}
-                                <Link
-                                    href="/faq"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    className="flex items-center gap-4 text-xl font-bold text-zinc-300 hover:text-white mb-4"
-                                >
-                                    <HelpCircle className="text-neon" /> FAQ
-                                </Link>
-                                <Link
-                                    href="/blog"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    className="flex items-center gap-4 text-xl font-bold text-zinc-300 hover:text-white"
-                                >
-                                    <BookOpen className="text-neon" /> Blog
-                                </Link>
-                            </div>
-
-                            <Button 
-                                className="w-full bg-neon text-black font-black italic uppercase py-6 rounded-xl mt-8"
-                                onClick={() => {
-                                    if (pathname === "/curso-aff-pro") {
-                                        setIsMobileMenuOpen(false);
-                                        const element = document.getElementById("preco");
-                                        if (element) {
-                                            element.scrollIntoView({ behavior: "smooth" });
-                                        }
-                                    }
-                                }}
-                            >
-                                {pathname === "/curso-aff-pro" ? "Começar o curso agora" : "Agendar Agora"}
-                            </Button>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
         </header>
+
+        {/* MOBILE MENU — fora do header para evitar conflito de stacking context */}
+        <AnimatePresence>
+            {isMobileMenuOpen && (
+                <motion.div
+                    initial={{ opacity: 0, x: "100%" }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: "100%" }}
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    className="fixed inset-0 bg-[#050505]/98 backdrop-blur-sm z-[65] flex flex-col overflow-hidden"
+                >
+                    {/* Cabeçalho do menu */}
+                    <div className="flex items-center justify-between px-6 py-4 border-b border-white/8 shrink-0">
+                        <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
+                            <img
+                                src="https://i.imgur.com/UlfCRZF.png"
+                                alt="Fly Up"
+                                className="h-12 w-auto object-contain"
+                            />
+                        </Link>
+                        <button
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="w-11 h-11 flex items-center justify-center rounded-xl bg-white/8 text-zinc-300 hover:bg-white/12 hover:text-white transition-colors"
+                            aria-label="Fechar menu"
+                        >
+                            <X size={22} />
+                        </button>
+                    </div>
+
+                    {/* Links de navegação */}
+                    <nav className="flex-1 overflow-y-auto px-6 py-6 space-y-6">
+                        {/* Experiências */}
+                        <div>
+                            <p className="text-[9px] font-black uppercase tracking-[0.35em] text-[#39FF14] mb-2 px-1">
+                                Experiências
+                            </p>
+                            {experiences.map(item => (
+                                <Link
+                                    key={item.name}
+                                    href={item.href}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="flex items-center justify-between py-4 border-b border-white/5 text-xl font-black italic uppercase tracking-tighter text-white hover:text-[#39FF14] transition-colors group"
+                                >
+                                    {item.name}
+                                    <ChevronRight size={18} className="text-zinc-700 group-hover:text-[#39FF14] transition-colors shrink-0" />
+                                </Link>
+                            ))}
+                        </div>
+
+                        {/* Cursos */}
+                        <div>
+                            <p className="text-[9px] font-black uppercase tracking-[0.35em] text-[#39FF14] mb-2 px-1">
+                                Cursos
+                            </p>
+                            {cursosParaquedismo.map(item => (
+                                <Link
+                                    key={item.name}
+                                    href={item.href}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="flex items-center justify-between py-4 border-b border-white/5 text-xl font-black italic uppercase tracking-tighter text-white hover:text-[#39FF14] transition-colors group"
+                                >
+                                    {item.name}
+                                    <ChevronRight size={18} className="text-zinc-700 group-hover:text-[#39FF14] transition-colors shrink-0" />
+                                </Link>
+                            ))}
+                        </div>
+
+                        {/* Outras Experiências */}
+                        <div>
+                            <p className="text-[9px] font-black uppercase tracking-[0.35em] text-[#39FF14] mb-2 px-1">
+                                Outras Experiências
+                            </p>
+                            {outrasExperiencias.map(item => (
+                                <Link
+                                    key={item.name}
+                                    href={item.href}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="flex items-center justify-between py-4 border-b border-white/5 text-xl font-black italic uppercase tracking-tighter text-white hover:text-[#39FF14] transition-colors group"
+                                >
+                                    {item.name}
+                                    <ChevronRight size={18} className="text-zinc-700 group-hover:text-[#39FF14] transition-colors shrink-0" />
+                                </Link>
+                            ))}
+                        </div>
+
+                        {/* Links secundários */}
+                        <div className="pt-2 flex flex-col gap-1">
+                            <Link
+                                href="/faq"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="flex items-center gap-3 py-3.5 text-sm font-bold text-zinc-500 hover:text-zinc-200 transition-colors"
+                            >
+                                <HelpCircle size={16} className="text-[#39FF14]/70" />
+                                FAQ
+                            </Link>
+                            <Link
+                                href="/blog"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="flex items-center gap-3 py-3.5 text-sm font-bold text-zinc-500 hover:text-zinc-200 transition-colors"
+                            >
+                                <BookOpen size={16} className="text-[#39FF14]/70" />
+                                Blog
+                            </Link>
+                        </div>
+                    </nav>
+
+                    {/* CTA fixo na zona do polegar */}
+                    <div className="shrink-0 px-6 pb-10 pt-4 border-t border-white/8">
+                        <Button
+                            className="w-full h-14 bg-[#39FF14] hover:bg-[#22cc0a] text-black font-black italic uppercase tracking-wider rounded-xl text-base shadow-[0_0_30px_rgba(57,255,20,0.2)] transition-all"
+                            onClick={() => {
+                                setIsMobileMenuOpen(false);
+                                if (pathname === "/curso-aff-pro") {
+                                    const element = document.getElementById("preco");
+                                    if (element) element.scrollIntoView({ behavior: "smooth" });
+                                } else {
+                                    setIsBookingModalOpen(true);
+                                }
+                            }}
+                        >
+                            {pathname === "/curso-aff-pro" ? "Começar o curso agora" : "Agendar Agora"}
+                        </Button>
+                    </div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+        </>
     );
 }

@@ -280,3 +280,25 @@
 .animate-pulse-neon {
   animation: pulse-neon 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  animation: shimmer 6s infinite linear;
+}
+
+.scanline-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.05) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 10;
+}

@@ -22,6 +22,7 @@ export default function MarketingLayout({
 }>) {
   return (
     <div
+      suppressHydrationWarning
       className={cn(
         inter.variable,
         outfit.variable,

@@ -65,7 +65,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
   );
 };
 
-export default function LinksClient() {
+export default function LinksClient({ source = "links_tree" }: { source?: string }) {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [redirectUrl, setRedirectUrl] = useState<string | undefined>(undefined);
 
@@ -160,11 +160,11 @@ export default function LinksClient() {
           </div>
         </main>
         
-        <BookingModal 
-          isOpen={isBookingModalOpen} 
-          onClose={() => setIsBookingModalOpen(false)} 
-          experienceTitle="SALTO DUPLO" 
-          source="links_tree"
+        <BookingModal
+          isOpen={isBookingModalOpen}
+          onClose={() => setIsBookingModalOpen(false)}
+          experienceTitle="Salto Duplo"
+          source={source}
           redirectUrl={redirectUrl}
         />
       </div>

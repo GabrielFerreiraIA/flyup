@@ -108,7 +108,7 @@ export default function AFFHero() {
             <BookingModal
                 isOpen={isBookingOpen}
                 onClose={() => setIsBookingOpen(false)}
-                experienceTitle="Vaga: Turma Alpha AFF"
+                experienceTitle="Curso AFF"
                 source="botao-iniciar-aff"
             />
         </section >

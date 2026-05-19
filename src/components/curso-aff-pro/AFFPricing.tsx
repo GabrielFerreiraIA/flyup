@@ -117,7 +117,7 @@ export default function AFFPricing() {
             <BookingModal
                 isOpen={isBookingOpen}
                 onClose={() => setIsBookingOpen(false)}
-                experienceTitle="Matrícula AFF Pro"
+                experienceTitle="Curso AFF"
                 source="form-matricula-aff"
             />
         </section>

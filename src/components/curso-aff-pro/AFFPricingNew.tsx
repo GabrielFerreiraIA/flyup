@@ -183,7 +183,7 @@ export default function AFFPricingNew() {
             <BookingModal
                 isOpen={isBookingOpen}
                 onClose={() => setIsBookingOpen(false)}
-                experienceTitle="Curso AFF Pro — Vaga Garantida"
+                experienceTitle="Curso AFF"
                 source="form-matricula-aff"
             />
         </section>

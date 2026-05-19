@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import SaltoDuploV3Client from "../salto-duplo-v3/SaltoDuploV3Client";
+import SaltoDuploV3Client from "./SaltoDuploV3Client";
 
 export const metadata: Metadata = {
     title: "Salto Duplo de Paraquedas em Boituva | Fly Up Paraquedismo — Since 1992",
@@ -27,6 +27,6 @@ export const metadata: Metadata = {
     },
 };
 
-export default function SaltoDuploPage() {
+export default function SaltoDuploV3Page() {
     return <SaltoDuploV3Client />;
 }
