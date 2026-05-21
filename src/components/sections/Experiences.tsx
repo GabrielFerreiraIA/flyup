@@ -176,6 +176,7 @@ export default function Experiences() {
                 onClose={() => setBookingExp(null)}
                 experienceTitle={bookingExp || ""}
                 source={`link-home-${experiences.find(e => e.title === bookingExp)?.id}`}
+                formId={bookingExp ? `form-agendamento-home-${experiences.find(e => e.title === bookingExp)?.id}` : undefined}
             />
         </section>
     );

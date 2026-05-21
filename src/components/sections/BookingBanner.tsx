@@ -357,7 +357,10 @@ export default function BookingBanner() {
                   <p className="text-zinc-500 font-bold uppercase text-[10px] tracking-widest">Abrindo confirmação em nova aba...</p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit}>
+                <form
+                  id={selectedService === "duplo" ? "form-hero-banner-salto-duplo" : "form-hero-banner-curso-aff"}
+                  onSubmit={handleSubmit}
+                >
                   {/* Header */}
                   <div className="mb-10 relative z-10">
                     <h2 className="text-4xl md:text-5xl font-black italic uppercase text-white tracking-tighter leading-none mb-2">

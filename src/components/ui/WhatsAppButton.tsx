@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 interface WhatsAppButtonProps {
     phoneNumber?: string;
@@ -16,16 +17,32 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
     const [isOpen, setIsOpen] = useState(false);
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
+    const pathname = usePathname();
+
+    const directMessages: Record<string, string> = {
+        "/": "Olá! Tenho interesse em uma das experiências da Fly Up Paraquedismo. Pode me ajudar?",
+        "/agendamento-concluido": "Olá! Tenho uma dúvida sobre meu agendamento.",
+        "/salto-duplo": "Olá! Vim pelo Google e tenho dúvidas sobre o Salto Duplo de Paraquedas. Pode me ajudar?",
+    };
+
+    const directMessage = pathname ? directMessages[pathname] : undefined;
+
+    const handleButtonClick = () => {
+        if (directMessage) {
+            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(directMessage)}`, "_blank");
+        } else {
+            setIsOpen(true);
+        }
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         const finalMessage = `Olá, meu nome é ${name}, meu telefone é ${phone}. ${message}`;
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(finalMessage)}`;
-        
+
         window.open(whatsappUrl, '_blank');
         setIsOpen(false);
-        // Reset form
         setName("");
         setPhone("");
     };
@@ -102,7 +119,7 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
             {/* Floating Button */}
             <AnimatePresence>
                 <div
-                    onClick={() => setIsOpen(true)}
+                    onClick={handleButtonClick}
                     className="fixed bottom-8 right-8 z-[100] flex items-center justify-center w-16 h-16 bg-[#25D366] text-white rounded-full shadow-[0_10px_25px_rgba(37,211,102,0.4)] transition-shadow hover:shadow-[0_15px_35px_rgba(37,211,102,0.6)] cursor-pointer group"
                     aria-label="Fale conosco no WhatsApp"
                 >

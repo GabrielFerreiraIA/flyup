@@ -14,6 +14,7 @@ interface BookingModalProps {
     webhookTitle?: string;
     source?: string;
     redirectUrl?: string;
+    formId?: string;
 }
 
 const countries = [
@@ -210,7 +211,7 @@ const countries = [
     { name: 'Zimbábue', code: 'zw', ddi: '+263' },
 ];
 
-export default function BookingModal({ isOpen, onClose, experienceTitle, webhookTitle, source = 'geral', redirectUrl }: BookingModalProps) {
+export default function BookingModal({ isOpen, onClose, experienceTitle, webhookTitle, source = 'geral', redirectUrl, formId }: BookingModalProps) {
     const [formData, setFormData] = useState({
         name: "",
         fullPhone: "", // Store combined DDD + Number
@@ -429,7 +430,7 @@ export default function BookingModal({ isOpen, onClose, experienceTitle, webhook
                                     </p>
                                 </div>
                             ) : (
-                                <form onSubmit={handleSubmit} className="flex flex-col gap-6 relative z-10">
+                                <form id={formId} onSubmit={handleSubmit} className="flex flex-col gap-6 relative z-10">
 
                                     {/* Name Input */}
                                     <div className="group/input relative">
