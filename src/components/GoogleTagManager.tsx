@@ -3,16 +3,33 @@
 import Script from "next/script";
 import { usePathname } from "next/navigation";
 
+const GA_ID = "G-MZQCFQ96DR";
+
 export default function GoogleTagManager({ gtmId }: { gtmId: string }) {
   const pathname = usePathname();
 
-  // Não renderiza o GTM nas rotas do CRM
+  // Não renderiza nas rotas do CRM
   if (pathname?.startsWith("/crm")) {
     return null;
   }
 
   return (
     <>
+      {/* Google Analytics (gtag.js) */}
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_ID}');
+        `}
+      </Script>
+
+      {/* Google Tag Manager */}
       <Script id="google-tag-manager" strategy="afterInteractive">
         {`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
