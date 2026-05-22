@@ -37,6 +37,10 @@ export const FONTES: Record<string, string> = {
     'salto-duplo-pricing-experience': 'Card Pricing Experience — Salto Duplo',
     'salto-duplo-pricing-vip':        'Card Pricing VIP — Salto Duplo',
     'salto-duplo-v3':                 'Página Salto Duplo V3',
+    'salto-duplo-v3-fun':             'Card Fun — Salto Duplo V3',
+    'salto-duplo-v3-handycam':        'Card Handycam — Salto Duplo V3',
+    'salto-duplo-v3-supervip':        'Card Super VIP — Salto Duplo V3',
+    'salto-duplo-v3-supervipplus':    'Card Super VIP Plus — Salto Duplo V3',
 
     // Legado salto duplo
     'botao-agendar-salto-duplo':       'Botão Agendar — Página Salto Duplo',
@@ -125,7 +129,11 @@ export const FONTES: Record<string, string> = {
 
 // Mapa fixo: título da experiência → ID da tabela `experiences`
 export const EXPERIENCE_IDS: Record<string, string> = {
-    'Salto Duplo':             'salto-duplo',
+    'Salto Duplo':               'salto-duplo',
+    'Salto Duplo Fun':           'salto-duplo-fun',
+    'Salto Duplo Handycam':      'salto-duplo-handycam',
+    'Salto Duplo Super VIP':     'salto-duplo-super-vip',
+    'Salto Duplo Super VIP Plus':'salto-duplo-super-vip-plus',
     'Curso AFF':               'curso-aff',
     'Salto de Balão':          'salto-balao',
     'Voos e Saltos de Balão':  'salto-balao',
@@ -137,6 +145,19 @@ export const EXPERIENCE_IDS: Record<string, string> = {
     'Salto Solo AFF':          'salto-solo-aff',
     'Batismo Indoor':          'batismo-indoor',
     'Batismo de Voo Indoor':   'batismo-indoor',
+}
+
+// Valor estimado por experience_id (em R$)
+export const EXPERIENCE_VALUES: Record<string, number> = {
+    'salto-duplo-fun':            599,
+    'salto-duplo-handycam':       745,
+    'salto-duplo-super-vip':      1390,
+    'salto-duplo-super-vip-plus': 1650,
+    'salto-duplo':                745,
+    'curso-aff':                  950,
+    'tunel-vento':                350,
+    'salto-balao':                1800,
+    'wingsuit':                   2500,
 }
 
 /**

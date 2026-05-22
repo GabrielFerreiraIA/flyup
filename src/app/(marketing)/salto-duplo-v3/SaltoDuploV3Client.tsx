@@ -267,13 +267,26 @@ function BtnOutline({ href, onClick, children, className = "" }: {
 
 const BANNER_HEIGHT = 44;
 
+const modalityConfig: Record<string, { source: string; title: string }> = {
+    'fun':          { source: 'salto-duplo-v3-fun',          title: 'Salto Duplo Fun' },
+    'handycam':     { source: 'salto-duplo-v3-handycam',     title: 'Salto Duplo Handycam' },
+    'supervip':     { source: 'salto-duplo-v3-supervip',     title: 'Salto Duplo Super VIP' },
+    'supervipplus': { source: 'salto-duplo-v3-supervipplus', title: 'Salto Duplo Super VIP Plus' },
+};
+
 export default function SaltoDuploV3Client() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalSource, setModalSource] = useState('salto-duplo-v3-handycam');
+    const [modalExperience, setModalExperience] = useState('Salto Duplo Handycam');
     const [openFaq, setOpenFaq] = useState<number | null>(null);
     const [lightboxImg, setLightboxImg] = useState<string | null>(null);
     const [bannerVisible, setBannerVisible] = useState(true);
 
-    const openModal = () => setIsModalOpen(true);
+    const openModal = (source = 'salto-duplo-v3-handycam', experience = 'Salto Duplo Handycam') => {
+        setModalSource(source);
+        setModalExperience(experience);
+        setIsModalOpen(true);
+    };
 
     useEffect(() => {
         const header = document.querySelector("header");
@@ -316,9 +329,8 @@ export default function SaltoDuploV3Client() {
             <BookingModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                experienceTitle="Salto Duplo"
-                webhookTitle="Salto Duplo (V3)"
-                source="salto-duplo-v3"
+                experienceTitle={modalExperience}
+                source={modalSource}
                 formId="form-agendamento-salto-duplo"
             />
 
@@ -443,7 +455,7 @@ export default function SaltoDuploV3Client() {
                                             OFF
                                         </span>
                                         <span className="text-[7px] md:text-[8px] font-bold uppercase tracking-widest text-zinc-500 mt-0.5">
-                                            Vagas limitadas
+                                            Salto VIP Plus · Vagas limitadas
                                         </span>
                                     </div>
                                 </div>
@@ -451,7 +463,7 @@ export default function SaltoDuploV3Client() {
                                 {/* CTA */}
                                 <div className="w-full md:w-auto">
                                     <button
-                                        onClick={openModal}
+                                        onClick={() => openModal()}
                                         className="group/cta relative h-12 md:h-14 w-full md:px-10 bg-white text-black font-black italic uppercase tracking-wider rounded-xl overflow-hidden transition-all duration-300 shadow-xl hover:shadow-[0_0_30px_rgba(57,255,20,0.4)] cursor-pointer"
                                     >
                                         <div className="absolute inset-0 translate-x-[-100%] group-hover/cta:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]" style={{ background: "linear-gradient(to right, #39FF14, #10b981)" }} />
@@ -487,8 +499,19 @@ export default function SaltoDuploV3Client() {
             {/* =============================================
                 2. ÂNCORA DE PREÇO — WHITE
             ============================================= */}
-            <section className="bg-white py-16 md:py-24">
-                <div className="container mx-auto px-6">
+            <section className="bg-white py-16 md:py-24 relative overflow-hidden">
+                {/* Hexagonal Honeycomb Pattern */}
+                <div
+                    className="absolute inset-0 opacity-[0.18] pointer-events-none select-none"
+                    style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='147' viewBox='0 0 28 49'%3E%3Cg fill='%234B5563' fill-opacity='0.55'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/svg%3E")`,
+                        backgroundSize: "84px 147px",
+                        backgroundRepeat: "repeat",
+                        maskImage: "radial-gradient(ellipse 80% 50% at 50% 50%, black 10%, transparent 65%)",
+                        WebkitMaskImage: "radial-gradient(ellipse 80% 50% at 50% 50%, black 10%, transparent 65%)",
+                    }}
+                />
+                <div className="container mx-auto px-6 relative z-10">
                     <div className="max-w-5xl mx-auto">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
 
@@ -559,7 +582,7 @@ export default function SaltoDuploV3Client() {
                                     ))}
                                 </div>
 
-                                <BtnNeon onClick={openModal} className="w-full justify-center h-14 text-sm">
+                                <BtnNeon onClick={() => openModal()} className="w-full justify-center h-14 text-sm">
                                     Garantir essa promoção
                                     <ArrowRight className="w-4 h-4" />
                                 </BtnNeon>
@@ -641,7 +664,7 @@ export default function SaltoDuploV3Client() {
 
                                 {/* Botão visível apenas no desktop */}
                                 <div className="hidden md:block">
-                                    <BtnNeon onClick={openModal}>
+                                    <BtnNeon onClick={() => openModal()}>
                                         Planejar um salto em grupo
                                         <Users className="w-4 h-4" />
                                     </BtnNeon>
@@ -650,7 +673,7 @@ export default function SaltoDuploV3Client() {
 
                             {/* Botão no mobile: aparece APÓS a imagem (order-3) */}
                             <div className="order-3 md:hidden w-full">
-                                <BtnNeon onClick={openModal} className="w-full justify-center">
+                                <BtnNeon onClick={() => openModal()} className="w-full justify-center">
                                     Planejar um salto em grupo
                                     <Users className="w-4 h-4" />
                                 </BtnNeon>
@@ -770,7 +793,7 @@ export default function SaltoDuploV3Client() {
                         </div>
 
                         <div className="text-center mt-14">
-                            <BtnNeon onClick={openModal}>
+                            <BtnNeon onClick={() => openModal()}>
                                 Quero viver isso
                                 <ChevronRight className="w-4 h-4" />
                             </BtnNeon>
@@ -874,7 +897,10 @@ export default function SaltoDuploV3Client() {
 
                                         {/* Card CTA — estilo design system */}
                                         <button
-                                            onClick={openModal}
+                                            onClick={() => {
+                                                const cfg = modalityConfig[mod.id] ?? { source: 'salto-duplo-v3-handycam', title: 'Salto Duplo Handycam' };
+                                                openModal(cfg.source, cfg.title);
+                                            }}
                                             className={`group/card relative w-full h-11 rounded-xl font-black italic uppercase tracking-wider text-xs transition-all duration-300 active:scale-95 flex items-center justify-center gap-1.5 overflow-hidden ${
                                                 mod.highlight
                                                     ? "bg-[#39FF14] text-black hover:bg-[#22cc0a] shadow-lg shadow-[#39FF14]/30"
@@ -981,7 +1007,7 @@ export default function SaltoDuploV3Client() {
                                     precisa saber antes de decidir.
                                 </p>
 
-                                <BtnNeon onClick={openModal}>
+                                <BtnNeon onClick={() => openModal()}>
                                     Quero tentar mesmo assim
                                     <ArrowRight className="w-4 h-4" />
                                 </BtnNeon>
@@ -1136,7 +1162,7 @@ export default function SaltoDuploV3Client() {
                                 Parcele em até 12x. Saltamos todos os dias em Boituva-SP.
                             </p>
 
-                            <BtnNeon onClick={openModal} className="h-16 px-12 text-base">
+                            <BtnNeon onClick={() => openModal()} className="h-16 px-12 text-base">
                                 Agendar meu salto agora
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </BtnNeon>

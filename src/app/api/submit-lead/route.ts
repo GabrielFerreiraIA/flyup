@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { FONTES, EXPERIENCE_IDS, parseFonte, type StandardLeadPayload } from '@/lib/webhook-integration'
+import { FONTES, EXPERIENCE_IDS, EXPERIENCE_VALUES, parseFonte, type StandardLeadPayload } from '@/lib/webhook-integration'
 
 const FLYUP_WEBHOOK_URL_PROD = 'https://hostinger-n8n.ac8iku.easypanel.host/webhook/flyup-lead'
 const FLYUP_WEBHOOK_URL_TEST = 'https://hostinger-n8n.ac8iku.easypanel.host/webhook-test/flyup-lead'
@@ -43,12 +43,14 @@ export async function POST(request: Request) {
 
     const fonte_label = FONTES[fonte] || fonte
 
-    // Tenta match exato primeiro, depois case-insensitive
-    let experience_id = EXPERIENCE_IDS[experience_title]
+    // Remove sufixos parentéticos como " (V3)", " (AFF)" etc. antes do lookup
+    const cleanTitle = (experience_title || '').replace(/\s*\([^)]*\)\s*$/, '').trim()
 
-    if (!experience_id && experience_title) {
-        // Case-insensitive search
-        const normalizedTitle = experience_title.toLowerCase()
+    // Tenta match exato, depois sem sufixo, depois case-insensitive
+    let experience_id = EXPERIENCE_IDS[experience_title] || EXPERIENCE_IDS[cleanTitle]
+
+    if (!experience_id && (experience_title || cleanTitle)) {
+        const normalizedTitle = cleanTitle.toLowerCase()
         for (const [key, value] of Object.entries(EXPERIENCE_IDS)) {
             if (key.toLowerCase() === normalizedTitle) {
                 experience_id = value
@@ -72,6 +74,7 @@ export async function POST(request: Request) {
     }
 
     const { page, section, variant } = parseFonte(fonte)
+    const valor_estimado = EXPERIENCE_VALUES[experience_id || ''] ?? 0
 
     const supabase = getServiceClient()
 
@@ -89,7 +92,7 @@ export async function POST(request: Request) {
             source: fonte,
             status: 'novo',
             temperatura: 'quente',
-            valor_estimado: 0,
+            valor_estimado,
             device_type,
         }])
         .select('id')
