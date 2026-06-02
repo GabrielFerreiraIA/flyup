@@ -612,17 +612,8 @@ export default function SaltoDuploV3Client() {
                                 <img
                                     src="https://res.cloudinary.com/dn50urzkv/image/upload/v1780383811/Flyer_Promo%C3%A7%C3%A3o_combo_wfsipe.webp"
                                     alt="Promoção Grupo — Bora saltar com os amigos"
-                                    className="w-full rounded-[32px] object-cover aspect-[4/3] shadow-xl"
+                                    className="w-full h-auto rounded-[32px] shadow-xl"
                                 />
-                                <div className="absolute -bottom-4 -left-4 bg-black text-white rounded-2xl px-6 py-4 shadow-2xl">
-                                    <div className="flex items-center gap-3">
-                                        <Users className="w-5 h-5 text-[#39FF14]" />
-                                        <div>
-                                            <p className="text-[9px] font-black uppercase tracking-widest text-zinc-500">Grupos</p>
-                                            <p className="text-sm font-black italic text-white">Condições especiais</p>
-                                        </div>
-                                    </div>
-                                </div>
                             </motion.div>
 
                             <motion.div
