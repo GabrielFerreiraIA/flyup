@@ -161,7 +161,21 @@ export function buildPayload(formData: FormData, fonte: string = 'geral', experi
     };
 }
 
-export async function sendWebhook(formData: FormData, fonte: string = 'geral', experiencia: string = '') {
+export async function sendWebhook(
+    formData: FormData,
+    fonte: string = 'geral',
+    experiencia: string = '',
+    _options?: {
+        device_type?: string;
+        page_path?: string;
+        referrer?: string;
+        utm_source?: string;
+        utm_medium?: string;
+        utm_campaign?: string;
+        utm_content?: string;
+        utm_term?: string;
+    }
+) {
     const payload = buildPayload(formData, fonte, experiencia);
 
     try {
@@ -191,3 +205,80 @@ export async function sendWebhook(formData: FormData, fonte: string = 'geral', e
 }
 
 export const FlyUpWebhook = { send: sendWebhook, buildPayload, FONTES };
+
+// ─── Valor estimado por experiência (R$) ─────────────────────────────────────
+export const EXPERIENCE_VALUES: Record<string, number> = {
+    'salto-duplo':    745,
+    'curso-aff':     7750,
+    'salto-balao':    450,
+    'tunel-vento':    350,
+    'wingsuit':       890,
+    'pacote-aff':    7750,
+    'curso-brevet':   500,
+    'salto-solo-aff': 890,
+    'batismo-indoor': 350,
+};
+
+// ─── Tipo canônico de payload de lead ────────────────────────────────────────
+export interface StandardLeadPayload {
+    lead_id: string;
+    nome: string;
+    telefone: string;
+    telefone_br: string;
+    email: string;
+    experience_id: string;
+    experience_nome: string;
+    experience_variant: string;
+    fonte: string;
+    fonte_label: string;
+    page: string;
+    page_path: string;
+    section: string;
+    device_type: 'mobile' | 'desktop';
+    utm_source: string;
+    utm_medium: string;
+    utm_campaign: string;
+    utm_content: string;
+    utm_term: string;
+    referrer: string;
+    company_id: string;
+    data_hora: string;
+}
+
+// ─── Extrai page, section e variant de uma chave fonte ───────────────────────
+export function parseFonte(fonte: string): { page: string; section: string; variant?: string } {
+    const pricingVariants = ['fun', 'selfie', 'experience', 'vip', 'online', 'convencional', 'pro',
+        'first-flight', 'pro-flyer', 'camp-intensivo', 'intro', 'pack-performance',
+        'duplo', 'coletivo', 'familia', 'casal', 'atleta', 'teorico-n1', 'confirmar',
+        'handycam', 'supervip', 'supervipplus'];
+
+    // Detecta página
+    let page = 'geral';
+    if (fonte.startsWith('salto-duplo') || fonte.includes('-salto-duplo')) page = 'salto-duplo';
+    else if (fonte.startsWith('aff-') || fonte.includes('-aff') || fonte.startsWith('botao-agendar-aff') || fonte.startsWith('botao-iniciar-aff') || fonte.startsWith('card-aff')) page = 'curso-aff';
+    else if (fonte.startsWith('salto-balao') || fonte.includes('-salto-balao')) page = 'salto-balao';
+    else if (fonte.startsWith('tunel') || fonte.includes('-tunel')) page = 'tunel-vento';
+    else if (fonte.startsWith('wingsuit') || fonte.includes('-wingsuit')) page = 'wingsuit';
+    else if (fonte.startsWith('home') || fonte.includes('home-')) page = 'home';
+    else if (fonte.startsWith('blog')) page = 'blog';
+    else if (fonte.startsWith('links')) page = 'links';
+
+    // Detecta seção
+    let section = 'geral';
+    if (fonte.includes('-hero-') || fonte.endsWith('-hero')) section = 'hero';
+    else if (fonte.includes('-pricing-') || fonte.includes('-card-')) section = 'pricing';
+    else if (fonte.includes('navbar')) section = 'navbar';
+    else if (fonte.includes('popup')) section = 'popup';
+    else if (fonte.includes('whatsapp')) section = 'whatsapp';
+
+    // Detecta variant de pricing
+    let variant: string | undefined;
+    for (const v of pricingVariants) {
+        if (fonte.endsWith(`-${v}`) || fonte.includes(`-${v}-`)) {
+            variant = v;
+            break;
+        }
+    }
+
+    return { page, section, variant };
+}

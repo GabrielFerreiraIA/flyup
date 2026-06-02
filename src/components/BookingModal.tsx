@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, User, Phone, CheckCircle2, ArrowRight, ChevronDown } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { sendLead } from "@/lib/webhook-integration";
+import { FlyUpWebhook } from "@/lib/webhook-integration";
 import { getDeviceType } from "@/lib/utils/device";
 
 interface BookingModalProps {
