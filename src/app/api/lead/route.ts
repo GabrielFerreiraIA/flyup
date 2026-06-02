@@ -4,11 +4,17 @@ import { FONTES, EXPERIENCE_IDS } from '@/lib/webhook-integration';
 
 const FLYUP_COMPANY_ID = 'f1f1f1f1-f1f1-f1f1-f1f1-f1f1f1f1f1f1';
 
-// Usa service role para bypassar RLS — este código só roda no servidor
-const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+// Rota sempre dinâmica — não pré-renderiza no build
+export const dynamic = 'force-dynamic';
+
+// Cliente criado sob demanda (lazy) para não ser avaliado durante o build,
+// quando SUPABASE_SERVICE_ROLE_KEY pode não estar disponível.
+function getServiceClient() {
+    return createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
+}
 
 // Mapeia page_path → identificador curto de página para a tabela tracking
 function resolvePageSlug(pagePath: string): string {
@@ -74,6 +80,8 @@ export async function POST(request: NextRequest) {
         const page = resolvePageSlug(page_path);
         const section = resolveSection(fonte);
         const experience_variant = resolveVariant(fonte);
+
+        const supabase = getServiceClient();
 
         // ── 1. Inserir lead ────────────────────────────────────────────────────
         const { data: lead, error: leadError } = await supabase
