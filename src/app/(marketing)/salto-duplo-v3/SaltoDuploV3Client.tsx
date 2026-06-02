@@ -610,8 +610,8 @@ export default function SaltoDuploV3Client() {
                                 className="relative order-2 md:order-1"
                             >
                                 <img
-                                    src="https://res.cloudinary.com/dn50urzkv/image/upload/v1777885606/Salto_Duplo_-_3_Final_tgnapp.webp"
-                                    alt="Salto duplo em grupo — Fly Up Boituva"
+                                    src="https://res.cloudinary.com/dn50urzkv/image/upload/v1780383811/Flyer_Promo%C3%A7%C3%A3o_combo_wfsipe.webp"
+                                    alt="Promoção Grupo — Bora saltar com os amigos"
                                     className="w-full rounded-[32px] object-cover aspect-[4/3] shadow-xl"
                                 />
                                 <div className="absolute -bottom-4 -left-4 bg-black text-white rounded-2xl px-6 py-4 shadow-2xl">
@@ -640,17 +640,18 @@ export default function SaltoDuploV3Client() {
                                     com os amigos
                                 </h2>
                                 <p className="text-zinc-600 leading-relaxed mb-7">
-                                    A Fly Up tem{" "}
-                                    <strong className="text-zinc-900">valores especiais para grupos</strong>, festas
-                                    comemorativas e aniversariantes do mês. Nossa estrutura completa tem
-                                    espaço para picnic, café e estacionamento gratuito.
+                                    Traga <strong className="text-zinc-900">10 ou mais amigos</strong> e o
+                                    seu salto sai <strong className="text-zinc-900">completamente de graça</strong>!
+                                    Se preferir dividir o benefício, todos do grupo ganham desconto especial
+                                    na modalidade escolhida.{" "}
+                                    <strong className="text-zinc-900">Você decide o que é melhor para o seu grupo.</strong>
                                 </p>
 
                                 <div className="space-y-3 mb-8">
                                     {[
-                                        "Grupos a partir de 5 pessoas — condições especiais",
+                                        "Traga 10+ amigos e salte de graça",
+                                        "Ou todos ganham desconto coletivo — você escolhe",
                                         "Aniversariantes têm desconto no mês do aniversário",
-                                        "Grupos corporativos e team building",
                                         "Espaço completo para receber sua equipe",
                                     ].map((item) => (
                                         <div key={item} className="flex items-start gap-3">
@@ -665,7 +666,7 @@ export default function SaltoDuploV3Client() {
                                 {/* Botão visível apenas no desktop */}
                                 <div className="hidden md:block">
                                     <BtnNeon onClick={() => openModal()}>
-                                        Planejar um salto em grupo
+                                        Quero a promoção de grupo
                                         <Users className="w-4 h-4" />
                                     </BtnNeon>
                                 </div>
@@ -674,7 +675,7 @@ export default function SaltoDuploV3Client() {
                             {/* Botão no mobile: aparece APÓS a imagem (order-3) */}
                             <div className="order-3 md:hidden w-full">
                                 <BtnNeon onClick={() => openModal()} className="w-full justify-center">
-                                    Planejar um salto em grupo
+                                    Quero a promoção de grupo
                                     <Users className="w-4 h-4" />
                                 </BtnNeon>
                             </div>

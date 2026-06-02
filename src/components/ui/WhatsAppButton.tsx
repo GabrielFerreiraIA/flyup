@@ -8,11 +8,13 @@ import { usePathname } from "next/navigation";
 interface WhatsAppButtonProps {
     phoneNumber?: string;
     message?: string;
+    directLink?: boolean;
 }
 
 const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
     phoneNumber = "5515998282280",
     message = "Olá! Gostaria de saber mais informações.",
+    directLink = false,
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [name, setName] = useState("");
@@ -33,6 +35,11 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
         } else {
             setIsOpen(true);
         }
+    };
+
+    const handleDirectOpen = () => {
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -119,7 +126,7 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
             {/* Floating Button */}
             <AnimatePresence>
                 <div
-                    onClick={handleButtonClick}
+                    onClick={directLink ? handleDirectOpen : handleButtonClick}
                     className="fixed bottom-8 right-8 z-[100] flex items-center justify-center w-16 h-16 bg-[#25D366] text-white rounded-full shadow-[0_10px_25px_rgba(37,211,102,0.4)] transition-shadow hover:shadow-[0_15px_35px_rgba(37,211,102,0.6)] cursor-pointer group"
                     aria-label="Fale conosco no WhatsApp"
                 >

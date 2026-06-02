@@ -49,8 +49,12 @@ export default function CursoAFFProPage() {
             {/* 11. FAQ — PRETO */}
             <AFFFAQ />
 
-            {/* Floating WhatsApp Button */}
-            <WhatsAppButton />
+            {/* Floating WhatsApp Button — direto para o Edu, sem formulário */}
+            <WhatsAppButton
+                phoneNumber="55996302280"
+                message="Olá Edu! Tenho interesse no Curso AFF da Fly Up e gostaria de mais informações."
+                directLink
+            />
         </div>
     );
 }
