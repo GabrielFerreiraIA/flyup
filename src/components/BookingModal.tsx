@@ -5,7 +5,6 @@ import { X, User, Phone, CheckCircle2, ArrowRight, ChevronDown } from "lucide-re
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { FlyUpWebhook } from "@/lib/webhook-integration";
-import { getDeviceType } from "@/lib/utils/device";
 
 interface BookingModalProps {
     isOpen: boolean;
@@ -259,20 +258,8 @@ export default function BookingModal({ isOpen, onClose, experienceTitle, webhook
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Abre a aba imediatamente (dentro do gesto do usuário) para não ser bloqueada pelo popup blocker
-        const confirmTab = window.open('', '_blank');
-
-        const navigateConfirmTab = () => {
-            const exp = encodeURIComponent(webhookTitle || experienceTitle);
-            const url = `/agendamento-concluido?exp=${exp}`;
-            if (confirmTab) confirmTab.location.href = url;
-        };
-
         try {
             const phoneNumber = `${selectedCountry.ddi}${formData.fullPhone.replace(/\D/g, "")}`;
-            const deviceType = getDeviceType();
-            const sourceWithDevice = `${source}-${deviceType}`;
-            const searchParams = new URLSearchParams(window.location.search);
 
             // Captura contexto da página atual para rastreamento
             const pagePath = window.location.pathname;
