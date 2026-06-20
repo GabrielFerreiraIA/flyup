@@ -11,6 +11,7 @@ import {
 import { TestimonialsColumn, type TestimonialItem } from "@/components/ui/testimonials-columns-1";
 
 const BookingModal = dynamic(() => import("@/components/BookingModal"), { ssr: false });
+const ExitIntentPopup = dynamic(() => import("@/components/ExitIntentPopup"), { ssr: false });
 
 const saltoDuploTestimonials: TestimonialItem[] = [
     { name: "Paloma Santos",    role: "Salto Duplo", image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto/v1771471456/Depoimento_2_1_elupzt.png",  text: "Foi tudo incrível, desde o atendimento virtual até o presencial, Fly Up fez meu aniversário chegar a um limite literalmente alto! Amei de paixão e claro levei meu irmão e meu enteado na loucura também. Valeu cada segundo!" },
@@ -332,6 +333,10 @@ export default function SaltoDuploV3Client() {
                 experienceTitle={modalExperience}
                 source={modalSource}
                 formId="form-agendamento-salto-duplo"
+            />
+
+            <ExitIntentPopup
+                onClaim={() => openModal('salto-duplo-v3-exit-popup', 'Salto Duplo Handycam')}
             />
 
 
