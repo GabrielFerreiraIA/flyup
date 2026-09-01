@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, User, Phone, CheckCircle2, ArrowRight, ChevronDown } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { FlyUpWebhook } from "@/lib/webhook-integration";
+import { getDeviceType } from "@/lib/utils/device";
 
 interface BookingModalProps {
     isOpen: boolean;
@@ -265,35 +265,28 @@ export default function BookingModal({ isOpen, onClose, experienceTitle, webhook
             const pagePath = window.location.pathname;
             const urlParams = new URLSearchParams(window.location.search);
 
-            // Fluxo 1 (Supabase) e Fluxo 2 (N8N/WhatsApp) disparados em paralelo.
-            // Promise.allSettled garante que um falhar não bloqueia o outro.
-            await Promise.allSettled([
-                // Fluxo 1 — Cria lead no Supabase (aparece no CRM imediatamente)
-                fetch('/api/lead', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        nome: formData.name,
-                        telefone: phoneNumber,
-                        fonte: source,
-                        experience_nome: webhookTitle || experienceTitle,
-                        page_path: pagePath,
-                        utm_source: urlParams.get('utm_source'),
-                        utm_medium: urlParams.get('utm_medium'),
-                        utm_campaign: urlParams.get('utm_campaign'),
-                        utm_content: urlParams.get('utm_content'),
-                        utm_term: urlParams.get('utm_term'),
-                        referrer: document.referrer,
-                        user_agent: navigator.userAgent,
-                    }),
+            // Um único envio pelo servidor: /api/submit-lead grava o lead no
+            // Supabase (CRM) e dispara o webhook do N8N (aviso) com o mesmo payload.
+            // Server-side de propósito — chamada direta ao N8N pelo navegador era
+            // bloqueada por adblock/ITP sem deixar rastro.
+            await fetch('/api/submit-lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    nome: formData.name,
+                    telefone: phoneNumber,
+                    fonte: source,
+                    experience_title: webhookTitle || experienceTitle,
+                    page_path: pagePath,
+                    referrer: document.referrer || '',
+                    utm_source: urlParams.get('utm_source') || '',
+                    utm_medium: urlParams.get('utm_medium') || '',
+                    utm_campaign: urlParams.get('utm_campaign') || '',
+                    utm_content: urlParams.get('utm_content') || '',
+                    utm_term: urlParams.get('utm_term') || '',
+                    device_type: getDeviceType(),
                 }),
-                // Fluxo 2 — Dispara para N8N (envia confirmação via WhatsApp)
-                FlyUpWebhook.send(
-                    { nome: formData.name, telefone: phoneNumber },
-                    source,
-                    webhookTitle || experienceTitle
-                ),
-            ]);
+            });
 
             setIsSubmitted(true);
             setTimeout(() => {

@@ -4,8 +4,9 @@
  * Configure a URL do N8N em FLYUP_WEBHOOK_URL.
  */
 
-const FLYUP_WEBHOOK_URL_TEST = 'https://n8n.server.sermelhor.site/webhook-test/flyup-lead';
-const FLYUP_WEBHOOK_URL_PROD = 'https://n8n.server.sermelhor.site/webhook/flyup-lead';
+// As URLs do N8N vivem em src/app/api/submit-lead/route.ts (server-only).
+// Não devem ficar aqui: este arquivo é importado por componentes de cliente e
+// tudo que estiver nele vai parar no bundle do navegador.
 
 export const FONTES: Record<string, string> = {
     // ─── HOME ────────────────────────────────────────────────────────────────
@@ -31,6 +32,8 @@ export const FONTES: Record<string, string> = {
     'aff-hero-iniciar':           'Botão Iniciar Formação — Hero AFF',
     'aff-comparison-cta':         'CTA Aprovação Garantida — Comparação AFF',
     'aff-pricing-confirmar':      'Botão Confirmar Interesse — Pricing AFF',
+    'form-matricula-aff':         'Formulário de Matrícula — Pricing AFF',
+    'banner-oportunidade':        'Banner de Oportunidade — Site',
     'card-aff-online':            'Card Curso Online — Comece do Seu Jeito',
     'card-aff-teorico-n1':        'Card Teórico + N1 — Comece do Seu Jeito',
     'card-aff-convencional':      'Card AFF Convencional — Comece do Seu Jeito',
@@ -127,6 +130,12 @@ interface FormData {
 export const EXPERIENCE_IDS: Record<string, string> = {
     'Salto Duplo':          'salto-duplo',
     'Curso AFF':            'curso-aff',
+    'AFF PRO':              'curso-aff',
+    'Curso AFF PRO':        'curso-aff',
+    'AFF Convencional':     'curso-aff',
+    'Teórico + Nível 1':    'curso-aff',
+    'Curso Online':         'curso-aff',
+    'Paraquedismo Online':  'curso-aff',
     'Salto de Balão':       'salto-balao',
     'Voos e Saltos de Balão': 'salto-balao',
     'Túnel de Vento':       'tunel-vento',
@@ -161,11 +170,32 @@ export function buildPayload(formData: FormData, fonte: string = 'geral', experi
     };
 }
 
+// Sufixos de device que alguns componentes anexam à chave fonte
+// (ex: 'card-aff-pro-mobile'). Precisam ser removidos antes de qualquer
+// lookup em FONTES / parseFonte, senão a chave nunca casa e o label vira lixo.
+export function normalizeFonte(fonte: string): string {
+    return fonte.replace(/-(mobile|desktop)$/, '');
+}
+
+export function resolveFonteLabel(fonte: string): string {
+    const base = normalizeFonte(fonte);
+    return FONTES[fonte] || FONTES[base] || base;
+}
+
+/**
+ * Envio de lead. Passa SEMPRE pela API route do próprio site
+ * (/api/submit-lead), que grava no Supabase e dispara o webhook do N8N
+ * a partir do servidor.
+ *
+ * Motivo de não chamar o N8N direto do navegador: adblock/ITP bloqueiam a
+ * request para domínio de terceiro sem deixar rastro, e o erro era engolido
+ * silenciosamente — o usuário via "Registrado!" com nada tendo saído.
+ */
 export async function sendWebhook(
     formData: FormData,
     fonte: string = 'geral',
     experiencia: string = '',
-    _options?: {
+    options?: {
         device_type?: string;
         page_path?: string;
         referrer?: string;
@@ -176,31 +206,24 @@ export async function sendWebhook(
         utm_term?: string;
     }
 ) {
-    const payload = buildPayload(formData, fonte, experiencia);
-
     try {
-        // Envia para ambas as URLs de forma assíncrona para que capte no painel de Teste e no fluxo Ativo.
-        const reqs = [FLYUP_WEBHOOK_URL_PROD, FLYUP_WEBHOOK_URL_TEST].map(url =>
-            fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
-            }).catch(e => ({ ok: false, error: e.message })) // Isola erros caso o de teste não esteja escutando
-        );
-
-        const responses = await Promise.all(reqs);
-
-        // Consideramos sucesso se a chamada de produção funcionar (primeiro elemento)
-        const prodResponse: any = responses[0];
-
-        if (!prodResponse || prodResponse.ok === false) {
-            return { ok: false, error: prodResponse?.error || `HTTP Invalido Prod` };
-        }
-
-        const data = await prodResponse.json?.();
+        const res = await fetch('/api/submit-lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                nome: formData.nome,
+                telefone: formData.telefone,
+                email: formData.email || '',
+                fonte,
+                experience_title: experiencia,
+                ...(options || {}),
+            }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) return { ok: false, error: data?.error || `HTTP ${res.status}` };
         return { ok: true, leadId: data?.lead_id };
-    } catch (err: any) {
-        return { ok: false, error: err.message };
+    } catch (err) {
+        return { ok: false, error: err instanceof Error ? err.message : String(err) };
     }
 }
 
@@ -218,6 +241,10 @@ export const EXPERIENCE_VALUES: Record<string, number> = {
     'salto-solo-aff': 890,
     'batismo-indoor': 350,
 };
+
+// IDs realmente existentes na tabela `experiences` — leads.experience_id é FK.
+// Um id fora dessa lista quebra o INSERT e derruba o lead inteiro.
+export const VALID_EXPERIENCE_IDS = new Set(Object.keys(EXPERIENCE_VALUES));
 
 // ─── Tipo canônico de payload de lead ────────────────────────────────────────
 export interface StandardLeadPayload {
@@ -246,7 +273,8 @@ export interface StandardLeadPayload {
 }
 
 // ─── Extrai page, section e variant de uma chave fonte ───────────────────────
-export function parseFonte(fonte: string): { page: string; section: string; variant?: string } {
+export function parseFonte(rawFonte: string): { page: string; section: string; variant?: string } {
+    const fonte = normalizeFonte(rawFonte);
     const pricingVariants = ['fun', 'selfie', 'experience', 'vip', 'online', 'convencional', 'pro',
         'first-flight', 'pro-flyer', 'camp-intensivo', 'intro', 'pack-performance',
         'duplo', 'coletivo', 'familia', 'casal', 'atleta', 'teorico-n1', 'confirmar',

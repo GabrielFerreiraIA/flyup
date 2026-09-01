@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Check, Info, ExternalLink, X, Phone, User, ArrowRight, CheckCircle2 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { FlyUpWebhook, FONTES } from "@/lib/webhook-integration";
+import { FONTES } from "@/lib/webhook-integration";
 import { getDeviceType } from "@/lib/utils/device";
 
 // ─── FONTES chave por card ────────────────────────────────────────────────────
@@ -211,13 +211,35 @@ function LeadModal({ isOpen, option, onClose }: LeadModalProps) {
 
         const telefone = `+55${phone.replace(/\D/g, "")}`;
         const deviceType = getDeviceType();
-        const fonte = `${CARD_FONTE[option.id] || "geral"}-${deviceType}`;
+        // Sem sufixo de device na fonte — ele vai no campo device_type.
+        // Com sufixo a chave nunca casava em FONTES e o label virava lixo.
+        const fonte = CARD_FONTE[option.id] || "geral";
         const experiencia = option.button.experiencia || option.title;
+        const params = new URLSearchParams(window.location.search);
 
         try {
-            await FlyUpWebhook.send({ nome: name, telefone }, fonte, experiencia, { device_type: deviceType });
-        } catch (_) {
-            // falha silenciosa — ainda redireciona
+            // /api/submit-lead grava no Supabase (CRM) e dispara o webhook do N8N.
+            const res = await fetch('/api/submit-lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    nome: name,
+                    telefone,
+                    fonte,
+                    experience_title: experiencia,
+                    page_path: window.location.pathname,
+                    referrer: document.referrer || '',
+                    utm_source: params.get('utm_source') || '',
+                    utm_medium: params.get('utm_medium') || '',
+                    utm_campaign: params.get('utm_campaign') || '',
+                    utm_content: params.get('utm_content') || '',
+                    utm_term: params.get('utm_term') || '',
+                    device_type: deviceType,
+                }),
+            });
+            if (!res.ok) console.error('[AFF] Falha ao registrar lead:', res.status);
+        } catch (err) {
+            console.error('[AFF] Falha ao registrar lead:', err);
         }
 
         setIsDone(true);

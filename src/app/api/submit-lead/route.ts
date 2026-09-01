@@ -1,16 +1,89 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { FONTES, EXPERIENCE_IDS, EXPERIENCE_VALUES, parseFonte, type StandardLeadPayload } from '@/lib/webhook-integration'
+import {
+    EXPERIENCE_IDS,
+    EXPERIENCE_VALUES,
+    VALID_EXPERIENCE_IDS,
+    normalizeFonte,
+    resolveFonteLabel,
+    parseFonte,
+    type StandardLeadPayload,
+} from '@/lib/webhook-integration'
 
-const FLYUP_WEBHOOK_URL_PROD = 'https://hostinger-n8n.ac8iku.easypanel.host/webhook/flyup-lead'
-const FLYUP_WEBHOOK_URL_TEST = 'https://hostinger-n8n.ac8iku.easypanel.host/webhook-test/flyup-lead'
 const COMPANY_ID = 'f1f1f1f1-f1f1-f1f1-f1f1-f1f1f1f1f1f1'
+
+// Nunca pré-renderiza no build (SUPABASE_SERVICE_ROLE_KEY pode não existir lá)
+export const dynamic = 'force-dynamic'
 
 function getServiceClient() {
     return createClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.SUPABASE_SERVICE_ROLE_KEY!
     )
+}
+
+// ─── Destinos do N8N (server-only) ───────────────────────────────────────────
+// Existem DUAS instâncias de N8N no ar respondendo /webhook/flyup-lead, e o
+// motivo de "lead no CRM mas nenhuma execução no N8N" foi justamente o site
+// chamar uma enquanto o workflow de aviso vivia na outra.
+// Por isso: lista configurável por env, e o lead é enviado para TODAS.
+//   N8N_WEBHOOK_URLS=https://a/webhook/flyup-lead,https://b/webhook/flyup-lead
+const DEFAULT_N8N_HOSTS = [
+    'https://n8n.server.sermelhor.site',
+    'https://hostinger-n8n.ac8iku.easypanel.host',
+]
+
+function n8nTargets(): string[] {
+    const fromEnv = (process.env.N8N_WEBHOOK_URLS || '')
+        .split(',')
+        .map(u => u.trim())
+        .filter(Boolean)
+    if (fromEnv.length) return fromEnv
+    return DEFAULT_N8N_HOSTS.map(h => `${h}/webhook/flyup-lead`)
+}
+
+// URL de teste (/webhook-test/...) só responde enquanto o editor do N8N está
+// com "Execute workflow" ligado. Fora disso é 404 — esperado, nunca é erro.
+function n8nTestTargets(): string[] {
+    return n8nTargets().map(u => u.replace('/webhook/', '/webhook-test/'))
+}
+
+/**
+ * Dispara o webhook do N8N. Precisa ser AGUARDADO: em serverless (Netlify),
+ * promise solta é morta junto com o processo assim que a resposta é devolvida
+ * — era essa a causa de o aviso sumir sem deixar rastro.
+ */
+async function dispatchN8N(payload: StandardLeadPayload) {
+    const targets = n8nTargets()
+
+    const results = await Promise.allSettled(
+        [...targets, ...n8nTestTargets()].map(url =>
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+                signal: AbortSignal.timeout(8000),
+            }).then(r => ({ url, status: r.status }))
+        )
+    )
+
+    // Só os destinos de produção contam para o resultado. Basta um responder
+    // < 400 para o aviso ter saído.
+    const prodResults = results.slice(0, targets.length)
+    let ok = false
+
+    prodResults.forEach((r, i) => {
+        if (r.status === 'fulfilled' && r.value.status < 400) {
+            ok = true
+        } else {
+            console.error(
+                `[submit-lead] Webhook N8N falhou (${targets[i]}):`,
+                r.status === 'fulfilled' ? `HTTP ${r.value.status}` : r.reason?.message
+            )
+        }
+    })
+
+    return ok
 }
 
 export async function POST(request: Request) {
@@ -25,7 +98,7 @@ export async function POST(request: Request) {
         nome,
         telefone,
         email,
-        fonte = 'geral',
+        fonte: rawFonte = 'geral',
         experience_title = '',
         page_path = '',
         referrer = '',
@@ -41,15 +114,15 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: 'nome e telefone são obrigatórios' }, { status: 400 })
     }
 
-    const fonte_label = FONTES[fonte] || fonte
+    const fonte = normalizeFonte(rawFonte)
+    const fonte_label = resolveFonteLabel(rawFonte)
 
-    // Remove sufixos parentéticos como " (V3)", " (AFF)" etc. antes do lookup
+    // Remove sufixos parentéticos como " (V3)", " (AFF)" antes do lookup
     const cleanTitle = (experience_title || '').replace(/\s*\([^)]*\)\s*$/, '').trim()
 
-    // Tenta match exato, depois sem sufixo, depois case-insensitive
     let experience_id = EXPERIENCE_IDS[experience_title] || EXPERIENCE_IDS[cleanTitle]
 
-    if (!experience_id && (experience_title || cleanTitle)) {
+    if (!experience_id && cleanTitle) {
         const normalizedTitle = cleanTitle.toLowerCase()
         for (const [key, value] of Object.entries(EXPERIENCE_IDS)) {
             if (key.toLowerCase() === normalizedTitle) {
@@ -59,55 +132,28 @@ export async function POST(request: Request) {
         }
     }
 
-    // Fallback: extrair experience_id da fonte se disponível
-    if (!experience_id && fonte) {
-        const parsed = parseFonte(fonte)
-        // Se encontrou algo na página, tenta usar como experience_id
-        if (parsed.page && parsed.page !== 'geral') {
-            experience_id = parsed.page
-        }
-    }
-
-    // Último fallback: slug automático
-    if (!experience_id && experience_title) {
-        experience_id = experience_title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')
-    }
-
     const { page, section, variant } = parseFonte(fonte)
-    const valor_estimado = EXPERIENCE_VALUES[experience_id || ''] ?? 0
 
-    const supabase = getServiceClient()
-
-    // 1. Inserir lead
-    const { data: lead, error: leadError } = await supabase
-        .from('leads')
-        .insert([{
-            company_id: COMPANY_ID,
-            nome: nome.trim(),
-            telefone,
-            email: email?.trim() || null,
-            experience_id: experience_id || null,
-            fonte,
-            fonte_label,
-            source: fonte,
-            status: 'novo',
-            temperatura: 'quente',
-            valor_estimado,
-            device_type,
-        }])
-        .select('id')
-        .single()
-
-    if (leadError) {
-        console.error('[submit-lead] Erro ao inserir lead:', leadError)
-        return NextResponse.json({ error: leadError.message }, { status: 500 })
+    // Fallback: deduz a experiência pela página da fonte (ex: 'card-aff-pro' → curso-aff)
+    if (!experience_id && page !== 'geral') {
+        experience_id = page
     }
 
-    const lead_id = lead.id
+    // `leads.experience_id` é FK para `experiences`. Um slug inventado
+    // (ex: 'aff-pro', 'te-rico-n-vel-1') quebra o INSERT e derruba o lead inteiro.
+    // Fora da lista canônica, grava null e preserva o texto em experience_nome.
+    if (experience_id && !VALID_EXPERIENCE_IDS.has(experience_id)) {
+        console.warn(
+            `[submit-lead] experience_id "${experience_id}" não existe em experiences — gravando null`
+        )
+        experience_id = ''
+    }
 
-    // Payload canônico — mesmo contrato para tracking e N8N
+    const valor_estimado = EXPERIENCE_VALUES[experience_id] ?? 0
+
+    // Payload canônico — mesmo contrato para Supabase e N8N
     const payload: StandardLeadPayload = {
-        lead_id,
+        lead_id:            '',
         nome:               nome.trim(),
         telefone,
         telefone_br:        telefone.startsWith('+55') ? telefone.replace('+55', '') : telefone,
@@ -131,48 +177,82 @@ export async function POST(request: Request) {
         data_hora:          new Date().toISOString(),
     }
 
-    // 2. Inserir tracking (usa o payload canônico diretamente)
-    const { error: trackingError } = await supabase
-        .from('tracking')
-        .insert([{
-            company_id:         payload.company_id,
-            lead_id:            payload.lead_id,
-            event_type:         'form_submit',
-            fonte:              payload.fonte,
-            fonte_label:        payload.fonte_label,
-            experience_id:      payload.experience_id || null,
-            experience_nome:    payload.experience_nome || null,
-            experience_variant: payload.experience_variant || null,
-            page:               payload.page,
-            page_path:          payload.page_path || null,
-            section:            payload.section || null,
-            nome:               payload.nome,
-            telefone:           payload.telefone,
-            email:              payload.email || null,
-            utm_source:         payload.utm_source || null,
-            utm_medium:         payload.utm_medium || null,
-            utm_campaign:       payload.utm_campaign || null,
-            utm_content:        payload.utm_content || null,
-            utm_term:           payload.utm_term || null,
-            referrer:           payload.referrer || null,
-            device_type:        payload.device_type,
-        }])
+    const supabase = getServiceClient()
 
-    if (trackingError) {
-        // Tracking falhou mas lead foi criado — não bloquear o fluxo
-        console.error('[submit-lead] Erro ao inserir tracking:', trackingError)
+    // ── 1. Lead no Supabase (alimenta o CRM) ──────────────────────────────────
+    let leadError: string | null = null
+    const { data: lead, error: insertError } = await supabase
+        .from('leads')
+        .insert([{
+            company_id:    COMPANY_ID,
+            nome:          payload.nome,
+            telefone:      payload.telefone,
+            email:         payload.email || null,
+            experience_id: experience_id || null,
+            fonte,
+            fonte_label,
+            status:        'novo',
+            temperatura:   'quente',
+            valor_estimado,
+            device_type:   payload.device_type,
+        }])
+        .select('id')
+        .single()
+
+    if (insertError) {
+        leadError = insertError.message
+        console.error('[submit-lead] Erro ao inserir lead:', insertError)
+    } else {
+        payload.lead_id = lead.id
     }
 
-    // 3. Disparar webhook N8N com o mesmo payload canônico
-    Promise.all(
-        [FLYUP_WEBHOOK_URL_PROD, FLYUP_WEBHOOK_URL_TEST].map(url =>
-            fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
-            }).catch(e => console.error(`[submit-lead] Webhook ${url} falhou:`, e.message))
-        )
-    )
+    // ── 2. Tracking (não crítico) ─────────────────────────────────────────────
+    if (payload.lead_id) {
+        const { error: trackingError } = await supabase
+            .from('tracking')
+            .insert([{
+                company_id:         payload.company_id,
+                lead_id:            payload.lead_id,
+                event_type:         'form_submit',
+                fonte:              payload.fonte,
+                fonte_label:        payload.fonte_label,
+                experience_id:      payload.experience_id || null,
+                experience_nome:    payload.experience_nome || null,
+                experience_variant: payload.experience_variant || null,
+                page:               payload.page,
+                page_path:          payload.page_path || null,
+                section:            payload.section || null,
+                nome:               payload.nome,
+                telefone:           payload.telefone,
+                email:              payload.email || null,
+                utm_source:         payload.utm_source || null,
+                utm_medium:         payload.utm_medium || null,
+                utm_campaign:       payload.utm_campaign || null,
+                utm_content:        payload.utm_content || null,
+                utm_term:           payload.utm_term || null,
+                referrer:           payload.referrer || null,
+                device_type:        payload.device_type,
+            }])
 
-    return NextResponse.json({ ok: true, lead_id })
+        if (trackingError) {
+            console.error('[submit-lead] Erro ao inserir tracking:', trackingError)
+        }
+    }
+
+    // ── 3. Webhook N8N (gera o aviso) ─────────────────────────────────────────
+    // Roda mesmo se o Supabase falhar: os dois fluxos são independentes e uma
+    // falha de FK/coluna não pode custar o aviso do lead.
+    const webhookOk = await dispatchN8N(payload)
+
+    if (leadError && !webhookOk) {
+        return NextResponse.json({ error: leadError, webhook: false }, { status: 500 })
+    }
+
+    return NextResponse.json({
+        ok: true,
+        lead_id: payload.lead_id || null,
+        supabase: !leadError,
+        webhook: webhookOk,
+        ...(leadError ? { lead_error: leadError } : {}),
+    })
 }

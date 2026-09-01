@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import * as Dialog from "@radix-ui/react-dialog";
 import { User, Phone, Zap, GraduationCap, ArrowRight, X, CheckCircle2, ChevronDown } from "lucide-react";
-import { FlyUpWebhook } from "@/lib/webhook-integration";
 import { getDeviceType } from "@/lib/utils/device";
 
 const countries = [
@@ -222,22 +221,28 @@ export default function BookingBanner() {
     try {
       const phoneNumber = `${selectedCountry.ddi}${formData.phone.replace(/\D/g, "")}`;
       const deviceType = getDeviceType();
-      const sourceWithDevice = `banner-oportunidade-${deviceType}`;
       const searchParams = new URLSearchParams(window.location.search);
 
-      await FlyUpWebhook.send({
-        nome: formData.name,
-        telefone: phoneNumber
-      }, sourceWithDevice, selectedService === "duplo" ? "Salto Duplo" : "Curso AFF", {
-        page_path: window.location.pathname,
-        referrer: document.referrer || '',
-        utm_source:   searchParams.get('utm_source')   || '',
-        utm_medium:   searchParams.get('utm_medium')   || '',
-        utm_campaign: searchParams.get('utm_campaign') || '',
-        utm_content:  searchParams.get('utm_content')  || '',
-        utm_term:     searchParams.get('utm_term')     || '',
-        device_type: deviceType,
+      // /api/submit-lead grava no Supabase (CRM) e dispara o webhook do N8N.
+      const res = await fetch('/api/submit-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nome: formData.name,
+          telefone: phoneNumber,
+          fonte: 'banner-oportunidade',
+          experience_title: selectedService === "duplo" ? "Salto Duplo" : "Curso AFF",
+          page_path: window.location.pathname,
+          referrer: document.referrer || '',
+          utm_source:   searchParams.get('utm_source')   || '',
+          utm_medium:   searchParams.get('utm_medium')   || '',
+          utm_campaign: searchParams.get('utm_campaign') || '',
+          utm_content:  searchParams.get('utm_content')  || '',
+          utm_term:     searchParams.get('utm_term')     || '',
+          device_type: deviceType,
+        }),
       });
+      if (!res.ok) console.error('[BookingBanner] Falha ao registrar lead:', res.status);
     } catch (error) {
       console.error(error);
     } finally {
