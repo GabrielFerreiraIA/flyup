@@ -23,14 +23,20 @@ function getServiceClient() {
 }
 
 // ─── Destinos do N8N (server-only) ───────────────────────────────────────────
-// Existem DUAS instâncias de N8N no ar respondendo /webhook/flyup-lead, e o
-// motivo de "lead no CRM mas nenhuma execução no N8N" foi justamente o site
-// chamar uma enquanto o workflow de aviso vivia na outra.
-// Por isso: lista configurável por env, e o lead é enviado para TODAS.
+// Existem DUAS instâncias de N8N no ar respondendo /webhook/flyup-lead, com
+// workflows DIFERENTES — não são redundantes, o lead precisa chegar nas duas:
+//
+//   hostinger-n8n.ac8iku.easypanel.host → "AVISOS GRUPO": notifica a equipe
+//   n8n.server.sermelhor.site           → confirmação por WhatsApp para o lead
+//
+// O motivo de "lead no CRM mas nenhuma execução no N8N" foi o site chamar
+// apenas uma delas enquanto o workflow de aviso vivia na outra.
+// Sobrescrevível por env (separado por vírgula), sempre com a URL de PRODUÇÃO
+// (/webhook/...); a variante /webhook-test/ é derivada automaticamente:
 //   N8N_WEBHOOK_URLS=https://a/webhook/flyup-lead,https://b/webhook/flyup-lead
 const DEFAULT_N8N_HOSTS = [
-    'https://n8n.server.sermelhor.site',
     'https://hostinger-n8n.ac8iku.easypanel.host',
+    'https://n8n.server.sermelhor.site',
 ]
 
 function n8nTargets(): string[] {
