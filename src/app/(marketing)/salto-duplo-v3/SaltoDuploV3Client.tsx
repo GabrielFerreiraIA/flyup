@@ -67,7 +67,7 @@ function SaltoDuploTestimonials() {
     );
 }
 
-const HERO_VIDEO = "https://res.cloudinary.com/dn50urzkv/video/upload/f_auto,q_auto/v1771466144/VIDEO_HERO_OTIMIZADO_FLYUP_twgnje.mp4";
+const HERO_VIDEO = "https://res.cloudinary.com/dn50urzkv/video/upload/f_auto,q_auto/v1783023879/Video_hero_Salto_Duplo_os1fse.mp4";
 const PROMO_IMAGE = "https://res.cloudinary.com/dn50urzkv/image/upload/v1779472362/Imagem_Salto_DUplo_Desconto_zfaswq.webp";
 
 const galleryImages = [
