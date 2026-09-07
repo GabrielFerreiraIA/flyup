@@ -333,6 +333,8 @@ export default function SaltoDuploV3Client() {
                 experienceTitle={modalExperience}
                 source={modalSource}
                 formId="form-agendamento-salto-duplo"
+                submitLabel="Quero Agendar Minha Data"
+                showPeopleCount
             />
 
             <ExitIntentPopup

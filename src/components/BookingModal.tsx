@@ -14,7 +14,13 @@ interface BookingModalProps {
     source?: string;
     redirectUrl?: string;
     formId?: string;
+    submitLabel?: string;
+    /** Mostra o campo "Quantas pessoas vão saltar?". Off por padrão — só faz
+     * sentido em contextos de salto em grupo, não em cursos/matrículas. */
+    showPeopleCount?: boolean;
 }
+
+const peopleCountOptions = ["1", "2", "3", "4", "5", "6+"];
 
 const countries = [
     { name: 'Brasil', code: 'br', ddi: '+55' },
@@ -210,10 +216,11 @@ const countries = [
     { name: 'Zimbábue', code: 'zw', ddi: '+263' },
 ];
 
-export default function BookingModal({ isOpen, onClose, experienceTitle, webhookTitle, source = 'geral', redirectUrl, formId }: BookingModalProps) {
+export default function BookingModal({ isOpen, onClose, experienceTitle, webhookTitle, source = 'geral', redirectUrl, formId, submitLabel = "Confirmar Interesse", showPeopleCount = false }: BookingModalProps) {
     const [formData, setFormData] = useState({
         name: "",
         fullPhone: "", // Store combined DDD + Number
+        peopleCount: "1",
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -231,7 +238,7 @@ export default function BookingModal({ isOpen, onClose, experienceTitle, webhook
     // Reset form when modal opens and lock body scroll
     useEffect(() => {
         if (isOpen) {
-            setFormData({ name: "", fullPhone: "" });
+            setFormData({ name: "", fullPhone: "", peopleCount: "1" });
             setIsSubmitted(false);
             setSelectedCountry(countries.find(c => c.code === 'br') || countries[0]);
             setIsCountrySelectorOpen(false);
@@ -285,6 +292,7 @@ export default function BookingModal({ isOpen, onClose, experienceTitle, webhook
                     utm_content: urlParams.get('utm_content') || '',
                     utm_term: urlParams.get('utm_term') || '',
                     device_type: getDeviceType(),
+                    ...(showPeopleCount ? { pessoas: formData.peopleCount } : {}),
                 }),
             });
 
@@ -555,6 +563,32 @@ export default function BookingModal({ isOpen, onClose, experienceTitle, webhook
                                         </div>
                                     </div>
 
+                                    {/* People Count (opcional, só em contextos de salto em grupo) */}
+                                    {showPeopleCount && (
+                                        <div className="group/input relative">
+                                            <label className="text-[10px] font-black uppercase tracking-[0.2em] mb-2 block text-zinc-500">
+                                                Quantas pessoas vão saltar?
+                                            </label>
+                                            <div className="grid grid-cols-6 gap-2">
+                                                {peopleCountOptions.map((n) => (
+                                                    <button
+                                                        key={n}
+                                                        type="button"
+                                                        onClick={() => setFormData((prev) => ({ ...prev, peopleCount: n }))}
+                                                        className={`
+                                                            py-3 rounded-xl border text-sm font-black italic transition-all duration-200
+                                                            ${formData.peopleCount === n
+                                                                ? 'border-neon ring-1 ring-neon/20 bg-neon/10 text-neon'
+                                                                : 'border-white/10 bg-white/5 text-zinc-400 hover:border-white/20 hover:text-white'}
+                                                        `}
+                                                    >
+                                                        {n}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+
                                     {/* Submit Button */}
                                     <div className="pt-4">
                                         <button
@@ -568,7 +602,7 @@ export default function BookingModal({ isOpen, onClose, experienceTitle, webhook
                                         >
                                             <div className="relative z-10 flex items-center justify-center gap-2">
                                                 <span className="text-black font-black italic uppercase tracking-[0.1em] text-sm">
-                                                    {isSubmitting ? "Enviando..." : "Confirmar Interesse"}
+                                                    {isSubmitting ? "Enviando..." : submitLabel}
                                                 </span>
                                                 <ArrowRight size={18} className="text-black transition-transform group-hover:translate-x-1" strokeWidth={3} />
                                             </div>

@@ -114,6 +114,7 @@ export async function POST(request: Request) {
         utm_content = '',
         utm_term = '',
         device_type = 'desktop',
+        pessoas = '',
     } = body
 
     if (!nome?.trim() || !telefone?.trim()) {
@@ -157,6 +158,11 @@ export async function POST(request: Request) {
 
     const valor_estimado = EXPERIENCE_VALUES[experience_id] ?? 0
 
+    // "6+" vira 6 pra efeito de valor (conservador); sem resposta, assume 1
+    // pessoa e o valor de oportunidade fica igual ao valor_estimado de sempre.
+    const pessoasNum = pessoas ? parseInt(pessoas.replace('+', ''), 10) || 1 : 1
+    const valor_oportunidade = valor_estimado * pessoasNum
+
     // Payload canônico — mesmo contrato para Supabase e N8N
     const payload: StandardLeadPayload = {
         lead_id:            '',
@@ -181,6 +187,7 @@ export async function POST(request: Request) {
         referrer:           referrer || '',
         company_id:         COMPANY_ID,
         data_hora:          new Date().toISOString(),
+        pessoas:            pessoasNum,
     }
 
     const supabase = getServiceClient()
@@ -200,6 +207,10 @@ export async function POST(request: Request) {
             status:        'novo',
             temperatura:   'quente',
             valor_estimado,
+            // O CRM (Kanban, tabela, ordenação) lê valor_oportunidade, não
+            // valor_estimado — sem isso o valor do lead nunca aparecia lá.
+            valor_oportunidade,
+            description:   pessoas ? `Grupo de ${pessoas} pessoa${pessoas === '1' ? '' : 's'}` : null,
             device_type:   payload.device_type,
         }])
         .select('id')

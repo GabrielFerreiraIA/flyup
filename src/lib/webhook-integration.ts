@@ -270,6 +270,7 @@ export interface StandardLeadPayload {
     referrer: string;
     company_id: string;
     data_hora: string;
+    pessoas: number;
 }
 
 // ─── Extrai page, section e variant de uma chave fonte ───────────────────────
