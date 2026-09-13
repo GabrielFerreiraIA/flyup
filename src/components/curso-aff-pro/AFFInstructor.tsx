@@ -2,10 +2,15 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Award } from "lucide-react";
-
-const EDU_WHATSAPP = "https://wa.me/55996302280?text=" + encodeURIComponent("Olá Edu! Tenho interesse no Curso AFF da Fly Up e gostaria de mais informações.");
+import { useCameFromAd } from "@/hooks/use-came-from-ad";
+import { WA_EDU, WA_MESSAGES, buildWaUrl } from "@/lib/whatsapp";
 
 export default function AFFInstructor() {
+    const cameFromAd = useCameFromAd();
+    const eduWhatsApp = buildWaUrl(
+        WA_EDU,
+        cameFromAd ? WA_MESSAGES.aff.anuncio : WA_MESSAGES.aff.site,
+    );
 
     return (
         <section className="relative py-24 bg-white overflow-hidden" id="instrutor">
@@ -97,7 +102,7 @@ export default function AFFInstructor() {
 
                         {/* CTA Link */}
                         <a
-                            href={EDU_WHATSAPP}
+                            href={eduWhatsApp}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 text-[#39FF14] font-black uppercase tracking-widest text-sm hover:gap-4 transition-all duration-300 group"

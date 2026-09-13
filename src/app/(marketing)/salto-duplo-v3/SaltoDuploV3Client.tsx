@@ -9,6 +9,8 @@ import {
     Clock, ArrowRight, Play
 } from "lucide-react";
 import { TestimonialsColumn, type TestimonialItem } from "@/components/ui/testimonials-columns-1";
+import { useCameFromAd } from "@/hooks/use-came-from-ad";
+import { WA_COMERCIAL, WA_MESSAGES, buildWaUrl } from "@/lib/whatsapp";
 
 const BookingModal = dynamic(() => import("@/components/BookingModal"), { ssr: false });
 const ExitIntentPopup = dynamic(() => import("@/components/ExitIntentPopup"), { ssr: false });
@@ -282,6 +284,11 @@ export default function SaltoDuploV3Client() {
     const [openFaq, setOpenFaq] = useState<number | null>(null);
     const [lightboxImg, setLightboxImg] = useState<string | null>(null);
     const [bannerVisible, setBannerVisible] = useState(true);
+    const cameFromAd = useCameFromAd();
+    const whatsAppUrl = buildWaUrl(
+        WA_COMERCIAL,
+        cameFromAd ? WA_MESSAGES.saltoDuplo.anuncio : WA_MESSAGES.saltoDuplo.site,
+    );
 
     const openModal = (source = 'salto-duplo-v3-handycam', experience = 'Salto Duplo Handycam') => {
         setModalSource(source);
@@ -1117,7 +1124,7 @@ export default function SaltoDuploV3Client() {
                                 Ainda tem dúvida? Fale direto no WhatsApp.
                             </p>
                             <a
-                                href="https://wa.me/5515998282280"
+                                href={whatsAppUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 h-12 px-8 bg-[#25D366] text-white font-black italic uppercase tracking-wider rounded-xl transition-all hover:scale-105 active:scale-95 text-sm shadow-lg"

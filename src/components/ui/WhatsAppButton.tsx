@@ -4,41 +4,45 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useCameFromAd } from "@/hooks/use-came-from-ad";
+import { WA_COMERCIAL, WA_MESSAGES, buildWaUrl, type WaMessagePair } from "@/lib/whatsapp";
 
 interface WhatsAppButtonProps {
     phoneNumber?: string;
     message?: string;
+    /** Mensagem usada quando a visita veio de anúncio (gclid / utm_medium=cpc). */
+    adMessage?: string;
     directLink?: boolean;
 }
 
-// Monta sempre uma URL https://wa.me/... para que o clique seja rastreável no GTM
-// via {{Click URL}} contém "wa.me".
-function buildWaUrl(phoneNumber: string, message: string) {
-    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-}
+const directMessages: Record<string, string | WaMessagePair> = {
+    "/": "Olá! Tenho interesse em uma das experiências da Fly Up Paraquedismo. Pode me ajudar?",
+    "/agendamento-concluido": "Olá! Tenho uma dúvida sobre meu agendamento.",
+    "/salto-duplo": WA_MESSAGES.saltoDuplo,
+};
 
 const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
-    phoneNumber = "5515998282280",
+    phoneNumber = WA_COMERCIAL,
     message = "Olá! Gostaria de saber mais informações.",
+    adMessage,
     directLink = false,
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const pathname = usePathname();
+    const cameFromAd = useCameFromAd();
 
-    const directMessages: Record<string, string> = {
-        "/": "Olá! Tenho interesse em uma das experiências da Fly Up Paraquedismo. Pode me ajudar?",
-        "/agendamento-concluido": "Olá! Tenho uma dúvida sobre meu agendamento.",
-        "/salto-duplo": "Olá! Vim pelo Google e tenho dúvidas sobre o Salto Duplo de Paraquedas. Pode me ajudar?",
-    };
-
-    const directMessage = pathname ? directMessages[pathname] : undefined;
+    const routeMessage = pathname ? directMessages[pathname] : undefined;
+    const directMessage =
+        typeof routeMessage === "object"
+            ? (cameFromAd ? routeMessage.anuncio : routeMessage.site)
+            : routeMessage;
 
     // Quando há mensagem direta (directLink explícito ou rota mapeada), o botão
     // flutuante navega direto pelo WhatsApp — renderizado como <a href> rastreável.
     const directWaUrl = directLink
-        ? buildWaUrl(phoneNumber, message)
+        ? buildWaUrl(phoneNumber, cameFromAd && adMessage ? adMessage : message)
         : directMessage
             ? buildWaUrl(phoneNumber, directMessage)
             : null;

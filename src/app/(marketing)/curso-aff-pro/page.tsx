@@ -11,6 +11,7 @@ import AFFAlternativePricing from "@/components/curso-aff-pro/AFFAlternativePric
 import AFFFAQ from "@/components/curso-aff-pro/AFFFAQ";
 import SocialProof from "@/components/sections/SocialProof";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import { WA_EDU, WA_MESSAGES } from "@/lib/whatsapp";
 
 export default function CursoAFFProPage() {
     return (
@@ -51,8 +52,9 @@ export default function CursoAFFProPage() {
 
             {/* Floating WhatsApp Button — direto para o Edu, sem formulário */}
             <WhatsAppButton
-                phoneNumber="55996302280"
-                message="Olá Edu! Tenho interesse no Curso AFF da Fly Up e gostaria de mais informações."
+                phoneNumber={WA_EDU}
+                message={WA_MESSAGES.aff.site}
+                adMessage={WA_MESSAGES.aff.anuncio}
                 directLink
             />
         </div>
