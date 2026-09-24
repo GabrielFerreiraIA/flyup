@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import gsap from 'gsap';
 import BookingBanner from './BookingBanner';
@@ -52,7 +52,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section ref={containerRef} className="relative h-screen w-full flex items-center justify-center bg-black">
+        <section ref={containerRef} data-hero className="relative min-h-[100svh] w-full flex items-center justify-center bg-black">
             {/* Video Background */}
             {/* Video Background */}
             <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -69,10 +69,11 @@ export default function Hero() {
             </div>
 
             {/* Content */}
-            <div className="relative z-20 container mx-auto px-6 text-center">
-                <h2 className="hero-text-line text-base md:text-lg font-bold tracking-[0.5em] text-neon mb-4 uppercase">
-                    Paraquedismo Profissional
-                </h2>
+            {/* pb reserva o espaço do BookingBanner (absolute no fundo do hero) */}
+            <div className="relative z-20 container mx-auto px-6 text-center pt-28 pb-56 md:pb-48">
+                <h1 className="hero-text-line text-xs md:text-lg font-bold tracking-[0.3em] md:tracking-[0.4em] text-neon mb-4 uppercase">
+                    Paraquedismo em Boituva: Salto Duplo e Curso AFF
+                </h1>
 
                 <div className="hero-text-line mb-8 min-h-[120px] md:min-h-[180px] flex items-center justify-center">
                     <AnimatePresence mode="wait">
@@ -98,8 +99,20 @@ export default function Hero() {
                     Sua experiência definitiva de liberdade começa aqui.
                 </p>
 
-                {/* Buttons */}
-
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
+                    <Link
+                        href="/salto-duplo"
+                        className="hero-btn w-full h-14 flex items-center justify-center bg-neon hover:bg-neon-hover text-black font-black italic uppercase tracking-wider text-sm rounded-xl shadow-[0_0_25px_rgba(57,255,20,0.35)] transition-colors"
+                    >
+                        Salto Duplo
+                    </Link>
+                    <Link
+                        href="/curso-aff-pro"
+                        className="hero-btn w-full h-14 flex items-center justify-center border-2 border-neon text-neon bg-black/40 hover:bg-neon hover:text-black font-black italic uppercase tracking-wider text-sm rounded-xl transition-colors"
+                    >
+                        Curso AFF
+                    </Link>
+                </div>
             </div>
 
             <BookingBanner />

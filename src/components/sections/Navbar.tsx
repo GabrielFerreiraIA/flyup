@@ -3,10 +3,18 @@
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Menu, X, ChevronDown, ChevronRight, BookOpen, HelpCircle } from "lucide-react";
+import {
+    Menu,
+    X,
+    ChevronDown,
+    BookOpen,
+    HelpCircle,
+    MessageCircle,
+    ArrowUpRight
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import BookingModal from "@/components/BookingModal";
 const experiences = [
     { name: "Salto Duplo", href: "/salto-duplo" },
@@ -20,6 +28,29 @@ const outrasExperiencias = [
     { name: "Saltos e passeios de balão", href: "/salto-balao" },
 ];
 
+// Itens do menu mobile — mesma fotografia real usada em Experiences.tsx
+const mobileNavItems = [
+    {
+        name: "Salto Duplo",
+        href: "/salto-duplo",
+        tag: "12.000 PÉS · 50S QUEDA LIVRE",
+        badge: "MAIS PROCURADO",
+        image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto,w_160,h_160,c_fill/v1771470425/Salto_Duplo_1_hprebk.png",
+    },
+    {
+        name: "Curso AFF Pro",
+        href: "/curso-aff-pro",
+        tag: "7 NÍVEIS · CERTIFICADO",
+        image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto,w_160,h_160,c_fill/v1771470433/Curso_AFF_Foto_1_jwmjre.png",
+    },
+    {
+        name: "Salto de Balão",
+        href: "/salto-balao",
+        tag: "AMANHECER · EXCLUSIVO",
+        image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto,w_160,h_160,c_fill/v1771470430/Salto_Bal%C3%A3o_1_u1amjp.png",
+    },
+];
+
 export default function Navbar() {
     const pathname = usePathname();
     const [isScrolled, setIsScrolled] = useState(false);
@@ -30,6 +61,7 @@ export default function Navbar() {
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
     const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
     const navRef = useRef<HTMLElement>(null);
+    const shouldReduceMotion = useReducedMotion();
 
     const isHoveredRef = useRef(false);
 
@@ -37,6 +69,18 @@ export default function Navbar() {
     useEffect(() => {
         isHoveredRef.current = isHovered;
     }, [isHovered]);
+
+    // Lock body scroll when mobile menu is open
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [isMobileMenuOpen]);
 
     // Handle scroll and visibility logic
     useEffect(() => {
@@ -285,115 +329,131 @@ export default function Navbar() {
             </div>
         </header>
 
-        {/* MOBILE MENU — fora do header para evitar conflito de stacking context */}
+        {/* MOBILE MENU — lista editorial full-bleed, no estilo real da marca */}
         <AnimatePresence>
             {isMobileMenuOpen && (
                 <motion.div
-                    initial={{ opacity: 0, x: "100%" }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: "100%" }}
-                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                    className="fixed inset-0 bg-[#050505]/98 backdrop-blur-sm z-[65] flex flex-col overflow-hidden"
+                    initial={{ opacity: 0, y: shouldReduceMotion ? 0 : -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -8 }}
+                    transition={{ duration: shouldReduceMotion ? 0.01 : 0.22, ease: [0.22, 1, 0.36, 1] }}
+                    className="fixed inset-0 z-[110] bg-background flex flex-col text-white"
                 >
-                    {/* Cabeçalho do menu */}
-                    <div className="flex items-center justify-between px-6 py-4 border-b border-white/8 shrink-0">
+                    {/* Filete neon no topo — assinatura visual da marca */}
+                    <div className="h-[3px] w-full bg-neon shrink-0" />
+
+                    {/* Cabeçalho */}
+                    <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 shrink-0">
                         <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
                             <img
                                 src="https://i.imgur.com/UlfCRZF.png"
-                                alt="Fly Up"
-                                className="h-12 w-auto object-contain"
+                                alt="Fly Up Paraquedismo"
+                                className="h-9 w-auto object-contain"
                             />
                         </Link>
                         <button
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="w-11 h-11 flex items-center justify-center rounded-xl bg-white/8 text-zinc-300 hover:bg-white/12 hover:text-white transition-colors"
+                            className="w-11 h-11 flex items-center justify-center rounded-lg border border-white/15 text-white active:bg-white/10 active:scale-90 transition-all"
                             aria-label="Fechar menu"
                         >
-                            <X size={22} />
+                            <X size={20} />
                         </button>
                     </div>
 
-                    {/* Links de navegação */}
-                    <nav className="flex-1 overflow-y-auto px-6 py-6 space-y-6">
-                        {/* Experiências */}
-                        <div>
-                            <p className="text-[9px] font-black uppercase tracking-[0.35em] text-[#39FF14] mb-2 px-1">
-                                Experiências
-                            </p>
-                            {experiences.map(item => (
-                                <Link
-                                    key={item.name}
-                                    href={item.href}
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    className="flex items-center justify-between py-4 border-b border-white/5 text-xl font-black italic uppercase tracking-tighter text-white hover:text-[#39FF14] transition-colors group"
-                                >
-                                    {item.name}
-                                    <ChevronRight size={18} className="text-zinc-700 group-hover:text-[#39FF14] transition-colors shrink-0" />
-                                </Link>
-                            ))}
+                    {/* Conteúdo navegável */}
+                    <div className="flex-1 overflow-y-auto overscroll-contain">
+                        {/* Kicker de seção — mesmo padrão dos títulos de EXPERIÊNCIAS na home */}
+                        <div className="flex items-center gap-3 px-6 pt-6 pb-3">
+                            <div className="h-px w-8 bg-neon shrink-0" />
+                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500">
+                                Experiências · Boituva-SP
+                            </span>
                         </div>
 
-                        {/* Cursos */}
-                        <div>
-                            <p className="text-[9px] font-black uppercase tracking-[0.35em] text-[#39FF14] mb-2 px-1">
-                                Cursos
-                            </p>
-                            {cursosParaquedismo.map(item => (
-                                <Link
-                                    key={item.name}
-                                    href={item.href}
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    className="flex items-center justify-between py-4 border-b border-white/5 text-xl font-black italic uppercase tracking-tighter text-white hover:text-[#39FF14] transition-colors group"
+                        {/* Lista principal — linhas editoriais com fotografia real */}
+                        <nav>
+                            {mobileNavItems.map((item, i) => (
+                                <motion.div
+                                    key={item.href}
+                                    initial={shouldReduceMotion ? {} : { opacity: 0, y: 14 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: shouldReduceMotion ? 0 : 0.05 + i * 0.05, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                                 >
-                                    {item.name}
-                                    <ChevronRight size={18} className="text-zinc-700 group-hover:text-[#39FF14] transition-colors shrink-0" />
-                                </Link>
+                                    <Link
+                                        href={item.href}
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="group flex items-center gap-4 px-6 py-5 border-b border-white/10 active:bg-white/5 transition-colors"
+                                    >
+                                        <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0 border border-white/10">
+                                            <img
+                                                src={item.image}
+                                                alt=""
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <div className="flex items-center gap-2 flex-wrap">
+                                                <h3 className="text-2xl font-black italic uppercase tracking-tighter leading-none text-white group-active:text-neon transition-colors">
+                                                    {item.name}
+                                                </h3>
+                                                {item.badge && (
+                                                    <span className="shrink-0 -skew-x-6 bg-gradient-to-br from-neon to-emerald-500 text-black text-[9px] font-black uppercase px-2 py-0.5 rounded">
+                                                        {item.badge}
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <p className="text-[11px] font-bold text-zinc-500 uppercase tracking-wide mt-1.5 truncate">
+                                                {item.tag}
+                                            </p>
+                                        </div>
+                                        <ArrowUpRight size={20} className="text-zinc-600 group-active:text-neon transition-colors shrink-0" />
+                                    </Link>
+                                </motion.div>
                             ))}
-                        </div>
+                        </nav>
 
-                        {/* Outras Experiências */}
-                        <div>
-                            <p className="text-[9px] font-black uppercase tracking-[0.35em] text-[#39FF14] mb-2 px-1">
-                                Outras Experiências
-                            </p>
-                            {outrasExperiencias.map(item => (
-                                <Link
-                                    key={item.name}
-                                    href={item.href}
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    className="flex items-center justify-between py-4 border-b border-white/5 text-xl font-black italic uppercase tracking-tighter text-white hover:text-[#39FF14] transition-colors group"
-                                >
-                                    {item.name}
-                                    <ChevronRight size={18} className="text-zinc-700 group-hover:text-[#39FF14] transition-colors shrink-0" />
-                                </Link>
-                            ))}
-                        </div>
-
-                        {/* Links secundários */}
-                        <div className="pt-2 flex flex-col gap-1">
+                        {/* FAQ / Blog */}
+                        <div className="grid grid-cols-2 border-b border-white/10">
                             <Link
                                 href="/faq"
                                 onClick={() => setIsMobileMenuOpen(false)}
-                                className="flex items-center gap-3 py-3.5 text-sm font-bold text-zinc-500 hover:text-zinc-200 transition-colors"
+                                className="flex items-center gap-2.5 px-6 py-4 border-r border-white/10 active:bg-white/5 transition-colors"
                             >
-                                <HelpCircle size={16} className="text-[#39FF14]/70" />
-                                FAQ
+                                <HelpCircle size={16} className="text-neon shrink-0" />
+                                <span className="text-xs font-black uppercase tracking-wider">FAQ</span>
                             </Link>
                             <Link
                                 href="/blog"
                                 onClick={() => setIsMobileMenuOpen(false)}
-                                className="flex items-center gap-3 py-3.5 text-sm font-bold text-zinc-500 hover:text-zinc-200 transition-colors"
+                                className="flex items-center gap-2.5 px-6 py-4 active:bg-white/5 transition-colors"
                             >
-                                <BookOpen size={16} className="text-[#39FF14]/70" />
-                                Blog
+                                <BookOpen size={16} className="text-neon shrink-0" />
+                                <span className="text-xs font-black uppercase tracking-wider">Blog</span>
                             </Link>
                         </div>
-                    </nav>
+
+                        {/* WhatsApp */}
+                        <a
+                            href="https://wa.me/5515997230007?text=Ol%C3%A1!%20Estou%20no%20site%20da%20Fly%20Up%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida."
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-between gap-3 px-6 py-4 border-b border-white/10 active:bg-white/5 transition-colors"
+                        >
+                            <span className="flex items-center gap-2.5 min-w-0">
+                                <MessageCircle size={16} className="text-neon shrink-0" />
+                                <span className="text-xs font-bold text-zinc-300 truncate">Dúvidas? Fale no WhatsApp</span>
+                            </span>
+                            <ArrowUpRight size={16} className="text-zinc-600 shrink-0" />
+                        </a>
+                    </div>
 
                     {/* CTA fixo na zona do polegar */}
-                    <div className="shrink-0 px-6 pb-10 pt-4 border-t border-white/8">
+                    <div
+                        className="shrink-0 px-6 pt-4 border-t border-white/10 bg-background"
+                        style={{ paddingBottom: "max(1.25rem, env(safe-area-inset-bottom))" }}
+                    >
                         <Button
-                            className="w-full h-14 bg-[#39FF14] hover:bg-[#22cc0a] text-black font-black italic uppercase tracking-wider rounded-xl text-base shadow-[0_0_30px_rgba(57,255,20,0.2)] transition-all"
+                            className="w-full h-14 bg-neon hover:bg-neon-hover text-black font-black italic uppercase tracking-wider rounded-xl text-sm shadow-[0_0_25px_rgba(57,255,20,0.35)] active:scale-[0.98] transition-all"
                             onClick={() => {
                                 setIsMobileMenuOpen(false);
                                 if (pathname === "/curso-aff-pro") {
@@ -404,7 +464,7 @@ export default function Navbar() {
                                 }
                             }}
                         >
-                            {pathname === "/curso-aff-pro" ? "Começar o curso agora" : "Agendar Agora"}
+                            {pathname === "/curso-aff-pro" ? "Começar o Curso Agora" : "Agendar Meu Salto Agora"}
                         </Button>
                     </div>
                 </motion.div>

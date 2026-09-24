@@ -381,7 +381,7 @@ export default function AFFAlternativePricing() {
                 onClose={() => setModalOpen(false)}
             />
 
-            <section className="py-24 bg-zinc-950 relative overflow-hidden border-t border-zinc-900">
+            <section className="py-24 bg-zinc-950 relative overflow-hidden border-t border-zinc-900" data-clarity-unmask="true">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-gradient-to-b from-zinc-900/50 to-transparent pointer-events-none" />
 
                 <div className="container mx-auto px-6 relative z-10 max-w-[1400px]">

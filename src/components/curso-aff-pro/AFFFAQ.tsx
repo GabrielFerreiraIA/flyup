@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, HelpCircle } from "lucide-react";
 import { useState } from "react";
+import { WA_EDU, WA_MESSAGES, buildWaUrl } from "@/lib/whatsapp";
 
 const faqs = [
     {
@@ -112,7 +113,12 @@ export default function AFFFAQ() {
                 <div className="mt-12 text-center">
                     <p className="text-zinc-500 text-sm">
                         Ainda tem dúvidas?{" "}
-                        <a href="#" className="text-[#39FF14] font-bold hover:underline">
+                        <a
+                            href={buildWaUrl(WA_EDU, WA_MESSAGES.aff.site)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[#39FF14] font-bold hover:underline"
+                        >
                             Fale com nosso time no WhatsApp
                         </a>
                     </p>

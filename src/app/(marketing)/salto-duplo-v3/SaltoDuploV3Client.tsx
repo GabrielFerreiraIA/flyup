@@ -69,7 +69,14 @@ function SaltoDuploTestimonials() {
     );
 }
 
-const HERO_VIDEO = "https://res.cloudinary.com/dn50urzkv/video/upload/f_auto,q_auto/v1783023879/Video_hero_Salto_Duplo_os1fse.mp4";
+// Mobile recebe recorte 9:16 leve (~1,5 MB) em vez do arquivo cheio (~9 MB);
+// o pôster estático aparece por trás enquanto o vídeo carrega.
+const HERO_VIDEO_BASE = "https://res.cloudinary.com/dn50urzkv/video/upload";
+const HERO_VIDEO_ID = "v1783023879/Video_hero_Salto_Duplo_os1fse";
+const HERO_VIDEO_MOBILE = `${HERO_VIDEO_BASE}/c_fill,ar_9:16,w_400,g_center,f_auto,q_auto:low,ac_none/${HERO_VIDEO_ID}.mp4`;
+const HERO_VIDEO_DESKTOP = `${HERO_VIDEO_BASE}/f_auto,q_auto,w_1280,ac_none/${HERO_VIDEO_ID}.mp4`;
+const HERO_POSTER_MOBILE = `${HERO_VIDEO_BASE}/so_0,c_fill,ar_9:16,w_540,g_center,f_auto,q_auto/${HERO_VIDEO_ID}.jpg`;
+const HERO_POSTER_DESKTOP = `${HERO_VIDEO_BASE}/so_0,f_auto,q_auto,w_1280/${HERO_VIDEO_ID}.jpg`;
 const PROMO_IMAGE = "https://res.cloudinary.com/dn50urzkv/image/upload/v1779472362/Imagem_Salto_DUplo_Desconto_zfaswq.webp";
 
 const galleryImages = [
@@ -127,7 +134,7 @@ const steps = [
         num: "02",
         title: "A Queda Livre",
         desc: "50 segundos de pura adrenalina a 200km/h. A sensação de liberdade que você vai lembrar para sempre.",
-        image: "https://res.cloudinary.com/dn50urzkv/image/upload/v1771951037/Salto_Duplo_Editado_16-9_qgdiqh.png",
+        image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto,w_800/v1771951037/Salto_Duplo_Editado_16-9_qgdiqh.png",
     },
     {
         num: "03",
@@ -151,7 +158,7 @@ const modalities = [
         oldPrice: "R$ 629",
         price: "R$ 599",
         installment: "12x de R$ 62,90",
-        image: "https://res.cloudinary.com/dn50urzkv/image/upload/v1777882708/Salto_Fun_gvsb6v.png",
+        image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto,w_640/v1777882708/Salto_Fun_gvsb6v.png",
         features: [
             "Salto a 12.000 pés",
             "Equipamento Sigma (elite)",
@@ -168,7 +175,7 @@ const modalities = [
         oldPrice: "R$ 890",
         price: "R$ 745",
         installment: "12x de R$ 82,90",
-        image: "https://res.cloudinary.com/dn50urzkv/image/upload/v1777882708/Salto_Handcan_vwouto.png",
+        image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto,w_640/v1777882708/Salto_Handcan_vwouto.png",
         features: [
             "Todos os benefícios do Fun",
             "Câmera de punho do instrutor",
@@ -185,7 +192,7 @@ const modalities = [
         oldPrice: null,
         price: "Consultar",
         installment: null,
-        image: "https://res.cloudinary.com/dn50urzkv/image/upload/v1777887040/Salto_Super_Vip_srkbfq.png",
+        image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto,w_640/v1777887040/Salto_Super_Vip_srkbfq.png",
         features: [
             "Upgrade total da experiência",
             "Cinegrafista externo exclusivo",
@@ -202,7 +209,7 @@ const modalities = [
         oldPrice: null,
         price: "Consultar",
         installment: null,
-        image: "https://res.cloudinary.com/dn50urzkv/image/upload/v1777882708/Salto_Super_VIP_PLUS_kmgoqi.png",
+        image: "https://res.cloudinary.com/dn50urzkv/image/upload/f_auto,q_auto,w_640/v1777882708/Salto_Super_VIP_PLUS_kmgoqi.png",
         features: [
             "O ápice da experiência Super VIP",
             "Vídeo exclusivo para Reels/TikTok",
@@ -330,8 +337,6 @@ export default function SaltoDuploV3Client() {
                     100% { transform: translateX(0); }
                 }
                 .ticker-ltr { animation: ticker-ltr 12s linear infinite; }
-                .stroke-neon-responsive { -webkit-text-stroke: 0.8px #39FF14; }
-                @media (min-width: 768px) { .stroke-neon-responsive { -webkit-text-stroke: 1.5px #39FF14; } }
             `}</style>
 
             <BookingModal
@@ -388,109 +393,78 @@ export default function SaltoDuploV3Client() {
             {/* =============================================
                 1. HERO — DARK — video bg
             ============================================= */}
-            <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black" style={{ paddingTop: `${BANNER_HEIGHT}px` }}>
+            <section data-hero className="relative min-h-[100svh] w-full flex flex-col justify-center overflow-hidden bg-black" style={{ paddingTop: `${BANNER_HEIGHT}px` }}>
 
                 <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70 z-10" />
+                    <picture>
+                        <source media="(min-width: 768px)" srcSet={HERO_POSTER_DESKTOP} />
+                        <img src={HERO_POSTER_MOBILE} alt="" className="absolute inset-0 w-full h-full object-cover" />
+                    </picture>
                     <video
-                        autoPlay loop muted playsInline
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover opacity-75"
+                        autoPlay loop muted playsInline preload="metadata"
+                        className="absolute inset-0 w-full h-full object-cover"
                     >
-                        <source src={HERO_VIDEO} type="video/mp4" />
+                        <source media="(min-width: 768px)" src={HERO_VIDEO_DESKTOP} type="video/mp4" />
+                        <source src={HERO_VIDEO_MOBILE} type="video/mp4" />
                     </video>
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/90" />
                 </div>
 
-                <div className="relative z-20 container mx-auto px-6 text-center pt-16 pb-48">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.45, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                        className="text-5xl md:text-7xl lg:text-8xl font-black italic uppercase tracking-tighter leading-[0.88] text-white mb-6"
-                    >
+                <motion.div
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                    className="relative z-20 container mx-auto px-6 text-center pt-28 pb-12 md:pt-32 md:pb-16"
+                >
+                    <h1 className="font-black italic uppercase tracking-tighter leading-[0.9] text-white text-[clamp(2.3rem,11vw,3rem)] md:text-7xl lg:text-8xl mb-6">
                         Salto Duplo
                         <br />
-                        <span
-                            className="text-transparent uppercase"
-                            style={{ WebkitTextStroke: "2px #39FF14" }}
-                        >
-                            de Paraquedas
-                        </span>
-                    </motion.h1>
+                        de Paraquedas
+                        <br />
+                        <span className="text-[#39FF14]">em Boituva</span>
+                    </h1>
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.6 }}
-                        className="text-zinc-300 text-base md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed"
+                    <p className="text-zinc-200 text-base md:text-xl max-w-2xl mx-auto mb-6 leading-relaxed">
+                        Viva a sensação mais intensa da sua vida: voar em queda livre, com toda a segurança
+                        de um instrutor experiente ao seu lado. <strong className="text-white">Você só precisa ter coragem.</strong>
+                    </p>
+
+                    <a
+                        href="#pacotes"
+                        data-clarity-unmask="true"
+                        className="inline-flex items-baseline gap-2 min-h-11 mb-6 text-sm md:text-base font-bold uppercase tracking-wider text-zinc-300 hover:text-white transition-colors"
                     >
-                        Conectado a um instrutor certificado, você salta de{" "}
-                        <strong className="text-white font-bold">12.000 pés</strong> e experimenta{" "}
-                        <strong className="text-white font-bold">50 segundos de queda livre</strong> a{" "}
-                        <strong className="text-white font-bold">200km/h</strong>. Com segurança absoluta.
-                    </motion.p>
+                        A partir de
+                        <span className="text-2xl md:text-3xl font-black italic tracking-tighter text-[#39FF14]">R$599</span>
+                        <span aria-hidden className="text-zinc-600">·</span>
+                        12x sem juros
+                    </a>
 
-                </div>
-
-                {/* ── Banner de oportunidade — fundo do hero ── */}
-                <div className="absolute bottom-6 md:bottom-10 left-0 w-full z-30 px-4 md:px-6 pointer-events-none">
-                    <div className="max-w-5xl mx-auto pointer-events-auto">
-                        <motion.div
-                            initial={{ y: 40, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.7, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                            className="relative bg-black/70 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-[32px] p-4 md:p-7 shadow-2xl overflow-hidden group"
+                    <div className="flex flex-col items-center gap-3 max-w-sm mx-auto">
+                        <BtnNeon onClick={() => openModal()} className="w-full h-14 text-sm">
+                            Agendar meu salto
+                            <ArrowRight className="w-4 h-4" />
+                        </BtnNeon>
+                        <a
+                            href={whatsAppUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 min-h-11 px-4 text-sm font-bold text-zinc-300 hover:text-white transition-colors"
                         >
-                            <div className="absolute -inset-1 bg-gradient-to-r from-[#39FF14]/5 via-transparent to-[#39FF14]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-
-                            <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 relative z-10">
-
-                                {/* Texto */}
-                                <div className="flex items-center justify-between w-full md:w-auto md:flex-1 gap-4">
-                                    <div className="flex flex-col items-start">
-                                        <span className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.4em] text-[#39FF14] mb-1 opacity-80">
-                                            Promoção exclusiva
-                                        </span>
-                                        <h3 className="text-base md:text-2xl font-black italic uppercase text-white tracking-tighter leading-tight">
-                                            Reserve seu salto<br />
-                                            <span className="text-transparent stroke-neon-responsive">
-                                                com R$ 150 de desconto
-                                            </span>
-                                        </h3>
-                                    </div>
-
-                                    {/* Desconto */}
-                                    <div className="flex flex-col items-end md:items-center justify-center md:px-8 md:border-x md:border-white/5">
-                                        <div className="flex items-baseline gap-1 md:gap-2">
-                                            <span className="text-3xl md:text-6xl font-black italic tracking-tighter text-transparent leading-none" style={{ WebkitTextStroke: "2px #39FF14" }}>
-                                                R$150
-                                            </span>
-                                        </div>
-                                        <span className="text-[9px] md:text-[10px] font-black italic uppercase text-[#39FF14] tracking-tighter">
-                                            OFF
-                                        </span>
-                                        <span className="text-[7px] md:text-[8px] font-bold uppercase tracking-widest text-zinc-500 mt-0.5">
-                                            Salto VIP Plus · Vagas limitadas
-                                        </span>
-                                    </div>
-                                </div>
-
-                                {/* CTA */}
-                                <div className="w-full md:w-auto">
-                                    <button
-                                        onClick={() => openModal()}
-                                        className="group/cta relative h-12 md:h-14 w-full md:px-10 bg-white text-black font-black italic uppercase tracking-wider rounded-xl overflow-hidden transition-all duration-300 shadow-xl hover:shadow-[0_0_30px_rgba(57,255,20,0.4)] cursor-pointer"
-                                    >
-                                        <div className="absolute inset-0 translate-x-[-100%] group-hover/cta:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]" style={{ background: "linear-gradient(to right, #39FF14, #10b981)" }} />
-                                        <span className="relative z-10 flex items-center justify-center gap-2 md:gap-3 text-sm md:text-base">
-                                            Garantir meu desconto
-                                            <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover/cta:translate-x-1 transition-transform" />
-                                        </span>
-                                    </button>
-                                </div>
-                            </div>
-                        </motion.div>
+                            <Phone className="w-4 h-4 text-[#25D366] fill-current" />
+                            <span>
+                                ou agende direto pelo{" "}
+                                <span className="text-[#25D366] underline underline-offset-4 decoration-[#25D366]/50">WhatsApp</span>
+                            </span>
+                        </a>
                     </div>
-                </div>
+
+                    <p data-clarity-unmask="true" className="mt-5 text-xs font-bold uppercase tracking-wider text-zinc-400">
+                        <span className="text-[#39FF14]">R$150 OFF</span> no VIP Plus
+                        <span aria-hidden className="mx-2 text-zinc-700">·</span>
+                        Grupo de 10: 1 salta grátis
+                    </p>
+                </motion.div>
             </section>
 
             {/* =============================================
@@ -513,7 +487,7 @@ export default function SaltoDuploV3Client() {
             {/* =============================================
                 2. ÂNCORA DE PREÇO — WHITE
             ============================================= */}
-            <section className="bg-white py-16 md:py-24 relative overflow-hidden">
+            <section data-clarity-unmask="true" className="bg-white py-16 md:py-24 relative overflow-hidden">
                 {/* Hexagonal Honeycomb Pattern */}
                 <div
                     className="absolute inset-0 opacity-[0.18] pointer-events-none select-none"
@@ -612,7 +586,7 @@ export default function SaltoDuploV3Client() {
             {/* =============================================
                 2b. GRUPOS E EVENTOS — WHITE
             ============================================= */}
-            <section className="bg-white py-20 md:py-32">
+            <section id="grupo" className="bg-white py-20 md:py-32 scroll-mt-20">
                 <div className="container mx-auto px-6">
                     <div className="max-w-5xl mx-auto">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
@@ -697,7 +671,7 @@ export default function SaltoDuploV3Client() {
             {/* =============================================
                 3. TRUST SIGNALS — DARK
             ============================================= */}
-            <section className="bg-zinc-950 pt-6 pb-8 md:pt-8 md:pb-10 border-y border-white/5">
+            <section data-clarity-unmask="true" className="bg-zinc-950 pt-6 pb-8 md:pt-8 md:pb-10 border-y border-white/5">
                 <div className="container mx-auto px-6">
                     <div className="max-w-5xl mx-auto">
                         <p className="text-center text-[10px] font-black uppercase tracking-[0.4em] text-zinc-600 mb-8">
@@ -811,7 +785,8 @@ export default function SaltoDuploV3Client() {
             {/* =============================================
                 5. MODALIDADES / PRICING — DARK
             ============================================= */}
-            <section id="modalidades" className="bg-black py-20 md:py-32">
+            <section id="pacotes" data-clarity-unmask="true" className="bg-black py-20 md:py-32 scroll-mt-20">
+                <span id="modalidades" className="block scroll-mt-20" aria-hidden />
                 <div className="container mx-auto px-6">
                     <div className="max-w-6xl mx-auto">
                         <div className="text-center mb-16">
@@ -1184,7 +1159,7 @@ export default function SaltoDuploV3Client() {
             {/* =============================================
                 11. LOCALIZAÇÃO — WHITE
             ============================================= */}
-            <section className="bg-white py-20 md:py-28">
+            <section id="localizacao" className="bg-white py-20 md:py-28 scroll-mt-20">
                 <div className="container mx-auto px-6">
                     <div className="max-w-5xl mx-auto">
                         <div className="text-center mb-14">

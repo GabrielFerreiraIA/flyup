@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -32,6 +32,23 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
     const [phone, setPhone] = useState("");
     const pathname = usePathname();
     const cameFromAd = useCameFromAd();
+    const [heroVisible, setHeroVisible] = useState(false);
+
+    // O botão flutuante cobria os CTAs do hero no mobile: fica oculto enquanto
+    // a seção marcada com data-hero estiver na tela.
+    useEffect(() => {
+        const hero = document.querySelector("[data-hero]");
+        if (!hero) return;
+        const observer = new IntersectionObserver(
+            ([entry]) => setHeroVisible(entry.isIntersecting),
+            { threshold: 0.15 }
+        );
+        observer.observe(hero);
+        return () => {
+            observer.disconnect();
+            setHeroVisible(false);
+        };
+    }, [pathname]);
 
     const routeMessage = pathname ? directMessages[pathname] : undefined;
     const directMessage =
@@ -63,8 +80,9 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
         setPhone("");
     };
 
-    const floatingClassName =
-        "fixed bottom-8 right-8 z-[100] flex items-center justify-center w-16 h-16 bg-[#25D366] text-white rounded-full shadow-[0_10px_25px_rgba(37,211,102,0.4)] transition-shadow hover:shadow-[0_15px_35px_rgba(37,211,102,0.6)] cursor-pointer group";
+    const floatingClassName = `fixed bottom-8 right-8 z-[100] flex items-center justify-center w-16 h-16 bg-[#25D366] text-white rounded-full shadow-[0_10px_25px_rgba(37,211,102,0.4)] transition-all duration-300 hover:shadow-[0_15px_35px_rgba(37,211,102,0.6)] cursor-pointer group ${
+        heroVisible ? "opacity-0 translate-y-4 pointer-events-none" : "opacity-100 translate-y-0"
+    }`;
 
     const floatingInner = (
         <>
@@ -181,6 +199,8 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
                     rel="noopener noreferrer"
                     className={floatingClassName}
                     aria-label="Fale conosco no WhatsApp"
+                    aria-hidden={heroVisible || undefined}
+                    tabIndex={heroVisible ? -1 : undefined}
                 >
                     {floatingInner}
                 </a>
@@ -190,6 +210,8 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
                     onClick={() => setIsOpen(true)}
                     className={floatingClassName}
                     aria-label="Fale conosco no WhatsApp"
+                    aria-hidden={heroVisible || undefined}
+                    tabIndex={heroVisible ? -1 : undefined}
                 >
                     {floatingInner}
                 </button>

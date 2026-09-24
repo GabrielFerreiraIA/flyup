@@ -25,7 +25,7 @@ export default function AFFPricingNew() {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
 
     return (
-        <section className="py-24 bg-zinc-950 relative overflow-hidden" id="preco">
+        <section className="py-24 bg-zinc-950 relative overflow-hidden scroll-mt-20" id="preco" data-clarity-unmask="true">
             {/* Background texture */}
             <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#39FF14_1px,transparent_1px)] bg-[size:30px_30px]" />
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#39FF14]/5 rounded-full blur-3xl pointer-events-none" />
