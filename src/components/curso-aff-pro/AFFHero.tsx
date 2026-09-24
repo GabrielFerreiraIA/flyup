@@ -39,8 +39,7 @@ export default function AFFHero() {
                 </h1>
 
                 <p className="text-base md:text-lg text-zinc-200 max-w-xl mx-auto mb-8 leading-relaxed">
-                    Deixe de sonhar com o céu e aprenda a voar sozinho. Do primeiro salto à sua licença de
-                    paraquedista, lado a lado com Edu Esteves, que já saltou mais de 13 mil vezes.
+                    Pare de sonhar com o céu. Aprenda a voar sozinho.
                 </p>
 
                 <div className="flex flex-col items-center gap-4 max-w-sm mx-auto">

@@ -425,8 +425,7 @@ export default function SaltoDuploV3Client() {
                     </h1>
 
                     <p className="text-zinc-200 text-base md:text-xl max-w-2xl mx-auto mb-6 leading-relaxed">
-                        Viva a sensação mais intensa da sua vida: voar em queda livre, com toda a segurança
-                        de um instrutor experiente ao seu lado. <strong className="text-white">Você só precisa ter coragem.</strong>
+                        50 segundos de queda livre. <strong className="text-white">Só falta a sua coragem.</strong>
                     </p>
 
                     <a
